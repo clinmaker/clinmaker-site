@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security &amp; Compliance · ClinMaker</title>
+  <meta name="description" content="GxP-grade by design. 21 CFR Part 11, EU Annex 11, ICH E6(R3). Append-only audit, RBAC, MFA/OTP, encryption at rest and in transit, GDPR pseudonymization, 7-year retention.">
+  <meta name="theme-color" content="#d87654">
+  <link rel="icon" type="image/png" href="assets/favicon-256.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <svg class="logo-mark" viewBox="0 0 64 64" fill="none"><path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/><line x1="26" y1="29" x2="26" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <span><span class="logo-text-ink">Clin</span><span class="logo-text-brand">Maker</span></span>
+    </a>
+    <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle navigation"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    <div class="nav-links">
+      <a href="platform.html">Platform</a>
+      <a href="standards.html">Standards</a>
+      <a href="security.html">Security</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html">About</a>
+      <a href="#" class="nav-cta" onclick="openDemoModal(); return false;">Request a Demo</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="eyebrow">Security &amp; Compliance</div>
+  <h1>GxP-grade by design, not by retrofit.</h1>
+  <p>Audit trail, RBAC, MFA, separation of duties, and encryption are foundational architecture — not features you toggle on later. Inspection-readiness is the default state.</p>
+</header>
+
+<section class="section">
+  <div class="eyebrow">Audit trail</div>
+  <h2 class="section-title">Append-only. ALCOA+. 7-year retention.</h2>
+  <p class="section-sub">Every GxP-relevant action is recorded as an immutable audit entry. Tamper-evident storage. Searchable by study, subject, user, record type, event type, and date range. Exportable as PDF or machine-readable JSON for inspection.</p>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2"/></svg></div>
+      <h4>Every action audited</h4>
+      <p>Create, update, delete, approve, sign — actor, timestamp, previous/new values, reason, study/site/subject context. AI actions distinguishable from human actions.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div>
+      <h4>ALCOA+ aligned</h4>
+      <p>Attributable, Legible, Contemporaneous, Original, Accurate — plus Complete, Consistent, Enduring, Available. The 9 principles map to specific audit columns.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+      <h4>Retention &amp; immutability</h4>
+      <p>At least as long as the linked clinical records. Write-once from the application layer; tamper detection at the storage layer.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" style="max-width:100%;">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div class="eyebrow">Access control</div>
+    <h2 class="section-title">RBAC. MFA. Separation of duties.</h2>
+    <p class="section-sub">Unique user accounts — no shared logins, ever. Eleven predefined roles with fine-grained permissions per module and per data domain. Conflicting roles cannot stack on a single user.</p>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg></div>
+        <h4>Eleven predefined roles</h4>
+        <p>System Admin, Platform Owner, QA/Compliance, Data Standards Lead, Study DM, Safety Physician, Medical Coder, CRA/Monitor, Site User, Biostat/Programmer, Study Viewer. Extendable per sponsor.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon violet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></div>
+        <h4>MFA &amp; OTP everywhere</h4>
+        <p>Password + OTP, or OTP-only where policy permits. MFA enforced for privileged roles. Channels: email, SMS, authenticator app. OTPs are random, single-use, time-limited, rate-limited.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
+        <h4>Separation of duties</h4>
+        <p>The user who creates a record cannot approve it. The user who codes cannot QC their own coding. Conflict-of-interest patterns are blocked at the permission layer.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg></div>
+        <h4>Onboarding &amp; review</h4>
+        <p>Account creation gated on training completion + approval. Role changes audited with effective dates and reasons. Periodic access reviews. Immediate offboarding. Bulk operations preserve individual auditability.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="eyebrow">Infrastructure</div>
+  <h2 class="section-title">Encrypted in transit, at rest, and between modules.</h2>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></div>
+      <h4>Encryption</h4>
+      <p>TLS 1.3 in transit. AES-256-GCM at rest. Database-level encryption keys rotated per the sponsor's policy. Backups encrypted independently.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2"/></svg></div>
+      <h4>AWS hosting, US region</h4>
+      <p>EC2 + RDS Postgres + S3 + CloudFront. Private VPC. Bastion-only SSH. Container images scanned on every build.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div>
+      <h4>Three environments</h4>
+      <p>DEV / SANDBOX / PROD with separate databases, separate keys, separate logging. Code promotion is tag-gated. Production deploys are user-authorised.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/></svg></div>
+      <h4>Per-row blinding</h4>
+      <p>Blinding scope enforced at the repository layer — not just the UI. Treatment-arm fields hidden from blinded roles in every API response. Optional segregated-storage mode for sponsors who require physical separation.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2"/></svg></div>
+      <h4>GDPR pseudonymization</h4>
+      <p>Subject-PII erasure workflow with dual sign-off (DPO + QA). Deterministic hashing replaces PII; clinical data is preserved per GxP retention rules.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg></div>
+      <h4>Monitoring &amp; observability</h4>
+      <p>Structured logs, request tracing, real-time error alerts. Production diagnostics workflow for on-call without SSH.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-warm">
+  <div class="centered">
+    <div class="eyebrow">Validation evidence</div>
+    <h2 class="section-title">Inspection-ready out of the box.</h2>
+    <p class="section-sub centered" style="margin: 0 auto;">Validation deliverables are generated from the same source of truth as the code: User Requirements Specification, Functional Requirements Specification, Validation Plan, Risk Assessment, IQ/OQ/PQ scripts, Traceability Matrix. Refreshed on every release.</p>
+    <a href="contact.html" class="btn btn-primary" style="margin-top: 16px;">Request the URS Pack &rarr;</a>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2>Want our compliance posture in writing?</h2>
+  <p>We'll send the URS Pack, a security one-pager, and a sample audit-trail export — all under NDA.</p>
+  <a href="#" class="btn btn-white" onclick="openDemoModal(); return false;">Request a Demo &rarr;</a>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">
+        <svg class="logo-mark" viewBox="0 0 64 64" fill="none"><path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/><line x1="26" y1="29" x2="26" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span><span class="logo-text-ink">Clin</span><span class="logo-text-brand">Maker</span></span>
+      </a>
+      <p class="footer-tagline">Standards at the core. Submission at the finish. Agentic AI for clinical data management.</p>
+    </div>
+    <div class="footer-col"><div class="footer-col-title">Product</div><ul><li><a href="platform.html">Platform</a></li><li><a href="standards.html">Standards</a></li><li><a href="security.html">Security</a></li><li><a href="pricing.html">Pricing</a></li></ul></div>
+    <div class="footer-col"><div class="footer-col-title">Company</div><ul><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="#" onclick="openDemoModal(); return false;">Request a Demo</a></li></ul></div>
+    <div class="footer-col"><div class="footer-col-title">Resources</div><ul><li><a href="https://app.clinmaker.com" target="_blank" rel="noopener">Log in</a></li><li><a href="mailto:hello@clinmaker.com">hello@clinmaker.com</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 ClinMaker, LLC. All rights reserved.</span><span>Built for GxP-regulated clinical research.</span></div>
+</footer>
+
+<div class="modal-overlay" id="demoModal" role="dialog" aria-labelledby="demoModalTitle" aria-modal="true">
+  <div class="modal">
+    <button class="modal-close" onclick="closeDemoModal()" aria-label="Close"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg></button>
+    <h3 id="demoModalTitle">Request a Demo</h3>
+    <p class="modal-sub">Tell us a little about your team. We'll be in touch within one business day.</p>
+    <form action="__FORMSPREE_ENDPOINT__" method="POST" onsubmit="return handleDemoSubmit(this, event)">
+      <div class="form-row">
+        <div class="form-group"><label>First name <span class="req">*</span></label><input type="text" name="first_name" class="form-control" required></div>
+        <div class="form-group"><label>Last name <span class="req">*</span></label><input type="text" name="last_name" class="form-control" required></div>
+      </div>
+      <div class="form-group"><label>Work email <span class="req">*</span></label><input type="email" name="email" class="form-control" required></div>
+      <div class="form-group"><label>Company <span class="req">*</span></label><input type="text" name="company" class="form-control" required></div>
+      <div class="form-group"><label>Role</label><select name="role" class="form-control"><option value="">Select…</option><option>Data Manager / Lead</option><option>Clinical Operations</option><option>Biostatistics / Programming</option><option>QA / Compliance</option><option>Medical / Safety</option><option>Executive / Sponsor leadership</option><option>Other</option></select></div>
+      <div class="form-group"><label>What would you like to see?</label><textarea name="message" class="form-control" placeholder="A particular module, an integration, a workflow…"></textarea></div>
+      <button type="submit" class="form-submit">Request a Demo <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></button>
+    </form>
+  </div>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

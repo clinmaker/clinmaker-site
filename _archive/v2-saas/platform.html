@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Platform · ClinMaker</title>
+  <meta name="description" content="Twelve cooperating agents — protocol authoring, study build, ingestion, validation, query management, medical coding, reconciliation, SDTM/ADaM, analytics, audit, user admin, help center. One canonical data model.">
+  <meta name="theme-color" content="#d87654">
+  <link rel="icon" type="image/png" href="assets/favicon-256.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<!-- ═════════ NAV ═════════ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo" aria-label="ClinMaker home">
+      <svg class="logo-mark" viewBox="0 0 64 64" fill="none">
+        <path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/>
+        <path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+        <path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+        <line x1="26" y1="29" x2="26" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+      <span><span class="logo-text-ink">Clin</span><span class="logo-text-brand">Maker</span></span>
+    </a>
+    <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle navigation">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+    <div class="nav-links">
+      <a href="platform.html">Platform</a>
+      <a href="standards.html">Standards</a>
+      <a href="security.html">Security</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html">About</a>
+      <a href="#" class="nav-cta" onclick="openDemoModal(); return false;">Request a Demo</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═════════ PAGE HEADER ═════════ -->
+<header class="page-header">
+  <div class="eyebrow">The Platform</div>
+  <h1>Twelve agents. One pipeline. One data model.</h1>
+  <p>Every stage of clinical data — from protocol section authoring through SDTM/ADaM submission — is owned by a cooperating agent. They share the same canonical model, the same RBAC, the same append-only audit trail.</p>
+</header>
+
+<!-- ═════════ MODULE 1 · Protocol Authoring ═════════ -->
+<section class="module-section">
+  <div class="module-grid">
+    <div class="module-text">
+      <div class="eyebrow">01 · Protocol Authoring</div>
+      <h2>USDM 4.0 protocols, scored ~100/100.</h2>
+      <p>Author M11-aligned protocols section-by-section with an AI co-pilot. Every Code field binds to NCI/CDISC CT. Round-trip exports against CDISC's own reference fixtures pass the CORE rules engine cleanly.</p>
+      <ul class="module-bullets">
+        <li>84-section M11 generator covers Title Page through Appendices.</li>
+        <li>CDISC CORE rules run as a pre-export gate — exports block on ERROR-severity findings.</li>
+        <li>Bidirectional consistency: amend a study definition and stale sections auto-flag.</li>
+        <li>USDM 4.0 export + import. SDR-interop-ready for sponsor/CRO handoff.</li>
+      </ul>
+      <a href="standards.html" class="btn btn-outline btn-sm">USDM 4.0 details &rarr;</a>
+    </div>
+    <div class="module-mockup">
+      <div class="mm-head">
+        <div class="mm-title">Protocol — ACQ-2026-001</div>
+        <div class="mm-actions"><span class="mm-pill brand">USDM 4.0</span><span class="mm-pill violet">AI</span></div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div class="mm-row r-3"><span>§5.1 Inclusion criteria</span><span class="mock-badge green">Approved</span><span style="text-align:right;color:var(--text-muted);font-size:0.6875rem;">v3 · 2 reviewers</span></div>
+        <div class="mm-row r-3"><span>§5.2 Exclusion criteria</span><span class="mock-badge green">Approved</span><span style="text-align:right;color:var(--text-muted);font-size:0.6875rem;">v2</span></div>
+        <div class="mm-row r-3"><span>§6.1 Primary objective</span><span class="mock-badge amber">In review</span><span style="text-align:right;color:var(--text-muted);font-size:0.6875rem;">3 comments</span></div>
+        <div class="mm-row r-3"><span>§6.2 Endpoints</span><span class="mock-badge brand">Draft</span><span style="text-align:right;color:var(--text-muted);font-size:0.6875rem;">AI-generated</span></div>
+        <div class="mm-row r-3"><span>§7 SoA</span><span class="mock-badge green">Approved</span><span style="text-align:right;color:var(--text-muted);font-size:0.6875rem;">arm-aware</span></div>
+        <div class="mm-row r-3"><span>§8 Statistical analysis</span><span class="mock-badge amber">⚠ Stale</span><span style="text-align:right;color:var(--text-muted);font-size:0.6875rem;">regenerate</span></div>
+      </div>
+      <div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--surface-divider); font-size:0.75rem; color:var(--text-secondary); display:flex; align-items:center; gap:8px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:var(--status-green)"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
+        Compliance gate · 0 errors, 4 warnings · ready to export
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ MODULE 2 · Study Build ═════════ -->
+<section class="module-section alt">
+  <div class="module-inner">
+    <div class="module-grid reverse">
+      <div class="module-text">
+        <div class="eyebrow">02 · Study Build</div>
+        <h2>CDASH casebook, Rave or Veeva target.</h2>
+        <p>Read the protocol's SoA, eligibility criteria, and assessments — and generate a CDASH-aligned EDC build. Forms, fields, codelists, edit checks, derivations. Deploy to Medidata Rave (Architect Loader) or Veeva Vault EDC (Casebook Objects) from the same source.</p>
+        <ul class="module-bullets">
+          <li>Visit schedule + casebook structure derived from protocol.</li>
+          <li>Edit checks classified by criticality and site-query intent.</li>
+          <li>Protocol → CDASH → EDC → SDTM mapping recorded end-to-end.</li>
+          <li>Auto-generated SDS, eCRF spec, and UAT test scenarios.</li>
+        </ul>
+      </div>
+      <div class="module-mockup">
+        <div class="mm-head">
+          <div class="mm-title">Casebook · Visit Schedule</div>
+          <div class="mm-actions"><span class="mm-pill muted">CDASH</span><span class="mm-pill brand">Rave + Veeva</span></div>
+        </div>
+        <div class="mm-row header r-4"><span>Form</span><span>Visit</span><span>Edit checks</span><span style="text-align:right;">Status</span></div>
+        <div class="mm-row r-4"><span>Demographics (DM)</span><span>SCR</span><span>14</span><span style="text-align:right;"><span class="mock-badge green">Ready</span></span></div>
+        <div class="mm-row r-4"><span>Vital Signs (VS)</span><span>D1, D8, D15…</span><span>22</span><span style="text-align:right;"><span class="mock-badge green">Ready</span></span></div>
+        <div class="mm-row r-4"><span>Adverse Events (AE)</span><span>All</span><span>31</span><span style="text-align:right;"><span class="mock-badge green">Ready</span></span></div>
+        <div class="mm-row r-4"><span>Labs (LB)</span><span>D1, D8, D15…</span><span>48</span><span style="text-align:right;"><span class="mock-badge amber">Review</span></span></div>
+        <div class="mm-row r-4"><span>Concomitant Meds (CM)</span><span>All</span><span>12</span><span style="text-align:right;"><span class="mock-badge green">Ready</span></span></div>
+        <div class="mm-row r-4"><span>Exposure (EX)</span><span>D1–D29</span><span>9</span><span style="text-align:right;"><span class="mock-badge brand">Generating</span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ MODULE 3 · Data Ingestion ═════════ -->
+<section class="module-section">
+  <div class="module-grid">
+    <div class="module-text">
+      <div class="eyebrow">03 · Data Ingestion</div>
+      <h2>One pipeline. Any EDC. Any vendor.</h2>
+      <p>Rave (ODM.XML or Clinical Views), Veeva Vault (VQL + REST), central labs (SAS7BDAT/XPT/CSV), imaging, RTSM/IxRS, ePRO, devices. Every row carries its source-system OID for idempotent upserts. Schema drift surfaces in real time.</p>
+      <ul class="module-bullets">
+        <li>Connect → Validate → Normalize → Publish, with quarantine queues.</li>
+        <li>OID preservation across re-extracts. No duplicate rows.</li>
+        <li>Amendment-aware: breaking schema changes pause production until reviewed.</li>
+        <li>Test-load gate stack — Live data flows only after UAT proof.</li>
+      </ul>
+    </div>
+    <div class="module-mockup">
+      <div class="mm-head">
+        <div class="mm-title">Ingestion · Last 24h</div>
+        <div class="mm-actions"><span class="mm-pill brand">15 vendors</span></div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div>
+          <div style="display:flex; justify-content:space-between; font-size:0.75rem; margin-bottom:4px;"><span>Medidata Rave (ODM.XML)</span><span style="color:var(--status-green); font-weight:600;">12,448 rows · OK</span></div>
+          <div class="mm-progress"><div class="mm-progress-fill green" style="width:100%"></div></div>
+        </div>
+        <div>
+          <div style="display:flex; justify-content:space-between; font-size:0.75rem; margin-bottom:4px;"><span>Veeva Vault EDC</span><span style="color:var(--status-green); font-weight:600;">3,012 rows · OK</span></div>
+          <div class="mm-progress"><div class="mm-progress-fill green" style="width:100%"></div></div>
+        </div>
+        <div>
+          <div style="display:flex; justify-content:space-between; font-size:0.75rem; margin-bottom:4px;"><span>Q² Central Lab (SAS7BDAT)</span><span style="color:var(--status-green); font-weight:600;">1,876 rows · OK</span></div>
+          <div class="mm-progress"><div class="mm-progress-fill green" style="width:100%"></div></div>
+        </div>
+        <div>
+          <div style="display:flex; justify-content:space-between; font-size:0.75rem; margin-bottom:4px;"><span>BioTel Cardiac (XML)</span><span style="color:var(--status-amber); font-weight:600;">421 rows · 3 quarantined</span></div>
+          <div class="mm-progress"><div class="mm-progress-fill amber" style="width:88%"></div></div>
+        </div>
+        <div>
+          <div style="display:flex; justify-content:space-between; font-size:0.75rem; margin-bottom:4px;"><span>Medable ePRO (CSV)</span><span style="color:var(--status-green); font-weight:600;">5,108 rows · OK</span></div>
+          <div class="mm-progress"><div class="mm-progress-fill green" style="width:100%"></div></div>
+        </div>
+        <div>
+          <div style="display:flex; justify-content:space-between; font-size:0.75rem; margin-bottom:4px;"><span>Suvoda RTSM (API)</span><span style="color:var(--status-green); font-weight:600;">288 events · OK</span></div>
+          <div class="mm-progress"><div class="mm-progress-fill green" style="width:100%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ MODULE 4 · Validation Agent ═════════ -->
+<section class="module-section alt">
+  <div class="module-inner">
+    <div class="module-grid reverse">
+      <div class="module-text">
+        <div class="eyebrow">04 · Validation Agent</div>
+        <h2>Three levels of rule. One engine.</h2>
+        <p>Syntactic + format checks on every field. Logical edit checks within and across forms for a subject. Cross-source consistency between EDC, RTSM, labs, ePRO. Every finding ships with rule ID, evaluated logic, observed values, and severity.</p>
+        <ul class="module-bullets">
+          <li>Versioned rule catalog — global, program, study-level overrides.</li>
+          <li>Run on ingest, on demand, or on a schedule.</li>
+          <li>Findings flow directly to Query Management with severity routing.</li>
+          <li>Audit row per finding: who, what, when, which rule version.</li>
+        </ul>
+      </div>
+      <div class="module-mockup">
+        <div class="mm-head">
+          <div class="mm-title">Validation findings · Today</div>
+          <div class="mm-actions"><span class="mm-pill brand">L1+L2+L3</span></div>
+        </div>
+        <div class="mm-row header r-4"><span>Rule</span><span>Subject</span><span>Field</span><span style="text-align:right;">Severity</span></div>
+        <div class="mm-row r-4"><span style="font-family:'JetBrains Mono',monospace;">VS-001</span><span>S001-024</span><span>SBP &gt; DBP</span><span style="text-align:right;"><span class="mock-badge red">ERR</span></span></div>
+        <div class="mm-row r-4"><span style="font-family:'JetBrains Mono',monospace;">DM-014</span><span>S001-031</span><span>AGE &lt; 18</span><span style="text-align:right;"><span class="mock-badge red">ERR</span></span></div>
+        <div class="mm-row r-4"><span style="font-family:'JetBrains Mono',monospace;">AE-022</span><span>S002-018</span><span>STDTC &lt; EX</span><span style="text-align:right;"><span class="mock-badge amber">WARN</span></span></div>
+        <div class="mm-row r-4"><span style="font-family:'JetBrains Mono',monospace;">LB-007</span><span>S003-045</span><span>HGB units</span><span style="text-align:right;"><span class="mock-badge amber">WARN</span></span></div>
+        <div class="mm-row r-4"><span style="font-family:'JetBrains Mono',monospace;">CM-X01</span><span>S001-007</span><span>ENRTPT</span><span style="text-align:right;"><span class="mock-badge green">INFO</span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ MODULE 5 · Query Management ═════════ -->
+<section class="module-section">
+  <div class="module-grid">
+    <div class="module-text">
+      <div class="eyebrow">05 · Query Management</div>
+      <h2>One lifecycle for every query.</h2>
+      <p>Validation findings, reconciliation discrepancies, coding ambiguities, and manual reviews all flow through one unified Query lifecycle. AI drafts neutral, non-leading query text. Humans approve, edit, or reject — and every step is audited.</p>
+      <ul class="module-bullets">
+        <li>States: Detected → Draft → Issued → Acknowledged → Answered → Closed.</li>
+        <li>SLA tracking, aging dashboards, bulk operations, escalation rules.</li>
+        <li>Sanitiser strips internal jargon before issuing to sites.</li>
+        <li>DB-lock readiness indicators on every study.</li>
+      </ul>
+    </div>
+    <div class="module-mockup">
+      <div class="mm-head">
+        <div class="mm-title">Query — Q-2026-04412</div>
+        <div class="mm-actions"><span class="mm-pill brand">Issued</span><span class="mm-pill violet">AI-drafted</span></div>
+      </div>
+      <div class="mm-field-grid" style="margin-bottom:14px;">
+        <div class="mm-field"><div class="mm-field-label">Study</div><div class="mm-field-val">ONCO-2024-0145</div></div>
+        <div class="mm-field"><div class="mm-field-label">Subject</div><div class="mm-field-val">S001-024</div></div>
+        <div class="mm-field"><div class="mm-field-label">Form / Visit</div><div class="mm-field-val">VS · Day 1</div></div>
+        <div class="mm-field"><div class="mm-field-label">Severity</div><div class="mm-field-val" style="color:var(--status-red);">High</div></div>
+      </div>
+      <div style="background:var(--surface-hover); padding:12px 14px; border-radius:8px; font-size:0.8125rem; color:var(--text-secondary); line-height:1.55;">
+        <strong style="color:var(--ink); display:block; margin-bottom:6px; font-size:0.6875rem; text-transform:uppercase; letter-spacing:0.06em;">Query text</strong>
+        Systolic blood pressure (134 mmHg) is recorded as lower than diastolic blood pressure (138 mmHg). Please verify and confirm or correct these values.
+      </div>
+      <div style="margin-top:12px; font-size:0.75rem; color:var(--text-muted); display:flex; gap:12px;">
+        <span>Issued: 2026-05-12</span>
+        <span>Due: 2026-05-17</span>
+        <span>Aging: 3d</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ MODULE 6 · Medical Coding ═════════ -->
+<section class="module-section alt">
+  <div class="module-inner">
+    <div class="module-grid reverse">
+      <div class="module-text">
+        <div class="eyebrow">06 · Medical Coding</div>
+        <h2>MedDRA + WHO Drug, AI-first.</h2>
+        <p>Verbatim AEs, medical history, and concomitant medications run through an AI auto-coder that proposes LLT/PT, ATC, or trade-name matches with confidence scores. High-confidence predictions auto-code; the rest flow to a coder workbench for human review.</p>
+        <ul class="module-bullets">
+          <li>Per-study MedDRA and WHO Drug version pinning.</li>
+          <li>Coder workbench: side-by-side verbatim / suggestion / dictionary browse.</li>
+          <li>Auto-recode triggers when source data changes.</li>
+          <li>Coding-query integration when verbatims are insufficient.</li>
+        </ul>
+      </div>
+      <div class="module-mockup">
+        <div class="mm-head">
+          <div class="mm-title">Coding · Pending review</div>
+          <div class="mm-actions"><span class="mm-pill muted">MedDRA 27.0</span></div>
+        </div>
+        <div class="mm-map-row"><div class="mm-map-src">"headache, mild morning"</div><div class="mm-map-arrow">&rarr;</div><div class="mm-map-tgt">10019211 · Headache</div></div>
+        <div class="mm-map-row"><div class="mm-map-src">"feeling tired and weak"</div><div class="mm-map-arrow">&rarr;</div><div class="mm-map-tgt">10016256 · Fatigue</div></div>
+        <div class="mm-map-row"><div class="mm-map-src">"nausea after dose"</div><div class="mm-map-arrow">&rarr;</div><div class="mm-map-tgt">10028813 · Nausea</div></div>
+        <div class="mm-map-row"><div class="mm-map-src">"injection site pain"</div><div class="mm-map-arrow">&rarr;</div><div class="mm-map-tgt">10022078 · Injection site pain</div></div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:12px; border-top:1px solid var(--surface-divider); font-size:0.75rem;">
+          <span style="color:var(--text-muted);">94.2% auto-coded this study</span>
+          <span class="mock-badge violet" style="background:var(--ai-violet-bg); color:var(--ai-violet-text);">AI confidence avg 0.91</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ MODULE 7 · Data Reconciliation ═════════ -->
+<section class="module-section">
+  <div class="module-grid">
+    <div class="module-text">
+      <div class="eyebrow">07 · Data Reconciliation</div>
+      <h2>SAE + External, one agent.</h2>
+      <p>One Reconciliation Agent, two sub-agents. SAE: Safety database cases vs EDC AEs/SAEs, matching on subject/date/seriousness/causality. External: vendor data (labs / ECG / imaging / RTSM / ePRO / devices) vs canonical EDC. Discrepancies route to queries or vendor tickets.</p>
+      <ul class="module-bullets">
+        <li>Shared discrepancy model: type, severity, owner, lifecycle state.</li>
+        <li>Domain-aware matching keys (subject + date + analyte for labs, etc.).</li>
+        <li>AI proposes classifications; humans approve/reject with audited rationale.</li>
+        <li>Run-level + domain-level metrics, exportable reports.</li>
+      </ul>
+    </div>
+    <div class="module-mockup">
+      <div class="mm-head">
+        <div class="mm-title">Reconciliation · Last run</div>
+        <div class="mm-actions"><span class="mm-pill brand">SAE</span><span class="mm-pill muted">External</span></div>
+      </div>
+      <div class="mock-kpi-row" style="grid-template-columns:repeat(3,1fr); gap:8px;">
+        <div class="mock-kpi" style="padding:10px;"><div class="mock-kpi-label">SAE matched</div><div class="mock-kpi-val green" style="font-size:1.125rem;">142 / 142</div></div>
+        <div class="mock-kpi amber" style="padding:10px;"><div class="mock-kpi-label">Labs delta</div><div class="mock-kpi-val amber" style="font-size:1.125rem;">7</div></div>
+        <div class="mock-kpi" style="padding:10px;"><div class="mock-kpi-label">RTSM ok</div><div class="mock-kpi-val brand" style="font-size:1.125rem;">288</div></div>
+      </div>
+      <div class="mm-row header r-4" style="margin-top:14px;"><span>Domain</span><span>Type</span><span>Subj</span><span style="text-align:right;">Status</span></div>
+      <div class="mm-row r-4"><span>Labs</span><span>Unit mismatch</span><span>S001-018</span><span style="text-align:right;"><span class="mock-badge amber">Open</span></span></div>
+      <div class="mm-row r-4"><span>SAE</span><span>Causality</span><span>S002-007</span><span style="text-align:right;"><span class="mock-badge red">Review</span></span></div>
+      <div class="mm-row r-4"><span>ePRO</span><span>Missing record</span><span>S003-022</span><span style="text-align:right;"><span class="mock-badge amber">Open</span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ MODULE 8 · SDTM / ADaM ═════════ -->
+<section class="module-section alt">
+  <div class="module-inner">
+    <div class="module-grid reverse">
+      <div class="module-text">
+        <div class="eyebrow">08 · SDTM / ADaM Transformation</div>
+        <h2>Mapping. Conformance. Define.xml.</h2>
+        <p>Maintain mapping specifications from canonical/collection data to every SDTM domain. AI bootstraps suggestions from CRFs and protocol; humans review under change control. Run transformations on demand, generate conformance reports, ship Define.xml + aCRF + reviewer guide.</p>
+        <ul class="module-bullets">
+          <li>Domain-by-domain mapping with origin, transformation rule, CT binding.</li>
+          <li>Every SDTM value traces back to its source record and rule version.</li>
+          <li>Conformance checks with severity-ranked issues.</li>
+          <li>ADaM-ready outputs: ADSL, ADAE, ADLB, ADTTE, BDS scaffolds.</li>
+        </ul>
+      </div>
+      <div class="module-mockup">
+        <div class="mm-editor">
+          <div class="mm-editor-toolbar">
+            <span class="mm-tag">domain: AE</span>
+            <span class="mm-tag green">v1.2</span>
+            <span class="mm-tag ai">AI-proposed 3</span>
+          </div>
+          <div class="mm-line">AESTDTC <span class="hl">←</span> coalesce(AESTDT, AESTDAT)</div>
+          <div class="mm-line">AESEV <span class="hl">←</span> dict(AECRF.severity, CT.AESEV)</div>
+          <div class="mm-line">AESER <span class="hl">←</span> if(AECRF.serious=="Y", "Y", "N")</div>
+          <div class="mm-line">AEREL <span class="hl-v">←</span> ai_suggest(AECRF.notes, scope=AEREL_CT)</div>
+          <div class="mm-line">AEOUT <span class="hl">←</span> dict(AECRF.outcome, CT.AEOUT)</div>
+          <div class="mm-line">AETOXGR <span class="hl">←</span> ctcae(AECRF.grade)</div>
+        </div>
+        <div style="margin-top:12px; display:flex; justify-content:space-between; align-items:center; font-size:0.75rem;">
+          <span style="color:var(--status-green); font-weight:600;">✓ 0 conformance errors</span>
+          <span style="color:var(--text-muted);">Define.xml v2.1 · ready</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ MODULE 9 · Analytics ═════════ -->
+<section class="module-section">
+  <div class="module-grid">
+    <div class="module-text">
+      <div class="eyebrow">09 · Analytics &amp; Patient Profile</div>
+      <h2>KPIs at every altitude.</h2>
+      <p>Role-aware dashboards from portfolio → study → subject. Open / aged queries by type and site. Reconciliation completeness. Coding completion. CRF timeliness. SDTM pipeline status. Lock-readiness gauges. And per-subject longitudinal Patient Profiles respecting blinding.</p>
+      <ul class="module-bullets">
+        <li>Drill from portfolio level into one subject without losing context.</li>
+        <li>Patient Profile: demographics, visits, exposure, AEs, labs, vitals, ePRO.</li>
+        <li>Risk flags surface site / subject / domain anomalies.</li>
+        <li>Every view respects RBAC + blinding scope.</li>
+      </ul>
+    </div>
+    <div class="module-mockup">
+      <div class="mm-head">
+        <div class="mm-title">Subject S001-024 · Longitudinal</div>
+        <div class="mm-actions"><span class="mm-pill muted">Blinded view</span></div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="font-size:0.6875rem; width:80px; color:var(--text-muted);">Visits</span>
+          <div style="flex:1; height:24px; background:var(--surface-hover); border-radius:4px; position:relative;">
+            <span style="position:absolute; left:5%; top:50%; transform:translateY(-50%); width:8px; height:8px; border-radius:50%; background:var(--primary-600);" title="SCR"></span>
+            <span style="position:absolute; left:20%; top:50%; transform:translateY(-50%); width:8px; height:8px; border-radius:50%; background:var(--primary-600);"></span>
+            <span style="position:absolute; left:35%; top:50%; transform:translateY(-50%); width:8px; height:8px; border-radius:50%; background:var(--primary-600);"></span>
+            <span style="position:absolute; left:50%; top:50%; transform:translateY(-50%); width:8px; height:8px; border-radius:50%; background:var(--primary-600);"></span>
+            <span style="position:absolute; left:70%; top:50%; transform:translateY(-50%); width:8px; height:8px; border-radius:50%; background:var(--primary-600);"></span>
+            <span style="position:absolute; left:88%; top:50%; transform:translateY(-50%); width:8px; height:8px; border-radius:50%; background:var(--primary-300);"></span>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="font-size:0.6875rem; width:80px; color:var(--text-muted);">AEs</span>
+          <div style="flex:1; height:24px; background:var(--surface-hover); border-radius:4px; position:relative;">
+            <span style="position:absolute; left:22%; width:8%; top:6px; bottom:6px; background:var(--status-amber-bg); border-radius:2px; border:1px solid var(--status-amber);"></span>
+            <span style="position:absolute; left:45%; width:5%; top:6px; bottom:6px; background:var(--status-red-bg); border-radius:2px; border:1px solid var(--status-red);"></span>
+            <span style="position:absolute; left:62%; width:6%; top:6px; bottom:6px; background:var(--status-amber-bg); border-radius:2px; border:1px solid var(--status-amber);"></span>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="font-size:0.6875rem; width:80px; color:var(--text-muted);">Labs</span>
+          <div style="flex:1; height:24px; background:var(--surface-hover); border-radius:4px; position:relative;">
+            <svg width="100%" height="24" viewBox="0 0 100 24" preserveAspectRatio="none" style="position:absolute; top:0; left:0;">
+              <polyline points="5,16 20,12 35,14 50,8 65,10 80,12 95,9" fill="none" stroke="#0e7490" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="font-size:0.6875rem; width:80px; color:var(--text-muted);">Vitals</span>
+          <div style="flex:1; height:24px; background:var(--surface-hover); border-radius:4px; position:relative;">
+            <svg width="100%" height="24" viewBox="0 0 100 24" preserveAspectRatio="none" style="position:absolute; top:0; left:0;">
+              <polyline points="5,14 20,16 35,11 50,13 65,15 80,12 95,14" fill="none" stroke="#7850dc" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="font-size:0.6875rem; width:80px; color:var(--text-muted);">Exposure</span>
+          <div style="flex:1; height:24px; background:var(--surface-hover); border-radius:4px; position:relative;">
+            <span style="position:absolute; left:18%; right:14%; top:8px; bottom:8px; background:var(--primary-200); border-radius:2px;"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ MODULE 10 · Audit Trail ═════════ -->
+<section class="module-section alt">
+  <div class="module-inner">
+    <div class="module-grid reverse">
+      <div class="module-text">
+        <div class="eyebrow">10 · Audit Trail</div>
+        <h2>Append-only. ALCOA+. Always.</h2>
+        <p>Every GxP-relevant action — create, update, delete, approve, sign — is recorded as an immutable audit entry: actor, timestamp with timezone, previous vs new values, reason, study/site/subject context. Tamper-evident storage. Retention at least as long as linked clinical records.</p>
+        <ul class="module-bullets">
+          <li>One audit model across every module — no module exempt.</li>
+          <li>Search and export by study, subject, user, record type, event type, date range.</li>
+          <li>AI-actor and human-actor distinguishable in every row.</li>
+          <li>Inspection-ready exports: PDF + machine-readable JSON.</li>
+        </ul>
+      </div>
+      <div class="module-mockup">
+        <div class="mm-head">
+          <div class="mm-title">Audit · Subject S001-024</div>
+          <div class="mm-actions"><span class="mm-pill muted">42 entries</span></div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:0; font-size:0.75rem;">
+          <div class="mm-row r-4"><span style="color:var(--primary-700); font-weight:600;">UPDATE</span><span>AE.AESEV</span><span style="color:var(--text-muted); font-family:'JetBrains Mono',monospace; font-size:0.6875rem;">MILD → MOD</span><span style="text-align:right; color:var(--text-muted); font-size:0.6875rem;">jdoe · 14:08</span></div>
+          <div class="mm-row r-4"><span style="color:var(--primary-700); font-weight:600;">SIGN</span><span>VS form</span><span style="color:var(--text-muted);">PI signature</span><span style="text-align:right; color:var(--text-muted); font-size:0.6875rem;">drsmith · 13:45</span></div>
+          <div class="mm-row r-4"><span style="color:var(--ai-violet); font-weight:600;">AI</span><span>CM coding</span><span style="color:var(--text-muted); font-family:'JetBrains Mono',monospace; font-size:0.6875rem;">aspirin → N02BA01</span><span style="text-align:right; color:var(--text-muted); font-size:0.6875rem;">agent · 13:12</span></div>
+          <div class="mm-row r-4"><span style="color:var(--primary-700); font-weight:600;">CREATE</span><span>AE.S024-AE3</span><span style="color:var(--text-muted);">new event</span><span style="text-align:right; color:var(--text-muted); font-size:0.6875rem;">site-12 · 11:08</span></div>
+          <div class="mm-row r-4"><span style="color:var(--primary-700); font-weight:600;">APPROVE</span><span>Query Q-2026-4411</span><span style="color:var(--text-muted);">DM approve</span><span style="text-align:right; color:var(--text-muted); font-size:0.6875rem;">amason · 09:34</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ MODULE 11 · User Admin & Auth ═════════ -->
+<section class="module-section">
+  <div class="module-grid">
+    <div class="module-text">
+      <div class="eyebrow">11 · User Admin &amp; Auth</div>
+      <h2>RBAC, MFA, separation of duties.</h2>
+      <p>Eleven predefined roles, extendable. Permissions per module + per data domain + per blinding scope. Login by email, user ID, or phone with password + OTP — or OTP-only where policy allows. MFA enforced for privileged roles. Forgot-password with audited, time-limited reset tokens.</p>
+      <ul class="module-bullets">
+        <li>Onboarding: training-gated account creation with approval workflow.</li>
+        <li>Role changes audited with effective dates and reasons.</li>
+        <li>Periodic access reviews with bulk operations.</li>
+        <li>Session timeouts, lockout, IP controls — all per environment.</li>
+      </ul>
+    </div>
+    <div class="module-mockup">
+      <div class="mm-head">
+        <div class="mm-title">Roles &amp; permissions</div>
+        <div class="mm-actions"><span class="mm-pill brand">11 roles</span></div>
+      </div>
+      <div class="mm-row header r-4"><span>Role</span><span>Users</span><span>MFA</span><span style="text-align:right;">Last review</span></div>
+      <div class="mm-row r-4"><span>System Admin</span><span>2</span><span style="color:var(--status-green);">✓ required</span><span style="text-align:right; color:var(--text-muted); font-size:0.6875rem;">2026-04-12</span></div>
+      <div class="mm-row r-4"><span>Study DM</span><span>14</span><span style="color:var(--status-green);">✓ required</span><span style="text-align:right; color:var(--text-muted); font-size:0.6875rem;">2026-04-12</span></div>
+      <div class="mm-row r-4"><span>Safety Physician</span><span>6</span><span style="color:var(--status-green);">✓ required</span><span style="text-align:right; color:var(--text-muted); font-size:0.6875rem;">2026-04-12</span></div>
+      <div class="mm-row r-4"><span>Medical Coder</span><span>9</span><span style="color:var(--status-green);">✓ required</span><span style="text-align:right; color:var(--text-muted); font-size:0.6875rem;">2026-04-12</span></div>
+      <div class="mm-row r-4"><span>CRA / Monitor</span><span>28</span><span style="color:var(--status-green);">✓ required</span><span style="text-align:right; color:var(--text-muted); font-size:0.6875rem;">2026-04-12</span></div>
+      <div class="mm-row r-4"><span>Site User</span><span>312</span><span style="color:var(--status-green);">✓ required</span><span style="text-align:right; color:var(--text-muted); font-size:0.6875rem;">2026-04-12</span></div>
+      <div class="mm-row r-4"><span>Biostat / Prog</span><span>11</span><span style="color:var(--status-green);">✓ required</span><span style="text-align:right; color:var(--text-muted); font-size:0.6875rem;">2026-04-12</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ MODULE 12 · Help Center ═════════ -->
+<section class="module-section alt">
+  <div class="module-inner">
+    <div class="module-grid reverse">
+      <div class="module-text">
+        <div class="eyebrow">12 · Help Center &amp; AI Guide</div>
+        <h2>In-app guidance, version-controlled.</h2>
+        <p>Thirty MDX topics, 34 glossary terms, three guided walkthroughs, 33 field-level tooltips, and an AI Guide that resolves natural-language questions against your role and route. Every Help interaction is audited — 7-year retention, just like the clinical data.</p>
+        <ul class="module-bullets">
+          <li>Right-rail Drawer (?), Cmd-K palette, route-scoped topics.</li>
+          <li>AI Guide answers cite the source MDX; uncited claims are rejected.</li>
+          <li>Walkthroughs deep-link via ?walkthrough=id, resume across 30 days.</li>
+          <li>Authoring SOPs in-tree — content updates flow through the same change control as code.</li>
+        </ul>
+      </div>
+      <div class="module-mockup">
+        <div class="mm-head">
+          <div class="mm-title">Help Center · Hub</div>
+          <div class="mm-actions"><span class="mm-pill violet">AI Guide</span></div>
+        </div>
+        <div style="background:var(--ai-violet-bg); padding:14px; border-radius:8px; margin-bottom:14px; display:flex; gap:10px; align-items:flex-start;">
+          <div style="width:24px; height:24px; border-radius:50%; background:var(--ai-violet); flex-shrink:0; display:flex; align-items:center; justify-content:center; color:white; font-size:0.75rem; font-weight:700;">AI</div>
+          <div style="font-size:0.8125rem; line-height:1.5; color:var(--ai-violet-text);">
+            <strong>How do I onboard a new site?</strong><br>
+            <span style="color:var(--text-secondary); font-weight:400;">I'll launch the Site Onboarding walkthrough. It covers 7 steps from contract upload through user provisioning. Click below to start.</span>
+          </div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px; font-size:0.8125rem;">
+          <div class="mm-row r-3"><span>Site onboarding walkthrough</span><span class="mock-badge violet" style="background:var(--ai-violet-bg); color:var(--ai-violet-text);">Walkthrough</span><span style="text-align:right; color:var(--text-muted);">7 steps</span></div>
+          <div class="mm-row r-3"><span>Configuring a new study</span><span class="mock-badge brand">Task</span><span style="text-align:right; color:var(--text-muted);">5 min</span></div>
+          <div class="mm-row r-3"><span>SDTM mapping spec format</span><span class="mock-badge brand">Concept</span><span style="text-align:right; color:var(--text-muted);">3 min</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ CTA ═════════ -->
+<section class="cta-section">
+  <h2>Want to see all twelve agents working on a real study?</h2>
+  <p>Bring us a protocol, a vendor list, and a deadline. We'll show you what end-to-end looks like.</p>
+  <a href="#" class="btn btn-white" onclick="openDemoModal(); return false;">Request a Demo &rarr;</a>
+</section>
+
+<!-- ═════════ FOOTER (shared) ═════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">
+        <svg class="logo-mark" viewBox="0 0 64 64" fill="none">
+          <path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/>
+          <path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+          <path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+          <line x1="26" y1="29" x2="26" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <span><span class="logo-text-ink">Clin</span><span class="logo-text-brand">Maker</span></span>
+      </a>
+      <p class="footer-tagline">Standards at the core. Submission at the finish. Agentic AI for clinical data management.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Product</div>
+      <ul>
+        <li><a href="platform.html">Platform</a></li>
+        <li><a href="standards.html">Standards</a></li>
+        <li><a href="security.html">Security</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Company</div>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="#" onclick="openDemoModal(); return false;">Request a Demo</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Resources</div>
+      <ul>
+        <li><a href="https://app.clinmaker.com" target="_blank" rel="noopener">Log in</a></li>
+        <li><a href="mailto:hello@clinmaker.com">hello@clinmaker.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 ClinMaker, LLC. All rights reserved.</span>
+    <span>Built for GxP-regulated clinical research.</span>
+  </div>
+</footer>
+
+<!-- ═════════ DEMO MODAL (shared) ═════════ -->
+<div class="modal-overlay" id="demoModal" role="dialog" aria-labelledby="demoModalTitle" aria-modal="true">
+  <div class="modal">
+    <button class="modal-close" onclick="closeDemoModal()" aria-label="Close">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <h3 id="demoModalTitle">Request a Demo</h3>
+    <p class="modal-sub">Tell us a little about your team. We'll be in touch within one business day.</p>
+    <form action="__FORMSPREE_ENDPOINT__" method="POST" onsubmit="return handleDemoSubmit(this, event)">
+      <div class="form-row">
+        <div class="form-group"><label>First name <span class="req">*</span></label><input type="text" name="first_name" class="form-control" required></div>
+        <div class="form-group"><label>Last name <span class="req">*</span></label><input type="text" name="last_name" class="form-control" required></div>
+      </div>
+      <div class="form-group"><label>Work email <span class="req">*</span></label><input type="email" name="email" class="form-control" required></div>
+      <div class="form-group"><label>Company <span class="req">*</span></label><input type="text" name="company" class="form-control" required></div>
+      <div class="form-group"><label>Role</label><select name="role" class="form-control"><option value="">Select…</option><option>Data Manager / Lead</option><option>Clinical Operations</option><option>Biostatistics / Programming</option><option>QA / Compliance</option><option>Medical / Safety</option><option>Executive / Sponsor leadership</option><option>Other</option></select></div>
+      <div class="form-group"><label>What would you like to see?</label><textarea name="message" class="form-control" placeholder="A particular module, an integration, a workflow…"></textarea></div>
+      <button type="submit" class="form-submit">Request a Demo <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></button>
+    </form>
+  </div>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

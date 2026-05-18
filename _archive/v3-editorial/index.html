@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClinMaker — Standards at the core. Submission at the finish.</title>
+  <meta name="description" content="ClinMaker is the agentic, GxP-grade clinical data management platform. Twelve cooperating agents. One canonical model. One audit trail. From protocol to submission.">
+  <meta name="theme-color" content="#d87654">
+  <meta property="og:title" content="ClinMaker — Standards at the core. Submission at the finish.">
+  <meta property="og:description" content="The agentic, GxP-grade clinical data management platform.">
+  <meta property="og:image" content="https://clinmaker.com/assets/logo-lockup-tagline.png">
+  <meta property="og:url" content="https://clinmaker.com">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" href="assets/favicon-256.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,280..600;1,9..144,280..600&family=Inter:wght@400;450;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo" aria-label="ClinMaker home">
+      <svg class="logo-mark" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/>
+        <path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+        <path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+        <line x1="26" y1="29" x2="26" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+      <span class="logo-text-ink">Clin</span><span class="logo-text-brand">Maker</span>
+    </a>
+    <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle menu">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <div class="nav-links">
+      <a href="platform.html">Platform</a>
+      <a href="standards.html">Standards</a>
+      <a href="security.html">Security</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html">About</a>
+      <a href="#" class="nav-cta" onclick="openDemoModal(); return false;">Talk to us <span class="arr">→</span></a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO STATEMENT -->
+<section class="hero">
+  <div class="hero-statement">
+    <span class="eyebrow brand">A clinical data platform · v1.0</span>
+    <h1 class="display" style="margin-top: 24px;">
+      Standards at the&nbsp;core. <span class="accent">Submission</span><br>
+      at the&nbsp;finish.
+    </h1>
+    <p class="hero-lede">
+      Most clinical data systems are configurable databases bolted onto a query queue. ClinMaker is something else — twelve cooperating agents working from one canonical model, one audit trail, one role system.
+    </p>
+    <div class="hero-meta">
+      <a href="#" class="btn btn-primary" onclick="openDemoModal(); return false;">Request a working session →</a>
+      <a href="platform.html" class="btn btn-ghost">Read the platform →</a>
+      <span style="color: var(--text-muted); font-size: 0.875rem; margin-left: auto;">
+        <span style="font-family: var(--font-mono); font-size: 0.75rem;">v0.5.43</span> · 21 CFR 11 · CDISC-native
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- BENTO — 12 agents as typographic table -->
+<section class="container">
+  <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-top: 32px;">
+    <div>
+      <span class="eyebrow brand">The platform</span>
+      <h2 class="display-2" style="margin-top: 14px; max-width: 720px;">Twelve agents. <em style="font-style: italic; color: var(--primary-600);">One pipeline.</em></h2>
+    </div>
+    <a href="platform.html" class="btn btn-ghost">All twelve in depth →</a>
+  </div>
+
+  <div class="bento">
+    <div class="bento-cell">
+      <span class="ch-num">Ch. 01</span>
+      <span class="ch-title">Protocol authoring</span>
+      <span class="ch-spec">USDM 4.0 round-trip scoring ~100/100. M11-aligned, 84-section generator, CORE rules pre-export gate.</span>
+      <span class="ch-link">read §01 →</span>
+    </div>
+    <div class="bento-cell">
+      <span class="ch-num">Ch. 02</span>
+      <span class="ch-title">Study build</span>
+      <span class="ch-spec">CDASH casebook, Medidata Rave or Veeva Vault as target. Edit checks derived from protocol.</span>
+      <span class="ch-link">read §02 →</span>
+    </div>
+    <div class="bento-cell">
+      <span class="ch-num">Ch. 03</span>
+      <span class="ch-title">Data ingestion</span>
+      <span class="ch-spec">Unified pipeline, fifteen vendor templates, OID-preserving upserts, schema-drift surveillance.</span>
+      <span class="ch-link">read §03 →</span>
+    </div>
+    <div class="bento-cell">
+      <span class="ch-num">Ch. 04</span>
+      <span class="ch-title">Validation</span>
+      <span class="ch-spec">Three-level rule engine — syntactic, logical, cross-source. Versioned per study.</span>
+      <span class="ch-link">read §04 →</span>
+    </div>
+    <div class="bento-cell">
+      <span class="ch-num">Ch. 05</span>
+      <span class="ch-title">Query management</span>
+      <span class="ch-spec">One lifecycle for every query. AI drafts neutral text; humans approve under audit.</span>
+      <span class="ch-link">read §05 →</span>
+    </div>
+    <div class="bento-cell">
+      <span class="ch-num">Ch. 06</span>
+      <span class="ch-title">Medical coding</span>
+      <span class="ch-spec">MedDRA + WHO Drug, version-pinned. Auto-coding above confidence, workbench for the rest.</span>
+      <span class="ch-link">read §06 →</span>
+    </div>
+    <div class="bento-cell">
+      <span class="ch-num">Ch. 07</span>
+      <span class="ch-title">Reconciliation</span>
+      <span class="ch-spec">SAE plus external sub-agents — labs, ECG, imaging, RTSM, ePRO, devices.</span>
+      <span class="ch-link">read §07 →</span>
+    </div>
+    <div class="bento-cell">
+      <span class="ch-num">Ch. 08</span>
+      <span class="ch-title">SDTM / ADaM</span>
+      <span class="ch-spec">Mapping, conformance, Define.xml. Every value traces to its source and rule version.</span>
+      <span class="ch-link">read §08 →</span>
+    </div>
+    <div class="bento-cell">
+      <span class="ch-num">Ch. 09</span>
+      <span class="ch-title">Analytics</span>
+      <span class="ch-spec">Role-aware dashboards, portfolio → subject. Lock-readiness gauges. Risk flags.</span>
+      <span class="ch-link">read §09 →</span>
+    </div>
+    <div class="bento-cell">
+      <span class="ch-num">Ch. 10</span>
+      <span class="ch-title">Patient profile</span>
+      <span class="ch-spec">Longitudinal subject view. Demographics, visits, exposure, AEs, labs, vitals, ePRO.</span>
+      <span class="ch-link">read §10 →</span>
+    </div>
+    <div class="bento-cell">
+      <span class="ch-num">Ch. 11</span>
+      <span class="ch-title">Audit trail</span>
+      <span class="ch-spec">Append-only. ALCOA+. Seven-year retention. Every action — AI or human — recorded.</span>
+      <span class="ch-link">read §11 →</span>
+    </div>
+    <div class="bento-cell">
+      <span class="ch-num">Ch. 12</span>
+      <span class="ch-title">User admin &amp; help</span>
+      <span class="ch-spec">Eleven roles, MFA, separation of duties. In-app guidance with citation-verified AI Guide.</span>
+      <span class="ch-link">read §12 →</span>
+    </div>
+  </div>
+</section>
+
+<!-- PULL QUOTE -->
+<section class="container">
+  <p class="pullquote">
+    A coherent platform replaces a stack of point tools — and the swivel-chair, the email handoff, and the spreadsheet reconciliation that came with them.
+  </p>
+</section>
+
+<!-- METRIC PARAGRAPH -->
+<section class="container section-tight" style="border-top: 1px solid var(--surface-rule); border-bottom: 1px solid var(--surface-rule);">
+  <p class="metric-para">
+    <span class="metric-xl brand">100<span style="font-size: 0.55em;">%</span></span> audit-trail coverage on every GxP-relevant action. USDM 4.0 round-trip scoring <span class="metric-xl">~100<span style="font-size: 0.55em;">/100</span></span>. <span class="metric-xl">30<span style="font-size: 0.55em;">+</span></span> platform modules, <span class="metric-xl">500<span style="font-size: 0.55em;">+</span></span> API endpoints, <span class="metric-xl">15</span> vendor adapters, <span class="metric-xl">11</span> RBAC roles. <span class="metric-xl brand">0</span> unaudited mutations, by design.
+  </p>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section class="container section">
+  <div style="display: grid; grid-template-columns: 1fr 1.6fr; gap: clamp(32px, 5vw, 64px); align-items: start;">
+    <div>
+      <span class="eyebrow brand">Who runs it</span>
+      <h2 class="display-2" style="margin-top: 14px;">Built for the people running real trials.</h2>
+    </div>
+    <div class="prose">
+      <p>
+        Data managers exhausted by reconciling between five vendors. Biostatisticians who want a clean SDTM package by lock day, not three weeks after. QA teams who'd like the audit trail to actually answer auditors' questions. Sponsors who've watched study timelines slip by a quarter because the coding queue stalled in a separate tool.
+      </p>
+      <p>
+        ClinMaker collapses that work into one platform with one model. Twelve agents do the routine work autonomously and surface a human decision only when the situation actually requires judgement. Every decision — human or AI — is recorded.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- STANDARDS STRIP — minimal -->
+<section class="container section-tight" style="border-top: 1px solid var(--surface-rule);">
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; gap: 0; border-left: 1px solid var(--surface-rule);">
+    <div style="padding: 24px 20px; border-right: 1px solid var(--surface-rule);">
+      <div class="eyebrow" style="color: var(--text-muted); margin-bottom: 6px;">Records</div>
+      <div style="font-family: var(--font-display); font-size: 1.0625rem; font-weight: 440; color: var(--ink); letter-spacing: -0.015em;">21 CFR Part 11</div>
+    </div>
+    <div style="padding: 24px 20px; border-right: 1px solid var(--surface-rule);">
+      <div class="eyebrow" style="color: var(--text-muted); margin-bottom: 6px;">Systems</div>
+      <div style="font-family: var(--font-display); font-size: 1.0625rem; font-weight: 440; color: var(--ink); letter-spacing: -0.015em;">EU Annex 11</div>
+    </div>
+    <div style="padding: 24px 20px; border-right: 1px solid var(--surface-rule);">
+      <div class="eyebrow" style="color: var(--text-muted); margin-bottom: 6px;">GCP</div>
+      <div style="font-family: var(--font-display); font-size: 1.0625rem; font-weight: 440; color: var(--ink); letter-spacing: -0.015em;">ICH E6(R3)</div>
+    </div>
+    <div style="padding: 24px 20px; border-right: 1px solid var(--surface-rule);">
+      <div class="eyebrow" style="color: var(--text-muted); margin-bottom: 6px;">Standards</div>
+      <div style="font-family: var(--font-display); font-size: 1.0625rem; font-weight: 440; color: var(--ink); letter-spacing: -0.015em;">CDISC CDASH / SDTM / ADaM</div>
+    </div>
+    <div style="padding: 24px 20px; border-right: 1px solid var(--surface-rule);">
+      <div class="eyebrow" style="color: var(--text-muted); margin-bottom: 6px;">Protocol</div>
+      <div style="font-family: var(--font-display); font-size: 1.0625rem; font-weight: 440; color: var(--ink); letter-spacing: -0.015em;">USDM 4.0 / DDF</div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA / INVITATION -->
+<section class="section-ink">
+  <div class="container" style="padding-top: clamp(80px, 10vw, 140px); padding-bottom: clamp(80px, 10vw, 140px);">
+    <div style="max-width: 920px;">
+      <span class="eyebrow">Schedule</span>
+      <h2 class="display" style="color: white; margin-top: 18px; margin-bottom: 28px;">
+        Bring us a protocol. We'll show you what end-to-end looks like.
+      </h2>
+      <p class="hero-lede" style="color: rgba(255,255,255,0.7); margin-bottom: 40px;">
+        A thirty-minute working session — not a deck. Protocol authoring, mid-study amendment handling, SDTM export against your standards. Live.
+      </p>
+      <div style="display: flex; gap: 24px; align-items: center; flex-wrap: wrap;">
+        <a href="#" class="btn btn-primary" style="background: white; color: var(--ink);" onclick="openDemoModal(); return false;">Talk to us →</a>
+        <a href="mailto:hello@clinmaker.com" style="color: rgba(255,255,255,0.7); font-size: 0.9375rem;">or hello@clinmaker.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLOPHON -->
+<footer class="colophon">
+  <div class="col-brand">
+    <span>Clin</span><span class="accent">Maker</span>
+    <span class="col-divider" style="margin-left: 12px;">·</span>
+    <span style="font-family: var(--font-body); font-weight: 400; font-size: 0.875rem; color: var(--text-secondary);">LLC</span>
+  </div>
+  <div style="display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center;">
+    <a href="platform.html">Platform</a>
+    <span class="col-divider">·</span>
+    <a href="standards.html">Standards</a>
+    <span class="col-divider">·</span>
+    <a href="security.html">Security</a>
+    <span class="col-divider">·</span>
+    <a href="pricing.html">Pricing</a>
+    <span class="col-divider">·</span>
+    <a href="about.html">About</a>
+    <span class="col-divider">·</span>
+    <a href="contact.html">Contact</a>
+    <span class="col-divider">·</span>
+    <a href="https://app.clinmaker.com" target="_blank" rel="noopener">Log in →</a>
+  </div>
+  <div>
+    <a href="mailto:hello@clinmaker.com">hello@clinmaker.com</a>
+    <span class="col-divider">·</span>
+    <span>© 2026</span>
+  </div>
+</footer>
+
+<!-- DEMO MODAL -->
+<div class="modal-overlay" id="demoModal" role="dialog" aria-labelledby="demoModalTitle" aria-modal="true">
+  <div class="modal">
+    <button class="modal-close" onclick="closeDemoModal()" aria-label="Close">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <div class="modal-eyebrow">Schedule</div>
+    <h3 id="demoModalTitle" class="display-3">Talk to us.</h3>
+    <p class="lede">Thirty minutes on the live platform. We come back within one business day.</p>
+    <form action="__FORMSPREE_ENDPOINT__" method="POST" onsubmit="return handleDemoSubmit(this, event)">
+      <div class="form-row">
+        <div class="form-group"><label>First name</label><input type="text" name="first_name" class="form-control" required></div>
+        <div class="form-group"><label>Last name</label><input type="text" name="last_name" class="form-control" required></div>
+      </div>
+      <div class="form-group"><label>Work email</label><input type="email" name="email" class="form-control" required></div>
+      <div class="form-group"><label>Company</label><input type="text" name="company" class="form-control" required></div>
+      <div class="form-group"><label>Role</label>
+        <select name="role" class="form-control">
+          <option value="">—</option>
+          <option>Data Manager / Lead</option>
+          <option>Clinical Operations</option>
+          <option>Biostatistics / Programming</option>
+          <option>QA / Compliance</option>
+          <option>Medical / Safety</option>
+          <option>Executive / Sponsor leadership</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group"><label>What would you like to see?</label><textarea name="message" class="form-control" placeholder="A particular module, an integration, a workflow…"></textarea></div>
+      <button type="submit" class="form-submit">Send request →</button>
+    </form>
+  </div>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

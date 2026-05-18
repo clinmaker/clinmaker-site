@@ -3,177 +3,348 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pricing · ClinMaker</title>
-  <meta name="description" content="Per-study pricing, scaled to your program. Pilot, Sponsor, and Enterprise tiers. Contact us for a quote in under 24 hours.">
+  <title>Pricing — ClinMaker</title>
+  <meta name="description" content="Three questions, one recommended fit. We size on study count, regulatory scope, and integration count. Quote within 24 hours.">
   <meta name="theme-color" content="#d87654">
   <link rel="icon" type="image/png" href="assets/favicon-256.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
 
+<!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
-    <a href="index.html" class="logo">
-      <svg class="logo-mark" viewBox="0 0 64 64" fill="none"><path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/><line x1="26" y1="29" x2="26" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/></svg>
-      <span><span class="logo-text-ink">Clin</span><span class="logo-text-brand">Maker</span></span>
+    <a href="index.html" class="logo" aria-label="ClinMaker home">
+      <svg class="logo-mark" viewBox="0 0 64 64" fill="none">
+        <path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/>
+        <path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+        <path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+        <line x1="26" y1="29" x2="26" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+      <span class="logo-text"><span class="logo-text-ink">Clin</span><span class="logo-text-brand">Maker</span></span>
     </a>
-    <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle navigation"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle menu">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
     <div class="nav-links">
       <a href="platform.html">Platform</a>
       <a href="standards.html">Standards</a>
       <a href="security.html">Security</a>
       <a href="pricing.html">Pricing</a>
       <a href="about.html">About</a>
-      <a href="#" class="nav-cta" onclick="openDemoModal(); return false;">Request a Demo</a>
+      <a href="#" class="nav-cta" onclick="openDemoModal(); return false;">Talk to us <span class="arr">→</span></a>
     </div>
   </div>
 </nav>
 
-<header class="page-header">
-  <div class="eyebrow">Pricing</div>
-  <h1>Per-study pricing, scaled to your program.</h1>
-  <p>Three tiers. Every tier includes the full platform — no feature gating, no enterprise-only compliance. We size on study count, subject volume, and integration count.</p>
-</header>
+<!-- HEADER -->
+<section class="container" style="padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(20px, 3vw, 32px);">
+  <span class="eyebrow brand">cm.pricing/wizard · 3 questions</span>
+  <h1 class="display-2" style="margin-top: 18px;">Three questions.<br><span class="shift">One recommended fit.</span></h1>
+  <p class="lede" style="margin-top: 24px; max-width: 720px;">
+    We size on study count, regulatory scope, and integration count. No tier menu to study, no feature gating to compare. Tell us where you are; we'll come back with a quote in 24 hours.
+  </p>
+</section>
 
-<section class="section">
-  <div class="pricing-grid">
-    <div class="pricing-card">
-      <div class="pricing-tier">Pilot</div>
-      <div class="pricing-price">Contact <small>for quote</small></div>
-      <p class="pricing-tag">A single study, end-to-end. For sponsors evaluating the platform on a live trial.</p>
-      <ul class="pricing-features">
-        <li>1 study, up to 500 subjects</li>
-        <li>Full platform — all 12 agents</li>
-        <li>Up to 3 vendor integrations</li>
-        <li>CDISC standards library</li>
-        <li>Email + business-hours support</li>
-        <li>Validation package &amp; URS</li>
-        <li>3-month minimum term</li>
-      </ul>
-      <a href="contact.html" class="btn btn-outline">Request a quote</a>
+<!-- WIZARD -->
+<section class="container" style="padding-bottom: clamp(56px, 7vw, 96px);">
+  <div class="section-num-bar" style="margin-bottom: 32px;">
+    <span class="num"><strong>§01</strong> / 03</span>
+    <span class="rule"></span>
+    <span class="meta">wizard: 3 steps</span>
+    <span class="meta">computed fit · pre-filled CTA</span>
+  </div>
+
+  <div class="viz-frame">
+    <span class="viz-coord tl">wizard/active</span>
+    <span class="viz-coord tr">no tiers shown until step 3</span>
+    <span class="viz-coord bl">step rules: see script.js</span>
+    <span class="viz-coord br">→ pre-filled demo CTA</span>
+    <div class="viz-frame-head">
+      <span class="vh-id">cm-pricing // size_questionnaire</span>
+      <span class="vh-meta">
+        <span>step: 1 / 3</span>
+        <span>quote SLA: 24h</span>
+        <span class="vh-live">interactive</span>
+      </span>
     </div>
+    <div class="viz-frame-body">
+      <!-- Progress bar -->
+      <div class="wizard-progress">
+        <span class="step-dot active" data-step="1">1</span>
+        <span class="step-rule" data-step="1"></span>
+        <span class="step-dot" data-step="2">2</span>
+        <span class="step-rule" data-step="2"></span>
+        <span class="step-dot" data-step="3">3</span>
+      </div>
 
-    <div class="pricing-card featured">
-      <div class="pricing-tier">Sponsor</div>
-      <div class="pricing-price">Contact <small>for quote</small></div>
-      <p class="pricing-tag">Multiple studies. Multiple integrations. Your standards on top of ours.</p>
-      <ul class="pricing-features">
-        <li>Up to 10 concurrent studies</li>
-        <li>Unlimited subjects per study</li>
-        <li>Unlimited vendor integrations</li>
-        <li>Sponsor library extensions</li>
-        <li>SSO + custom MFA policy</li>
-        <li>Priority support, 4-hour SLA</li>
-        <li>Quarterly business reviews</li>
-        <li>Annual term, multi-year discount</li>
-      </ul>
-      <a href="contact.html" class="btn btn-primary">Request a quote</a>
-    </div>
+      <!-- Step 1 -->
+      <div class="wizard-step active" data-step="1">
+        <div class="q-label">step 01 · stage</div>
+        <div class="q-text">Where are you?</div>
+        <div class="wizard-options">
+          <button class="wizard-opt" onclick="wizardSelect(1, 'evaluating', this)">
+            <span class="opt-mark">a</span>
+            <span class="opt-text">Evaluating, no live trial yet<div class="opt-note">Pre-pilot. Looking to vet the platform before commitment.</div></span>
+          </button>
+          <button class="wizard-opt" onclick="wizardSelect(1, '1-3', this)">
+            <span class="opt-mark">b</span>
+            <span class="opt-text">Running 1–3 studies<div class="opt-note">Small program, single sponsor, ready to onboard one or more.</div></span>
+          </button>
+          <button class="wizard-opt" onclick="wizardSelect(1, '4+', this)">
+            <span class="opt-mark">c</span>
+            <span class="opt-text">Running 4+ studies<div class="opt-note">Multi-study program. Multiple integrations, multiple sites.</div></span>
+          </button>
+          <button class="wizard-opt" onclick="wizardSelect(1, 'portfolio', this)">
+            <span class="opt-mark">d</span>
+            <span class="opt-text">Portfolio scale (10+)<div class="opt-note">Enterprise sponsor. Dedicated infra likely required.</div></span>
+          </button>
+        </div>
+        <div class="wizard-actions">
+          <button class="wizard-back" onclick="wizardBack()" disabled>← back</button>
+          <span style="font-family: var(--font-mono); font-size: 0.6875rem; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase;">choose to continue →</span>
+        </div>
+      </div>
 
-    <div class="pricing-card">
-      <div class="pricing-tier">Enterprise</div>
-      <div class="pricing-price">Contact <small>for quote</small></div>
-      <p class="pricing-tag">Portfolio-scale. Dedicated tenancy. Custom compliance scope.</p>
-      <ul class="pricing-features">
-        <li>Unlimited studies</li>
-        <li>Dedicated AWS tenancy (single-tenant)</li>
-        <li>Custom regional hosting (EU, APAC)</li>
-        <li>Bring-your-own KMS keys</li>
-        <li>Dedicated solutions architect</li>
-        <li>24×7 support, 1-hour SLA</li>
-        <li>Custom validation scope</li>
-        <li>Negotiated terms</li>
-      </ul>
-      <a href="contact.html" class="btn btn-outline">Request a quote</a>
+      <!-- Step 2 -->
+      <div class="wizard-step" data-step="2">
+        <div class="q-label">step 02 · regulatory scope</div>
+        <div class="q-text">What's the phase?</div>
+        <div class="wizard-options">
+          <button class="wizard-opt" onclick="wizardSelect(2, 'early', this)">
+            <span class="opt-mark">a</span>
+            <span class="opt-text">Phase I–II<div class="opt-note">Early development. Smaller cohorts, more flexibility.</div></span>
+          </button>
+          <button class="wizard-opt" onclick="wizardSelect(2, 'late', this)">
+            <span class="opt-mark">b</span>
+            <span class="opt-text">Phase III<div class="opt-note">Pivotal. Multi-site, multi-vendor. Submission-driven timeline.</div></span>
+          </button>
+          <button class="wizard-opt" onclick="wizardSelect(2, 'submission', this)">
+            <span class="opt-mark">c</span>
+            <span class="opt-text">Submission-active<div class="opt-note">Approaching FDA / EMA filing. Lock and SDTM in motion.</div></span>
+          </button>
+          <button class="wizard-opt" onclick="wizardSelect(2, 'post', this)">
+            <span class="opt-mark">d</span>
+            <span class="opt-text">Post-market / Phase IV<div class="opt-note">Surveillance, registries, lifecycle commitments.</div></span>
+          </button>
+        </div>
+        <div class="wizard-actions">
+          <button class="wizard-back" onclick="wizardBack()">← back</button>
+          <span style="font-family: var(--font-mono); font-size: 0.6875rem; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase;">choose to continue →</span>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="wizard-step" data-step="3">
+        <div class="q-label">step 03 · integrations</div>
+        <div class="q-text">How many vendors?</div>
+        <div class="wizard-options">
+          <button class="wizard-opt" onclick="wizardSelect(3, '0-2', this)">
+            <span class="opt-mark">a</span>
+            <span class="opt-text">0–2 integrations<div class="opt-note">EDC only, or EDC plus one external feed.</div></span>
+          </button>
+          <button class="wizard-opt" onclick="wizardSelect(3, '3-5', this)">
+            <span class="opt-mark">b</span>
+            <span class="opt-text">3–5 integrations<div class="opt-note">EDC + central lab + imaging or ePRO.</div></span>
+          </button>
+          <button class="wizard-opt" onclick="wizardSelect(3, '6-9', this)">
+            <span class="opt-mark">c</span>
+            <span class="opt-text">6–9 integrations<div class="opt-note">Multi-source: EDC, labs, imaging, RTSM, ePRO, devices.</div></span>
+          </button>
+          <button class="wizard-opt" onclick="wizardSelect(3, '10+', this)">
+            <span class="opt-mark">d</span>
+            <span class="opt-text">10 or more<div class="opt-note">Portfolio-grade vendor footprint. Dedicated tenancy likely.</div></span>
+          </button>
+        </div>
+        <div class="wizard-actions">
+          <button class="wizard-back" onclick="wizardBack()">← back</button>
+          <span style="font-family: var(--font-mono); font-size: 0.6875rem; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase;">choose to see your fit →</span>
+        </div>
+      </div>
+
+      <!-- Result -->
+      <div class="wizard-result">
+        <div class="res-eyebrow">recommended fit · computed</div>
+        <div class="res-fit">Your fit: <span class="fit-name">Sponsor</span></div>
+        <p class="res-detail">…</p>
+        <div class="res-summary"></div>
+        <div class="res-actions">
+          <button class="btn btn-primary" onclick="wizardOpenDemoWithFit()">Talk to us — pre-filled <span class="arr">→</span></button>
+          <button class="btn btn-ghost" onclick="wizardReset()">← start over</button>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="centered" style="margin-top: 48px;">
-    <p style="color: var(--text-secondary); font-size: 0.9375rem;">All tiers include the full audit trail, RBAC, MFA, and 21 CFR Part 11 posture. We don't gate compliance.</p>
+  <!-- What's included strip -->
+  <div class="metric-strip" style="margin-top: clamp(48px, 6vw, 80px);">
+    <div class="metric-cell">
+      <span class="m-tick">✓</span>
+      <span class="m-num">12</span>
+      <span class="m-label">Agents · every tier</span>
+    </div>
+    <div class="metric-cell">
+      <span class="m-tick">✓</span>
+      <span class="m-num">100<span class="small">%</span></span>
+      <span class="m-label">Audit · every tier</span>
+    </div>
+    <div class="metric-cell">
+      <span class="m-tick">✓</span>
+      <span class="m-num">21<span class="small">CFR</span></span>
+      <span class="m-label">GxP floor · all tiers</span>
+    </div>
+    <div class="metric-cell">
+      <span class="m-tick">✓</span>
+      <span class="m-num">URS</span>
+      <span class="m-label">Validation pack · all</span>
+    </div>
+    <div class="metric-cell">
+      <span class="m-tick brand">✓</span>
+      <span class="m-num brand">24<span class="small">h</span></span>
+      <span class="m-label">Quote SLA</span>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div style="margin-top: clamp(56px, 7vw, 96px);">
+    <div class="section-num-bar">
+      <span class="num"><strong>§02</strong> / 03</span>
+      <span class="rule"></span>
+      <span class="meta">topic: faq</span>
+      <span class="meta">common questions</span>
+    </div>
+    <h2 class="display-3" style="margin-top: 8px;">Common questions.</h2>
+
+    <div style="margin-top: 32px; border-top: 1px solid var(--surface-rule);">
+      <details style="border-bottom: 1px solid var(--surface-rule-soft); padding: 20px 0;">
+        <summary style="cursor: pointer; list-style: none; font-family: var(--font-display); font-size: 1.0625rem; font-weight: 700; color: var(--ink); display: flex; justify-content: space-between; letter-spacing: -0.015em;">
+          How is pricing calculated? <span style="color: var(--primary-600); font-family: var(--font-mono);">+</span>
+        </summary>
+        <p style="margin-top: 12px; color: var(--text-secondary); line-height: 1.6; font-size: 0.9375rem;">Three drivers: number of concurrent studies, total subject volume across the program, and number of vendor integrations. We don't charge per user, per query, or per audit row. Quote within 24 hours of the wizard submission.</p>
+      </details>
+      <details style="border-bottom: 1px solid var(--surface-rule-soft); padding: 20px 0;">
+        <summary style="cursor: pointer; list-style: none; font-family: var(--font-display); font-size: 1.0625rem; font-weight: 700; color: var(--ink); display: flex; justify-content: space-between; letter-spacing: -0.015em;">
+          What's included versus add-on? <span style="color: var(--primary-600); font-family: var(--font-mono);">+</span>
+        </summary>
+        <p style="margin-top: 12px; color: var(--text-secondary); line-height: 1.6; font-size: 0.9375rem;">Everything described on the Platform page is included in every tier — all 12 agents, the full audit trail, RBAC, MFA, validation pack, sandbox environment. No feature is locked behind a higher tier. We don't gate compliance.</p>
+      </details>
+      <details style="border-bottom: 1px solid var(--surface-rule-soft); padding: 20px 0;">
+        <summary style="cursor: pointer; list-style: none; font-family: var(--font-display); font-size: 1.0625rem; font-weight: 700; color: var(--ink); display: flex; justify-content: space-between; letter-spacing: -0.015em;">
+          Do you offer a sandbox / UAT environment? <span style="color: var(--primary-600); font-family: var(--font-mono);">+</span>
+        </summary>
+        <p style="margin-top: 12px; color: var(--text-secondary); line-height: 1.6; font-size: 0.9375rem;">Yes. Every contract includes a dedicated SANDBOX environment alongside production. SANDBOX runs the same code with isolated data — used for test loads, integration validation, and training.</p>
+      </details>
+      <details style="border-bottom: 1px solid var(--surface-rule-soft); padding: 20px 0;">
+        <summary style="cursor: pointer; list-style: none; font-family: var(--font-display); font-size: 1.0625rem; font-weight: 700; color: var(--ink); display: flex; justify-content: space-between; letter-spacing: -0.015em;">
+          Who owns the data? <span style="color: var(--primary-600); font-family: var(--font-mono);">+</span>
+        </summary>
+        <p style="margin-top: 12px; color: var(--text-secondary); line-height: 1.6; font-size: 0.9375rem;">You do. Always. Sponsor data is contractually and technically segregated. Full export is available at any time in open formats — CSV, JSON, SDTM datasets, Define.xml, audit trail.</p>
+      </details>
+      <details style="border-bottom: 1px solid var(--surface-rule-soft); padding: 20px 0;">
+        <summary style="cursor: pointer; list-style: none; font-family: var(--font-display); font-size: 1.0625rem; font-weight: 700; color: var(--ink); display: flex; justify-content: space-between; letter-spacing: -0.015em;">
+          What about validation evidence? <span style="color: var(--primary-600); font-family: var(--font-mono);">+</span>
+        </summary>
+        <p style="margin-top: 12px; color: var(--text-secondary); line-height: 1.6; font-size: 0.9375rem;">A complete URS Pack (User Requirements, Functional Requirements, Validation Plan, Risk Assessment, IQ/OQ/PQ scripts, Traceability Matrix) is provided as part of every contract. Refreshed on every release.</p>
+      </details>
+      <details style="border-bottom: 1px solid var(--surface-rule-soft); padding: 20px 0;">
+        <summary style="cursor: pointer; list-style: none; font-family: var(--font-display); font-size: 1.0625rem; font-weight: 700; color: var(--ink); display: flex; justify-content: space-between; letter-spacing: -0.015em;">
+          Implementation timeline? <span style="color: var(--primary-600); font-family: var(--font-mono);">+</span>
+        </summary>
+        <p style="margin-top: 12px; color: var(--text-secondary); line-height: 1.6; font-size: 0.9375rem;">First study goes live within 6–10 weeks from contract signature: 2 weeks SANDBOX onboarding, 2–4 weeks study build, 2 weeks UAT, 1 week go-live. Subsequent studies in the same program are faster.</p>
+      </details>
+      <details style="border-bottom: 1px solid var(--surface-rule-soft); padding: 20px 0;">
+        <summary style="cursor: pointer; list-style: none; font-family: var(--font-display); font-size: 1.0625rem; font-weight: 700; color: var(--ink); display: flex; justify-content: space-between; letter-spacing: -0.015em;">
+          Can we extend with our own libraries? <span style="color: var(--primary-600); font-family: var(--font-mono);">+</span>
+        </summary>
+        <p style="margin-top: 12px; color: var(--text-secondary); line-height: 1.6; font-size: 0.9375rem;">Yes. Sponsor edit-check libraries, SDTM extension domains, sponsor codelists, and authoring templates all layer on top of CDISC. Your standards inherit from theirs.</p>
+      </details>
+      <details style="border-bottom: 1px solid var(--surface-rule-soft); padding: 20px 0;">
+        <summary style="cursor: pointer; list-style: none; font-family: var(--font-display); font-size: 1.0625rem; font-weight: 700; color: var(--ink); display: flex; justify-content: space-between; letter-spacing: -0.015em;">
+          Do you support SSO? <span style="color: var(--primary-600); font-family: var(--font-mono);">+</span>
+        </summary>
+        <p style="margin-top: 12px; color: var(--text-secondary); line-height: 1.6; font-size: 0.9375rem;">Sponsor and Enterprise tiers include SAML 2.0 / OIDC SSO with your IdP (Okta, Azure AD, Ping). Pilot uses platform-managed accounts with MFA.</p>
+      </details>
+    </div>
   </div>
 </section>
 
-<section class="section section-alt" style="max-width:100%;">
-  <div style="max-width:960px; margin:0 auto;">
-    <div class="eyebrow centered" style="text-align:center;">Frequently asked</div>
-    <h2 class="section-title centered" style="text-align:center;">Common questions on pricing &amp; terms.</h2>
-    <div class="faq">
-      <details class="faq-item">
-        <summary class="faq-q">How is pricing calculated?</summary>
-        <div class="faq-a">Three drivers: number of concurrent studies, total subject volume across the program, and number of vendor integrations (EDC, labs, imaging, ePRO, RTSM, device feeds, etc.). We don't charge per user, per query, or per audit row.</div>
-      </details>
-      <details class="faq-item">
-        <summary class="faq-q">What's included in the platform versus add-on?</summary>
-        <div class="faq-a">Everything described on the Platform page is included in every tier — protocol authoring, study build, ingestion, validation, query mgmt, coding, reconciliation, SDTM/ADaM, analytics, audit, user admin, help center. No feature is locked behind a higher tier.</div>
-      </details>
-      <details class="faq-item">
-        <summary class="faq-q">Do you offer a sandbox / UAT environment?</summary>
-        <div class="faq-a">Yes. Every contract includes a dedicated SANDBOX environment alongside production. SANDBOX runs the same code with isolated data — used for test loads, integration validation, and training.</div>
-      </details>
-      <details class="faq-item">
-        <summary class="faq-q">Who owns the data?</summary>
-        <div class="faq-a">You do. Always. Sponsor data is contractually and technically segregated. Full export is available at any time in open formats (CSV, JSON, SDTM datasets, Define.xml, audit trail).</div>
-      </details>
-      <details class="faq-item">
-        <summary class="faq-q">What about validation evidence?</summary>
-        <div class="faq-a">A complete URS Pack (User Requirements Specification, Functional Requirements Specification, Validation Plan, Risk Assessment, IQ/OQ/PQ scripts, Traceability Matrix) is provided as part of every contract. Refreshed on every release.</div>
-      </details>
-      <details class="faq-item">
-        <summary class="faq-q">Implementation timeline?</summary>
-        <div class="faq-a">A first study typically goes live within 6–10 weeks from contract signature: 2 weeks SANDBOX onboarding, 2–4 weeks study build, 2 weeks UAT, 1 week go-live. Subsequent studies in the same program are faster.</div>
-      </details>
-      <details class="faq-item">
-        <summary class="faq-q">Can we extend with our own libraries?</summary>
-        <div class="faq-a">Yes. Sponsor edit-check libraries, SDTM extension domains, sponsor-specific codelists, and authoring templates all layer on top. Your standards inherit from CDISC — they don't replace them.</div>
-      </details>
-      <details class="faq-item">
-        <summary class="faq-q">Do you support SSO?</summary>
-        <div class="faq-a">Sponsor and Enterprise tiers include SAML 2.0 / OIDC SSO with your IdP (Okta, Azure AD, Ping). Pilot uses platform-managed accounts with MFA.</div>
-      </details>
+<!-- FINAL CTA -->
+<section class="section-ink">
+  <div class="container" style="padding-top: clamp(72px, 9vw, 112px); padding-bottom: clamp(72px, 9vw, 112px);">
+    <div style="max-width: 920px;">
+      <span class="eyebrow">cm.demo</span>
+      <h2 class="display-2" style="color: white; margin-top: 18px; margin-bottom: 28px;">
+        Skip the wizard?<br><span class="shift">Just talk to us.</span>
+      </h2>
+      <p class="lede" style="color: rgba(255,255,255,0.72); margin-bottom: 36px;">
+        We respond within one business day. Tell us about your program — study count, vendors, timeline. We'll come back with sizing.
+      </p>
+      <div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
+        <a href="#" class="btn btn-white" onclick="openDemoModal(); return false;">Talk to us <span class="arr">→</span></a>
+        <a href="contact.html" style="color: rgba(255,255,255,0.7); font-size: 0.9375rem;">or use the long-form contact</a>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="cta-section">
-  <h2>Ready for a quote?</h2>
-  <p>Tell us about your program — study count, vendors, timeline. We'll come back within 24 hours with sizing.</p>
-  <a href="contact.html" class="btn btn-white">Contact us &rarr;</a>
-</section>
-
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <a href="index.html" class="logo">
-        <svg class="logo-mark" viewBox="0 0 64 64" fill="none"><path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/><line x1="26" y1="29" x2="26" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/></svg>
-        <span><span class="logo-text-ink">Clin</span><span class="logo-text-brand">Maker</span></span>
-      </a>
-      <p class="footer-tagline">Standards at the core. Submission at the finish. Agentic AI for clinical data management.</p>
-    </div>
-    <div class="footer-col"><div class="footer-col-title">Product</div><ul><li><a href="platform.html">Platform</a></li><li><a href="standards.html">Standards</a></li><li><a href="security.html">Security</a></li><li><a href="pricing.html">Pricing</a></li></ul></div>
-    <div class="footer-col"><div class="footer-col-title">Company</div><ul><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="#" onclick="openDemoModal(); return false;">Request a Demo</a></li></ul></div>
-    <div class="footer-col"><div class="footer-col-title">Resources</div><ul><li><a href="https://app.clinmaker.com" target="_blank" rel="noopener">Log in</a></li><li><a href="mailto:hello@clinmaker.com">hello@clinmaker.com</a></li></ul></div>
+<!-- COLOPHON -->
+<footer class="colophon">
+  <div class="col-brand">
+    <span>Clin</span><span class="shift">Maker</span>
+    <span class="col-divider" style="margin-left: 12px;">·</span>
+    <span style="font-family: var(--font-body); font-weight: 500; font-size: 0.8125rem; color: var(--text-secondary);">LLC</span>
   </div>
-  <div class="footer-bottom"><span>© 2026 ClinMaker, LLC. All rights reserved.</span><span>Built for GxP-regulated clinical research.</span></div>
+  <div style="display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center;">
+    <a href="platform.html">Platform</a><span class="col-divider">·</span>
+    <a href="standards.html">Standards</a><span class="col-divider">·</span>
+    <a href="security.html">Security</a><span class="col-divider">·</span>
+    <a href="pricing.html">Pricing</a><span class="col-divider">·</span>
+    <a href="about.html">About</a><span class="col-divider">·</span>
+    <a href="contact.html">Contact</a><span class="col-divider">·</span>
+    <a href="https://app.clinmaker.com" target="_blank" rel="noopener">Log in →</a>
+  </div>
+  <div class="col-meta">
+    <span>hello@clinmaker.com</span>
+    <span class="col-divider">·</span>
+    <span>© 2026</span>
+  </div>
 </footer>
 
+<!-- DEMO MODAL -->
 <div class="modal-overlay" id="demoModal" role="dialog" aria-labelledby="demoModalTitle" aria-modal="true">
   <div class="modal">
-    <button class="modal-close" onclick="closeDemoModal()" aria-label="Close"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg></button>
-    <h3 id="demoModalTitle">Request a Demo</h3>
-    <p class="modal-sub">Tell us a little about your team. We'll be in touch within one business day.</p>
+    <button class="modal-close" onclick="closeDemoModal()" aria-label="Close">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <span class="eyebrow brand" style="margin-bottom: 10px;">cm.demo/request</span>
+    <h3 id="demoModalTitle" class="display-3">Talk to us.</h3>
+    <p class="lede">Thirty minutes on the live platform. Working session — not a deck. We come back within one business day.</p>
     <form action="__FORMSPREE_ENDPOINT__" method="POST" onsubmit="return handleDemoSubmit(this, event)">
       <div class="form-row">
-        <div class="form-group"><label>First name <span class="req">*</span></label><input type="text" name="first_name" class="form-control" required></div>
-        <div class="form-group"><label>Last name <span class="req">*</span></label><input type="text" name="last_name" class="form-control" required></div>
+        <div class="form-group"><label>First name</label><input type="text" name="first_name" class="form-control" required></div>
+        <div class="form-group"><label>Last name</label><input type="text" name="last_name" class="form-control" required></div>
       </div>
-      <div class="form-group"><label>Work email <span class="req">*</span></label><input type="email" name="email" class="form-control" required></div>
-      <div class="form-group"><label>Company <span class="req">*</span></label><input type="text" name="company" class="form-control" required></div>
-      <div class="form-group"><label>Role</label><select name="role" class="form-control"><option value="">Select…</option><option>Data Manager / Lead</option><option>Clinical Operations</option><option>Biostatistics / Programming</option><option>QA / Compliance</option><option>Medical / Safety</option><option>Executive / Sponsor leadership</option><option>Other</option></select></div>
+      <div class="form-group"><label>Work email</label><input type="email" name="email" class="form-control" required></div>
+      <div class="form-group"><label>Company</label><input type="text" name="company" class="form-control" required></div>
+      <div class="form-group"><label>Role</label>
+        <select name="role" class="form-control">
+          <option value="">Select…</option>
+          <option>Data Manager / Lead</option>
+          <option>Clinical Operations</option>
+          <option>Biostatistics / Programming</option>
+          <option>QA / Compliance</option>
+          <option>Medical / Safety</option>
+          <option>Executive / Sponsor leadership</option>
+          <option>Other</option>
+        </select>
+      </div>
       <div class="form-group"><label>What would you like to see?</label><textarea name="message" class="form-control" placeholder="A particular module, an integration, a workflow…"></textarea></div>
-      <button type="submit" class="form-submit">Request a Demo <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></button>
+      <button type="submit" class="form-submit">Send request <span class="arr">→</span></button>
     </form>
   </div>
 </div>

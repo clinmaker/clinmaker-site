@@ -3,27 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ClinMaker — Agentic AI for Clinical Data Management</title>
-  <meta name="description" content="ClinMaker is the agentic, GxP-grade clinical data management platform. Standards at the core. Submission at the finish. CDISC-native, USDM 4.0, 21 CFR Part 11.">
+  <title>ClinMaker — Standards at the core. Submission at the finish.</title>
+  <meta name="description" content="The agentic, GxP-grade clinical data management platform. Twelve cooperating agents, one canonical model, one audit trail, from protocol to submission.">
   <meta name="theme-color" content="#d87654">
   <meta property="og:title" content="ClinMaker — Standards at the core. Submission at the finish.">
-  <meta property="og:description" content="Agentic AI for clinical data management. Protocol authoring → CDISC submission, end-to-end.">
   <meta property="og:image" content="https://clinmaker.com/assets/logo-lockup-tagline.png">
   <meta property="og:url" content="https://clinmaker.com">
   <meta property="og:type" content="website">
   <link rel="icon" type="image/png" href="assets/favicon-256.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
 
-<!-- ═════════ NAV ═════════ -->
+<!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
     <a href="index.html" class="logo" aria-label="ClinMaker home">
-      <svg class="logo-mark" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <svg class="logo-mark" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/>
         <path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/>
         <path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/>
@@ -31,10 +30,10 @@
         <line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
         <line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
       </svg>
-      <span><span class="logo-text-ink">Clin</span><span class="logo-text-brand">Maker</span></span>
+      <span class="logo-text"><span class="logo-text-ink">Clin</span><span class="logo-text-brand">Maker</span></span>
     </a>
-    <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle navigation">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle menu">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
     </button>
     <div class="nav-links">
       <a href="platform.html">Platform</a>
@@ -42,268 +41,298 @@
       <a href="security.html">Security</a>
       <a href="pricing.html">Pricing</a>
       <a href="about.html">About</a>
-      <a href="#" class="nav-cta" onclick="openDemoModal(); return false;">Request a Demo</a>
+      <a href="#" class="nav-cta" onclick="openDemoModal(); return false;">Talk to us <span class="arr">→</span></a>
     </div>
   </div>
 </nav>
 
-<!-- ═════════ HERO ═════════ -->
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-content">
-    <div class="hero-badge">Agentic AI for Clinical Data</div>
-    <h1>Standards at the core.<br><span class="brand">Submission at the finish.</span></h1>
-    <p class="hero-tagline">
-      ClinMaker is an agentic, GxP-grade clinical data management platform. From protocol authoring to regulatory submission, autonomous AI agents handle the heavy lifting — so your team focuses on the science.
+  <div class="hero-statement">
+    <span class="eyebrow brand">v0.5.43 · <span style="color: var(--text-muted);">cm.platform/release</span></span>
+    <h1 class="display">
+      Standards at the core.<br>
+      <span class="shift">Submission at the finish.</span>
+    </h1>
+    <p class="lede">
+      The agentic, GxP-grade clinical data management platform. Twelve cooperating agents working from one canonical model, one audit trail, one role system. From protocol authoring to regulatory submission, end-to-end.
     </p>
     <div class="hero-buttons">
-      <a href="#" class="btn btn-primary" onclick="openDemoModal(); return false;">Request a Demo &rarr;</a>
-      <a href="platform.html" class="btn btn-outline">Tour the Platform</a>
+      <a href="#" class="btn btn-primary" onclick="openDemoModal(); return false;">Talk to us <span class="arr">→</span></a>
+      <a href="platform.html" class="btn btn-ghost">See the platform <span class="arr">→</span></a>
+      <span class="meta"><span class="dot"></span> 12 / 12 agents healthy <span style="color: var(--text-tertiary);">·</span> 21 CFR 11 · CDISC-native</span>
     </div>
   </div>
 
-  <!-- Dashboard mockup -->
-  <div class="mockup-frame">
-    <div class="mockup-bar">
-      <div class="mockup-dot r"></div><div class="mockup-dot y"></div><div class="mockup-dot g"></div>
+  <!-- HERO DATA-VIZ: live-looking dashboard frame -->
+  <div class="viz-frame">
+    <span class="viz-coord tl">00,00</span>
+    <span class="viz-coord tr">cm.dash/live</span>
+    <span class="viz-coord bl">v0.5.43</span>
+    <span class="viz-coord br">2026-05-18 14:08:22 UTC</span>
+    <div class="viz-frame-head">
+      <span class="vh-id">cm-dash // overview</span>
+      <span class="vh-meta">
+        <span>study: ACQ-2026-001</span>
+        <span>env: prod</span>
+        <span class="vh-live">live</span>
+      </span>
     </div>
-    <div class="mockup-screen">
-      <div class="mock-dash">
-        <div class="mock-topbar">
-          <div class="mock-brand">
-            <svg viewBox="0 0 64 64" fill="none">
-              <path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/>
-              <path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-              <path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-              <line x1="26" y1="29" x2="26" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
-              <line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
-              <line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
-            </svg>
-            <span><span class="ink">Clin</span><span class="brand">Maker</span></span>
+    <div class="dash">
+      <!-- Sidebar -->
+      <aside class="dash-rail">
+        <div class="rail-label"><span>Module</span><span>·</span></div>
+        <ul>
+          <li class="active">Overview <span class="count">/</span></li>
+          <li>Studies <span class="count">12</span></li>
+          <li>Ingestion <span class="count">247</span></li>
+          <li>Validation <span class="count">8</span></li>
+          <li>Queries <span class="count">247</span></li>
+          <li>Coding <span class="count">94.2%</span></li>
+          <li>Recon <span class="count">3</span></li>
+          <li>SDTM <span class="count">11</span></li>
+          <li>Analytics <span class="count">·</span></li>
+          <li>Audit <span class="count">∞</span></li>
+        </ul>
+      </aside>
+
+      <!-- Main -->
+      <div class="dash-main">
+        <!-- KPI strip -->
+        <div class="dash-kpi-row">
+          <div class="dash-kpi">
+            <div class="kpi-label"><span>Active studies</span><span class="delta">+2 wk</span></div>
+            <div class="kpi-val"><span class="brand">12</span></div>
           </div>
-          <div class="mock-nav-pills">
-            <div class="mock-pill active">Dashboard</div>
-            <div class="mock-pill">Studies</div>
-            <div class="mock-pill">Ingestion</div>
-            <div class="mock-pill">Validation</div>
-            <div class="mock-pill">SDTM</div>
-            <div class="mock-pill">Analytics</div>
+          <div class="dash-kpi">
+            <div class="kpi-label"><span>Open queries</span><span class="delta neg">-18 d</span></div>
+            <div class="kpi-val">247</div>
+          </div>
+          <div class="dash-kpi">
+            <div class="kpi-label"><span>Coding</span><span class="delta">+1.4%</span></div>
+            <div class="kpi-val">94.2<span class="small">%</span></div>
+          </div>
+          <div class="dash-kpi">
+            <div class="kpi-label"><span>AI actions / d</span><span class="delta">+312</span></div>
+            <div class="kpi-val">1,847</div>
           </div>
         </div>
-        <div class="mock-kpi-row">
-          <div class="mock-kpi"><div class="mock-kpi-label">Active Studies</div><div class="mock-kpi-val brand">12</div></div>
-          <div class="mock-kpi amber"><div class="mock-kpi-label">Open Queries</div><div class="mock-kpi-val amber">247</div></div>
-          <div class="mock-kpi green"><div class="mock-kpi-label">Coding Complete</div><div class="mock-kpi-val green">94.2%</div></div>
-          <div class="mock-kpi violet"><div class="mock-kpi-label">AI Actions / Day</div><div class="mock-kpi-val violet">1,847</div></div>
-        </div>
-        <div class="mock-content-row">
-          <div class="mock-card">
-            <div class="mock-card-title">Recent study activity</div>
-            <div class="mock-table-row"><span>ONCO-2024-0145</span><span class="mock-badge green">Live</span><span style="text-align:right;">98.4% clean</span></div>
-            <div class="mock-table-row"><span>CARDIO-2025-0032</span><span class="mock-badge amber">UAT</span><span style="text-align:right;">87.1% clean</span></div>
-            <div class="mock-table-row"><span>NEURO-2024-0089</span><span class="mock-badge green">Live</span><span style="text-align:right;">96.7% clean</span></div>
-            <div class="mock-table-row"><span>DERM-2025-0011</span><span class="mock-badge brand">Build</span><span style="text-align:right;">—</span></div>
+
+        <!-- Two-panel row -->
+        <div class="dash-grid">
+          <div class="dash-panel">
+            <div class="dash-panel-head"><span>Study list / live</span><span class="ph-pulse">●</span></div>
+            <div class="dash-row">
+              <span class="r-id">ONCO-2024-0145</span>
+              <div class="r-bar"><div class="r-bar-fill" style="width: 98.4%"></div></div>
+              <span class="r-pct">98.4%</span>
+              <span class="r-status">live</span>
+            </div>
+            <div class="dash-row">
+              <span class="r-id">CARDIO-2025-0032</span>
+              <div class="r-bar"><div class="r-bar-fill" style="width: 87.1%"></div></div>
+              <span class="r-pct">87.1%</span>
+              <span class="r-status uat">uat</span>
+            </div>
+            <div class="dash-row">
+              <span class="r-id">NEURO-2024-0089</span>
+              <div class="r-bar"><div class="r-bar-fill" style="width: 96.7%"></div></div>
+              <span class="r-pct">96.7%</span>
+              <span class="r-status">live</span>
+            </div>
+            <div class="dash-row">
+              <span class="r-id">DERM-2025-0011</span>
+              <div class="r-bar"><div class="r-bar-fill" style="width: 22%"></div></div>
+              <span class="r-pct">22%</span>
+              <span class="r-status build">build</span>
+            </div>
+            <div class="dash-row">
+              <span class="r-id">RESP-2025-0044</span>
+              <div class="r-bar"><div class="r-bar-fill" style="width: 71.8%"></div></div>
+              <span class="r-pct">71.8%</span>
+              <span class="r-status uat">uat</span>
+            </div>
           </div>
-          <div class="mock-card">
-            <div class="mock-card-title">Query trend (30d)</div>
-            <div class="mock-bars">
-              <div class="mock-bar dim" style="height:40%"></div>
-              <div class="mock-bar" style="height:55%"></div>
-              <div class="mock-bar" style="height:70%"></div>
-              <div class="mock-bar" style="height:45%"></div>
-              <div class="mock-bar" style="height:60%"></div>
-              <div class="mock-bar dim" style="height:35%"></div>
-              <div class="mock-bar tall" style="height:82%"></div>
-              <div class="mock-bar" style="height:50%"></div>
+
+          <div class="dash-panel">
+            <div class="dash-panel-head"><span>Query trend / 30d</span><span class="ph-pulse">↘ -18</span></div>
+            <div class="dash-chart">
+              <svg viewBox="0 0 320 180" preserveAspectRatio="none">
+                <!-- gridlines -->
+                <line x1="0" y1="36" x2="320" y2="36" class="gridline"/>
+                <line x1="0" y1="72" x2="320" y2="72" class="gridline"/>
+                <line x1="0" y1="108" x2="320" y2="108" class="gridline"/>
+                <line x1="0" y1="144" x2="320" y2="144" class="gridline"/>
+                <!-- area -->
+                <path d="M0,140 L24,128 L48,110 L72,118 L96,98 L120,84 L144,90 L168,72 L192,58 L216,68 L240,48 L264,42 L288,52 L312,38 L320,38 L320,180 L0,180 Z" fill="#d87654" opacity="0.10"/>
+                <!-- line -->
+                <path d="M0,140 L24,128 L48,110 L72,118 L96,98 L120,84 L144,90 L168,72 L192,58 L216,68 L240,48 L264,42 L288,52 L312,38" fill="none" stroke="#1c1a16" stroke-width="1.6"/>
+                <!-- dots -->
+                <circle cx="312" cy="38" r="3" fill="#d87654"/>
+                <circle cx="192" cy="58" r="2.5" fill="#1c1a16"/>
+                <circle cx="120" cy="84" r="2.5" fill="#1c1a16"/>
+              </svg>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.625rem; color: var(--text-muted); padding-top: 6px; border-top: 1px dashed var(--surface-rule-soft);">
+              <span>d-30</span><span>d-22</span><span>d-15</span><span>d-7</span><span style="color: var(--primary-700);">today</span>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section>
 
-<!-- ═════════ COMPLIANCE STRIP ═════════ -->
-<div class="compliance-strip">
-  <strong>21 CFR Part 11</strong><span class="sep">●</span>
-  <strong>EU Annex 11</strong><span class="sep">●</span>
-  <strong>ICH E6(R3) GCP</strong><span class="sep">●</span>
-  <strong>CDISC CDASH / SDTM / ADaM</strong><span class="sep">●</span>
-  <strong>USDM 4.0 / DDF</strong>
-</div>
-
-<!-- ═════════ STATS ═════════ -->
-<div class="stats-strip">
-  <div class="stat-item"><div class="stat-num">12</div><div class="stat-label">Autonomous Agents</div></div>
-  <div class="stat-item"><div class="stat-num">30+</div><div class="stat-label">Platform Modules</div></div>
-  <div class="stat-item"><div class="stat-num">500+</div><div class="stat-label">API Endpoints</div></div>
-  <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Audit Trail Coverage</div></div>
-</div>
-
-<!-- ═════════ PIPELINE ═════════ -->
-<section class="section section-alt" style="max-width:100%; padding-bottom: 32px;">
-  <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
-    <div class="eyebrow">One pipeline</div>
-    <h2 class="section-title">Protocol to submission, end-to-end.</h2>
-    <p class="section-sub" style="margin: 0 auto 24px;">
-      Twelve cooperating agents handle every stage of the clinical data lifecycle. No swivel-chair, no email handoffs, no spreadsheet reconciliation. Every action is audited.
-    </p>
-    <div class="pipeline-track">
-      <div class="pipeline-node"><div class="pn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div><div class="pn-label">Protocol Authoring</div></div>
-      <div class="pipeline-node"><div class="pn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg></div><div class="pn-label">Study Build</div></div>
-      <div class="pipeline-node"><div class="pn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg></div><div class="pn-label">Data Ingestion</div></div>
-      <div class="pipeline-node"><div class="pn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg></div><div class="pn-label">Validation</div></div>
-      <div class="pipeline-node"><div class="pn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg></div><div class="pn-label">Query Mgmt</div></div>
-      <div class="pipeline-node"><div class="pn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div><div class="pn-label">Medical Coding</div></div>
-      <div class="pipeline-node"><div class="pn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg></div><div class="pn-label">Reconciliation</div></div>
-      <div class="pipeline-node"><div class="pn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/></svg></div><div class="pn-label">SDTM / ADaM</div></div>
-      <div class="pipeline-node"><div class="pn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div><div class="pn-label">Analytics</div></div>
-      <div class="pipeline-node"><div class="pn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg></div><div class="pn-label">Patient Profile</div></div>
-      <div class="pipeline-node"><div class="pn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div><div class="pn-label">Audit Trail</div></div>
-      <div class="pipeline-node"><div class="pn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div><div class="pn-label">Submission</div></div>
+  <!-- METRIC STRIP -->
+  <div class="metric-strip">
+    <div class="metric-cell">
+      <span class="m-tick">+/-</span>
+      <span class="m-num brand">100<span class="small">%</span></span>
+      <span class="m-label">Audit-trail coverage</span>
     </div>
-    <a href="platform.html" class="btn btn-outline" style="margin-top: 32px;">Explore each module &rarr;</a>
-  </div>
-</section>
-
-<!-- ═════════ WHY CLINMAKER ═════════ -->
-<section class="section">
-  <div class="centered">
-    <div class="eyebrow">Why ClinMaker</div>
-    <h2 class="section-title">Built for the people running real trials.</h2>
-    <p class="section-sub">
-      Most CDM systems are configurable databases bolted onto a query queue. ClinMaker is a coherent platform — every module shares the same canonical data model, the same audit trail, and the same role-based controls. The result is fewer integration handoffs, faster lock, and a submission package you can trust.
-    </p>
-  </div>
-  <div class="feature-grid">
-    <div class="feature-card">
-      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></div>
-      <h4>Agentic, not just AI-assisted</h4>
-      <p>Twelve cooperating agents — each owns a stage of the pipeline. Validation, coding, reconciliation, SDTM mapping all run autonomously and surface human decisions only when they require judgment.</p>
+    <div class="metric-cell">
+      <span class="m-tick">↗</span>
+      <span class="m-num">~100<span class="small">/100</span></span>
+      <span class="m-label">USDM 4.0 round-trip</span>
     </div>
-    <div class="feature-card">
-      <div class="feature-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
-      <h4>GxP-grade from day one</h4>
-      <p>21 CFR Part 11, EU Annex 11, ICH E6(R3). Append-only audit trail, electronic signatures, RBAC with separation of duties, MFA on every login. Inspection-ready outputs.</p>
+    <div class="metric-cell">
+      <span class="m-tick">·</span>
+      <span class="m-num">12</span>
+      <span class="m-label">Cooperating agents</span>
     </div>
-    <div class="feature-card">
-      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/></svg></div>
-      <h4>CDISC-native, sponsor-extensible</h4>
-      <p>CDASH casebooks, SDTM-IG conformance, ADaM-ready, USDM 4.0 protocol exports scoring ~100/100 on CDISC CORE rules. Extend with your own libraries — your standards on top of theirs.</p>
+    <div class="metric-cell">
+      <span class="m-tick">·</span>
+      <span class="m-num">15</span>
+      <span class="m-label">Vendor adapters</span>
     </div>
-    <div class="feature-card">
-      <div class="feature-icon violet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2"/></svg></div>
-      <h4>Any EDC, any vendor, any format</h4>
-      <p>Medidata Rave, Veeva Vault EDC, central labs, imaging vendors, RTSM, ePRO, devices. Unified ingestion with OID preservation, schema-drift surveillance, and audit-replay reconciliation.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg></div>
-      <h4>Protocol → submission traceability</h4>
-      <p>Every SDTM value traces back to its source record, mapping rule, and the rule's version-controlled author. Audit-readiness isn't a deliverable — it's the default state.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
-      <h4>Lock readiness in weeks, not months</h4>
-      <p>Auto-coding hits 90%+ on first pass. Validation rules execute on every ingest. Reconciliation runs continuously. By the time you call for lock, the residual query list is single-digit.</p>
+    <div class="metric-cell">
+      <span class="m-tick">↘</span>
+      <span class="m-num brand">0</span>
+      <span class="m-label">Unaudited mutations</span>
     </div>
   </div>
 </section>
 
-<!-- ═════════ TESTIMONIAL / POSITIONING ═════════ -->
-<section class="section section-warm centered">
-  <div class="section-narrow" style="margin: 0 auto;">
-    <div class="eyebrow">Positioning</div>
-    <h2 class="section-title" style="font-size: clamp(1.625rem, 2.8vw, 2.25rem);">A coherent platform replaces a stack of point tools.</h2>
-    <p class="section-sub centered" style="font-size: 1.0625rem; margin: 0 auto 16px;">
-      You shouldn't need an EDC, a coding tool, a recon tool, a SDTM mapper, and a SAFETY reconciler — each with its own user list, audit trail, and integration team. ClinMaker is all of them, designed together, with one model and one audit trail.
-    </p>
-    <a href="platform.html" class="btn btn-primary" style="margin-top: 16px;">See the full platform &rarr;</a>
+<!-- MODULE 11 · AUDIT TRAIL (preview-grade — the data-viz pattern) -->
+<section class="module">
+  <div class="container">
+    <div class="section-num-bar">
+      <span class="num"><strong>§11</strong> / 12</span>
+      <span class="rule"></span>
+      <span class="meta">module: audit_trail</span>
+      <span class="meta">retention: 7y</span>
+      <span class="meta">model: append-only</span>
+    </div>
+
+    <div class="module-head">
+      <div>
+        <h2 class="display-2">Every action recorded.<br><span class="shift">No exceptions.</span></h2>
+        <p class="lede">Append-only audit trail across every module. Tamper-evident storage. Searchable by study, subject, user, record type, event type, date range. Inspection-ready as PDF or machine-readable JSON. AI actors are distinguishable from human actors in every row.</p>
+      </div>
+      <a href="platform.html#audit" class="module-link">read in depth →</a>
+    </div>
+
+    <!-- AUDIT TIMELINE VIZ -->
+    <div class="viz-frame">
+      <span class="viz-coord tl">audit/subject S001-024</span>
+      <span class="viz-coord tr">window: 24h</span>
+      <span class="viz-coord bl">42 entries</span>
+      <span class="viz-coord br">→ export</span>
+      <div class="viz-frame-head">
+        <span class="vh-id">cm-audit // timeline</span>
+        <span class="vh-meta">
+          <span>study: ACQ-2026-001</span>
+          <span>actor: any</span>
+          <span class="vh-live">tail</span>
+        </span>
+      </div>
+      <div class="viz-frame-body">
+        <div class="viz-timeline">
+          <div class="lane-labels">
+            <div class="lane-label human"><span class="lane-dot"></span>Human</div>
+            <div class="lane-label ai"><span class="lane-dot"></span>AI agent</div>
+            <div class="lane-label system"><span class="lane-dot"></span>System</div>
+            <div class="lane-label human"><span class="lane-dot"></span>Signature</div>
+          </div>
+          <div class="lanes">
+            <div class="lane">
+              <div class="event" style="left: 8%; width: 18%;"><span class="ev-tag">UPDATE</span><span class="ev-text">AE.AESEV · jdoe</span></div>
+              <div class="event" style="left: 38%; width: 22%;"><span class="ev-tag">CREATE</span><span class="ev-text">AE.S024-AE3 · site-12</span></div>
+              <div class="event" style="left: 72%; width: 17%;"><span class="ev-tag">APPROVE</span><span class="ev-text">Q-2026-4411 · amason</span></div>
+            </div>
+            <div class="lane">
+              <div class="event ev-ai" style="left: 12%; width: 24%;"><span class="ev-tag">AI</span><span class="ev-text">CM coding · aspirin → N02BA01</span></div>
+              <div class="event ev-ai" style="left: 50%; width: 20%;"><span class="ev-tag">AI</span><span class="ev-text">VS validation · 14 findings</span></div>
+              <div class="event ev-ai" style="left: 84%; width: 14%;"><span class="ev-tag">AI</span><span class="ev-text">Recon · 7 deltas</span></div>
+            </div>
+            <div class="lane">
+              <div class="event ev-brand" style="left: 6%; width: 14%;"><span class="ev-tag">EXPORT</span><span class="ev-text">SDTM · v1.2</span></div>
+              <div class="event ev-brand" style="left: 46%; width: 16%;"><span class="ev-tag">INGEST</span><span class="ev-text">Rave · 12,448 rows</span></div>
+              <div class="event ev-brand" style="left: 76%; width: 13%;"><span class="ev-tag">LOCK</span><span class="ev-text">study v8</span></div>
+            </div>
+            <div class="lane">
+              <div class="event" style="left: 22%; width: 15%;"><span class="ev-tag">SIGN</span><span class="ev-text">VS form · drsmith</span></div>
+              <div class="event" style="left: 58%; width: 15%;"><span class="ev-tag">SIGN</span><span class="ev-text">CM form · drsmith</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="viz-time-axis">
+          <div class="axis-empty"></div>
+          <div class="axis-ticks">
+            <span>09:00</span><span>10:30</span><span>12:00</span><span>13:30</span>
+            <span>15:00</span><span>16:30</span><span>18:00</span><span>now</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ═════════ CTA ═════════ -->
-<section class="cta-section" id="contact">
-  <h2>Ready to see ClinMaker in your study?</h2>
-  <p>30-minute demo. We'll walk through protocol authoring, mid-study amendment handling, and a live SDTM export against your standards.</p>
-  <a href="#" class="btn btn-white" onclick="openDemoModal(); return false;">Request a Demo &rarr;</a>
-</section>
-
-<!-- ═════════ FOOTER ═════════ -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <a href="index.html" class="logo">
-        <svg class="logo-mark" viewBox="0 0 64 64" fill="none">
-          <path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/>
-          <path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-          <path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-          <line x1="26" y1="29" x2="26" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
-          <line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
-          <line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
-        </svg>
-        <span><span class="logo-text-ink">Clin</span><span class="logo-text-brand">Maker</span></span>
-      </a>
-      <p class="footer-tagline">Standards at the core. Submission at the finish. Agentic AI for clinical data management.</p>
-    </div>
-    <div class="footer-col">
-      <div class="footer-col-title">Product</div>
-      <ul>
-        <li><a href="platform.html">Platform</a></li>
-        <li><a href="standards.html">Standards</a></li>
-        <li><a href="security.html">Security</a></li>
-        <li><a href="pricing.html">Pricing</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <div class="footer-col-title">Company</div>
-      <ul>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="#" onclick="openDemoModal(); return false;">Request a Demo</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <div class="footer-col-title">Resources</div>
-      <ul>
-        <li><a href="https://app.clinmaker.com" target="_blank" rel="noopener">Log in</a></li>
-        <li><a href="mailto:hello@clinmaker.com">hello@clinmaker.com</a></li>
-      </ul>
-    </div>
+<!-- COLOPHON -->
+<footer class="colophon">
+  <div class="col-brand">
+    <span>Clin</span><span class="shift">Maker</span>
+    <span class="col-divider" style="margin-left: 12px;">·</span>
+    <span style="font-family: var(--font-body); font-weight: 500; font-size: 0.8125rem; color: var(--text-secondary);">LLC</span>
   </div>
-  <div class="footer-bottom">
-    <span>© 2026 ClinMaker, LLC. All rights reserved.</span>
-    <span>Built for GxP-regulated clinical research.</span>
+  <div style="display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center;">
+    <a href="platform.html">Platform</a>
+    <span class="col-divider">·</span>
+    <a href="standards.html">Standards</a>
+    <span class="col-divider">·</span>
+    <a href="security.html">Security</a>
+    <span class="col-divider">·</span>
+    <a href="pricing.html">Pricing</a>
+    <span class="col-divider">·</span>
+    <a href="about.html">About</a>
+    <span class="col-divider">·</span>
+    <a href="contact.html">Contact</a>
+    <span class="col-divider">·</span>
+    <a href="https://app.clinmaker.com" target="_blank" rel="noopener">Log in →</a>
+  </div>
+  <div class="col-meta">
+    <span>hello@clinmaker.com</span>
+    <span class="col-divider">·</span>
+    <span>© 2026</span>
   </div>
 </footer>
 
-<!-- ═════════ DEMO MODAL ═════════ -->
+<!-- DEMO MODAL -->
 <div class="modal-overlay" id="demoModal" role="dialog" aria-labelledby="demoModalTitle" aria-modal="true">
   <div class="modal">
     <button class="modal-close" onclick="closeDemoModal()" aria-label="Close">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg>
     </button>
-    <h3 id="demoModalTitle">Request a Demo</h3>
-    <p class="modal-sub">Tell us a little about your team. We'll be in touch within one business day.</p>
+    <span class="eyebrow brand" style="margin-bottom: 10px;">cm.demo/request</span>
+    <h3 id="demoModalTitle" class="display-3">Talk to us.</h3>
+    <p class="lede">Thirty minutes on the live platform. Working session — not a deck. We come back within one business day.</p>
     <form action="__FORMSPREE_ENDPOINT__" method="POST" onsubmit="return handleDemoSubmit(this, event)">
       <div class="form-row">
-        <div class="form-group">
-          <label>First name <span class="req">*</span></label>
-          <input type="text" name="first_name" class="form-control" required>
-        </div>
-        <div class="form-group">
-          <label>Last name <span class="req">*</span></label>
-          <input type="text" name="last_name" class="form-control" required>
-        </div>
+        <div class="form-group"><label>First name</label><input type="text" name="first_name" class="form-control" required></div>
+        <div class="form-group"><label>Last name</label><input type="text" name="last_name" class="form-control" required></div>
       </div>
-      <div class="form-group">
-        <label>Work email <span class="req">*</span></label>
-        <input type="email" name="email" class="form-control" required>
-      </div>
-      <div class="form-group">
-        <label>Company <span class="req">*</span></label>
-        <input type="text" name="company" class="form-control" required>
-      </div>
-      <div class="form-group">
-        <label>Role</label>
+      <div class="form-group"><label>Work email</label><input type="email" name="email" class="form-control" required></div>
+      <div class="form-group"><label>Company</label><input type="text" name="company" class="form-control" required></div>
+      <div class="form-group"><label>Role</label>
         <select name="role" class="form-control">
           <option value="">Select…</option>
           <option>Data Manager / Lead</option>
@@ -315,14 +344,8 @@
           <option>Other</option>
         </select>
       </div>
-      <div class="form-group">
-        <label>What would you like to see?</label>
-        <textarea name="message" class="form-control" placeholder="A particular module, an integration, a workflow…"></textarea>
-      </div>
-      <button type="submit" class="form-submit">
-        Request a Demo
-        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-      </button>
+      <div class="form-group"><label>What would you like to see?</label><textarea name="message" class="form-control" placeholder="A particular module, an integration, a workflow…"></textarea></div>
+      <button type="submit" class="form-submit">Send request <span class="arr">→</span></button>
     </form>
   </div>
 </div>

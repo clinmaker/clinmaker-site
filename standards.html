@@ -3,200 +3,442 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Standards · ClinMaker</title>
-  <meta name="description" content="CDISC-native and sponsor-extensible. CDASH casebooks, SDTM-IG conformance, ADaM scaffolds, USDM 4.0 / DDF, MedDRA, WHO Drug, Define.xml. Inspection-ready outputs.">
+  <title>Standards — ClinMaker</title>
+  <meta name="description" content="CDISC-native and sponsor-extensible. CDASH, SDTM, ADaM, Define.xml, MedDRA, WHODrug, USDM 4.0, ICH M11, 21 CFR Part 11, EU Annex 11.">
   <meta name="theme-color" content="#d87654">
   <link rel="icon" type="image/png" href="assets/favicon-256.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    .std-table { font-family: var(--font-body); font-size: 0.875rem; }
+    .std-group {
+      margin-top: 32px;
+      border-top: 1px solid var(--surface-rule);
+    }
+    .std-group-head {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 24px;
+      align-items: baseline;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--surface-rule);
+    }
+    .std-group-head .sg-num {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--primary-700);
+    }
+    .std-group-head .sg-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+    }
+    .std-group-head .sg-meta {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-left: auto;
+    }
+    .std-row {
+      display: grid;
+      grid-template-columns: 100px 220px 1fr 120px 80px;
+      gap: 20px;
+      align-items: baseline;
+      padding: 18px 0;
+      border-bottom: 1px dashed var(--surface-rule-soft);
+    }
+    .std-row:last-child { border-bottom: 1px solid var(--surface-rule); }
+    .std-row .sr-tag {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: var(--primary-700);
+      padding: 3px 8px;
+      background: var(--primary-50);
+      display: inline-block;
+      max-width: fit-content;
+    }
+    .std-row .sr-name {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      font-weight: 700;
+      letter-spacing: -0.018em;
+      color: var(--ink);
+    }
+    .std-row .sr-name .sr-sub {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 450;
+      color: var(--text-muted);
+      letter-spacing: 0;
+      margin-top: 2px;
+    }
+    .std-row .sr-desc {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      line-height: 1.55;
+    }
+    .std-row .sr-ver {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .std-row .sr-status {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      text-align: center;
+      background: var(--status-green-bg);
+      color: var(--status-green);
+    }
+    .std-row .sr-status.optional { background: var(--surface-hover); color: var(--text-muted); }
+    .std-row:hover { background: rgba(216,118,84,0.03); }
+    .std-row:hover .sr-name { color: var(--primary-700); }
+
+    @media (max-width: 900px) {
+      .std-row {
+        grid-template-columns: 80px 1fr 80px;
+        gap: 14px;
+        align-items: start;
+      }
+      .std-row .sr-tag { grid-row: span 2; }
+      .std-row .sr-desc { grid-column: 2 / 4; font-size: 0.8125rem; }
+      .std-row .sr-ver { grid-column: 2; }
+      .std-row .sr-status { grid-column: 3; }
+    }
+  </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
-    <a href="index.html" class="logo">
-      <svg class="logo-mark" viewBox="0 0 64 64" fill="none"><path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/><line x1="26" y1="29" x2="26" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/></svg>
-      <span><span class="logo-text-ink">Clin</span><span class="logo-text-brand">Maker</span></span>
+    <a href="index.html" class="logo" aria-label="ClinMaker home">
+      <svg class="logo-mark" viewBox="0 0 64 64" fill="none">
+        <path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/>
+        <path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+        <path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+        <line x1="26" y1="29" x2="26" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+      <span class="logo-text"><span class="logo-text-ink">Clin</span><span class="logo-text-brand">Maker</span></span>
     </a>
-    <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle navigation"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle menu">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
     <div class="nav-links">
       <a href="platform.html">Platform</a>
       <a href="standards.html">Standards</a>
       <a href="security.html">Security</a>
       <a href="pricing.html">Pricing</a>
       <a href="about.html">About</a>
-      <a href="#" class="nav-cta" onclick="openDemoModal(); return false;">Request a Demo</a>
+      <a href="#" class="nav-cta" onclick="openDemoModal(); return false;">Talk to us <span class="arr">→</span></a>
     </div>
   </div>
 </nav>
 
-<header class="page-header">
-  <div class="eyebrow">Standards</div>
-  <h1>CDISC-native. Sponsor-extensible.</h1>
-  <p>Every output is built on industry standards from the start — not bolted on at submission time. Extend with your own libraries on top. Your standards inherit from theirs.</p>
-</header>
+<!-- HEADER -->
+<section class="container" style="padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(32px, 4vw, 48px);">
+  <span class="eyebrow brand">cm.standards/inventory · 22 standards</span>
+  <h1 class="display-2" style="margin-top: 18px;">CDISC-native.<br><span class="shift">Sponsor-extensible.</span></h1>
+  <p class="lede" style="margin-top: 24px; max-width: 720px;">
+    Every output is built on industry standards from the start — not bolted on at submission time. Extend with your own libraries on top. Your standards inherit from theirs.
+  </p>
+</section>
 
-<section class="section">
-  <div class="eyebrow">Data standards</div>
-  <h2 class="section-title">CDISC, end-to-end.</h2>
-  <p class="section-sub">CDASH collection. SDTM tabulation. ADaM analysis. Define.xml metadata. Annotated CRFs. Reviewer guides. Every domain mapped, every variable traced.</p>
-  <div class="standards-grid">
-    <div class="std-card">
-      <span class="std-icon">CDASH</span>
-      <h4>CDASH</h4>
-      <p>Collection-level CRF standard. Default for new study builds; deviations documented per study.</p>
-      <span class="std-version">CDASH-IG 2.2</span>
+<!-- DATA STANDARDS -->
+<section class="container section-tight" style="border-top: 1px solid var(--surface-rule-soft);">
+  <div class="section-num-bar">
+    <span class="num"><strong>§01</strong> / 03</span>
+    <span class="rule"></span>
+    <span class="meta">group: data_standards</span>
+    <span class="meta">count: 6</span>
+    <span class="meta">scope: collection → submission</span>
+  </div>
+  <h2 class="display-3" style="margin-top: 8px;">Data standards. <span class="shift">End-to-end.</span></h2>
+  <p class="lede" style="margin-top: 14px; max-width: 720px;">
+    CDASH collection. SDTM tabulation. ADaM analysis. Define.xml metadata. Annotated CRFs. Reviewer guides. Every domain mapped, every variable traced.
+  </p>
+
+  <div class="viz-frame" style="margin-top: 32px;">
+    <span class="viz-coord tl">standards/data</span>
+    <span class="viz-coord tr">conformance: enforced</span>
+    <span class="viz-coord bl">6 entries</span>
+    <span class="viz-coord br">view: live</span>
+    <div class="viz-frame-head">
+      <span class="vh-id">cm-standards // data_models</span>
+      <span class="vh-meta">
+        <span>scope: CDISC</span>
+        <span>extensibility: sponsor libraries</span>
+        <span class="vh-live">tracked</span>
+      </span>
     </div>
-    <div class="std-card">
-      <span class="std-icon">SDTM</span>
-      <h4>SDTM</h4>
-      <p>Submission Data Tabulation Model. All standard domains (DM, AE, EX, LB, VS, CM, QS, TA/TV/TS, …).</p>
-      <span class="std-version">SDTM-IG 3.4</span>
-    </div>
-    <div class="std-card">
-      <span class="std-icon">ADaM</span>
-      <h4>ADaM</h4>
-      <p>Analysis-ready datasets. ADSL, ADAE, ADLB, ADTTE scaffolds; BDS structure for custom analyses.</p>
-      <span class="std-version">ADaM-IG 1.3</span>
-    </div>
-    <div class="std-card">
-      <span class="std-icon">Define-XML</span>
-      <h4>Define.xml</h4>
-      <p>Metadata package for SDTM + ADaM submissions. Auto-generated from the mapping spec.</p>
-      <span class="std-version">Define-XML 2.1</span>
-    </div>
-    <div class="std-card">
-      <span class="std-icon">USDM</span>
-      <h4>USDM 4.0 / DDF</h4>
-      <p>Unified Study Definition Model. Round-trip exports score ~100/100 on CDISC CORE rules.</p>
-      <span class="std-version">USDM 4.0 (2025-06-03)</span>
-    </div>
-    <div class="std-card">
-      <span class="std-icon">CT</span>
-      <h4>NCI / CDISC CT</h4>
-      <p>Controlled terminology bindings on every Code-typed field. Pinned per study.</p>
-      <span class="std-version">CDISC CT 2024-09-27</span>
+    <div class="viz-frame-body std-table">
+      <div class="std-row">
+        <span class="sr-tag">CDASH</span>
+        <span class="sr-name">CDASH<span class="sr-sub">Clinical Data Acquisition Standards Harmonisation</span></span>
+        <span class="sr-desc">Collection-level CRF standard. Default for new study builds; deviations documented per study.</span>
+        <span class="sr-ver">CDASH-IG 2.2</span>
+        <span class="sr-status">live</span>
+      </div>
+      <div class="std-row">
+        <span class="sr-tag">SDTM</span>
+        <span class="sr-name">SDTM<span class="sr-sub">Study Data Tabulation Model</span></span>
+        <span class="sr-desc">Submission tabulation. All standard domains (DM, AE, EX, LB, VS, CM, QS, TA/TV/TS, …) plus sponsor extensions.</span>
+        <span class="sr-ver">SDTM-IG 3.4</span>
+        <span class="sr-status">live</span>
+      </div>
+      <div class="std-row">
+        <span class="sr-tag">ADaM</span>
+        <span class="sr-name">ADaM<span class="sr-sub">Analysis Data Model</span></span>
+        <span class="sr-desc">Analysis-ready datasets. ADSL, ADAE, ADLB, ADTTE scaffolds; BDS structure for custom analyses.</span>
+        <span class="sr-ver">ADaM-IG 1.3</span>
+        <span class="sr-status">live</span>
+      </div>
+      <div class="std-row">
+        <span class="sr-tag">DEFINE</span>
+        <span class="sr-name">Define.xml<span class="sr-sub">Submission metadata package</span></span>
+        <span class="sr-desc">Metadata package for SDTM + ADaM. Auto-generated from the mapping specification.</span>
+        <span class="sr-ver">Define-XML 2.1</span>
+        <span class="sr-status">live</span>
+      </div>
+      <div class="std-row">
+        <span class="sr-tag">USDM</span>
+        <span class="sr-name">USDM 4.0 / DDF<span class="sr-sub">Unified Study Definition Model</span></span>
+        <span class="sr-desc">Protocol authoring model. Round-trip exports score ~100/100 on CDISC CORE rules. CORE engine runs as Layer 3 of the pre-export gate.</span>
+        <span class="sr-ver">USDM 4.0 (2025-06-03)</span>
+        <span class="sr-status">live</span>
+      </div>
+      <div class="std-row">
+        <span class="sr-tag">CT</span>
+        <span class="sr-name">NCI / CDISC CT<span class="sr-sub">Controlled Terminology</span></span>
+        <span class="sr-desc">CT bindings on every Code-typed field. Pinned per study and per environment.</span>
+        <span class="sr-ver">CDISC CT 2024-09-27</span>
+        <span class="sr-status">live</span>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="section section-alt" style="max-width:100%;">
-  <div style="max-width:1200px; margin:0 auto;">
-    <div class="eyebrow">Coding dictionaries</div>
-    <h2 class="section-title">MedDRA + WHO Drug, version-pinned per study.</h2>
-    <p class="section-sub">Dictionaries themselves are not edited — usage and conventions are. Versions pin per study and per environment.</p>
-    <div class="standards-grid">
-      <div class="std-card">
-        <span class="std-icon">MedDRA</span>
-        <h4>MedDRA</h4>
-        <p>Medical Dictionary for Regulatory Activities. AE, medical history, optional procedures/tests.</p>
-        <span class="std-version">MedDRA 27.0 (versioned per study)</span>
+<!-- CODING DICTIONARIES -->
+<section class="container section-tight">
+  <div class="section-num-bar">
+    <span class="num"><strong>§02</strong> / 03</span>
+    <span class="rule"></span>
+    <span class="meta">group: coding_dictionaries</span>
+    <span class="meta">count: 4</span>
+    <span class="meta">scope: per-study version-pinned</span>
+  </div>
+  <h2 class="display-3" style="margin-top: 8px;">Coding dictionaries. <span class="shift">Version-pinned per study.</span></h2>
+  <p class="lede" style="margin-top: 14px; max-width: 720px;">
+    Dictionaries themselves are not edited — usage and conventions are. Versions pin per study and per environment to preserve consistency through lock.
+  </p>
+
+  <div class="viz-frame" style="margin-top: 32px;">
+    <span class="viz-coord tl">standards/coding</span>
+    <span class="viz-coord tr">pinning: per-study</span>
+    <span class="viz-coord bl">4 entries</span>
+    <span class="viz-coord br">recode: source-change-triggered</span>
+    <div class="viz-frame-head">
+      <span class="vh-id">cm-standards // dictionaries</span>
+      <span class="vh-meta">
+        <span>auto-coding: ≥0.85 confidence</span>
+        <span>review: &lt;0.85</span>
+        <span class="vh-live">live</span>
+      </span>
+    </div>
+    <div class="viz-frame-body std-table">
+      <div class="std-row">
+        <span class="sr-tag">MEDDRA</span>
+        <span class="sr-name">MedDRA<span class="sr-sub">Medical Dictionary for Regulatory Activities</span></span>
+        <span class="sr-desc">AE, medical history, optional procedures/tests. LLT → PT → HLT → HLGT → SOC hierarchy.</span>
+        <span class="sr-ver">MedDRA 27.0</span>
+        <span class="sr-status">live</span>
       </div>
-      <div class="std-card">
-        <span class="std-icon">WHODrug</span>
-        <h4>WHO Drug Global</h4>
-        <p>Concomitant medications with ATC-level coding. Trade-name + active-ingredient resolution.</p>
-        <span class="std-version">WHODrug B3 (versioned per study)</span>
+      <div class="std-row">
+        <span class="sr-tag">WHODRUG</span>
+        <span class="sr-name">WHO Drug Global<span class="sr-sub">Concomitant medications dictionary</span></span>
+        <span class="sr-desc">Trade-name + active-ingredient resolution with ATC-level coding.</span>
+        <span class="sr-ver">WHODrug B3</span>
+        <span class="sr-status">live</span>
       </div>
-      <div class="std-card">
-        <span class="std-icon">SNOMED</span>
-        <h4>SNOMED CT (optional)</h4>
-        <p>For sponsors who require SNOMED-coded medical history alongside or instead of MedDRA.</p>
-        <span class="std-version">SNOMED CT 2025-03</span>
+      <div class="std-row">
+        <span class="sr-tag">SNOMED</span>
+        <span class="sr-name">SNOMED CT<span class="sr-sub">Clinical terminology (optional)</span></span>
+        <span class="sr-desc">For sponsors who require SNOMED-coded medical history alongside or instead of MedDRA.</span>
+        <span class="sr-ver">SNOMED CT 2025-03</span>
+        <span class="sr-status optional">optional</span>
       </div>
-      <div class="std-card">
-        <span class="std-icon">LOINC</span>
-        <h4>LOINC (optional)</h4>
-        <p>Laboratory observation identifiers for cross-lab analyte harmonization.</p>
-        <span class="std-version">LOINC 2.78</span>
+      <div class="std-row">
+        <span class="sr-tag">LOINC</span>
+        <span class="sr-name">LOINC<span class="sr-sub">Laboratory observation identifiers (optional)</span></span>
+        <span class="sr-desc">For cross-lab analyte harmonisation across central + local labs.</span>
+        <span class="sr-ver">LOINC 2.78</span>
+        <span class="sr-status optional">optional</span>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section">
-  <div class="eyebrow">Regulatory standards</div>
-  <h2 class="section-title">Built to ICH and FDA expectations.</h2>
-  <p class="section-sub">The platform's audit, validation, and submission machinery is shaped by these regulations. Compliance isn't a feature — it's the architecture.</p>
-  <div class="standards-grid">
-    <div class="std-card">
-      <span class="std-icon">21 CFR 11</span>
-      <h4>21 CFR Part 11</h4>
-      <p>Electronic records and electronic signatures. Audit trail, e-sig, access controls, validation.</p>
-      <span class="std-version">FDA, 1997 (current)</span>
+<!-- REGULATORY STANDARDS -->
+<section class="container section-tight" style="padding-bottom: clamp(56px, 7vw, 96px);">
+  <div class="section-num-bar">
+    <span class="num"><strong>§03</strong> / 03</span>
+    <span class="rule"></span>
+    <span class="meta">group: regulatory_standards</span>
+    <span class="meta">count: 6</span>
+    <span class="meta">scope: GxP architecture</span>
+  </div>
+  <h2 class="display-3" style="margin-top: 8px;">Regulatory standards. <span class="shift">Architecturally enforced.</span></h2>
+  <p class="lede" style="margin-top: 14px; max-width: 720px;">
+    The platform's audit, validation, and submission machinery is shaped by these regulations. Compliance isn't a feature — it's the architecture.
+  </p>
+
+  <div class="viz-frame" style="margin-top: 32px;">
+    <span class="viz-coord tl">standards/regulatory</span>
+    <span class="viz-coord tr">enforcement: foundational</span>
+    <span class="viz-coord bl">6 entries</span>
+    <span class="viz-coord br">audit-ready</span>
+    <div class="viz-frame-head">
+      <span class="vh-id">cm-standards // regulatory</span>
+      <span class="vh-meta">
+        <span>FDA · EMA · ICH</span>
+        <span>validation: per-release</span>
+        <span class="vh-live">aligned</span>
+      </span>
     </div>
-    <div class="std-card">
-      <span class="std-icon">Annex 11</span>
-      <h4>EU Annex 11</h4>
-      <p>Computerised systems used in GxP-regulated activities. Risk management, supplier, validation.</p>
-      <span class="std-version">EU GMP, 2011</span>
-    </div>
-    <div class="std-card">
-      <span class="std-icon">ICH M11</span>
-      <h4>ICH M11</h4>
-      <p>Clinical electronic structured harmonised protocol — directly drives the 84-section M11 generator.</p>
-      <span class="std-version">ICH M11 Step 4</span>
-    </div>
-    <div class="std-card">
-      <span class="std-icon">ICH E6 R3</span>
-      <h4>ICH E6(R3) GCP</h4>
-      <p>Quality management, critical-to-quality factors, ALCOA+ data principles.</p>
-      <span class="std-version">ICH E6(R3) 2025</span>
-    </div>
-    <div class="std-card">
-      <span class="std-icon">CORE</span>
-      <h4>CDISC CORE rules</h4>
-      <p>Conformance rules engine — runs as Layer 3 of the pre-export compliance gate.</p>
-      <span class="std-version">cdisc-rules-engine v0.16+</span>
-    </div>
-    <div class="std-card">
-      <span class="std-icon">PRS</span>
-      <h4>ClinicalTrials.gov / EU CTR</h4>
-      <p>CT.gov XML and CTIS structured submissions. Same compliance gate.</p>
-      <span class="std-version">PRS / EU CTR 2025</span>
+    <div class="viz-frame-body std-table">
+      <div class="std-row">
+        <span class="sr-tag">21 CFR</span>
+        <span class="sr-name">21 CFR Part 11<span class="sr-sub">FDA · Electronic records and electronic signatures</span></span>
+        <span class="sr-desc">Audit trail, electronic signatures, access controls, validation evidence. The foundation of the GxP architecture.</span>
+        <span class="sr-ver">FDA · current</span>
+        <span class="sr-status">live</span>
+      </div>
+      <div class="std-row">
+        <span class="sr-tag">ANNEX 11</span>
+        <span class="sr-name">EU Annex 11<span class="sr-sub">EU GMP · Computerised systems</span></span>
+        <span class="sr-desc">Risk management, supplier qualification, validation. Sister regulation to 21 CFR Part 11 for EMA-scope studies.</span>
+        <span class="sr-ver">EU GMP 2011</span>
+        <span class="sr-status">live</span>
+      </div>
+      <div class="std-row">
+        <span class="sr-tag">ICH M11</span>
+        <span class="sr-name">ICH M11<span class="sr-sub">Clinical electronic structured harmonised protocol</span></span>
+        <span class="sr-desc">Directly drives the 84-section M11 generator inside protocol authoring.</span>
+        <span class="sr-ver">ICH M11 Step 4</span>
+        <span class="sr-status">live</span>
+      </div>
+      <div class="std-row">
+        <span class="sr-tag">ICH E6</span>
+        <span class="sr-name">ICH E6(R3) GCP<span class="sr-sub">Good Clinical Practice</span></span>
+        <span class="sr-desc">Quality management, critical-to-quality factors, ALCOA+ data principles. Mapped to the audit-trail schema.</span>
+        <span class="sr-ver">ICH E6(R3) 2025</span>
+        <span class="sr-status">live</span>
+      </div>
+      <div class="std-row">
+        <span class="sr-tag">CORE</span>
+        <span class="sr-name">CDISC CORE rules<span class="sr-sub">Conformance rules engine</span></span>
+        <span class="sr-desc">Runs as Layer 3 of the pre-export compliance gate. Exports block on ERROR-severity unless overridden with audited reason.</span>
+        <span class="sr-ver">cdisc-rules-engine v0.16+</span>
+        <span class="sr-status">live</span>
+      </div>
+      <div class="std-row">
+        <span class="sr-tag">PRS / CTR</span>
+        <span class="sr-name">ClinicalTrials.gov + EU CTR<span class="sr-sub">Public registry submissions</span></span>
+        <span class="sr-desc">CT.gov XML and CTIS structured submissions. Same pre-export compliance gate applies.</span>
+        <span class="sr-ver">PRS · EU CTR 2025</span>
+        <span class="sr-status">live</span>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="cta-section">
-  <h2>Want to see your standards on top of ours?</h2>
-  <p>Bring your study libraries, your edit-check conventions, your SDTM extension domains. We'll show you how they layer in.</p>
-  <a href="#" class="btn btn-white" onclick="openDemoModal(); return false;">Request a Demo &rarr;</a>
+<!-- FINAL CTA -->
+<section class="section-ink">
+  <div class="container" style="padding-top: clamp(72px, 9vw, 112px); padding-bottom: clamp(72px, 9vw, 112px);">
+    <div style="max-width: 920px;">
+      <span class="eyebrow">cm.demo</span>
+      <h2 class="display-2" style="color: white; margin-top: 18px; margin-bottom: 28px;">
+        Bring your own libraries.<br><span class="shift">We'll layer them on.</span>
+      </h2>
+      <p class="lede" style="color: rgba(255,255,255,0.72); margin-bottom: 36px;">
+        Sponsor edit-check libraries, SDTM extension domains, sponsor codelists, authoring templates — all layer on top of CDISC. Your standards inherit from theirs.
+      </p>
+      <div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
+        <a href="#" class="btn btn-white" onclick="openDemoModal(); return false;">Talk to us <span class="arr">→</span></a>
+        <a href="platform.html" style="color: rgba(255,255,255,0.7); font-size: 0.9375rem;">or see the platform</a>
+      </div>
+    </div>
+  </div>
 </section>
 
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <a href="index.html" class="logo">
-        <svg class="logo-mark" viewBox="0 0 64 64" fill="none"><path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/><line x1="26" y1="29" x2="26" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/></svg>
-        <span><span class="logo-text-ink">Clin</span><span class="logo-text-brand">Maker</span></span>
-      </a>
-      <p class="footer-tagline">Standards at the core. Submission at the finish. Agentic AI for clinical data management.</p>
-    </div>
-    <div class="footer-col"><div class="footer-col-title">Product</div><ul><li><a href="platform.html">Platform</a></li><li><a href="standards.html">Standards</a></li><li><a href="security.html">Security</a></li><li><a href="pricing.html">Pricing</a></li></ul></div>
-    <div class="footer-col"><div class="footer-col-title">Company</div><ul><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="#" onclick="openDemoModal(); return false;">Request a Demo</a></li></ul></div>
-    <div class="footer-col"><div class="footer-col-title">Resources</div><ul><li><a href="https://app.clinmaker.com" target="_blank" rel="noopener">Log in</a></li><li><a href="mailto:hello@clinmaker.com">hello@clinmaker.com</a></li></ul></div>
+<!-- COLOPHON -->
+<footer class="colophon">
+  <div class="col-brand">
+    <span>Clin</span><span class="shift">Maker</span>
+    <span class="col-divider" style="margin-left: 12px;">·</span>
+    <span style="font-family: var(--font-body); font-weight: 500; font-size: 0.8125rem; color: var(--text-secondary);">LLC</span>
   </div>
-  <div class="footer-bottom"><span>© 2026 ClinMaker, LLC. All rights reserved.</span><span>Built for GxP-regulated clinical research.</span></div>
+  <div style="display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center;">
+    <a href="platform.html">Platform</a><span class="col-divider">·</span>
+    <a href="standards.html">Standards</a><span class="col-divider">·</span>
+    <a href="security.html">Security</a><span class="col-divider">·</span>
+    <a href="pricing.html">Pricing</a><span class="col-divider">·</span>
+    <a href="about.html">About</a><span class="col-divider">·</span>
+    <a href="contact.html">Contact</a><span class="col-divider">·</span>
+    <a href="https://app.clinmaker.com" target="_blank" rel="noopener">Log in →</a>
+  </div>
+  <div class="col-meta">
+    <span>hello@clinmaker.com</span>
+    <span class="col-divider">·</span>
+    <span>© 2026</span>
+  </div>
 </footer>
 
+<!-- DEMO MODAL -->
 <div class="modal-overlay" id="demoModal" role="dialog" aria-labelledby="demoModalTitle" aria-modal="true">
   <div class="modal">
-    <button class="modal-close" onclick="closeDemoModal()" aria-label="Close"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg></button>
-    <h3 id="demoModalTitle">Request a Demo</h3>
-    <p class="modal-sub">Tell us a little about your team. We'll be in touch within one business day.</p>
+    <button class="modal-close" onclick="closeDemoModal()" aria-label="Close">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <span class="eyebrow brand" style="margin-bottom: 10px;">cm.demo/request</span>
+    <h3 id="demoModalTitle" class="display-3">Talk to us.</h3>
+    <p class="lede">Thirty minutes on the live platform. Working session — not a deck. We come back within one business day.</p>
     <form action="__FORMSPREE_ENDPOINT__" method="POST" onsubmit="return handleDemoSubmit(this, event)">
       <div class="form-row">
-        <div class="form-group"><label>First name <span class="req">*</span></label><input type="text" name="first_name" class="form-control" required></div>
-        <div class="form-group"><label>Last name <span class="req">*</span></label><input type="text" name="last_name" class="form-control" required></div>
+        <div class="form-group"><label>First name</label><input type="text" name="first_name" class="form-control" required></div>
+        <div class="form-group"><label>Last name</label><input type="text" name="last_name" class="form-control" required></div>
       </div>
-      <div class="form-group"><label>Work email <span class="req">*</span></label><input type="email" name="email" class="form-control" required></div>
-      <div class="form-group"><label>Company <span class="req">*</span></label><input type="text" name="company" class="form-control" required></div>
-      <div class="form-group"><label>Role</label><select name="role" class="form-control"><option value="">Select…</option><option>Data Manager / Lead</option><option>Clinical Operations</option><option>Biostatistics / Programming</option><option>QA / Compliance</option><option>Medical / Safety</option><option>Executive / Sponsor leadership</option><option>Other</option></select></div>
+      <div class="form-group"><label>Work email</label><input type="email" name="email" class="form-control" required></div>
+      <div class="form-group"><label>Company</label><input type="text" name="company" class="form-control" required></div>
+      <div class="form-group"><label>Role</label>
+        <select name="role" class="form-control">
+          <option value="">Select…</option>
+          <option>Data Manager / Lead</option>
+          <option>Clinical Operations</option>
+          <option>Biostatistics / Programming</option>
+          <option>QA / Compliance</option>
+          <option>Medical / Safety</option>
+          <option>Executive / Sponsor leadership</option>
+          <option>Other</option>
+        </select>
+      </div>
       <div class="form-group"><label>What would you like to see?</label><textarea name="message" class="form-control" placeholder="A particular module, an integration, a workflow…"></textarea></div>
-      <button type="submit" class="form-submit">Request a Demo <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></button>
+      <button type="submit" class="form-submit">Send request <span class="arr">→</span></button>
     </form>
   </div>
 </div>

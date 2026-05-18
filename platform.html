@@ -3,18 +3,603 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Platform · ClinMaker</title>
-  <meta name="description" content="Twelve cooperating agents — protocol authoring, study build, ingestion, validation, query management, medical coding, reconciliation, SDTM/ADaM, analytics, audit, user admin, help center. One canonical data model.">
+  <title>The Platform — ClinMaker</title>
+  <meta name="description" content="Twelve cooperating agents, each anchored by a real platform visualization. Protocol authoring through SDTM submission, end-to-end.">
   <meta name="theme-color" content="#d87654">
   <link rel="icon" type="image/png" href="assets/favicon-256.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    /* ─── Platform-page additions (scoped) ─────────────────────────── */
+    .ptoc {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--surface-rule);
+      border-left: 1px solid var(--surface-rule);
+      margin-top: 36px;
+    }
+    .ptoc a {
+      display: grid;
+      grid-template-columns: 38px 1fr auto;
+      gap: 12px;
+      padding: 16px 18px;
+      border-right: 1px solid var(--surface-rule);
+      border-bottom: 1px solid var(--surface-rule);
+      text-decoration: none;
+      color: var(--ink);
+      align-items: baseline;
+      transition: background 0.15s;
+      font-size: 0.875rem;
+    }
+    .ptoc a:hover { background: var(--primary-50); }
+    .ptoc a .pt-num {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--primary-700);
+    }
+    .ptoc a .pt-title { font-weight: 600; letter-spacing: -0.01em; }
+    .ptoc a .pt-arr { color: var(--primary-600); font-family: var(--font-mono); }
+
+    /* ─── PROTOCOL — compliance gate readout ───────────────────────── */
+    .viz-gate { font-family: var(--font-mono); font-size: 0.8125rem; }
+    .gate-row {
+      display: grid;
+      grid-template-columns: 28px 1.5fr 1fr 80px 60px;
+      gap: 14px;
+      padding: 8px 0;
+      align-items: center;
+      border-bottom: 1px dashed var(--surface-rule-soft);
+    }
+    .gate-row:last-child { border-bottom: 0; }
+    .gate-row.head {
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--surface-rule);
+      padding-bottom: 10px;
+    }
+    .gate-id { color: var(--primary-700); font-weight: 600; font-size: 0.6875rem; }
+    .gate-title { color: var(--ink); font-family: var(--font-body); font-weight: 500; }
+    .gate-meta { color: var(--text-muted); font-size: 0.6875rem; }
+    .gate-pill {
+      display: inline-block;
+      padding: 2px 8px;
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .gate-pill.ok { background: var(--status-green-bg); color: var(--status-green); }
+    .gate-pill.warn { background: var(--status-amber-bg); color: var(--status-amber); }
+    .gate-pill.err { background: var(--status-red-bg); color: var(--status-red); }
+    .gate-pill.ai { background: var(--ai-violet-bg); color: var(--ai-violet-text); }
+    .gate-pill.brand { background: var(--primary-50); color: var(--primary-700); }
+    .gate-count { text-align: right; font-weight: 600; color: var(--ink); }
+    .gate-count.zero { color: var(--text-muted); font-weight: 400; }
+    .gate-summary {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--surface-rule);
+      display: flex;
+      gap: 24px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+    .gate-summary strong { color: var(--ink); font-weight: 600; }
+    .gate-summary .ok-c { color: var(--status-green); font-weight: 700; }
+    .gate-summary .err-c { color: var(--status-red); font-weight: 700; }
+    .gate-summary .warn-c { color: var(--status-amber); font-weight: 700; }
+
+    /* ─── STUDY BUILD — casebook visit Gantt ───────────────────────── */
+    .casebook { font-family: var(--font-body); font-size: 0.8125rem; }
+    .casebook-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 12px;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px dashed var(--surface-rule-soft);
+    }
+    .casebook-row.head {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--surface-rule);
+      padding-bottom: 10px;
+    }
+    .casebook-row:last-child { border-bottom: 0; }
+    .casebook-row .cb-form { font-weight: 500; color: var(--ink); }
+    .casebook-row .cb-form .cb-code { font-family: var(--font-mono); color: var(--primary-700); font-size: 0.6875rem; margin-left: 8px; }
+    .cb-track {
+      position: relative;
+      height: 22px;
+      background: var(--surface-bg);
+      border: 1px solid var(--surface-rule-soft);
+    }
+    .cb-track .cb-bar {
+      position: absolute;
+      top: 2px; bottom: 2px;
+      background: var(--ink);
+    }
+    .cb-track .cb-bar.brand { background: var(--primary-600); }
+    .cb-track .cb-bar.dim { background: var(--primary-200); }
+    .cb-axis {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 12px;
+      padding-top: 10px;
+      border-top: 1px solid var(--surface-rule);
+      margin-top: 8px;
+    }
+    .cb-axis .cb-ticks {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      color: var(--text-muted);
+    }
+
+    /* ─── INGESTION — stacked stream bars ──────────────────────────── */
+    .stream {
+      display: grid;
+      grid-template-columns: 160px 1fr 100px;
+      gap: 14px;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px dashed var(--surface-rule-soft);
+    }
+    .stream:last-child { border-bottom: 0; }
+    .stream.head {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--surface-rule);
+      padding-bottom: 10px;
+    }
+    .stream .s-vendor { font-weight: 500; color: var(--ink); font-size: 0.8125rem; }
+    .stream .s-vendor .s-proto { display: block; font-family: var(--font-mono); font-size: 0.6875rem; color: var(--text-muted); margin-top: 2px; }
+    .s-bars {
+      display: grid;
+      grid-template-columns: repeat(24, 1fr);
+      gap: 2px;
+      height: 36px;
+      align-items: end;
+    }
+    .s-bars .s-tick {
+      background: var(--ink);
+      min-height: 2px;
+      transition: background 0.15s;
+    }
+    .s-bars .s-tick.warn { background: var(--status-amber); }
+    .s-bars .s-tick.err { background: var(--status-red); }
+    .s-bars .s-tick.brand { background: var(--primary-600); }
+    .s-count {
+      text-align: right;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--ink);
+      font-weight: 600;
+    }
+    .s-count .s-meta { display: block; color: var(--text-muted); font-weight: 400; font-size: 0.6875rem; margin-top: 2px; }
+
+    /* ─── VALIDATION — finding heatmap ─────────────────────────────── */
+    .heatmap {
+      display: grid;
+      grid-template-columns: 160px repeat(7, 1fr);
+      gap: 0;
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+    }
+    .hm-cell {
+      padding: 10px 8px;
+      border-right: 1px solid var(--surface-rule-soft);
+      border-bottom: 1px solid var(--surface-rule-soft);
+      text-align: center;
+      color: var(--text-muted);
+      position: relative;
+    }
+    .hm-cell.row-head { text-align: left; color: var(--ink); font-weight: 500; font-family: var(--font-body); font-size: 0.8125rem; padding-left: 12px; }
+    .hm-cell.col-head {
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--surface-rule);
+      padding: 8px;
+    }
+    .hm-cell.empty { color: var(--text-tertiary); }
+    .hm-cell.h1 { background: rgba(216,118,84,0.10); color: var(--primary-700); font-weight: 600; }
+    .hm-cell.h2 { background: rgba(216,118,84,0.30); color: var(--primary-800); font-weight: 600; }
+    .hm-cell.h3 { background: rgba(216,118,84,0.55); color: white; font-weight: 700; }
+    .hm-cell.h4 { background: rgba(107,33,168,0.65); color: white; font-weight: 700; }
+    .heatmap-legend {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-top: 14px;
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--text-muted);
+    }
+    .heatmap-legend .leg-sw {
+      display: inline-block;
+      width: 14px; height: 14px;
+      vertical-align: -3px;
+      margin-right: 4px;
+    }
+
+    /* ─── QUERY KANBAN ─────────────────────────────────────────────── */
+    .kanban {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--surface-rule);
+      border-left: 1px solid var(--surface-rule);
+    }
+    .kb-col {
+      border-right: 1px solid var(--surface-rule);
+      border-bottom: 1px solid var(--surface-rule);
+      display: flex;
+      flex-direction: column;
+    }
+    .kb-col .kb-head {
+      padding: 12px 14px;
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--surface-rule-soft);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .kb-col .kb-head .kb-c { color: var(--ink); font-weight: 700; }
+    .kb-card {
+      padding: 10px 14px;
+      border-bottom: 1px dashed var(--surface-rule-soft);
+      font-size: 0.75rem;
+    }
+    .kb-card:last-child { border-bottom: 0; }
+    .kb-card .kb-id { font-family: var(--font-mono); font-size: 0.6875rem; color: var(--primary-700); font-weight: 600; }
+    .kb-card .kb-text { color: var(--text-secondary); margin-top: 4px; line-height: 1.4; }
+    .kb-card .kb-foot { display: flex; gap: 10px; font-family: var(--font-mono); font-size: 0.625rem; color: var(--text-muted); margin-top: 6px; }
+    .kb-card .kb-foot .kb-age { color: var(--ink); font-weight: 600; }
+    .kb-card .kb-foot .kb-age.amber { color: var(--status-amber); }
+    .kb-card .kb-foot .kb-age.red { color: var(--status-red); }
+
+    /* ─── MEDDRA TREE ──────────────────────────────────────────────── */
+    .meddra { font-family: var(--font-mono); font-size: 0.8125rem; }
+    .mt-row {
+      display: grid;
+      grid-template-columns: 36px 1fr 60px 80px;
+      gap: 12px;
+      align-items: center;
+      padding: 7px 0;
+      border-bottom: 1px dashed var(--surface-rule-soft);
+    }
+    .mt-row:last-child { border-bottom: 0; }
+    .mt-row .mt-code { color: var(--primary-700); font-weight: 600; font-size: 0.6875rem; }
+    .mt-row .mt-name { color: var(--ink); font-family: var(--font-body); }
+    .mt-row .mt-conf { font-size: 0.6875rem; color: var(--text-muted); text-align: right; }
+    .mt-row .mt-conf.high { color: var(--status-green); font-weight: 600; }
+    .mt-row .mt-conf.mid { color: var(--status-amber); font-weight: 600; }
+    .mt-row.indent-1 .mt-name { padding-left: 16px; color: var(--text-secondary); }
+    .mt-row.indent-2 .mt-name { padding-left: 32px; color: var(--text-secondary); }
+    .mt-row .mt-dot {
+      display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--ai-violet); margin-right: 6px; vertical-align: 1px;
+    }
+    .mt-row .mt-act {
+      font-family: var(--font-mono); font-size: 0.625rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 2px 8px;
+      background: var(--ai-violet-bg);
+      color: var(--ai-violet-text);
+      text-align: center;
+    }
+    .mt-row .mt-act.review { background: var(--status-amber-bg); color: var(--status-amber); }
+    .mt-row .mt-act.ok { background: var(--status-green-bg); color: var(--status-green); }
+
+    /* ─── RECON NODE GRAPH ─────────────────────────────────────────── */
+    .recon-grid {
+      display: grid;
+      grid-template-columns: 1fr 60px 1fr;
+      gap: 0;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+    }
+    .recon-side {
+      padding: 16px 18px;
+      border: 1px solid var(--surface-rule-soft);
+    }
+    .recon-side h4 {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--surface-rule-soft);
+    }
+    .recon-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      padding: 7px 0;
+      align-items: center;
+      font-size: 0.75rem;
+      border-bottom: 1px dashed var(--surface-rule-soft);
+    }
+    .recon-row:last-child { border-bottom: 0; }
+    .recon-row .r-key { color: var(--ink); font-weight: 500; }
+    .recon-row .r-val { color: var(--text-muted); }
+    .recon-row.match::after {
+      content: '→'; position: absolute; right: -38px; color: var(--status-green); font-weight: 700;
+    }
+    .recon-mid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding-top: 32px;
+    }
+    .recon-mid .r-edge {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      color: var(--text-muted);
+      text-align: center;
+      padding: 6px 0;
+      width: 100%;
+    }
+    .recon-mid .r-edge.match { color: var(--status-green); font-weight: 600; }
+    .recon-mid .r-edge.delta { color: var(--status-amber); font-weight: 600; }
+    .recon-mid .r-edge.miss { color: var(--status-red); font-weight: 600; }
+    .recon-mid .r-arr { font-size: 1rem; }
+
+    /* ─── SDTM FLOW ────────────────────────────────────────────────── */
+    .flow-row {
+      display: grid;
+      grid-template-columns: 1fr 60px 1.4fr 60px 1fr;
+      gap: 0;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px dashed var(--surface-rule-soft);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+    }
+    .flow-row:last-child { border-bottom: 0; }
+    .flow-row.head {
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--surface-rule);
+      padding-bottom: 10px;
+    }
+    .flow-src, .flow-tgt {
+      padding: 4px 10px;
+      background: var(--surface-bg);
+      border: 1px solid var(--surface-rule-soft);
+      font-size: 0.6875rem;
+    }
+    .flow-src { color: var(--status-amber); border-color: var(--status-amber-bg); background: var(--status-amber-bg); }
+    .flow-tgt { color: var(--status-green); border-color: var(--status-green-bg); background: var(--status-green-bg); }
+    .flow-rule { padding: 0 12px; color: var(--text-secondary); font-size: 0.6875rem; line-height: 1.4; }
+    .flow-rule .ai { color: var(--ai-violet-text); font-weight: 600; }
+    .flow-arr { color: var(--primary-600); font-weight: 700; text-align: center; }
+
+    /* ─── LOCK GAUGES ──────────────────────────────────────────────── */
+    .gauges {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border: 1px solid var(--surface-rule);
+    }
+    .gauge {
+      padding: 20px 22px;
+      border-right: 1px solid var(--surface-rule-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .gauge:last-child { border-right: 0; }
+    .gauge .g-study {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--primary-700);
+      font-weight: 600;
+    }
+    .gauge .g-name {
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .gauge .g-pct {
+      font-family: var(--font-display);
+      font-size: 2.25rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+      line-height: 1;
+      font-feature-settings: "tnum";
+    }
+    .gauge .g-pct .small { font-size: 0.55em; font-weight: 700; color: var(--text-muted); margin-left: 2px; }
+    .gauge .g-pct.brand { color: var(--primary-600); }
+    .gauge .g-bar {
+      height: 4px;
+      background: var(--surface-hover);
+      position: relative;
+    }
+    .gauge .g-bar-fill {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      background: var(--ink);
+    }
+    .gauge .g-bar-fill.brand { background: var(--primary-600); }
+    .gauge .g-meta { font-family: var(--font-mono); font-size: 0.625rem; color: var(--text-muted); }
+
+    /* ─── PATIENT SWIMLANE ─────────────────────────────────────────── */
+    .swim {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 0;
+    }
+    .swim-labels {
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid var(--surface-rule-soft);
+    }
+    .swim-labels .swl {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 12px 16px 12px 0;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      gap: 8px;
+      border-bottom: 1px dashed var(--surface-rule-soft);
+    }
+    .swim-labels .swl:last-child { border-bottom: 0; }
+    .swim-labels .swl .swl-dot { width: 6px; height: 6px; border-radius: 50%; }
+    .swim-lanes {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .swim-lanes::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(to right, var(--surface-rule-soft) 1px, transparent 1px);
+      background-size: 9.09% 100%;
+      background-position: 0 0;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+    .swim-lane {
+      flex: 1;
+      position: relative;
+      border-bottom: 1px dashed var(--surface-rule-soft);
+      min-height: 36px;
+    }
+    .swim-lane:last-child { border-bottom: 0; }
+    .swim-pt {
+      position: absolute;
+      top: 50%; transform: translate(-50%, -50%);
+      width: 12px; height: 12px;
+      background: var(--ink);
+      border-radius: 50%;
+    }
+    .swim-pt.brand { background: var(--primary-600); }
+    .swim-pt.violet { background: var(--ai-violet); }
+    .swim-band {
+      position: absolute;
+      top: 8px; bottom: 8px;
+      background: var(--primary-200);
+    }
+    .swim-band.warn { background: var(--status-amber-bg); border: 1px solid var(--status-amber); height: auto; top: 6px; bottom: 6px; }
+    .swim-band.red { background: var(--status-red-bg); border: 1px solid var(--status-red); height: auto; top: 6px; bottom: 6px; }
+    .swim-line {
+      position: absolute;
+      left: 0; right: 0;
+      top: 50%;
+      height: 1px;
+      transform: translateY(-50%);
+    }
+    .swim-axis {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 0;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid var(--surface-rule-soft);
+    }
+    .swim-axis .swim-ticks {
+      display: grid;
+      grid-template-columns: repeat(11, 1fr);
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      color: var(--text-muted);
+    }
+
+    /* ─── RBAC MATRIX ──────────────────────────────────────────────── */
+    .rbac {
+      display: grid;
+      grid-template-columns: 200px repeat(8, 1fr);
+      gap: 0;
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+    }
+    .rbac-cell {
+      padding: 9px 6px;
+      border-right: 1px solid var(--surface-rule-soft);
+      border-bottom: 1px solid var(--surface-rule-soft);
+      text-align: center;
+      color: var(--text-muted);
+    }
+    .rbac-cell.row-head {
+      text-align: left;
+      color: var(--ink);
+      font-weight: 500;
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      padding-left: 12px;
+    }
+    .rbac-cell.col-head {
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--surface-rule);
+      padding: 8px 4px;
+      font-size: 0.5625rem;
+    }
+    .rbac-cell.tick { color: var(--primary-600); font-size: 0.875rem; font-weight: 700; }
+    .rbac-cell.tick-strong { background: var(--primary-50); color: var(--primary-700); font-size: 0.875rem; font-weight: 700; }
+    .rbac-cell.dash { color: var(--text-tertiary); }
+
+    @media (max-width: 1024px) {
+      .ptoc { grid-template-columns: 1fr; }
+      .ptoc a { grid-template-columns: 38px 1fr auto; }
+      .heatmap { grid-template-columns: 100px repeat(7, 1fr); font-size: 0.625rem; }
+      .kanban { grid-template-columns: 1fr 1fr; }
+      .gauges { grid-template-columns: repeat(2, 1fr); }
+      .rbac { grid-template-columns: 140px repeat(8, 1fr); font-size: 0.5625rem; }
+    }
+    @media (max-width: 640px) {
+      .heatmap { grid-template-columns: 80px repeat(7, 1fr); }
+      .heatmap .hm-cell { padding: 6px 2px; font-size: 0.5625rem; }
+      .kanban { grid-template-columns: 1fr; }
+      .recon-grid { grid-template-columns: 1fr; }
+      .recon-mid { padding-top: 12px; }
+      .rbac { grid-template-columns: 120px repeat(8, 1fr); font-size: 0.5rem; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- ═════════ NAV ═════════ -->
+<!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
     <a href="index.html" class="logo" aria-label="ClinMaker home">
@@ -26,10 +611,10 @@
         <line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
         <line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
       </svg>
-      <span><span class="logo-text-ink">Clin</span><span class="logo-text-brand">Maker</span></span>
+      <span class="logo-text"><span class="logo-text-ink">Clin</span><span class="logo-text-brand">Maker</span></span>
     </a>
-    <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle navigation">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle menu">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
     </button>
     <div class="nav-links">
       <a href="platform.html">Platform</a>
@@ -37,546 +622,1257 @@
       <a href="security.html">Security</a>
       <a href="pricing.html">Pricing</a>
       <a href="about.html">About</a>
-      <a href="#" class="nav-cta" onclick="openDemoModal(); return false;">Request a Demo</a>
+      <a href="#" class="nav-cta" onclick="openDemoModal(); return false;">Talk to us <span class="arr">→</span></a>
     </div>
   </div>
 </nav>
 
-<!-- ═════════ PAGE HEADER ═════════ -->
-<header class="page-header">
-  <div class="eyebrow">The Platform</div>
-  <h1>Twelve agents. One pipeline. One data model.</h1>
-  <p>Every stage of clinical data — from protocol section authoring through SDTM/ADaM submission — is owned by a cooperating agent. They share the same canonical model, the same RBAC, the same append-only audit trail.</p>
-</header>
+<!-- HEADER -->
+<section class="container" style="padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(32px, 4vw, 48px);">
+  <span class="eyebrow brand">cm.platform/index · 12 modules</span>
+  <h1 class="display-2" style="margin-top: 18px;">Twelve agents.<br><span class="shift">One pipeline.</span></h1>
+  <p class="lede" style="margin-top: 24px; max-width: 720px;">
+    Every stage of clinical data — from protocol section authoring through SDTM submission — is owned by a cooperating agent. They share the same canonical model, the same RBAC, the same append-only audit trail.
+  </p>
 
-<!-- ═════════ MODULE 1 · Protocol Authoring ═════════ -->
-<section class="module-section">
-  <div class="module-grid">
-    <div class="module-text">
-      <div class="eyebrow">01 · Protocol Authoring</div>
-      <h2>USDM 4.0 protocols, scored ~100/100.</h2>
-      <p>Author M11-aligned protocols section-by-section with an AI co-pilot. Every Code field binds to NCI/CDISC CT. Round-trip exports against CDISC's own reference fixtures pass the CORE rules engine cleanly.</p>
-      <ul class="module-bullets">
-        <li>84-section M11 generator covers Title Page through Appendices.</li>
-        <li>CDISC CORE rules run as a pre-export gate — exports block on ERROR-severity findings.</li>
-        <li>Bidirectional consistency: amend a study definition and stale sections auto-flag.</li>
-        <li>USDM 4.0 export + import. SDR-interop-ready for sponsor/CRO handoff.</li>
-      </ul>
-      <a href="standards.html" class="btn btn-outline btn-sm">USDM 4.0 details &rarr;</a>
-    </div>
-    <div class="module-mockup">
-      <div class="mm-head">
-        <div class="mm-title">Protocol — ACQ-2026-001</div>
-        <div class="mm-actions"><span class="mm-pill brand">USDM 4.0</span><span class="mm-pill violet">AI</span></div>
-      </div>
-      <div style="display:flex; flex-direction:column; gap:8px;">
-        <div class="mm-row r-3"><span>§5.1 Inclusion criteria</span><span class="mock-badge green">Approved</span><span style="text-align:right;color:var(--text-muted);font-size:0.6875rem;">v3 · 2 reviewers</span></div>
-        <div class="mm-row r-3"><span>§5.2 Exclusion criteria</span><span class="mock-badge green">Approved</span><span style="text-align:right;color:var(--text-muted);font-size:0.6875rem;">v2</span></div>
-        <div class="mm-row r-3"><span>§6.1 Primary objective</span><span class="mock-badge amber">In review</span><span style="text-align:right;color:var(--text-muted);font-size:0.6875rem;">3 comments</span></div>
-        <div class="mm-row r-3"><span>§6.2 Endpoints</span><span class="mock-badge brand">Draft</span><span style="text-align:right;color:var(--text-muted);font-size:0.6875rem;">AI-generated</span></div>
-        <div class="mm-row r-3"><span>§7 SoA</span><span class="mock-badge green">Approved</span><span style="text-align:right;color:var(--text-muted);font-size:0.6875rem;">arm-aware</span></div>
-        <div class="mm-row r-3"><span>§8 Statistical analysis</span><span class="mock-badge amber">⚠ Stale</span><span style="text-align:right;color:var(--text-muted);font-size:0.6875rem;">regenerate</span></div>
-      </div>
-      <div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--surface-divider); font-size:0.75rem; color:var(--text-secondary); display:flex; align-items:center; gap:8px;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:var(--status-green)"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
-        Compliance gate · 0 errors, 4 warnings · ready to export
-      </div>
-    </div>
-  </div>
+  <!-- TOC -->
+  <nav class="ptoc" aria-label="Modules">
+    <a href="#m01"><span class="pt-num">§01</span><span class="pt-title">Protocol authoring</span><span class="pt-arr">→</span></a>
+    <a href="#m02"><span class="pt-num">§02</span><span class="pt-title">Study build</span><span class="pt-arr">→</span></a>
+    <a href="#m03"><span class="pt-num">§03</span><span class="pt-title">Data ingestion</span><span class="pt-arr">→</span></a>
+    <a href="#m04"><span class="pt-num">§04</span><span class="pt-title">Validation</span><span class="pt-arr">→</span></a>
+    <a href="#m05"><span class="pt-num">§05</span><span class="pt-title">Query management</span><span class="pt-arr">→</span></a>
+    <a href="#m06"><span class="pt-num">§06</span><span class="pt-title">Medical coding</span><span class="pt-arr">→</span></a>
+    <a href="#m07"><span class="pt-num">§07</span><span class="pt-title">Reconciliation</span><span class="pt-arr">→</span></a>
+    <a href="#m08"><span class="pt-num">§08</span><span class="pt-title">SDTM / ADaM</span><span class="pt-arr">→</span></a>
+    <a href="#m09"><span class="pt-num">§09</span><span class="pt-title">Analytics</span><span class="pt-arr">→</span></a>
+    <a href="#m10"><span class="pt-num">§10</span><span class="pt-title">Patient profile</span><span class="pt-arr">→</span></a>
+    <a href="#m11"><span class="pt-num">§11</span><span class="pt-title">Audit trail</span><span class="pt-arr">→</span></a>
+    <a href="#m12"><span class="pt-num">§12</span><span class="pt-title">User admin &amp; help</span><span class="pt-arr">→</span></a>
+  </nav>
 </section>
 
-<!-- ═════════ MODULE 2 · Study Build ═════════ -->
-<section class="module-section alt">
-  <div class="module-inner">
-    <div class="module-grid reverse">
-      <div class="module-text">
-        <div class="eyebrow">02 · Study Build</div>
-        <h2>CDASH casebook, Rave or Veeva target.</h2>
-        <p>Read the protocol's SoA, eligibility criteria, and assessments — and generate a CDASH-aligned EDC build. Forms, fields, codelists, edit checks, derivations. Deploy to Medidata Rave (Architect Loader) or Veeva Vault EDC (Casebook Objects) from the same source.</p>
-        <ul class="module-bullets">
-          <li>Visit schedule + casebook structure derived from protocol.</li>
-          <li>Edit checks classified by criticality and site-query intent.</li>
-          <li>Protocol → CDASH → EDC → SDTM mapping recorded end-to-end.</li>
-          <li>Auto-generated SDS, eCRF spec, and UAT test scenarios.</li>
-        </ul>
-      </div>
-      <div class="module-mockup">
-        <div class="mm-head">
-          <div class="mm-title">Casebook · Visit Schedule</div>
-          <div class="mm-actions"><span class="mm-pill muted">CDASH</span><span class="mm-pill brand">Rave + Veeva</span></div>
-        </div>
-        <div class="mm-row header r-4"><span>Form</span><span>Visit</span><span>Edit checks</span><span style="text-align:right;">Status</span></div>
-        <div class="mm-row r-4"><span>Demographics (DM)</span><span>SCR</span><span>14</span><span style="text-align:right;"><span class="mock-badge green">Ready</span></span></div>
-        <div class="mm-row r-4"><span>Vital Signs (VS)</span><span>D1, D8, D15…</span><span>22</span><span style="text-align:right;"><span class="mock-badge green">Ready</span></span></div>
-        <div class="mm-row r-4"><span>Adverse Events (AE)</span><span>All</span><span>31</span><span style="text-align:right;"><span class="mock-badge green">Ready</span></span></div>
-        <div class="mm-row r-4"><span>Labs (LB)</span><span>D1, D8, D15…</span><span>48</span><span style="text-align:right;"><span class="mock-badge amber">Review</span></span></div>
-        <div class="mm-row r-4"><span>Concomitant Meds (CM)</span><span>All</span><span>12</span><span style="text-align:right;"><span class="mock-badge green">Ready</span></span></div>
-        <div class="mm-row r-4"><span>Exposure (EX)</span><span>D1–D29</span><span>9</span><span style="text-align:right;"><span class="mock-badge brand">Generating</span></span></div>
-      </div>
+<!-- ═════ §01 PROTOCOL AUTHORING ═════════════════════════════════ -->
+<section class="module" id="m01">
+  <div class="container">
+    <div class="section-num-bar">
+      <span class="num"><strong>§01</strong> / 12</span>
+      <span class="rule"></span>
+      <span class="meta">module: protocol_authoring</span>
+      <span class="meta">spec: USDM 4.0</span>
+      <span class="meta">gate: pre-export</span>
     </div>
-  </div>
-</section>
+    <div class="module-head">
+      <div>
+        <h2 class="display-2">USDM 4.0, scored<br><span class="shift">~100/100 round-trip.</span></h2>
+        <p class="lede">Author M11-aligned protocols section-by-section with an AI co-pilot. Every Code field binds to CDISC CT. The CORE rules engine runs as Layer 3 of the pre-export compliance gate — exports block on ERROR-severity findings unless explicitly overridden with an audited reason.</p>
+      </div>
+      <a href="#m01" class="module-link">spec: M11 / USDM 4.0 →</a>
+    </div>
 
-<!-- ═════════ MODULE 3 · Data Ingestion ═════════ -->
-<section class="module-section">
-  <div class="module-grid">
-    <div class="module-text">
-      <div class="eyebrow">03 · Data Ingestion</div>
-      <h2>One pipeline. Any EDC. Any vendor.</h2>
-      <p>Rave (ODM.XML or Clinical Views), Veeva Vault (VQL + REST), central labs (SAS7BDAT/XPT/CSV), imaging, RTSM/IxRS, ePRO, devices. Every row carries its source-system OID for idempotent upserts. Schema drift surfaces in real time.</p>
-      <ul class="module-bullets">
-        <li>Connect → Validate → Normalize → Publish, with quarantine queues.</li>
-        <li>OID preservation across re-extracts. No duplicate rows.</li>
-        <li>Amendment-aware: breaking schema changes pause production until reviewed.</li>
-        <li>Test-load gate stack — Live data flows only after UAT proof.</li>
-      </ul>
-    </div>
-    <div class="module-mockup">
-      <div class="mm-head">
-        <div class="mm-title">Ingestion · Last 24h</div>
-        <div class="mm-actions"><span class="mm-pill brand">15 vendors</span></div>
+    <div class="viz-frame">
+      <span class="viz-coord tl">protocol/ACQ-2026-001</span>
+      <span class="viz-coord tr">gate: pre-export</span>
+      <span class="viz-coord bl">layer 3 of 3</span>
+      <span class="viz-coord br">→ block on ERROR</span>
+      <div class="viz-frame-head">
+        <span class="vh-id">cm-protocol // compliance_gate</span>
+        <span class="vh-meta">
+          <span>format: USDM</span>
+          <span>core_rules: 210</span>
+          <span class="vh-live">running</span>
+        </span>
       </div>
-      <div style="display:flex; flex-direction:column; gap:10px;">
-        <div>
-          <div style="display:flex; justify-content:space-between; font-size:0.75rem; margin-bottom:4px;"><span>Medidata Rave (ODM.XML)</span><span style="color:var(--status-green); font-weight:600;">12,448 rows · OK</span></div>
-          <div class="mm-progress"><div class="mm-progress-fill green" style="width:100%"></div></div>
+      <div class="viz-frame-body viz-gate">
+        <div class="gate-row head">
+          <span>§</span><span>Section</span><span>Source</span><span>Findings</span><span style="text-align:right;">Status</span>
         </div>
-        <div>
-          <div style="display:flex; justify-content:space-between; font-size:0.75rem; margin-bottom:4px;"><span>Veeva Vault EDC</span><span style="color:var(--status-green); font-weight:600;">3,012 rows · OK</span></div>
-          <div class="mm-progress"><div class="mm-progress-fill green" style="width:100%"></div></div>
+        <div class="gate-row">
+          <span class="gate-id">§5.1</span>
+          <span class="gate-title">Inclusion criteria</span>
+          <span class="gate-meta">authored</span>
+          <span class="gate-count zero">0 / 0 / 0</span>
+          <span style="text-align:right;"><span class="gate-pill ok">approved</span></span>
         </div>
-        <div>
-          <div style="display:flex; justify-content:space-between; font-size:0.75rem; margin-bottom:4px;"><span>Q² Central Lab (SAS7BDAT)</span><span style="color:var(--status-green); font-weight:600;">1,876 rows · OK</span></div>
-          <div class="mm-progress"><div class="mm-progress-fill green" style="width:100%"></div></div>
+        <div class="gate-row">
+          <span class="gate-id">§5.2</span>
+          <span class="gate-title">Exclusion criteria</span>
+          <span class="gate-meta">authored</span>
+          <span class="gate-count zero">0 / 0 / 0</span>
+          <span style="text-align:right;"><span class="gate-pill ok">approved</span></span>
         </div>
-        <div>
-          <div style="display:flex; justify-content:space-between; font-size:0.75rem; margin-bottom:4px;"><span>BioTel Cardiac (XML)</span><span style="color:var(--status-amber); font-weight:600;">421 rows · 3 quarantined</span></div>
-          <div class="mm-progress"><div class="mm-progress-fill amber" style="width:88%"></div></div>
+        <div class="gate-row">
+          <span class="gate-id">§6.1</span>
+          <span class="gate-title">Primary objective</span>
+          <span class="gate-meta">authored</span>
+          <span class="gate-count">0 / 2 / 0</span>
+          <span style="text-align:right;"><span class="gate-pill warn">review</span></span>
         </div>
-        <div>
-          <div style="display:flex; justify-content:space-between; font-size:0.75rem; margin-bottom:4px;"><span>Medable ePRO (CSV)</span><span style="color:var(--status-green); font-weight:600;">5,108 rows · OK</span></div>
-          <div class="mm-progress"><div class="mm-progress-fill green" style="width:100%"></div></div>
+        <div class="gate-row">
+          <span class="gate-id">§6.2</span>
+          <span class="gate-title">Endpoints</span>
+          <span class="gate-meta"><span class="gate-pill ai" style="margin-left:0; padding: 1px 6px;">AI-drafted</span></span>
+          <span class="gate-count zero">0 / 0 / 0</span>
+          <span style="text-align:right;"><span class="gate-pill brand">draft</span></span>
         </div>
-        <div>
-          <div style="display:flex; justify-content:space-between; font-size:0.75rem; margin-bottom:4px;"><span>Suvoda RTSM (API)</span><span style="color:var(--status-green); font-weight:600;">288 events · OK</span></div>
-          <div class="mm-progress"><div class="mm-progress-fill green" style="width:100%"></div></div>
+        <div class="gate-row">
+          <span class="gate-id">§7</span>
+          <span class="gate-title">Schedule of activities</span>
+          <span class="gate-meta">authored · arm-aware</span>
+          <span class="gate-count zero">0 / 0 / 0</span>
+          <span style="text-align:right;"><span class="gate-pill ok">approved</span></span>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═════════ MODULE 4 · Validation Agent ═════════ -->
-<section class="module-section alt">
-  <div class="module-inner">
-    <div class="module-grid reverse">
-      <div class="module-text">
-        <div class="eyebrow">04 · Validation Agent</div>
-        <h2>Three levels of rule. One engine.</h2>
-        <p>Syntactic + format checks on every field. Logical edit checks within and across forms for a subject. Cross-source consistency between EDC, RTSM, labs, ePRO. Every finding ships with rule ID, evaluated logic, observed values, and severity.</p>
-        <ul class="module-bullets">
-          <li>Versioned rule catalog — global, program, study-level overrides.</li>
-          <li>Run on ingest, on demand, or on a schedule.</li>
-          <li>Findings flow directly to Query Management with severity routing.</li>
-          <li>Audit row per finding: who, what, when, which rule version.</li>
-        </ul>
-      </div>
-      <div class="module-mockup">
-        <div class="mm-head">
-          <div class="mm-title">Validation findings · Today</div>
-          <div class="mm-actions"><span class="mm-pill brand">L1+L2+L3</span></div>
+        <div class="gate-row">
+          <span class="gate-id">§8</span>
+          <span class="gate-title">Statistical analysis</span>
+          <span class="gate-meta" style="color: var(--status-amber);">⚠ stale · source changed</span>
+          <span class="gate-count">1 / 4 / 0</span>
+          <span style="text-align:right;"><span class="gate-pill warn">regenerate</span></span>
         </div>
-        <div class="mm-row header r-4"><span>Rule</span><span>Subject</span><span>Field</span><span style="text-align:right;">Severity</span></div>
-        <div class="mm-row r-4"><span style="font-family:'JetBrains Mono',monospace;">VS-001</span><span>S001-024</span><span>SBP &gt; DBP</span><span style="text-align:right;"><span class="mock-badge red">ERR</span></span></div>
-        <div class="mm-row r-4"><span style="font-family:'JetBrains Mono',monospace;">DM-014</span><span>S001-031</span><span>AGE &lt; 18</span><span style="text-align:right;"><span class="mock-badge red">ERR</span></span></div>
-        <div class="mm-row r-4"><span style="font-family:'JetBrains Mono',monospace;">AE-022</span><span>S002-018</span><span>STDTC &lt; EX</span><span style="text-align:right;"><span class="mock-badge amber">WARN</span></span></div>
-        <div class="mm-row r-4"><span style="font-family:'JetBrains Mono',monospace;">LB-007</span><span>S003-045</span><span>HGB units</span><span style="text-align:right;"><span class="mock-badge amber">WARN</span></span></div>
-        <div class="mm-row r-4"><span style="font-family:'JetBrains Mono',monospace;">CM-X01</span><span>S001-007</span><span>ENRTPT</span><span style="text-align:right;"><span class="mock-badge green">INFO</span></span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═════════ MODULE 5 · Query Management ═════════ -->
-<section class="module-section">
-  <div class="module-grid">
-    <div class="module-text">
-      <div class="eyebrow">05 · Query Management</div>
-      <h2>One lifecycle for every query.</h2>
-      <p>Validation findings, reconciliation discrepancies, coding ambiguities, and manual reviews all flow through one unified Query lifecycle. AI drafts neutral, non-leading query text. Humans approve, edit, or reject — and every step is audited.</p>
-      <ul class="module-bullets">
-        <li>States: Detected → Draft → Issued → Acknowledged → Answered → Closed.</li>
-        <li>SLA tracking, aging dashboards, bulk operations, escalation rules.</li>
-        <li>Sanitiser strips internal jargon before issuing to sites.</li>
-        <li>DB-lock readiness indicators on every study.</li>
-      </ul>
-    </div>
-    <div class="module-mockup">
-      <div class="mm-head">
-        <div class="mm-title">Query — Q-2026-04412</div>
-        <div class="mm-actions"><span class="mm-pill brand">Issued</span><span class="mm-pill violet">AI-drafted</span></div>
-      </div>
-      <div class="mm-field-grid" style="margin-bottom:14px;">
-        <div class="mm-field"><div class="mm-field-label">Study</div><div class="mm-field-val">ONCO-2024-0145</div></div>
-        <div class="mm-field"><div class="mm-field-label">Subject</div><div class="mm-field-val">S001-024</div></div>
-        <div class="mm-field"><div class="mm-field-label">Form / Visit</div><div class="mm-field-val">VS · Day 1</div></div>
-        <div class="mm-field"><div class="mm-field-label">Severity</div><div class="mm-field-val" style="color:var(--status-red);">High</div></div>
-      </div>
-      <div style="background:var(--surface-hover); padding:12px 14px; border-radius:8px; font-size:0.8125rem; color:var(--text-secondary); line-height:1.55;">
-        <strong style="color:var(--ink); display:block; margin-bottom:6px; font-size:0.6875rem; text-transform:uppercase; letter-spacing:0.06em;">Query text</strong>
-        Systolic blood pressure (134 mmHg) is recorded as lower than diastolic blood pressure (138 mmHg). Please verify and confirm or correct these values.
-      </div>
-      <div style="margin-top:12px; font-size:0.75rem; color:var(--text-muted); display:flex; gap:12px;">
-        <span>Issued: 2026-05-12</span>
-        <span>Due: 2026-05-17</span>
-        <span>Aging: 3d</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═════════ MODULE 6 · Medical Coding ═════════ -->
-<section class="module-section alt">
-  <div class="module-inner">
-    <div class="module-grid reverse">
-      <div class="module-text">
-        <div class="eyebrow">06 · Medical Coding</div>
-        <h2>MedDRA + WHO Drug, AI-first.</h2>
-        <p>Verbatim AEs, medical history, and concomitant medications run through an AI auto-coder that proposes LLT/PT, ATC, or trade-name matches with confidence scores. High-confidence predictions auto-code; the rest flow to a coder workbench for human review.</p>
-        <ul class="module-bullets">
-          <li>Per-study MedDRA and WHO Drug version pinning.</li>
-          <li>Coder workbench: side-by-side verbatim / suggestion / dictionary browse.</li>
-          <li>Auto-recode triggers when source data changes.</li>
-          <li>Coding-query integration when verbatims are insufficient.</li>
-        </ul>
-      </div>
-      <div class="module-mockup">
-        <div class="mm-head">
-          <div class="mm-title">Coding · Pending review</div>
-          <div class="mm-actions"><span class="mm-pill muted">MedDRA 27.0</span></div>
+        <div class="gate-row">
+          <span class="gate-id">§9</span>
+          <span class="gate-title">Safety considerations</span>
+          <span class="gate-meta">authored</span>
+          <span class="gate-count zero">0 / 1 / 0</span>
+          <span style="text-align:right;"><span class="gate-pill ok">approved</span></span>
         </div>
-        <div class="mm-map-row"><div class="mm-map-src">"headache, mild morning"</div><div class="mm-map-arrow">&rarr;</div><div class="mm-map-tgt">10019211 · Headache</div></div>
-        <div class="mm-map-row"><div class="mm-map-src">"feeling tired and weak"</div><div class="mm-map-arrow">&rarr;</div><div class="mm-map-tgt">10016256 · Fatigue</div></div>
-        <div class="mm-map-row"><div class="mm-map-src">"nausea after dose"</div><div class="mm-map-arrow">&rarr;</div><div class="mm-map-tgt">10028813 · Nausea</div></div>
-        <div class="mm-map-row"><div class="mm-map-src">"injection site pain"</div><div class="mm-map-arrow">&rarr;</div><div class="mm-map-tgt">10022078 · Injection site pain</div></div>
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:12px; border-top:1px solid var(--surface-divider); font-size:0.75rem;">
-          <span style="color:var(--text-muted);">94.2% auto-coded this study</span>
-          <span class="mock-badge violet" style="background:var(--ai-violet-bg); color:var(--ai-violet-text);">AI confidence avg 0.91</span>
+        <div class="gate-summary">
+          <span>CORE rules: <strong>210</strong></span>
+          <span>errors: <span class="err-c">1</span></span>
+          <span>warnings: <span class="warn-c">7</span></span>
+          <span>info: <span class="ok-c">0</span></span>
+          <span>NCI CT: <strong>2024-09-27</strong></span>
+          <span style="margin-left: auto; color: var(--ink); font-weight: 600;">→ EXPORT BLOCKED until §8 cleared</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═════════ MODULE 7 · Data Reconciliation ═════════ -->
-<section class="module-section">
-  <div class="module-grid">
-    <div class="module-text">
-      <div class="eyebrow">07 · Data Reconciliation</div>
-      <h2>SAE + External, one agent.</h2>
-      <p>One Reconciliation Agent, two sub-agents. SAE: Safety database cases vs EDC AEs/SAEs, matching on subject/date/seriousness/causality. External: vendor data (labs / ECG / imaging / RTSM / ePRO / devices) vs canonical EDC. Discrepancies route to queries or vendor tickets.</p>
-      <ul class="module-bullets">
-        <li>Shared discrepancy model: type, severity, owner, lifecycle state.</li>
-        <li>Domain-aware matching keys (subject + date + analyte for labs, etc.).</li>
-        <li>AI proposes classifications; humans approve/reject with audited rationale.</li>
-        <li>Run-level + domain-level metrics, exportable reports.</li>
-      </ul>
+<!-- ═════ §02 STUDY BUILD ═════════════════════════════════════════ -->
+<section class="module" id="m02">
+  <div class="container">
+    <div class="section-num-bar">
+      <span class="num"><strong>§02</strong> / 12</span>
+      <span class="rule"></span>
+      <span class="meta">module: study_build</span>
+      <span class="meta">standard: CDASH 2.2</span>
+      <span class="meta">targets: Rave + Veeva</span>
     </div>
-    <div class="module-mockup">
-      <div class="mm-head">
-        <div class="mm-title">Reconciliation · Last run</div>
-        <div class="mm-actions"><span class="mm-pill brand">SAE</span><span class="mm-pill muted">External</span></div>
+    <div class="module-head">
+      <div>
+        <h2 class="display-2">CDASH casebook,<br><span class="shift">Rave or Veeva target.</span></h2>
+        <p class="lede">Read the protocol's schedule of activities, eligibility criteria, and assessments — and generate a CDASH-aligned EDC build. Forms, fields, codelists, edit checks, derivations. Deploy to Medidata Rave (Architect Loader) or Veeva Vault EDC (Casebook Objects) from one source.</p>
       </div>
-      <div class="mock-kpi-row" style="grid-template-columns:repeat(3,1fr); gap:8px;">
-        <div class="mock-kpi" style="padding:10px;"><div class="mock-kpi-label">SAE matched</div><div class="mock-kpi-val green" style="font-size:1.125rem;">142 / 142</div></div>
-        <div class="mock-kpi amber" style="padding:10px;"><div class="mock-kpi-label">Labs delta</div><div class="mock-kpi-val amber" style="font-size:1.125rem;">7</div></div>
-        <div class="mock-kpi" style="padding:10px;"><div class="mock-kpi-label">RTSM ok</div><div class="mock-kpi-val brand" style="font-size:1.125rem;">288</div></div>
-      </div>
-      <div class="mm-row header r-4" style="margin-top:14px;"><span>Domain</span><span>Type</span><span>Subj</span><span style="text-align:right;">Status</span></div>
-      <div class="mm-row r-4"><span>Labs</span><span>Unit mismatch</span><span>S001-018</span><span style="text-align:right;"><span class="mock-badge amber">Open</span></span></div>
-      <div class="mm-row r-4"><span>SAE</span><span>Causality</span><span>S002-007</span><span style="text-align:right;"><span class="mock-badge red">Review</span></span></div>
-      <div class="mm-row r-4"><span>ePRO</span><span>Missing record</span><span>S003-022</span><span style="text-align:right;"><span class="mock-badge amber">Open</span></span></div>
+      <a href="#m02" class="module-link">cdash → rave / veeva →</a>
     </div>
-  </div>
-</section>
 
-<!-- ═════════ MODULE 8 · SDTM / ADaM ═════════ -->
-<section class="module-section alt">
-  <div class="module-inner">
-    <div class="module-grid reverse">
-      <div class="module-text">
-        <div class="eyebrow">08 · SDTM / ADaM Transformation</div>
-        <h2>Mapping. Conformance. Define.xml.</h2>
-        <p>Maintain mapping specifications from canonical/collection data to every SDTM domain. AI bootstraps suggestions from CRFs and protocol; humans review under change control. Run transformations on demand, generate conformance reports, ship Define.xml + aCRF + reviewer guide.</p>
-        <ul class="module-bullets">
-          <li>Domain-by-domain mapping with origin, transformation rule, CT binding.</li>
-          <li>Every SDTM value traces back to its source record and rule version.</li>
-          <li>Conformance checks with severity-ranked issues.</li>
-          <li>ADaM-ready outputs: ADSL, ADAE, ADLB, ADTTE, BDS scaffolds.</li>
-        </ul>
+    <div class="viz-frame">
+      <span class="viz-coord tl">casebook/ACQ-2026-001</span>
+      <span class="viz-coord tr">visits: 9</span>
+      <span class="viz-coord bl">forms: 24</span>
+      <span class="viz-coord br">checks: 184</span>
+      <div class="viz-frame-head">
+        <span class="vh-id">cm-build // visit_schedule</span>
+        <span class="vh-meta">
+          <span>arm: any</span>
+          <span>target: rave + veeva</span>
+          <span class="vh-live">deploy_ready</span>
+        </span>
       </div>
-      <div class="module-mockup">
-        <div class="mm-editor">
-          <div class="mm-editor-toolbar">
-            <span class="mm-tag">domain: AE</span>
-            <span class="mm-tag green">v1.2</span>
-            <span class="mm-tag ai">AI-proposed 3</span>
-          </div>
-          <div class="mm-line">AESTDTC <span class="hl">←</span> coalesce(AESTDT, AESTDAT)</div>
-          <div class="mm-line">AESEV <span class="hl">←</span> dict(AECRF.severity, CT.AESEV)</div>
-          <div class="mm-line">AESER <span class="hl">←</span> if(AECRF.serious=="Y", "Y", "N")</div>
-          <div class="mm-line">AEREL <span class="hl-v">←</span> ai_suggest(AECRF.notes, scope=AEREL_CT)</div>
-          <div class="mm-line">AEOUT <span class="hl">←</span> dict(AECRF.outcome, CT.AEOUT)</div>
-          <div class="mm-line">AETOXGR <span class="hl">←</span> ctcae(AECRF.grade)</div>
+      <div class="viz-frame-body casebook">
+        <div class="casebook-row head">
+          <span>Form</span>
+          <span>Visit coverage · SCR → EOS</span>
         </div>
-        <div style="margin-top:12px; display:flex; justify-content:space-between; align-items:center; font-size:0.75rem;">
-          <span style="color:var(--status-green); font-weight:600;">✓ 0 conformance errors</span>
-          <span style="color:var(--text-muted);">Define.xml v2.1 · ready</span>
+        <div class="casebook-row">
+          <span class="cb-form">Demographics <span class="cb-code">DM</span></span>
+          <div class="cb-track"><div class="cb-bar" style="left:2%; width:11%;"></div></div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═════════ MODULE 9 · Analytics ═════════ -->
-<section class="module-section">
-  <div class="module-grid">
-    <div class="module-text">
-      <div class="eyebrow">09 · Analytics &amp; Patient Profile</div>
-      <h2>KPIs at every altitude.</h2>
-      <p>Role-aware dashboards from portfolio → study → subject. Open / aged queries by type and site. Reconciliation completeness. Coding completion. CRF timeliness. SDTM pipeline status. Lock-readiness gauges. And per-subject longitudinal Patient Profiles respecting blinding.</p>
-      <ul class="module-bullets">
-        <li>Drill from portfolio level into one subject without losing context.</li>
-        <li>Patient Profile: demographics, visits, exposure, AEs, labs, vitals, ePRO.</li>
-        <li>Risk flags surface site / subject / domain anomalies.</li>
-        <li>Every view respects RBAC + blinding scope.</li>
-      </ul>
-    </div>
-    <div class="module-mockup">
-      <div class="mm-head">
-        <div class="mm-title">Subject S001-024 · Longitudinal</div>
-        <div class="mm-actions"><span class="mm-pill muted">Blinded view</span></div>
-      </div>
-      <div style="display:flex; flex-direction:column; gap:8px;">
-        <div style="display:flex; align-items:center; gap:10px;">
-          <span style="font-size:0.6875rem; width:80px; color:var(--text-muted);">Visits</span>
-          <div style="flex:1; height:24px; background:var(--surface-hover); border-radius:4px; position:relative;">
-            <span style="position:absolute; left:5%; top:50%; transform:translateY(-50%); width:8px; height:8px; border-radius:50%; background:var(--primary-600);" title="SCR"></span>
-            <span style="position:absolute; left:20%; top:50%; transform:translateY(-50%); width:8px; height:8px; border-radius:50%; background:var(--primary-600);"></span>
-            <span style="position:absolute; left:35%; top:50%; transform:translateY(-50%); width:8px; height:8px; border-radius:50%; background:var(--primary-600);"></span>
-            <span style="position:absolute; left:50%; top:50%; transform:translateY(-50%); width:8px; height:8px; border-radius:50%; background:var(--primary-600);"></span>
-            <span style="position:absolute; left:70%; top:50%; transform:translateY(-50%); width:8px; height:8px; border-radius:50%; background:var(--primary-600);"></span>
-            <span style="position:absolute; left:88%; top:50%; transform:translateY(-50%); width:8px; height:8px; border-radius:50%; background:var(--primary-300);"></span>
+        <div class="casebook-row">
+          <span class="cb-form">Eligibility <span class="cb-code">IE</span></span>
+          <div class="cb-track"><div class="cb-bar" style="left:2%; width:11%;"></div></div>
+        </div>
+        <div class="casebook-row">
+          <span class="cb-form">Vital signs <span class="cb-code">VS</span></span>
+          <div class="cb-track">
+            <div class="cb-bar brand" style="left:2%; width:6%;"></div>
+            <div class="cb-bar brand" style="left:14%; width:6%;"></div>
+            <div class="cb-bar brand" style="left:26%; width:6%;"></div>
+            <div class="cb-bar brand" style="left:38%; width:6%;"></div>
+            <div class="cb-bar brand" style="left:50%; width:6%;"></div>
+            <div class="cb-bar brand" style="left:62%; width:6%;"></div>
+            <div class="cb-bar brand" style="left:74%; width:6%;"></div>
+            <div class="cb-bar brand" style="left:86%; width:6%;"></div>
           </div>
         </div>
-        <div style="display:flex; align-items:center; gap:10px;">
-          <span style="font-size:0.6875rem; width:80px; color:var(--text-muted);">AEs</span>
-          <div style="flex:1; height:24px; background:var(--surface-hover); border-radius:4px; position:relative;">
-            <span style="position:absolute; left:22%; width:8%; top:6px; bottom:6px; background:var(--status-amber-bg); border-radius:2px; border:1px solid var(--status-amber);"></span>
-            <span style="position:absolute; left:45%; width:5%; top:6px; bottom:6px; background:var(--status-red-bg); border-radius:2px; border:1px solid var(--status-red);"></span>
-            <span style="position:absolute; left:62%; width:6%; top:6px; bottom:6px; background:var(--status-amber-bg); border-radius:2px; border:1px solid var(--status-amber);"></span>
+        <div class="casebook-row">
+          <span class="cb-form">Adverse events <span class="cb-code">AE</span></span>
+          <div class="cb-track"><div class="cb-bar dim" style="left:2%; width:96%;"></div></div>
+        </div>
+        <div class="casebook-row">
+          <span class="cb-form">Concomitant meds <span class="cb-code">CM</span></span>
+          <div class="cb-track"><div class="cb-bar dim" style="left:2%; width:96%;"></div></div>
+        </div>
+        <div class="casebook-row">
+          <span class="cb-form">Laboratory <span class="cb-code">LB</span></span>
+          <div class="cb-track">
+            <div class="cb-bar" style="left:2%; width:7%;"></div>
+            <div class="cb-bar" style="left:26%; width:7%;"></div>
+            <div class="cb-bar" style="left:50%; width:7%;"></div>
+            <div class="cb-bar" style="left:74%; width:7%;"></div>
+            <div class="cb-bar" style="left:91%; width:7%;"></div>
           </div>
         </div>
-        <div style="display:flex; align-items:center; gap:10px;">
-          <span style="font-size:0.6875rem; width:80px; color:var(--text-muted);">Labs</span>
-          <div style="flex:1; height:24px; background:var(--surface-hover); border-radius:4px; position:relative;">
-            <svg width="100%" height="24" viewBox="0 0 100 24" preserveAspectRatio="none" style="position:absolute; top:0; left:0;">
-              <polyline points="5,16 20,12 35,14 50,8 65,10 80,12 95,9" fill="none" stroke="#0e7490" stroke-width="1.5"/>
-            </svg>
+        <div class="casebook-row">
+          <span class="cb-form">Exposure <span class="cb-code">EX</span></span>
+          <div class="cb-track"><div class="cb-bar brand" style="left:14%; width:72%;"></div></div>
+        </div>
+        <div class="casebook-row">
+          <span class="cb-form">QoL questionnaire <span class="cb-code">QS</span></span>
+          <div class="cb-track">
+            <div class="cb-bar" style="left:2%; width:7%;"></div>
+            <div class="cb-bar" style="left:50%; width:7%;"></div>
+            <div class="cb-bar" style="left:91%; width:7%;"></div>
           </div>
         </div>
-        <div style="display:flex; align-items:center; gap:10px;">
-          <span style="font-size:0.6875rem; width:80px; color:var(--text-muted);">Vitals</span>
-          <div style="flex:1; height:24px; background:var(--surface-hover); border-radius:4px; position:relative;">
-            <svg width="100%" height="24" viewBox="0 0 100 24" preserveAspectRatio="none" style="position:absolute; top:0; left:0;">
-              <polyline points="5,14 20,16 35,11 50,13 65,15 80,12 95,14" fill="none" stroke="#7850dc" stroke-width="1.5"/>
-            </svg>
+        <div class="cb-axis">
+          <span></span>
+          <div class="cb-ticks">
+            <span>SCR</span><span>D1</span><span>D8</span><span>D15</span><span>D29</span><span>D57</span><span>D85</span><span>EOS</span>
           </div>
         </div>
-        <div style="display:flex; align-items:center; gap:10px;">
-          <span style="font-size:0.6875rem; width:80px; color:var(--text-muted);">Exposure</span>
-          <div style="flex:1; height:24px; background:var(--surface-hover); border-radius:4px; position:relative;">
-            <span style="position:absolute; left:18%; right:14%; top:8px; bottom:8px; background:var(--primary-200); border-radius:2px;"></span>
-          </div>
+        <div class="gate-summary">
+          <span>derived from: <strong>protocol §7 (SoA)</strong></span>
+          <span>edit checks: <strong>184</strong> (L1 · 102, L2 · 67, L3 · 15)</span>
+          <span>codelists: <strong>38</strong> (CDASH + sponsor ext.)</span>
+          <span style="margin-left:auto;"><span class="gate-pill ok">RAVE READY</span> <span class="gate-pill ok" style="margin-left: 6px;">VEEVA READY</span></span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═════════ MODULE 10 · Audit Trail ═════════ -->
-<section class="module-section alt">
-  <div class="module-inner">
-    <div class="module-grid reverse">
-      <div class="module-text">
-        <div class="eyebrow">10 · Audit Trail</div>
-        <h2>Append-only. ALCOA+. Always.</h2>
-        <p>Every GxP-relevant action — create, update, delete, approve, sign — is recorded as an immutable audit entry: actor, timestamp with timezone, previous vs new values, reason, study/site/subject context. Tamper-evident storage. Retention at least as long as linked clinical records.</p>
-        <ul class="module-bullets">
-          <li>One audit model across every module — no module exempt.</li>
-          <li>Search and export by study, subject, user, record type, event type, date range.</li>
-          <li>AI-actor and human-actor distinguishable in every row.</li>
-          <li>Inspection-ready exports: PDF + machine-readable JSON.</li>
-        </ul>
+<!-- ═════ §03 DATA INGESTION ═══════════════════════════════════════ -->
+<section class="module" id="m03">
+  <div class="container">
+    <div class="section-num-bar">
+      <span class="num"><strong>§03</strong> / 12</span>
+      <span class="rule"></span>
+      <span class="meta">module: ingestion</span>
+      <span class="meta">vendors: 15</span>
+      <span class="meta">idempotency: source OID</span>
+    </div>
+    <div class="module-head">
+      <div>
+        <h2 class="display-2">One pipeline.<br><span class="shift">Any EDC. Any vendor.</span></h2>
+        <p class="lede">Rave (ODM.XML or Clinical Views), Veeva Vault (VQL + REST), central labs (SAS7BDAT / XPT / CSV), imaging, RTSM, ePRO, devices. Every row carries its source-system OID for idempotent upserts. Schema drift surfaces in real time. Amendment-aware: breaking schema changes pause production until reviewed.</p>
       </div>
-      <div class="module-mockup">
-        <div class="mm-head">
-          <div class="mm-title">Audit · Subject S001-024</div>
-          <div class="mm-actions"><span class="mm-pill muted">42 entries</span></div>
+      <a href="#m03" class="module-link">15 vendor adapters →</a>
+    </div>
+
+    <div class="viz-frame">
+      <span class="viz-coord tl">ingest/window 24h</span>
+      <span class="viz-coord tr">throughput</span>
+      <span class="viz-coord bl">all envs</span>
+      <span class="viz-coord br">tick: 1h</span>
+      <div class="viz-frame-head">
+        <span class="vh-id">cm-ingest // stream_health</span>
+        <span class="vh-meta">
+          <span>rows: 23,153</span>
+          <span>quarantined: 3</span>
+          <span class="vh-live">tail</span>
+        </span>
+      </div>
+      <div class="viz-frame-body">
+        <div class="stream head">
+          <span>Vendor</span>
+          <span>Rows / hour · 24h window</span>
+          <span style="text-align:right;">Total · status</span>
         </div>
-        <div style="display:flex; flex-direction:column; gap:0; font-size:0.75rem;">
-          <div class="mm-row r-4"><span style="color:var(--primary-700); font-weight:600;">UPDATE</span><span>AE.AESEV</span><span style="color:var(--text-muted); font-family:'JetBrains Mono',monospace; font-size:0.6875rem;">MILD → MOD</span><span style="text-align:right; color:var(--text-muted); font-size:0.6875rem;">jdoe · 14:08</span></div>
-          <div class="mm-row r-4"><span style="color:var(--primary-700); font-weight:600;">SIGN</span><span>VS form</span><span style="color:var(--text-muted);">PI signature</span><span style="text-align:right; color:var(--text-muted); font-size:0.6875rem;">drsmith · 13:45</span></div>
-          <div class="mm-row r-4"><span style="color:var(--ai-violet); font-weight:600;">AI</span><span>CM coding</span><span style="color:var(--text-muted); font-family:'JetBrains Mono',monospace; font-size:0.6875rem;">aspirin → N02BA01</span><span style="text-align:right; color:var(--text-muted); font-size:0.6875rem;">agent · 13:12</span></div>
-          <div class="mm-row r-4"><span style="color:var(--primary-700); font-weight:600;">CREATE</span><span>AE.S024-AE3</span><span style="color:var(--text-muted);">new event</span><span style="text-align:right; color:var(--text-muted); font-size:0.6875rem;">site-12 · 11:08</span></div>
-          <div class="mm-row r-4"><span style="color:var(--primary-700); font-weight:600;">APPROVE</span><span>Query Q-2026-4411</span><span style="color:var(--text-muted);">DM approve</span><span style="text-align:right; color:var(--text-muted); font-size:0.6875rem;">amason · 09:34</span></div>
+        <div class="stream">
+          <div class="s-vendor">Medidata Rave<span class="s-proto">ODM.XML · OID-keyed</span></div>
+          <div class="s-bars">
+            <span class="s-tick" style="height:30%"></span><span class="s-tick" style="height:42%"></span><span class="s-tick" style="height:50%"></span><span class="s-tick" style="height:38%"></span>
+            <span class="s-tick" style="height:62%"></span><span class="s-tick" style="height:78%"></span><span class="s-tick" style="height:55%"></span><span class="s-tick" style="height:45%"></span>
+            <span class="s-tick" style="height:60%"></span><span class="s-tick" style="height:72%"></span><span class="s-tick" style="height:84%"></span><span class="s-tick" style="height:65%"></span>
+            <span class="s-tick" style="height:70%"></span><span class="s-tick" style="height:88%"></span><span class="s-tick" style="height:60%"></span><span class="s-tick" style="height:58%"></span>
+            <span class="s-tick" style="height:72%"></span><span class="s-tick" style="height:80%"></span><span class="s-tick" style="height:90%"></span><span class="s-tick" style="height:68%"></span>
+            <span class="s-tick" style="height:55%"></span><span class="s-tick" style="height:48%"></span><span class="s-tick" style="height:40%"></span><span class="s-tick brand" style="height:75%"></span>
+          </div>
+          <div class="s-count">12,448 <span class="s-meta">ok</span></div>
+        </div>
+        <div class="stream">
+          <div class="s-vendor">Veeva Vault EDC<span class="s-proto">VQL + REST</span></div>
+          <div class="s-bars">
+            <span class="s-tick" style="height:18%"></span><span class="s-tick" style="height:22%"></span><span class="s-tick" style="height:30%"></span><span class="s-tick" style="height:26%"></span>
+            <span class="s-tick" style="height:35%"></span><span class="s-tick" style="height:45%"></span><span class="s-tick" style="height:38%"></span><span class="s-tick" style="height:30%"></span>
+            <span class="s-tick" style="height:48%"></span><span class="s-tick" style="height:55%"></span><span class="s-tick" style="height:50%"></span><span class="s-tick" style="height:42%"></span>
+            <span class="s-tick" style="height:48%"></span><span class="s-tick" style="height:60%"></span><span class="s-tick" style="height:55%"></span><span class="s-tick" style="height:50%"></span>
+            <span class="s-tick" style="height:58%"></span><span class="s-tick" style="height:65%"></span><span class="s-tick" style="height:62%"></span><span class="s-tick" style="height:45%"></span>
+            <span class="s-tick" style="height:40%"></span><span class="s-tick" style="height:35%"></span><span class="s-tick" style="height:28%"></span><span class="s-tick brand" style="height:42%"></span>
+          </div>
+          <div class="s-count">3,012 <span class="s-meta">ok</span></div>
+        </div>
+        <div class="stream">
+          <div class="s-vendor">Q² Central Lab<span class="s-proto">SAS7BDAT · file-drop</span></div>
+          <div class="s-bars">
+            <span class="s-tick" style="height:5%"></span><span class="s-tick" style="height:5%"></span><span class="s-tick" style="height:5%"></span><span class="s-tick" style="height:5%"></span>
+            <span class="s-tick" style="height:5%"></span><span class="s-tick" style="height:80%"></span><span class="s-tick" style="height:75%"></span><span class="s-tick" style="height:50%"></span>
+            <span class="s-tick" style="height:5%"></span><span class="s-tick" style="height:5%"></span><span class="s-tick" style="height:5%"></span><span class="s-tick" style="height:5%"></span>
+            <span class="s-tick" style="height:5%"></span><span class="s-tick" style="height:5%"></span><span class="s-tick" style="height:5%"></span><span class="s-tick" style="height:5%"></span>
+            <span class="s-tick" style="height:65%"></span><span class="s-tick" style="height:90%"></span><span class="s-tick" style="height:42%"></span><span class="s-tick" style="height:5%"></span>
+            <span class="s-tick" style="height:5%"></span><span class="s-tick" style="height:5%"></span><span class="s-tick" style="height:5%"></span><span class="s-tick" style="height:5%"></span>
+          </div>
+          <div class="s-count">1,876 <span class="s-meta">ok</span></div>
+        </div>
+        <div class="stream">
+          <div class="s-vendor">BioTel Cardiac<span class="s-proto">XML</span></div>
+          <div class="s-bars">
+            <span class="s-tick" style="height:25%"></span><span class="s-tick warn" style="height:18%"></span><span class="s-tick" style="height:22%"></span><span class="s-tick" style="height:30%"></span>
+            <span class="s-tick" style="height:28%"></span><span class="s-tick" style="height:32%"></span><span class="s-tick" style="height:28%"></span><span class="s-tick warn" style="height:14%"></span>
+            <span class="s-tick" style="height:35%"></span><span class="s-tick" style="height:30%"></span><span class="s-tick" style="height:38%"></span><span class="s-tick" style="height:30%"></span>
+            <span class="s-tick" style="height:42%"></span><span class="s-tick" style="height:35%"></span><span class="s-tick" style="height:40%"></span><span class="s-tick" style="height:38%"></span>
+            <span class="s-tick" style="height:32%"></span><span class="s-tick" style="height:28%"></span><span class="s-tick" style="height:25%"></span><span class="s-tick" style="height:30%"></span>
+            <span class="s-tick" style="height:22%"></span><span class="s-tick warn" style="height:14%"></span><span class="s-tick" style="height:18%"></span><span class="s-tick" style="height:20%"></span>
+          </div>
+          <div class="s-count" style="color: var(--status-amber);">421 <span class="s-meta">3 quarantined</span></div>
+        </div>
+        <div class="stream">
+          <div class="s-vendor">Medable ePRO<span class="s-proto">CSV · daily</span></div>
+          <div class="s-bars">
+            <span class="s-tick" style="height:40%"></span><span class="s-tick" style="height:45%"></span><span class="s-tick" style="height:50%"></span><span class="s-tick" style="height:55%"></span>
+            <span class="s-tick" style="height:60%"></span><span class="s-tick" style="height:62%"></span><span class="s-tick" style="height:65%"></span><span class="s-tick" style="height:60%"></span>
+            <span class="s-tick" style="height:55%"></span><span class="s-tick" style="height:58%"></span><span class="s-tick" style="height:62%"></span><span class="s-tick" style="height:68%"></span>
+            <span class="s-tick" style="height:72%"></span><span class="s-tick" style="height:75%"></span><span class="s-tick" style="height:70%"></span><span class="s-tick" style="height:62%"></span>
+            <span class="s-tick" style="height:58%"></span><span class="s-tick" style="height:55%"></span><span class="s-tick" style="height:50%"></span><span class="s-tick" style="height:48%"></span>
+            <span class="s-tick" style="height:45%"></span><span class="s-tick" style="height:40%"></span><span class="s-tick" style="height:38%"></span><span class="s-tick" style="height:35%"></span>
+          </div>
+          <div class="s-count">5,108 <span class="s-meta">ok</span></div>
+        </div>
+        <div class="stream">
+          <div class="s-vendor">Suvoda RTSM<span class="s-proto">API · event-driven</span></div>
+          <div class="s-bars">
+            <span class="s-tick" style="height:10%"></span><span class="s-tick" style="height:15%"></span><span class="s-tick" style="height:12%"></span><span class="s-tick" style="height:18%"></span>
+            <span class="s-tick" style="height:22%"></span><span class="s-tick" style="height:25%"></span><span class="s-tick" style="height:30%"></span><span class="s-tick" style="height:28%"></span>
+            <span class="s-tick" style="height:32%"></span><span class="s-tick" style="height:35%"></span><span class="s-tick" style="height:38%"></span><span class="s-tick" style="height:42%"></span>
+            <span class="s-tick" style="height:45%"></span><span class="s-tick" style="height:42%"></span><span class="s-tick" style="height:38%"></span><span class="s-tick" style="height:32%"></span>
+            <span class="s-tick" style="height:28%"></span><span class="s-tick" style="height:25%"></span><span class="s-tick" style="height:22%"></span><span class="s-tick" style="height:18%"></span>
+            <span class="s-tick" style="height:15%"></span><span class="s-tick" style="height:12%"></span><span class="s-tick" style="height:10%"></span><span class="s-tick" style="height:8%"></span>
+          </div>
+          <div class="s-count">288 <span class="s-meta">ok</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═════════ MODULE 11 · User Admin & Auth ═════════ -->
-<section class="module-section">
-  <div class="module-grid">
-    <div class="module-text">
-      <div class="eyebrow">11 · User Admin &amp; Auth</div>
-      <h2>RBAC, MFA, separation of duties.</h2>
-      <p>Eleven predefined roles, extendable. Permissions per module + per data domain + per blinding scope. Login by email, user ID, or phone with password + OTP — or OTP-only where policy allows. MFA enforced for privileged roles. Forgot-password with audited, time-limited reset tokens.</p>
-      <ul class="module-bullets">
-        <li>Onboarding: training-gated account creation with approval workflow.</li>
-        <li>Role changes audited with effective dates and reasons.</li>
-        <li>Periodic access reviews with bulk operations.</li>
-        <li>Session timeouts, lockout, IP controls — all per environment.</li>
-      </ul>
+<!-- ═════ §04 VALIDATION ═══════════════════════════════════════════ -->
+<section class="module" id="m04">
+  <div class="container">
+    <div class="section-num-bar">
+      <span class="num"><strong>§04</strong> / 12</span>
+      <span class="rule"></span>
+      <span class="meta">module: validation</span>
+      <span class="meta">levels: L1 + L2 + L3</span>
+      <span class="meta">catalog: versioned</span>
     </div>
-    <div class="module-mockup">
-      <div class="mm-head">
-        <div class="mm-title">Roles &amp; permissions</div>
-        <div class="mm-actions"><span class="mm-pill brand">11 roles</span></div>
+    <div class="module-head">
+      <div>
+        <h2 class="display-2">Three levels of rule.<br><span class="shift">One engine.</span></h2>
+        <p class="lede">Syntactic + format checks on every field. Logical edit checks within and across forms for a subject. Cross-source consistency between EDC, RTSM, labs, ePRO. Every finding ships with rule ID, evaluated logic, observed values, and severity. Findings flow into Query Management with severity routing.</p>
       </div>
-      <div class="mm-row header r-4"><span>Role</span><span>Users</span><span>MFA</span><span style="text-align:right;">Last review</span></div>
-      <div class="mm-row r-4"><span>System Admin</span><span>2</span><span style="color:var(--status-green);">✓ required</span><span style="text-align:right; color:var(--text-muted); font-size:0.6875rem;">2026-04-12</span></div>
-      <div class="mm-row r-4"><span>Study DM</span><span>14</span><span style="color:var(--status-green);">✓ required</span><span style="text-align:right; color:var(--text-muted); font-size:0.6875rem;">2026-04-12</span></div>
-      <div class="mm-row r-4"><span>Safety Physician</span><span>6</span><span style="color:var(--status-green);">✓ required</span><span style="text-align:right; color:var(--text-muted); font-size:0.6875rem;">2026-04-12</span></div>
-      <div class="mm-row r-4"><span>Medical Coder</span><span>9</span><span style="color:var(--status-green);">✓ required</span><span style="text-align:right; color:var(--text-muted); font-size:0.6875rem;">2026-04-12</span></div>
-      <div class="mm-row r-4"><span>CRA / Monitor</span><span>28</span><span style="color:var(--status-green);">✓ required</span><span style="text-align:right; color:var(--text-muted); font-size:0.6875rem;">2026-04-12</span></div>
-      <div class="mm-row r-4"><span>Site User</span><span>312</span><span style="color:var(--status-green);">✓ required</span><span style="text-align:right; color:var(--text-muted); font-size:0.6875rem;">2026-04-12</span></div>
-      <div class="mm-row r-4"><span>Biostat / Prog</span><span>11</span><span style="color:var(--status-green);">✓ required</span><span style="text-align:right; color:var(--text-muted); font-size:0.6875rem;">2026-04-12</span></div>
+      <a href="#m04" class="module-link">rule catalog →</a>
+    </div>
+
+    <div class="viz-frame">
+      <span class="viz-coord tl">validation/today</span>
+      <span class="viz-coord tr">findings: 184</span>
+      <span class="viz-coord bl">rules: 412</span>
+      <span class="viz-coord br">tick: severity</span>
+      <div class="viz-frame-head">
+        <span class="vh-id">cm-validation // findings_heatmap</span>
+        <span class="vh-meta">
+          <span>study: ACQ-2026-001</span>
+          <span>window: 24h</span>
+          <span class="vh-live">live</span>
+        </span>
+      </div>
+      <div class="viz-frame-body">
+        <div class="heatmap">
+          <div class="hm-cell col-head"></div>
+          <div class="hm-cell col-head">DM</div>
+          <div class="hm-cell col-head">VS</div>
+          <div class="hm-cell col-head">AE</div>
+          <div class="hm-cell col-head">CM</div>
+          <div class="hm-cell col-head">LB</div>
+          <div class="hm-cell col-head">EX</div>
+          <div class="hm-cell col-head">QS</div>
+
+          <div class="hm-cell row-head">L1 · syntactic</div>
+          <div class="hm-cell h1">2</div>
+          <div class="hm-cell h1">3</div>
+          <div class="hm-cell h2">8</div>
+          <div class="hm-cell h1">1</div>
+          <div class="hm-cell h3">14</div>
+          <div class="hm-cell empty">·</div>
+          <div class="hm-cell h1">2</div>
+
+          <div class="hm-cell row-head">L2 · logical</div>
+          <div class="hm-cell h2">5</div>
+          <div class="hm-cell h3">12</div>
+          <div class="hm-cell h3">18</div>
+          <div class="hm-cell h2">6</div>
+          <div class="hm-cell h3">22</div>
+          <div class="hm-cell h1">2</div>
+          <div class="hm-cell h2">4</div>
+
+          <div class="hm-cell row-head">L3 · cross-source</div>
+          <div class="hm-cell h1">1</div>
+          <div class="hm-cell empty">·</div>
+          <div class="hm-cell h2">7</div>
+          <div class="hm-cell h2">5</div>
+          <div class="hm-cell h4">28</div>
+          <div class="hm-cell empty">·</div>
+          <div class="hm-cell empty">·</div>
+
+          <div class="hm-cell row-head">severity: ERR</div>
+          <div class="hm-cell h1">1</div>
+          <div class="hm-cell empty">·</div>
+          <div class="hm-cell h2">4</div>
+          <div class="hm-cell h1">1</div>
+          <div class="hm-cell h4">11</div>
+          <div class="hm-cell empty">·</div>
+          <div class="hm-cell empty">·</div>
+        </div>
+        <div class="heatmap-legend">
+          <span>density:</span>
+          <span><span class="leg-sw" style="background: rgba(216,118,84,0.10);"></span>1–3</span>
+          <span><span class="leg-sw" style="background: rgba(216,118,84,0.30);"></span>4–9</span>
+          <span><span class="leg-sw" style="background: rgba(216,118,84,0.55);"></span>10–19</span>
+          <span><span class="leg-sw" style="background: rgba(107,33,168,0.65);"></span>20+ · escalate</span>
+          <span style="margin-left:auto;">→ <strong style="color: var(--ink);">17 findings</strong> routed to queries</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ═════════ MODULE 12 · Help Center ═════════ -->
-<section class="module-section alt">
-  <div class="module-inner">
-    <div class="module-grid reverse">
-      <div class="module-text">
-        <div class="eyebrow">12 · Help Center &amp; AI Guide</div>
-        <h2>In-app guidance, version-controlled.</h2>
-        <p>Thirty MDX topics, 34 glossary terms, three guided walkthroughs, 33 field-level tooltips, and an AI Guide that resolves natural-language questions against your role and route. Every Help interaction is audited — 7-year retention, just like the clinical data.</p>
-        <ul class="module-bullets">
-          <li>Right-rail Drawer (?), Cmd-K palette, route-scoped topics.</li>
-          <li>AI Guide answers cite the source MDX; uncited claims are rejected.</li>
-          <li>Walkthroughs deep-link via ?walkthrough=id, resume across 30 days.</li>
-          <li>Authoring SOPs in-tree — content updates flow through the same change control as code.</li>
-        </ul>
+<!-- ═════ §05 QUERY MANAGEMENT ═════════════════════════════════════ -->
+<section class="module" id="m05">
+  <div class="container">
+    <div class="section-num-bar">
+      <span class="num"><strong>§05</strong> / 12</span>
+      <span class="rule"></span>
+      <span class="meta">module: query_management</span>
+      <span class="meta">lifecycle: 7-state</span>
+      <span class="meta">SLA: per-tier</span>
+    </div>
+    <div class="module-head">
+      <div>
+        <h2 class="display-2">One lifecycle.<br><span class="shift">Every query.</span></h2>
+        <p class="lede">Validation findings, reconciliation discrepancies, coding ambiguities, and manual reviews all flow through one unified query lifecycle. AI drafts neutral, non-leading text. Humans approve, edit, or reject — and every step is audited. SLA tracking, aging dashboards, escalation rules.</p>
       </div>
-      <div class="module-mockup">
-        <div class="mm-head">
-          <div class="mm-title">Help Center · Hub</div>
-          <div class="mm-actions"><span class="mm-pill violet">AI Guide</span></div>
-        </div>
-        <div style="background:var(--ai-violet-bg); padding:14px; border-radius:8px; margin-bottom:14px; display:flex; gap:10px; align-items:flex-start;">
-          <div style="width:24px; height:24px; border-radius:50%; background:var(--ai-violet); flex-shrink:0; display:flex; align-items:center; justify-content:center; color:white; font-size:0.75rem; font-weight:700;">AI</div>
-          <div style="font-size:0.8125rem; line-height:1.5; color:var(--ai-violet-text);">
-            <strong>How do I onboard a new site?</strong><br>
-            <span style="color:var(--text-secondary); font-weight:400;">I'll launch the Site Onboarding walkthrough. It covers 7 steps from contract upload through user provisioning. Click below to start.</span>
+      <a href="#m05" class="module-link">query lifecycle →</a>
+    </div>
+
+    <div class="viz-frame">
+      <span class="viz-coord tl">queries/board</span>
+      <span class="viz-coord tr">open: 247</span>
+      <span class="viz-coord bl">aging gradient</span>
+      <span class="viz-coord br">SLA: 5d</span>
+      <div class="viz-frame-head">
+        <span class="vh-id">cm-queries // lifecycle_board</span>
+        <span class="vh-meta">
+          <span>study: ACQ-2026-001</span>
+          <span>actor: any</span>
+          <span class="vh-live">live</span>
+        </span>
+      </div>
+      <div class="viz-frame-body">
+        <div class="kanban">
+          <div class="kb-col">
+            <div class="kb-head"><span>Detected</span><span class="kb-c">14</span></div>
+            <div class="kb-card">
+              <span class="kb-id">Q-2026-04438</span>
+              <div class="kb-text">AESEV inconsistent · AE.S001-024</div>
+              <div class="kb-foot"><span>L2 · auto</span><span class="kb-age">new</span></div>
+            </div>
+            <div class="kb-card">
+              <span class="kb-id">Q-2026-04437</span>
+              <div class="kb-text">LB unit mismatch · S003-018</div>
+              <div class="kb-foot"><span>L3 · auto</span><span class="kb-age">new</span></div>
+            </div>
+            <div class="kb-card">
+              <span class="kb-id">Q-2026-04434</span>
+              <div class="kb-text">CM ENRTPT missing · S001-007</div>
+              <div class="kb-foot"><span>L2 · auto</span><span class="kb-age">2h</span></div>
+            </div>
+          </div>
+          <div class="kb-col">
+            <div class="kb-head"><span>Drafted (AI)</span><span class="kb-c">9</span></div>
+            <div class="kb-card">
+              <span class="kb-id">Q-2026-04425</span>
+              <div class="kb-text">SBP < DBP at V3 · please verify</div>
+              <div class="kb-foot"><span>AI · 0.94</span><span class="kb-age">3h</span></div>
+            </div>
+            <div class="kb-card">
+              <span class="kb-id">Q-2026-04421</span>
+              <div class="kb-text">Eligibility AGE < 18 · confirm</div>
+              <div class="kb-foot"><span>AI · 0.99</span><span class="kb-age">5h</span></div>
+            </div>
+          </div>
+          <div class="kb-col">
+            <div class="kb-head"><span>Issued</span><span class="kb-c">142</span></div>
+            <div class="kb-card">
+              <span class="kb-id">Q-2026-04412</span>
+              <div class="kb-text">SBP / DBP inversion · S001-024</div>
+              <div class="kb-foot"><span>site-12</span><span class="kb-age">3d</span></div>
+            </div>
+            <div class="kb-card">
+              <span class="kb-id">Q-2026-04388</span>
+              <div class="kb-text">Lab unit mismatch · S003-018</div>
+              <div class="kb-foot"><span>Q² lab</span><span class="kb-age amber">5d</span></div>
+            </div>
+            <div class="kb-card">
+              <span class="kb-id">Q-2026-04204</span>
+              <div class="kb-text">CM dose missing · S002-031</div>
+              <div class="kb-foot"><span>site-04</span><span class="kb-age red">12d</span></div>
+            </div>
+          </div>
+          <div class="kb-col">
+            <div class="kb-head"><span>Answered</span><span class="kb-c">63</span></div>
+            <div class="kb-card">
+              <span class="kb-id">Q-2026-04399</span>
+              <div class="kb-text">VS retake confirmed · 144/82</div>
+              <div class="kb-foot"><span>site-08</span><span class="kb-age">1d</span></div>
+            </div>
+            <div class="kb-card">
+              <span class="kb-id">Q-2026-04376</span>
+              <div class="kb-text">AE start date corrected</div>
+              <div class="kb-foot"><span>site-11</span><span class="kb-age">2d</span></div>
+            </div>
+          </div>
+          <div class="kb-col">
+            <div class="kb-head"><span>Closed</span><span class="kb-c">19</span></div>
+            <div class="kb-card">
+              <span class="kb-id">Q-2026-04302</span>
+              <div class="kb-text">CM coding confirmed</div>
+              <div class="kb-foot"><span>amason</span><span class="kb-age">·</span></div>
+            </div>
+            <div class="kb-card">
+              <span class="kb-id">Q-2026-04280</span>
+              <div class="kb-text">LB ref-range update</div>
+              <div class="kb-foot"><span>jdoe</span><span class="kb-age">·</span></div>
+            </div>
           </div>
         </div>
-        <div style="display:flex; flex-direction:column; gap:8px; font-size:0.8125rem;">
-          <div class="mm-row r-3"><span>Site onboarding walkthrough</span><span class="mock-badge violet" style="background:var(--ai-violet-bg); color:var(--ai-violet-text);">Walkthrough</span><span style="text-align:right; color:var(--text-muted);">7 steps</span></div>
-          <div class="mm-row r-3"><span>Configuring a new study</span><span class="mock-badge brand">Task</span><span style="text-align:right; color:var(--text-muted);">5 min</span></div>
-          <div class="mm-row r-3"><span>SDTM mapping spec format</span><span class="mock-badge brand">Concept</span><span style="text-align:right; color:var(--text-muted);">3 min</span></div>
+        <div class="gate-summary">
+          <span>median age: <strong>4d 12h</strong></span>
+          <span>SLA breach: <span class="warn-c">8 queries</span></span>
+          <span>auto-drafted today: <strong>57</strong></span>
+          <span>human-edited before issue: <strong>89%</strong></span>
+          <span style="margin-left:auto;">lock readiness: <strong style="color: var(--status-green);">87.3%</strong></span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═════════ CTA ═════════ -->
-<section class="cta-section">
-  <h2>Want to see all twelve agents working on a real study?</h2>
-  <p>Bring us a protocol, a vendor list, and a deadline. We'll show you what end-to-end looks like.</p>
-  <a href="#" class="btn btn-white" onclick="openDemoModal(); return false;">Request a Demo &rarr;</a>
-</section>
+<!-- ═════ §06 MEDICAL CODING ═══════════════════════════════════════ -->
+<section class="module" id="m06">
+  <div class="container">
+    <div class="section-num-bar">
+      <span class="num"><strong>§06</strong> / 12</span>
+      <span class="rule"></span>
+      <span class="meta">module: medical_coding</span>
+      <span class="meta">dictionaries: MedDRA + WHODrug</span>
+      <span class="meta">version: per-study</span>
+    </div>
+    <div class="module-head">
+      <div>
+        <h2 class="display-2">MedDRA + WHO Drug.<br><span class="shift">AI-first, human-final.</span></h2>
+        <p class="lede">Verbatim AEs, medical history, and concomitant medications run through an AI auto-coder that proposes LLT / PT, ATC, or trade-name matches with confidence scores. High-confidence predictions auto-code. The rest flow to a coder workbench — side-by-side verbatim, suggestion, dictionary browse. Auto-recode when source data changes.</p>
+      </div>
+      <a href="#m06" class="module-link">coding workbench →</a>
+    </div>
 
-<!-- ═════════ FOOTER (shared) ═════════ -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <a href="index.html" class="logo">
-        <svg class="logo-mark" viewBox="0 0 64 64" fill="none">
-          <path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/>
-          <path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-          <path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-          <line x1="26" y1="29" x2="26" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
-          <line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
-          <line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
-        </svg>
-        <span><span class="logo-text-ink">Clin</span><span class="logo-text-brand">Maker</span></span>
-      </a>
-      <p class="footer-tagline">Standards at the core. Submission at the finish. Agentic AI for clinical data management.</p>
-    </div>
-    <div class="footer-col">
-      <div class="footer-col-title">Product</div>
-      <ul>
-        <li><a href="platform.html">Platform</a></li>
-        <li><a href="standards.html">Standards</a></li>
-        <li><a href="security.html">Security</a></li>
-        <li><a href="pricing.html">Pricing</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <div class="footer-col-title">Company</div>
-      <ul>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="#" onclick="openDemoModal(); return false;">Request a Demo</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <div class="footer-col-title">Resources</div>
-      <ul>
-        <li><a href="https://app.clinmaker.com" target="_blank" rel="noopener">Log in</a></li>
-        <li><a href="mailto:hello@clinmaker.com">hello@clinmaker.com</a></li>
-      </ul>
+    <div class="viz-frame">
+      <span class="viz-coord tl">coding/AE · today</span>
+      <span class="viz-coord tr">MedDRA 27.0</span>
+      <span class="viz-coord bl">auto-coded: 94.2%</span>
+      <span class="viz-coord br">review: 14</span>
+      <div class="viz-frame-head">
+        <span class="vh-id">cm-coding // meddra_tree</span>
+        <span class="vh-meta">
+          <span>domain: AE</span>
+          <span>actor: ai_coder</span>
+          <span class="vh-live">running</span>
+        </span>
+      </div>
+      <div class="viz-frame-body meddra">
+        <div class="mt-row" style="border-bottom: 1px solid var(--surface-rule);">
+          <span></span><span style="color: var(--text-muted); font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.06em; text-transform: uppercase;">verbatim → LLT / PT / SOC</span><span></span><span style="text-align:right; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.06em; text-transform: uppercase;">action</span>
+        </div>
+        <div class="mt-row">
+          <span></span>
+          <span class="mt-name"><span class="mt-dot"></span>"headache, mild morning"</span>
+          <span class="mt-conf high">0.96</span>
+          <span class="mt-act ok">auto</span>
+        </div>
+        <div class="mt-row indent-1">
+          <span class="mt-code">PT</span>
+          <span class="mt-name">10019211 · Headache</span>
+          <span class="mt-conf"></span>
+          <span></span>
+        </div>
+        <div class="mt-row indent-2">
+          <span class="mt-code">SOC</span>
+          <span class="mt-name">10029205 · Nervous system disorders</span>
+          <span class="mt-conf"></span>
+          <span></span>
+        </div>
+        <div class="mt-row">
+          <span></span>
+          <span class="mt-name"><span class="mt-dot"></span>"feeling tired and weak"</span>
+          <span class="mt-conf high">0.94</span>
+          <span class="mt-act ok">auto</span>
+        </div>
+        <div class="mt-row indent-1">
+          <span class="mt-code">PT</span>
+          <span class="mt-name">10016256 · Fatigue</span>
+          <span class="mt-conf"></span>
+          <span></span>
+        </div>
+        <div class="mt-row">
+          <span></span>
+          <span class="mt-name"><span class="mt-dot"></span>"injection site pain"</span>
+          <span class="mt-conf high">0.99</span>
+          <span class="mt-act ok">auto</span>
+        </div>
+        <div class="mt-row indent-1">
+          <span class="mt-code">PT</span>
+          <span class="mt-name">10022078 · Injection site pain</span>
+          <span class="mt-conf"></span>
+          <span></span>
+        </div>
+        <div class="mt-row">
+          <span></span>
+          <span class="mt-name"><span class="mt-dot"></span>"feeling unwell, can't sleep"</span>
+          <span class="mt-conf mid">0.62</span>
+          <span class="mt-act review">review</span>
+        </div>
+        <div class="mt-row indent-1">
+          <span class="mt-code">PT?</span>
+          <span class="mt-name">10022437 · Insomnia · or · 10027665 · Malaise</span>
+          <span class="mt-conf"></span>
+          <span></span>
+        </div>
+        <div class="gate-summary">
+          <span>verbatims today: <strong>248</strong></span>
+          <span>auto-coded (≥0.85): <span class="ok-c">234</span></span>
+          <span>review queue: <span class="warn-c">14</span></span>
+          <span>avg confidence: <strong>0.91</strong></span>
+          <span style="margin-left:auto;">dictionary: <strong>MedDRA 27.0</strong> · pinned 2026-01-15</span>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="footer-bottom">
-    <span>© 2026 ClinMaker, LLC. All rights reserved.</span>
-    <span>Built for GxP-regulated clinical research.</span>
+</section>
+
+<!-- ═════ §07 RECONCILIATION ═══════════════════════════════════════ -->
+<section class="module" id="m07">
+  <div class="container">
+    <div class="section-num-bar">
+      <span class="num"><strong>§07</strong> / 12</span>
+      <span class="rule"></span>
+      <span class="meta">module: reconciliation</span>
+      <span class="meta">sub-agents: SAE + external</span>
+      <span class="meta">model: shared discrepancy</span>
+    </div>
+    <div class="module-head">
+      <div>
+        <h2 class="display-2">SAE + External.<br><span class="shift">One agent. Two views.</span></h2>
+        <p class="lede">One reconciliation agent, two sub-agents. SAE: Safety database cases vs EDC AEs/SAEs, matching on subject, date, seriousness, causality. External: vendor data (labs / ECG / imaging / RTSM / ePRO / devices) vs canonical EDC. Discrepancies route to queries or vendor tickets. AI proposes classifications; humans approve under audit.</p>
+      </div>
+      <a href="#m07" class="module-link">sae + external →</a>
+    </div>
+
+    <div class="viz-frame">
+      <span class="viz-coord tl">recon/run · 2026-05-18</span>
+      <span class="viz-coord tr">domain: SAE</span>
+      <span class="viz-coord bl">matches: 142 / 142</span>
+      <span class="viz-coord br">deltas: 7</span>
+      <div class="viz-frame-head">
+        <span class="vh-id">cm-recon // node_graph</span>
+        <span class="vh-meta">
+          <span>safety_db: Argus</span>
+          <span>edc: Rave</span>
+          <span class="vh-live">in_run</span>
+        </span>
+      </div>
+      <div class="viz-frame-body">
+        <div class="recon-grid">
+          <div class="recon-side">
+            <h4>Safety DB (Argus) · case 78214</h4>
+            <div class="recon-row"><span class="r-key">subject_id</span><span class="r-val">S001-024</span></div>
+            <div class="recon-row"><span class="r-key">onset_date</span><span class="r-val">2026-04-12</span></div>
+            <div class="recon-row"><span class="r-key">seriousness</span><span class="r-val">YES · life-threatening</span></div>
+            <div class="recon-row"><span class="r-key">causality</span><span class="r-val">PROBABLE</span></div>
+            <div class="recon-row"><span class="r-key">outcome</span><span class="r-val">recovered</span></div>
+            <div class="recon-row"><span class="r-key">verbatim</span><span class="r-val">severe headache</span></div>
+          </div>
+          <div class="recon-mid">
+            <div class="r-edge match">match<div class="r-arr">⇌</div></div>
+            <div class="r-edge match">match<div class="r-arr">⇌</div></div>
+            <div class="r-edge delta">DELTA<div class="r-arr">⇌</div></div>
+            <div class="r-edge delta">DELTA<div class="r-arr">⇌</div></div>
+            <div class="r-edge match">match<div class="r-arr">⇌</div></div>
+            <div class="r-edge match">match<div class="r-arr">⇌</div></div>
+          </div>
+          <div class="recon-side">
+            <h4>EDC (Rave) · AE.S024-AE3</h4>
+            <div class="recon-row"><span class="r-key">USUBJID</span><span class="r-val">S001-024</span></div>
+            <div class="recon-row"><span class="r-key">AESTDTC</span><span class="r-val">2026-04-12</span></div>
+            <div class="recon-row" style="background: var(--status-amber-bg); padding: 7px 8px; margin: 0 -8px;"><span class="r-key">AESER</span><span class="r-val" style="color: var(--status-amber);">YES · serious</span></div>
+            <div class="recon-row" style="background: var(--status-amber-bg); padding: 7px 8px; margin: 0 -8px;"><span class="r-key">AEREL</span><span class="r-val" style="color: var(--status-amber);">RELATED</span></div>
+            <div class="recon-row"><span class="r-key">AEOUT</span><span class="r-val">RECOVERED</span></div>
+            <div class="recon-row"><span class="r-key">AETERM</span><span class="r-val">severe headache</span></div>
+          </div>
+        </div>
+        <div class="gate-summary">
+          <span>study run: <strong>2026-05-18 14:08 UTC</strong></span>
+          <span>cases compared: <strong>142</strong></span>
+          <span>full matches: <span class="ok-c">135</span></span>
+          <span>deltas: <span class="warn-c">7</span></span>
+          <span style="margin-left: auto;">→ <strong>2 queries</strong> drafted to Argus, <strong>5</strong> to EDC sites</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════ §08 SDTM / ADaM ═════════════════════════════════════════ -->
+<section class="module" id="m08">
+  <div class="container">
+    <div class="section-num-bar">
+      <span class="num"><strong>§08</strong> / 12</span>
+      <span class="rule"></span>
+      <span class="meta">module: sdtm_adam</span>
+      <span class="meta">IG: SDTM 3.4 · ADaM 1.3</span>
+      <span class="meta">deliverable: Define.xml v2.1</span>
+    </div>
+    <div class="module-head">
+      <div>
+        <h2 class="display-2">Mapping. Conformance.<br><span class="shift">Define.xml.</span></h2>
+        <p class="lede">Maintain mapping specifications from canonical / collection data to every SDTM domain. AI bootstraps suggestions from CRFs and protocol; humans review under change control. Run transformations on demand, generate conformance reports, ship Define.xml + annotated CRF + reviewer guide. Every value traces to its source and rule version.</p>
+      </div>
+      <a href="#m08" class="module-link">SDTM 3.4 + ADaM 1.3 →</a>
+    </div>
+
+    <div class="viz-frame">
+      <span class="viz-coord tl">mapping/AE · v1.2</span>
+      <span class="viz-coord tr">source → rule → target</span>
+      <span class="viz-coord bl">conformance: 0 errors</span>
+      <span class="viz-coord br">aCRF: ready</span>
+      <div class="viz-frame-head">
+        <span class="vh-id">cm-sdtm // mapping_spec</span>
+        <span class="vh-meta">
+          <span>domain: AE</span>
+          <span>SDTM-IG: 3.4</span>
+          <span class="vh-live">approved</span>
+        </span>
+      </div>
+      <div class="viz-frame-body">
+        <div class="flow-row head">
+          <span>Source</span><span></span><span>Rule</span><span></span><span>Target</span>
+        </div>
+        <div class="flow-row">
+          <span class="flow-src">AECRF.aestdt + .aestdat</span>
+          <span class="flow-arr">→</span>
+          <span class="flow-rule">coalesce + ISO 8601 date format</span>
+          <span class="flow-arr">→</span>
+          <span class="flow-tgt">AE.AESTDTC</span>
+        </div>
+        <div class="flow-row">
+          <span class="flow-src">AECRF.severity</span>
+          <span class="flow-arr">→</span>
+          <span class="flow-rule">dict(CT.AESEV) · MILD / MODERATE / SEVERE</span>
+          <span class="flow-arr">→</span>
+          <span class="flow-tgt">AE.AESEV</span>
+        </div>
+        <div class="flow-row">
+          <span class="flow-src">AECRF.serious_yn</span>
+          <span class="flow-arr">→</span>
+          <span class="flow-rule">if Y → "Y" else "N"</span>
+          <span class="flow-arr">→</span>
+          <span class="flow-tgt">AE.AESER</span>
+        </div>
+        <div class="flow-row">
+          <span class="flow-src">AECRF.relation_notes</span>
+          <span class="flow-arr">→</span>
+          <span class="flow-rule"><span class="ai">ai_suggest</span>(scope=AEREL_CT) · 0.92</span>
+          <span class="flow-arr">→</span>
+          <span class="flow-tgt">AE.AEREL</span>
+        </div>
+        <div class="flow-row">
+          <span class="flow-src">AECRF.outcome</span>
+          <span class="flow-arr">→</span>
+          <span class="flow-rule">dict(CT.AEOUT)</span>
+          <span class="flow-arr">→</span>
+          <span class="flow-tgt">AE.AEOUT</span>
+        </div>
+        <div class="flow-row">
+          <span class="flow-src">AECRF.tox_grade</span>
+          <span class="flow-arr">→</span>
+          <span class="flow-rule">ctcae(v5.0) · per-PT lookup</span>
+          <span class="flow-arr">→</span>
+          <span class="flow-tgt">AE.AETOXGR</span>
+        </div>
+        <div class="flow-row">
+          <span class="flow-src">MEDDRA.coded_pt</span>
+          <span class="flow-arr">→</span>
+          <span class="flow-rule">direct (post-coding)</span>
+          <span class="flow-arr">→</span>
+          <span class="flow-tgt">AE.AEDECOD</span>
+        </div>
+        <div class="gate-summary">
+          <span>SDTM-IG: <strong>3.4</strong></span>
+          <span>conformance: <span class="ok-c">0 errors</span> · <span class="warn-c">2 warnings</span></span>
+          <span>Define.xml: <strong>v2.1 ready</strong></span>
+          <span>traceability: <strong>100%</strong> (every value → rule + source)</span>
+          <span style="margin-left:auto;">ADaM: ADSL · ADAE · ADLB · ADTTE</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════ §09 ANALYTICS ═══════════════════════════════════════════ -->
+<section class="module" id="m09">
+  <div class="container">
+    <div class="section-num-bar">
+      <span class="num"><strong>§09</strong> / 12</span>
+      <span class="rule"></span>
+      <span class="meta">module: analytics</span>
+      <span class="meta">scope: portfolio → subject</span>
+      <span class="meta">access: role-aware</span>
+    </div>
+    <div class="module-head">
+      <div>
+        <h2 class="display-2">KPIs at every<br><span class="shift">altitude.</span></h2>
+        <p class="lede">Role-aware dashboards from portfolio → study → subject. Open / aged queries by type and site. Reconciliation completeness. Coding completion. CRF timeliness. SDTM pipeline status. Lock-readiness gauges. Risk flags surface site / subject / domain anomalies. Every view respects RBAC + blinding scope.</p>
+      </div>
+      <a href="#m09" class="module-link">lock readiness →</a>
+    </div>
+
+    <div class="viz-frame">
+      <span class="viz-coord tl">analytics/lock_readiness</span>
+      <span class="viz-coord tr">portfolio view</span>
+      <span class="viz-coord bl">12 active studies</span>
+      <span class="viz-coord br">tick: completion</span>
+      <div class="viz-frame-head">
+        <span class="vh-id">cm-analytics // lock_gauges</span>
+        <span class="vh-meta">
+          <span>scope: portfolio</span>
+          <span>refresh: 5m</span>
+          <span class="vh-live">live</span>
+        </span>
+      </div>
+      <div class="viz-frame-body">
+        <div class="gauges">
+          <div class="gauge">
+            <span class="g-study">ONCO-2024-0145</span>
+            <span class="g-name">Live · phase III</span>
+            <span class="g-pct brand">98.4<span class="small">%</span></span>
+            <div class="g-bar"><div class="g-bar-fill brand" style="width: 98.4%"></div></div>
+            <span class="g-meta">queries: 12 · recon: ok · sdtm: ready</span>
+          </div>
+          <div class="gauge">
+            <span class="g-study">NEURO-2024-0089</span>
+            <span class="g-name">Live · phase III</span>
+            <span class="g-pct brand">96.7<span class="small">%</span></span>
+            <div class="g-bar"><div class="g-bar-fill brand" style="width: 96.7%"></div></div>
+            <span class="g-meta">queries: 22 · recon: ok · sdtm: ready</span>
+          </div>
+          <div class="gauge">
+            <span class="g-study">CARDIO-2025-0032</span>
+            <span class="g-name">UAT · phase II</span>
+            <span class="g-pct">87.1<span class="small">%</span></span>
+            <div class="g-bar"><div class="g-bar-fill" style="width: 87.1%"></div></div>
+            <span class="g-meta">queries: 142 · 8 SLA breach</span>
+          </div>
+          <div class="gauge">
+            <span class="g-study">RESP-2025-0044</span>
+            <span class="g-name">UAT · phase II</span>
+            <span class="g-pct">71.8<span class="small">%</span></span>
+            <div class="g-bar"><div class="g-bar-fill" style="width: 71.8%"></div></div>
+            <span class="g-meta">queries: 88 · recon: 5 deltas</span>
+          </div>
+        </div>
+        <div class="gate-summary" style="margin-top: 14px;">
+          <span>median lock: <strong>4w post-LPLV</strong></span>
+          <span>auto-coding: <strong>94.2%</strong></span>
+          <span>recon: <strong>100%</strong> across all 12</span>
+          <span>SDTM: <strong>11 / 12</strong> ready</span>
+          <span style="margin-left:auto;"><span class="gate-pill ok">2 studies lock-ready this quarter</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════ §10 PATIENT PROFILE ═════════════════════════════════════ -->
+<section class="module" id="m10">
+  <div class="container">
+    <div class="section-num-bar">
+      <span class="num"><strong>§10</strong> / 12</span>
+      <span class="rule"></span>
+      <span class="meta">module: patient_profile</span>
+      <span class="meta">scope: subject-level</span>
+      <span class="meta">blinding: enforced</span>
+    </div>
+    <div class="module-head">
+      <div>
+        <h2 class="display-2">Longitudinal subject view.<br><span class="shift">Blinding-aware.</span></h2>
+        <p class="lede">Per-subject longitudinal profiles: demographics, visits, exposure, AEs, labs, vitals, ePRO. Risk flags surface anomalies. Treatment-arm fields are hidden from blinded roles at the repository layer — not just the UI. Optional segregated-storage mode for sponsors who require physical separation.</p>
+      </div>
+      <a href="#m10" class="module-link">subject view →</a>
+    </div>
+
+    <div class="viz-frame">
+      <span class="viz-coord tl">subject/S001-024</span>
+      <span class="viz-coord tr">enrolled: 2026-02-08</span>
+      <span class="viz-coord bl">visits: 6 / 9</span>
+      <span class="viz-coord br">view: blinded</span>
+      <div class="viz-frame-head">
+        <span class="vh-id">cm-profile // longitudinal</span>
+        <span class="vh-meta">
+          <span>scope: SCR → today</span>
+          <span>actor: site-12</span>
+          <span class="vh-live">live</span>
+        </span>
+      </div>
+      <div class="viz-frame-body">
+        <div class="swim" style="min-height: 280px;">
+          <div class="swim-labels">
+            <div class="swl"><span class="swl-dot" style="background: var(--ink);"></span>Visits</div>
+            <div class="swl"><span class="swl-dot" style="background: var(--status-amber);"></span>AEs</div>
+            <div class="swl"><span class="swl-dot" style="background: var(--cyan-700);"></span>Labs</div>
+            <div class="swl"><span class="swl-dot" style="background: var(--ai-violet);"></span>Vitals</div>
+            <div class="swl"><span class="swl-dot" style="background: var(--primary-600);"></span>Exposure</div>
+            <div class="swl"><span class="swl-dot" style="background: var(--text-muted);"></span>ePRO</div>
+          </div>
+          <div class="swim-lanes">
+            <!-- Visits lane -->
+            <div class="swim-lane">
+              <div class="swim-pt" style="left: 5%;"></div>
+              <div class="swim-pt brand" style="left: 18%;"></div>
+              <div class="swim-pt brand" style="left: 28%;"></div>
+              <div class="swim-pt brand" style="left: 41%;"></div>
+              <div class="swim-pt brand" style="left: 58%;"></div>
+              <div class="swim-pt brand" style="left: 75%;"></div>
+            </div>
+            <!-- AEs lane -->
+            <div class="swim-lane">
+              <div class="swim-band warn" style="left: 22%; width: 8%;"></div>
+              <div class="swim-band red" style="left: 45%; width: 5%;"></div>
+              <div class="swim-band warn" style="left: 62%; width: 6%;"></div>
+            </div>
+            <!-- Labs lane -->
+            <div class="swim-lane" style="position: relative;">
+              <svg width="100%" height="100%" viewBox="0 0 100 36" preserveAspectRatio="none" style="position: absolute; inset: 0;">
+                <polyline points="5,22 18,18 28,20 41,12 58,15 75,14" fill="none" stroke="#0e7490" stroke-width="1.5"/>
+                <circle cx="5" cy="22" r="2" fill="#0e7490"/>
+                <circle cx="18" cy="18" r="2" fill="#0e7490"/>
+                <circle cx="28" cy="20" r="2" fill="#0e7490"/>
+                <circle cx="41" cy="12" r="2" fill="#0e7490"/>
+                <circle cx="58" cy="15" r="2" fill="#0e7490"/>
+                <circle cx="75" cy="14" r="2" fill="#0e7490"/>
+              </svg>
+            </div>
+            <!-- Vitals lane -->
+            <div class="swim-lane" style="position: relative;">
+              <svg width="100%" height="100%" viewBox="0 0 100 36" preserveAspectRatio="none" style="position: absolute; inset: 0;">
+                <polyline points="5,18 18,22 28,16 41,20 58,17 75,19" fill="none" stroke="#7850dc" stroke-width="1.5"/>
+                <polyline points="5,24 18,28 28,24 41,28 58,26 75,28" fill="none" stroke="#7850dc" stroke-width="1.5" stroke-dasharray="3,2"/>
+              </svg>
+            </div>
+            <!-- Exposure lane -->
+            <div class="swim-lane">
+              <div class="swim-band" style="left: 18%; width: 64%; background: var(--primary-200);"></div>
+            </div>
+            <!-- ePRO lane -->
+            <div class="swim-lane">
+              <div class="swim-pt" style="left: 19%; width: 8px; height: 8px; background: var(--text-muted);"></div>
+              <div class="swim-pt" style="left: 27%; width: 8px; height: 8px; background: var(--text-muted);"></div>
+              <div class="swim-pt" style="left: 42%; width: 8px; height: 8px; background: var(--text-muted);"></div>
+              <div class="swim-pt" style="left: 59%; width: 8px; height: 8px; background: var(--text-muted);"></div>
+              <div class="swim-pt" style="left: 76%; width: 8px; height: 8px; background: var(--text-muted);"></div>
+            </div>
+          </div>
+        </div>
+        <div class="swim-axis">
+          <span></span>
+          <div class="swim-ticks">
+            <span>SCR</span><span>D1</span><span>D8</span><span>D15</span><span>D29</span><span>D43</span><span>D57</span><span>D71</span><span>D85</span><span>EOS</span><span>FU</span>
+          </div>
+        </div>
+        <div class="gate-summary">
+          <span>visits completed: <strong>6 / 9</strong></span>
+          <span>AEs: <span class="warn-c">3 ongoing</span> · 0 SAE</span>
+          <span>protocol deviations: <strong>0</strong></span>
+          <span>exposure days: <strong>78 / 84</strong></span>
+          <span style="margin-left:auto;">treatment arm: <span style="font-family: var(--font-mono); padding: 2px 8px; background: var(--surface-hover);">BLINDED</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════ §11 AUDIT TRAIL ═════════════════════════════════════════ -->
+<section class="module" id="m11">
+  <div class="container">
+    <div class="section-num-bar">
+      <span class="num"><strong>§11</strong> / 12</span>
+      <span class="rule"></span>
+      <span class="meta">module: audit_trail</span>
+      <span class="meta">retention: 7y</span>
+      <span class="meta">model: append-only</span>
+    </div>
+    <div class="module-head">
+      <div>
+        <h2 class="display-2">Every action recorded.<br><span class="shift">No exceptions.</span></h2>
+        <p class="lede">Append-only audit trail across every module. Tamper-evident storage. Searchable by study, subject, user, record type, event type, date range. Inspection-ready as PDF or machine-readable JSON. AI actors are distinguishable from human actors in every row.</p>
+      </div>
+      <a href="#m11" class="module-link">ALCOA+ mapping →</a>
+    </div>
+
+    <div class="viz-frame">
+      <span class="viz-coord tl">audit/subject S001-024</span>
+      <span class="viz-coord tr">window: 24h</span>
+      <span class="viz-coord bl">42 entries</span>
+      <span class="viz-coord br">→ export</span>
+      <div class="viz-frame-head">
+        <span class="vh-id">cm-audit // timeline</span>
+        <span class="vh-meta">
+          <span>study: ACQ-2026-001</span>
+          <span>actor: any</span>
+          <span class="vh-live">tail</span>
+        </span>
+      </div>
+      <div class="viz-frame-body">
+        <div class="viz-timeline">
+          <div class="lane-labels">
+            <div class="lane-label human"><span class="lane-dot"></span>Human</div>
+            <div class="lane-label ai"><span class="lane-dot"></span>AI agent</div>
+            <div class="lane-label system"><span class="lane-dot"></span>System</div>
+            <div class="lane-label human"><span class="lane-dot"></span>Signature</div>
+          </div>
+          <div class="lanes">
+            <div class="lane">
+              <div class="event" style="left: 8%; width: 18%;"><span class="ev-tag">UPDATE</span><span class="ev-text">AE.AESEV · jdoe</span></div>
+              <div class="event" style="left: 38%; width: 22%;"><span class="ev-tag">CREATE</span><span class="ev-text">AE.S024-AE3 · site-12</span></div>
+              <div class="event" style="left: 72%; width: 17%;"><span class="ev-tag">APPROVE</span><span class="ev-text">Q-2026-4411 · amason</span></div>
+            </div>
+            <div class="lane">
+              <div class="event ev-ai" style="left: 12%; width: 24%;"><span class="ev-tag">AI</span><span class="ev-text">CM coding · aspirin → N02BA01</span></div>
+              <div class="event ev-ai" style="left: 50%; width: 20%;"><span class="ev-tag">AI</span><span class="ev-text">VS validation · 14 findings</span></div>
+              <div class="event ev-ai" style="left: 84%; width: 14%;"><span class="ev-tag">AI</span><span class="ev-text">Recon · 7 deltas</span></div>
+            </div>
+            <div class="lane">
+              <div class="event ev-brand" style="left: 6%; width: 14%;"><span class="ev-tag">EXPORT</span><span class="ev-text">SDTM · v1.2</span></div>
+              <div class="event ev-brand" style="left: 46%; width: 16%;"><span class="ev-tag">INGEST</span><span class="ev-text">Rave · 12,448 rows</span></div>
+              <div class="event ev-brand" style="left: 76%; width: 13%;"><span class="ev-tag">LOCK</span><span class="ev-text">study v8</span></div>
+            </div>
+            <div class="lane">
+              <div class="event" style="left: 22%; width: 15%;"><span class="ev-tag">SIGN</span><span class="ev-text">VS form · drsmith</span></div>
+              <div class="event" style="left: 58%; width: 15%;"><span class="ev-tag">SIGN</span><span class="ev-text">CM form · drsmith</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="viz-time-axis">
+          <div class="axis-empty"></div>
+          <div class="axis-ticks">
+            <span>09:00</span><span>10:30</span><span>12:00</span><span>13:30</span>
+            <span>15:00</span><span>16:30</span><span>18:00</span><span>now</span>
+          </div>
+        </div>
+        <div class="gate-summary">
+          <span>ALCOA+: <strong>9 / 9 mapped</strong></span>
+          <span>tamper-checks: <span class="ok-c">PASS</span></span>
+          <span>retention: <strong>7y</strong></span>
+          <span>export: <strong>PDF · JSON</strong></span>
+          <span style="margin-left:auto;">entries this 24h: <strong>4,288</strong></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════ §12 USER ADMIN & HELP ═══════════════════════════════════ -->
+<section class="module" id="m12">
+  <div class="container">
+    <div class="section-num-bar">
+      <span class="num"><strong>§12</strong> / 12</span>
+      <span class="rule"></span>
+      <span class="meta">module: user_admin + help</span>
+      <span class="meta">roles: 11 predefined</span>
+      <span class="meta">MFA: required</span>
+    </div>
+    <div class="module-head">
+      <div>
+        <h2 class="display-2">Eleven roles.<br><span class="shift">Separation of duties.</span></h2>
+        <p class="lede">Fine-grained permissions per module + per data domain + per blinding scope. Login by email, user ID, or phone with password + OTP — or OTP-only where policy allows. MFA enforced for privileged roles. In-app guidance covers thirty MDX topics, three guided walkthroughs, citation-verified AI Guide. Every Help interaction is audited at 7-year retention.</p>
+      </div>
+      <a href="#m12" class="module-link">RBAC matrix →</a>
+    </div>
+
+    <div class="viz-frame">
+      <span class="viz-coord tl">rbac/matrix</span>
+      <span class="viz-coord tr">roles × modules</span>
+      <span class="viz-coord bl">11 roles · 12 modules</span>
+      <span class="viz-coord br">SoD: enforced</span>
+      <div class="viz-frame-head">
+        <span class="vh-id">cm-admin // rbac_matrix</span>
+        <span class="vh-meta">
+          <span>scope: study</span>
+          <span>last_review: 2026-04-12</span>
+          <span class="vh-live">audited</span>
+        </span>
+      </div>
+      <div class="viz-frame-body">
+        <div class="rbac">
+          <div class="rbac-cell col-head" style="text-align: left; padding-left: 12px;">Role</div>
+          <div class="rbac-cell col-head">PROT</div>
+          <div class="rbac-cell col-head">BUILD</div>
+          <div class="rbac-cell col-head">INGEST</div>
+          <div class="rbac-cell col-head">VAL</div>
+          <div class="rbac-cell col-head">QUERY</div>
+          <div class="rbac-cell col-head">CODE</div>
+          <div class="rbac-cell col-head">RECON</div>
+          <div class="rbac-cell col-head">SDTM</div>
+
+          <div class="rbac-cell row-head">System Admin</div>
+          <div class="rbac-cell tick-strong">●</div><div class="rbac-cell tick-strong">●</div><div class="rbac-cell tick-strong">●</div><div class="rbac-cell tick-strong">●</div>
+          <div class="rbac-cell tick-strong">●</div><div class="rbac-cell tick-strong">●</div><div class="rbac-cell tick-strong">●</div><div class="rbac-cell tick-strong">●</div>
+
+          <div class="rbac-cell row-head">Study DM (Lead)</div>
+          <div class="rbac-cell tick">●</div><div class="rbac-cell tick">●</div><div class="rbac-cell tick">●</div><div class="rbac-cell tick">●</div>
+          <div class="rbac-cell tick-strong">●</div><div class="rbac-cell tick">●</div><div class="rbac-cell tick">●</div><div class="rbac-cell tick">●</div>
+
+          <div class="rbac-cell row-head">Data Standards Lead</div>
+          <div class="rbac-cell tick">●</div><div class="rbac-cell tick">●</div><div class="rbac-cell dash">–</div><div class="rbac-cell tick">●</div>
+          <div class="rbac-cell dash">–</div><div class="rbac-cell dash">–</div><div class="rbac-cell dash">–</div><div class="rbac-cell tick-strong">●</div>
+
+          <div class="rbac-cell row-head">Safety Physician</div>
+          <div class="rbac-cell tick">●</div><div class="rbac-cell dash">–</div><div class="rbac-cell dash">–</div><div class="rbac-cell tick">●</div>
+          <div class="rbac-cell tick">●</div><div class="rbac-cell dash">–</div><div class="rbac-cell tick-strong">●</div><div class="rbac-cell dash">–</div>
+
+          <div class="rbac-cell row-head">Medical Coder</div>
+          <div class="rbac-cell dash">–</div><div class="rbac-cell dash">–</div><div class="rbac-cell dash">–</div><div class="rbac-cell dash">–</div>
+          <div class="rbac-cell tick">●</div><div class="rbac-cell tick-strong">●</div><div class="rbac-cell dash">–</div><div class="rbac-cell dash">–</div>
+
+          <div class="rbac-cell row-head">CRA / Monitor</div>
+          <div class="rbac-cell dash">–</div><div class="rbac-cell dash">–</div><div class="rbac-cell dash">–</div><div class="rbac-cell tick">●</div>
+          <div class="rbac-cell tick">●</div><div class="rbac-cell dash">–</div><div class="rbac-cell dash">–</div><div class="rbac-cell dash">–</div>
+
+          <div class="rbac-cell row-head">Site User</div>
+          <div class="rbac-cell dash">–</div><div class="rbac-cell dash">–</div><div class="rbac-cell dash">–</div><div class="rbac-cell dash">–</div>
+          <div class="rbac-cell tick">●</div><div class="rbac-cell dash">–</div><div class="rbac-cell dash">–</div><div class="rbac-cell dash">–</div>
+
+          <div class="rbac-cell row-head">Biostat / Programmer</div>
+          <div class="rbac-cell dash">–</div><div class="rbac-cell dash">–</div><div class="rbac-cell dash">–</div><div class="rbac-cell dash">–</div>
+          <div class="rbac-cell dash">–</div><div class="rbac-cell dash">–</div><div class="rbac-cell dash">–</div><div class="rbac-cell tick-strong">●</div>
+
+          <div class="rbac-cell row-head">Study Viewer</div>
+          <div class="rbac-cell tick" style="opacity: 0.4;">●</div><div class="rbac-cell tick" style="opacity: 0.4;">●</div><div class="rbac-cell dash">–</div><div class="rbac-cell tick" style="opacity: 0.4;">●</div>
+          <div class="rbac-cell tick" style="opacity: 0.4;">●</div><div class="rbac-cell dash">–</div><div class="rbac-cell dash">–</div><div class="rbac-cell tick" style="opacity: 0.4;">●</div>
+        </div>
+        <div class="gate-summary" style="margin-top: 14px;">
+          <span><span class="gate-pill brand" style="margin-right:6px; opacity:1;">●</span>read+write+approve</span>
+          <span><span style="display:inline-block; padding:2px 8px; background: var(--primary-600); color:white; font-family: var(--font-mono); font-size: 0.625rem; font-weight: 700;">●</span> admin</span>
+          <span>MFA: <strong>all 11 roles</strong></span>
+          <span>SoD: <strong>creator ≠ approver</strong></span>
+          <span style="margin-left:auto;">access review: <strong>2026-04-12</strong></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="section-ink">
+  <div class="container" style="padding-top: clamp(80px, 10vw, 128px); padding-bottom: clamp(80px, 10vw, 128px);">
+    <div style="max-width: 920px;">
+      <span class="eyebrow">cm.demo</span>
+      <h2 class="display" style="color: white; margin-top: 18px; margin-bottom: 28px;">
+        Want to see all twelve<br>agents on a real study?
+      </h2>
+      <p class="lede" style="color: rgba(255,255,255,0.72); margin-bottom: 36px;">
+        Bring us a protocol, a vendor list, a deadline. We'll show you what end-to-end looks like — live, on the platform.
+      </p>
+      <div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
+        <a href="#" class="btn btn-white" onclick="openDemoModal(); return false;">Talk to us <span class="arr">→</span></a>
+        <a href="contact.html" style="color: rgba(255,255,255,0.7); font-size: 0.9375rem;">or use the long-form contact</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLOPHON -->
+<footer class="colophon">
+  <div class="col-brand">
+    <span>Clin</span><span class="shift">Maker</span>
+    <span class="col-divider" style="margin-left: 12px;">·</span>
+    <span style="font-family: var(--font-body); font-weight: 500; font-size: 0.8125rem; color: var(--text-secondary);">LLC</span>
+  </div>
+  <div style="display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center;">
+    <a href="platform.html">Platform</a><span class="col-divider">·</span>
+    <a href="standards.html">Standards</a><span class="col-divider">·</span>
+    <a href="security.html">Security</a><span class="col-divider">·</span>
+    <a href="pricing.html">Pricing</a><span class="col-divider">·</span>
+    <a href="about.html">About</a><span class="col-divider">·</span>
+    <a href="contact.html">Contact</a><span class="col-divider">·</span>
+    <a href="https://app.clinmaker.com" target="_blank" rel="noopener">Log in →</a>
+  </div>
+  <div class="col-meta">
+    <span>hello@clinmaker.com</span>
+    <span class="col-divider">·</span>
+    <span>© 2026</span>
   </div>
 </footer>
 
-<!-- ═════════ DEMO MODAL (shared) ═════════ -->
+<!-- DEMO MODAL -->
 <div class="modal-overlay" id="demoModal" role="dialog" aria-labelledby="demoModalTitle" aria-modal="true">
   <div class="modal">
     <button class="modal-close" onclick="closeDemoModal()" aria-label="Close">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg>
     </button>
-    <h3 id="demoModalTitle">Request a Demo</h3>
-    <p class="modal-sub">Tell us a little about your team. We'll be in touch within one business day.</p>
+    <span class="eyebrow brand" style="margin-bottom: 10px;">cm.demo/request</span>
+    <h3 id="demoModalTitle" class="display-3">Talk to us.</h3>
+    <p class="lede">Thirty minutes on the live platform. Working session — not a deck. We come back within one business day.</p>
     <form action="__FORMSPREE_ENDPOINT__" method="POST" onsubmit="return handleDemoSubmit(this, event)">
       <div class="form-row">
-        <div class="form-group"><label>First name <span class="req">*</span></label><input type="text" name="first_name" class="form-control" required></div>
-        <div class="form-group"><label>Last name <span class="req">*</span></label><input type="text" name="last_name" class="form-control" required></div>
+        <div class="form-group"><label>First name</label><input type="text" name="first_name" class="form-control" required></div>
+        <div class="form-group"><label>Last name</label><input type="text" name="last_name" class="form-control" required></div>
       </div>
-      <div class="form-group"><label>Work email <span class="req">*</span></label><input type="email" name="email" class="form-control" required></div>
-      <div class="form-group"><label>Company <span class="req">*</span></label><input type="text" name="company" class="form-control" required></div>
-      <div class="form-group"><label>Role</label><select name="role" class="form-control"><option value="">Select…</option><option>Data Manager / Lead</option><option>Clinical Operations</option><option>Biostatistics / Programming</option><option>QA / Compliance</option><option>Medical / Safety</option><option>Executive / Sponsor leadership</option><option>Other</option></select></div>
+      <div class="form-group"><label>Work email</label><input type="email" name="email" class="form-control" required></div>
+      <div class="form-group"><label>Company</label><input type="text" name="company" class="form-control" required></div>
+      <div class="form-group"><label>Role</label>
+        <select name="role" class="form-control">
+          <option value="">Select…</option>
+          <option>Data Manager / Lead</option>
+          <option>Clinical Operations</option>
+          <option>Biostatistics / Programming</option>
+          <option>QA / Compliance</option>
+          <option>Medical / Safety</option>
+          <option>Executive / Sponsor leadership</option>
+          <option>Other</option>
+        </select>
+      </div>
       <div class="form-group"><label>What would you like to see?</label><textarea name="message" class="form-control" placeholder="A particular module, an integration, a workflow…"></textarea></div>
-      <button type="submit" class="form-submit">Request a Demo <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></button>
+      <button type="submit" class="form-submit">Send request <span class="arr">→</span></button>
     </form>
   </div>
 </div>

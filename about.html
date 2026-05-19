@@ -182,7 +182,7 @@
 <section class="module" id="thesis">
   <div class="container">
     <div class="section-num-bar">
-      <span class="num"><strong>§01</strong> / 03</span>
+      <span class="num"><strong>§01</strong> / 04</span>
       <span class="rule"></span>
       <span class="meta">topic: thesis</span>
       <span class="meta">premise: collapse the stack</span>
@@ -193,7 +193,7 @@
         <h2 class="display-2">Most clinical data work is<br><span class="shift">plumbing, not science.</span></h2>
         <p class="lede">A typical Phase III trial uses eight or more tools: an EDC, a coding system, a SDTM mapper, a SAE reconciler, a query manager, an analytics layer, a CDISC standards library, and a workflow engine. Each has its own user list, audit trail, integration team. The teams spend more time exchanging files than analysing them.</p>
       </div>
-      <a href="platform.html" class="module-link">12 agents in one →</a>
+      <a href="platform.html" class="module-link">end-to-end vision →</a>
     </div>
 
     <div class="viz-frame">
@@ -229,7 +229,7 @@
           </div>
           <div class="stack-side target">
             <h4>ClinMaker · 1 platform</h4>
-            <div class="ss-tool"><span class="ss-name">12 cooperating agents</span><span class="ss-pain">one model</span></div>
+            <div class="ss-tool"><span class="ss-name">AI-assisted workflows</span><span class="ss-pain">human-in-loop</span></div>
             <div class="ss-tool"><span class="ss-name">One canonical data model</span><span class="ss-pain">end-to-end</span></div>
             <div class="ss-tool"><span class="ss-name">One audit trail</span><span class="ss-pain">append-only</span></div>
             <div class="ss-tool"><span class="ss-name">One RBAC + 11 roles</span><span class="ss-pain">MFA required</span></div>
@@ -253,7 +253,7 @@
 <!-- WRITTEN THESIS -->
 <section class="container section-tight" style="padding-bottom: clamp(56px, 7vw, 96px);">
   <div class="section-num-bar">
-    <span class="num"><strong>§02</strong> / 03</span>
+    <span class="num"><strong>§02</strong> / 04</span>
     <span class="rule"></span>
     <span class="meta">topic: written_thesis</span>
     <span class="meta">why we built it</span>
@@ -265,9 +265,55 @@
     </div>
     <div class="prose">
       <p>The cost of the legacy stack is not just budget. It's lock time, audit risk, and the inability to know — at any moment — how clean your data really is. By the time a sponsor realises a reconciliation issue went unresolved for three weeks, the answer is already a query backlog, a SDTM blocker, and a slipped submission.</p>
-      <p>ClinMaker exists to collapse that work into a coherent platform: one canonical data model, one audit trail, one role model, twelve cooperating agents. Every action is recorded. Every artefact is traceable. Every standard is enforced where data is collected — not patched in at submission.</p>
+      <p>ClinMaker exists to collapse that work into a coherent platform: one canonical data model, one audit trail, one role model, AI-assisted with human review gates at every decision. Every action is recorded. Every artefact is traceable. Every standard is enforced where data is collected — not patched in at submission.</p>
+      <p>We're building it <strong>module by module, in the open</strong>. Today: Protocol Authoring + Study Build are live. Ten more workflow modules are on the build path. The vision is end-to-end automation; we ship modules one at a time, each with the same audit posture and human-in-the-loop discipline.</p>
       <p>We're an <strong>independent software company</strong>. Not part of a holding group, not VC-backed, not optimising for an exit. We build the platform, we use it ourselves, and we ship it under direct change control.</p>
     </div>
+  </div>
+</section>
+
+<!-- WHERE WE ARE TODAY -->
+<section class="container section-tight" style="background: var(--surface-hover); padding-top: clamp(56px, 7vw, 96px); padding-bottom: clamp(56px, 7vw, 96px); max-width: 100%;">
+  <div class="container">
+    <div class="section-num-bar">
+      <span class="num"><strong>§03</strong> / 04</span>
+      <span class="rule"></span>
+      <span class="meta">topic: current_state</span>
+      <span class="meta">2 live · 10 roadmap</span>
+      <span class="meta">early access</span>
+    </div>
+    <div class="module-head">
+      <div>
+        <h2 class="display-2">Where we are today.<br><span class="shift">Two modules. Real customers.</span></h2>
+        <p class="lede">We don't claim a finished platform. We claim two live modules, a clear roadmap for the rest, and the same audit + GxP posture across everything we ship — current and future.</p>
+      </div>
+      <a href="platform.html" class="module-link">see modules →</a>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 32px; border-top: 1px solid var(--surface-rule); border-left: 1px solid var(--surface-rule); background: var(--surface-card);">
+      <div style="padding: 28px 32px; border-right: 1px solid var(--surface-rule); border-bottom: 1px solid var(--surface-rule); display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; gap: 12px; align-items: baseline;">
+          <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600; color: var(--primary-700);">§01</span>
+          <span style="font-family: var(--font-mono); font-size: 0.625rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; background: var(--status-green); color: white;">live</span>
+        </div>
+        <div style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 900; letter-spacing: -0.03em; color: var(--ink);">Protocol authoring</div>
+        <p style="font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.55;">USDM-native, M11-aligned, DDF-conformant. AI co-pilot drafts every section; humans approve. CORE rules engine blocks ERROR-severity exports.</p>
+        <div style="font-family: var(--font-mono); font-size: 0.6875rem; color: var(--text-muted); margin-top: 4px;">standards · DDF · USDM 4.0 · ICH M11 · NCI CT</div>
+      </div>
+      <div style="padding: 28px 32px; border-right: 1px solid var(--surface-rule); border-bottom: 1px solid var(--surface-rule); display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; gap: 12px; align-items: baseline;">
+          <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600; color: var(--primary-700);">§02</span>
+          <span style="font-family: var(--font-mono); font-size: 0.625rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; background: var(--status-green); color: white;">live</span>
+        </div>
+        <div style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 900; letter-spacing: -0.03em; color: var(--ink);">Study build</div>
+        <p style="font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.55;">USDM definition (or PDF, or USDM JSON) → CDASH casebook. Forms, fields, codelists, edit checks. Deploy to Rave or Veeva.</p>
+        <div style="font-family: var(--font-mono); font-size: 0.6875rem; color: var(--text-muted); margin-top: 4px;">intake · USDM · PDF · USDM JSON · output · CDASH 2.2</div>
+      </div>
+    </div>
+
+    <p class="prose" style="margin-top: 32px; max-width: 720px;">
+      The other ten workflow modules — ingestion, validation, queries, coding, reconciliation, SDTM/ADaM, analytics, patient profile, audit trail, user admin &amp; help — are <strong>under development</strong>. We don't commit dates publicly. We commit milestones. Early-access pilots may include scoped previews of in-development modules.
+    </p>
   </div>
 </section>
 
@@ -275,7 +321,7 @@
 <section class="module" id="principles">
   <div class="container">
     <div class="section-num-bar">
-      <span class="num"><strong>§03</strong> / 03</span>
+      <span class="num"><strong>§04</strong> / 04</span>
       <span class="rule"></span>
       <span class="meta">topic: principles</span>
       <span class="meta">6 hard constraints</span>

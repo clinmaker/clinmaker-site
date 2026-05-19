@@ -59,9 +59,9 @@ const wizardState = {
   step: 1,
   answers: { stage: null, scope: null, integrations: null },
   fits: {
-    pilot:      { name: 'Pilot',      detail: "A single study, end-to-end. We onboard one trial onto ClinMaker, with up to three vendor integrations and the full agent set. Three-month minimum, validation pack included. Best for sponsors who want a live evaluation before committing program-wide." },
-    sponsor:    { name: 'Sponsor',    detail: "Multiple studies, multiple integrations. Sponsor library extensions for your edit-check conventions and SDTM extension domains. SSO, custom MFA policy, priority support with a 4-hour SLA. Annual term with multi-year pricing." },
-    enterprise: { name: 'Enterprise', detail: "Portfolio scale. Dedicated AWS tenancy, optional EU/APAC regional hosting, bring-your-own KMS keys, dedicated solutions architect, 24×7 support with a 1-hour SLA, custom validation scope. Negotiated terms." }
+    pilot:      { name: 'Early access',  detail: "A scoped pilot on the two live modules — Protocol Authoring and Study Build. Run a real protocol through USDM-native authoring, then derive a CDASH study build from the same source. Validation pack included; pilot pricing scaled to study count. Best for sponsors who want a live evaluation on a current trial." },
+    sponsor:    { name: 'Program partner', detail: "Multi-study engagement that grows with the platform. Today: Protocol Authoring + Study Build across your active program. As roadmap modules ship — ingestion, validation, coding, reconciliation, SDTM — they join under the same contract. Sponsor library extensions, SSO, priority support. Annual term with multi-year pricing." },
+    enterprise: { name: 'Portfolio',      detail: "Portfolio-grade engagement for sponsors at 10+ concurrent studies or with submission-active programs. Dedicated AWS tenancy, optional EU/APAC regional hosting, bring-your-own KMS keys, dedicated solutions architect, 24×7 support with a 1-hour SLA, custom validation scope. Negotiated terms. Includes early-access seats on roadmap modules as they ship." }
   }
 };
 function wizardSelect(step, value, btnEl) {

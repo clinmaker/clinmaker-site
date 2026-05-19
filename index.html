@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ClinMaker — Standards at the core. Submission at the finish.</title>
-  <meta name="description" content="The agentic, GxP-grade clinical data management platform. Twelve cooperating agents, one canonical model, one audit trail, from protocol to submission.">
+  <title>ClinMaker — End-to-end clinical data workflow automation</title>
+  <meta name="description" content="GxP-grade platform for the clinical data lifecycle. AI-assisted, human-in-the-loop. Live today: USDM-native protocol authoring and protocol-to-EDC study build, anchored in DDF, USDM 4.0, and ICH M11.">
   <meta name="theme-color" content="#d87654">
-  <meta property="og:title" content="ClinMaker — Standards at the core. Submission at the finish.">
+  <meta property="og:title" content="ClinMaker — End-to-end clinical data workflow automation">
+  <meta property="og:description" content="AI-assisted, human-in-the-loop. Live: protocol authoring + study build. Standards-driven.">
   <meta property="og:image" content="https://clinmaker.com/assets/logo-lockup-tagline.png">
   <meta property="og:url" content="https://clinmaker.com">
   <meta property="og:type" content="website">
@@ -17,6 +18,164 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    /* ─── "Available now" two-up cards ─────────────────────────────── */
+    .avail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-top: 1px solid var(--surface-rule);
+      border-left: 1px solid var(--surface-rule);
+    }
+    .avail-card {
+      padding: clamp(28px, 3.5vw, 44px);
+      border-right: 1px solid var(--surface-rule);
+      border-bottom: 1px solid var(--surface-rule);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      background: var(--surface-card);
+      transition: background 0.15s;
+    }
+    .avail-card:hover { background: var(--primary-50); }
+    .avail-card .ac-num {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--primary-700);
+      display: flex;
+      gap: 12px;
+      align-items: baseline;
+    }
+    .avail-card .ac-num .ac-status {
+      padding: 2px 10px;
+      background: var(--status-green);
+      color: white;
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .avail-card .ac-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.875rem, 3vw, 2.5rem);
+      font-weight: 900;
+      letter-spacing: -0.035em;
+      line-height: 1.0;
+      color: var(--ink);
+    }
+    .avail-card .ac-title .shift { color: var(--primary-600); }
+    .avail-card .ac-desc {
+      font-size: 1rem;
+      line-height: 1.55;
+      color: var(--text-secondary);
+    }
+    .avail-card .ac-standards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .avail-card .ac-standards .ac-std {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--primary-700);
+      padding: 3px 8px;
+      background: var(--primary-50);
+      border: 1px solid var(--primary-200);
+    }
+    .avail-card .ac-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .avail-card .ac-bullets li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 0.9375rem;
+      line-height: 1.5;
+      color: var(--text-secondary);
+    }
+    .avail-card .ac-bullets li::before {
+      content: '›';
+      color: var(--primary-600);
+      font-family: var(--font-mono);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: -2px;
+    }
+    .avail-card .ac-cta {
+      margin-top: auto;
+      padding-top: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--primary-700);
+    }
+    .avail-card:hover .ac-cta { color: var(--primary-600); }
+
+    /* ─── "On the roadmap" slim cards ─────────────────────────────── */
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--surface-rule-soft);
+      border-left: 1px solid var(--surface-rule-soft);
+    }
+    .roadmap-card {
+      padding: 22px 24px;
+      border-right: 1px solid var(--surface-rule-soft);
+      border-bottom: 1px solid var(--surface-rule-soft);
+      display: grid;
+      grid-template-columns: 56px 1fr auto;
+      gap: 16px;
+      align-items: baseline;
+    }
+    .roadmap-card .rc-num {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .roadmap-card .rc-body {}
+    .roadmap-card .rc-title {
+      font-family: var(--font-display);
+      font-size: 1.0625rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .roadmap-card .rc-desc {
+      font-size: 0.875rem;
+      line-height: 1.5;
+      color: var(--text-muted);
+    }
+    .roadmap-card .rc-tag {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 3px 8px;
+      background: var(--surface-hover);
+      border: 1px solid var(--surface-rule-soft);
+      align-self: start;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 900px) {
+      .avail-grid { grid-template-columns: 1fr; }
+      .roadmap-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
@@ -51,31 +210,32 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-statement">
-    <span class="eyebrow brand">v0.5.43 · <span style="color: var(--text-muted);">cm.platform/release</span></span>
+    <span class="eyebrow brand">cm.platform · early access · v0.5.43</span>
     <h1 class="display">
-      Standards at the core.<br>
-      <span class="shift">Submission at the finish.</span>
+      End-to-end clinical data<br>
+      workflow automation.<br>
+      <span class="shift">AI-assisted. Human-in-the-loop.</span>
     </h1>
     <p class="lede">
-      The agentic, GxP-grade clinical data management platform. Twelve cooperating agents working from one canonical model, one audit trail, one role system. From protocol authoring to regulatory submission, end-to-end.
+      ClinMaker is the GxP-grade platform for the full clinical data lifecycle. Live today: USDM-native protocol authoring and protocol-to-EDC study build, anchored in DDF, USDM 4.0, and ICH M11. Other workflow modules are in active development.
     </p>
     <div class="hero-buttons">
       <a href="#" class="btn btn-primary" onclick="openDemoModal(); return false;">Talk to us <span class="arr">→</span></a>
       <a href="platform.html" class="btn btn-ghost">See the platform <span class="arr">→</span></a>
-      <span class="meta"><span class="dot"></span> 12 / 12 agents healthy <span style="color: var(--text-tertiary);">·</span> 21 CFR 11 · CDISC-native</span>
+      <span class="meta"><span class="dot"></span> 2 modules live · early access · 21 CFR Part 11 · CDISC-native</span>
     </div>
   </div>
 
-  <!-- HERO DATA-VIZ: live-looking dashboard frame -->
+  <!-- HERO DATA-VIZ: Protocol Authoring + Study Build dashboard -->
   <div class="viz-frame">
     <span class="viz-coord tl">00,00</span>
     <span class="viz-coord tr">cm.dash/live</span>
     <span class="viz-coord bl">v0.5.43</span>
-    <span class="viz-coord br">2026-05-18 14:08:22 UTC</span>
+    <span class="viz-coord br">2026-05-19 14:08:22 UTC</span>
     <div class="viz-frame-head">
       <span class="vh-id">cm-dash // overview</span>
       <span class="vh-meta">
-        <span>study: ACQ-2026-001</span>
+        <span>scope: protocols + builds</span>
         <span>env: prod</span>
         <span class="vh-live">live</span>
       </span>
@@ -86,15 +246,15 @@
         <div class="rail-label"><span>Module</span><span>·</span></div>
         <ul>
           <li class="active">Overview <span class="count">/</span></li>
-          <li>Studies <span class="count">12</span></li>
-          <li>Ingestion <span class="count">247</span></li>
-          <li>Validation <span class="count">8</span></li>
-          <li>Queries <span class="count">247</span></li>
-          <li>Coding <span class="count">94.2%</span></li>
-          <li>Recon <span class="count">3</span></li>
-          <li>SDTM <span class="count">11</span></li>
-          <li>Analytics <span class="count">·</span></li>
-          <li>Audit <span class="count">∞</span></li>
+          <li>Protocols <span class="count">12</span></li>
+          <li>Study builds <span class="count">4</span></li>
+          <li>Standards <span class="count">·</span></li>
+          <li style="opacity: 0.4;">Ingestion <span class="count">·</span></li>
+          <li style="opacity: 0.4;">Validation <span class="count">·</span></li>
+          <li style="opacity: 0.4;">Queries <span class="count">·</span></li>
+          <li style="opacity: 0.4;">Coding <span class="count">·</span></li>
+          <li style="opacity: 0.4;">Reconciliation <span class="count">·</span></li>
+          <li style="opacity: 0.4;">SDTM <span class="count">·</span></li>
         </ul>
       </aside>
 
@@ -103,80 +263,82 @@
         <!-- KPI strip -->
         <div class="dash-kpi-row">
           <div class="dash-kpi">
-            <div class="kpi-label"><span>Active studies</span><span class="delta">+2 wk</span></div>
+            <div class="kpi-label"><span>Protocols in flight</span><span class="delta">+3 wk</span></div>
             <div class="kpi-val"><span class="brand">12</span></div>
           </div>
           <div class="dash-kpi">
-            <div class="kpi-label"><span>Open queries</span><span class="delta neg">-18 d</span></div>
-            <div class="kpi-val">247</div>
+            <div class="kpi-label"><span>Sections drafted</span><span class="delta">+87 d</span></div>
+            <div class="kpi-val">487</div>
           </div>
           <div class="dash-kpi">
-            <div class="kpi-label"><span>Coding</span><span class="delta">+1.4%</span></div>
-            <div class="kpi-val">94.2<span class="small">%</span></div>
+            <div class="kpi-label"><span>USDM 4.0 score</span><span class="delta">↗</span></div>
+            <div class="kpi-val">~100<span class="small">/100</span></div>
           </div>
           <div class="dash-kpi">
-            <div class="kpi-label"><span>AI actions / d</span><span class="delta">+312</span></div>
-            <div class="kpi-val">1,847</div>
+            <div class="kpi-label"><span>Study builds</span><span class="delta">+1 wk</span></div>
+            <div class="kpi-val">4</div>
           </div>
         </div>
 
         <!-- Two-panel row -->
         <div class="dash-grid">
           <div class="dash-panel">
-            <div class="dash-panel-head"><span>Study list / live</span><span class="ph-pulse">●</span></div>
+            <div class="dash-panel-head"><span>Protocols / authoring</span><span class="ph-pulse">●</span></div>
             <div class="dash-row">
-              <span class="r-id">ONCO-2024-0145</span>
-              <div class="r-bar"><div class="r-bar-fill" style="width: 98.4%"></div></div>
-              <span class="r-pct">98.4%</span>
-              <span class="r-status">live</span>
+              <span class="r-id">ACQ-2026-001</span>
+              <div class="r-bar"><div class="r-bar-fill" style="width: 92%"></div></div>
+              <span class="r-pct">92%</span>
+              <span class="r-status">approved</span>
             </div>
             <div class="dash-row">
-              <span class="r-id">CARDIO-2025-0032</span>
-              <div class="r-bar"><div class="r-bar-fill" style="width: 87.1%"></div></div>
-              <span class="r-pct">87.1%</span>
-              <span class="r-status uat">uat</span>
+              <span class="r-id">ONCO-2026-014</span>
+              <div class="r-bar"><div class="r-bar-fill" style="width: 71%"></div></div>
+              <span class="r-pct">71%</span>
+              <span class="r-status uat">review</span>
             </div>
             <div class="dash-row">
-              <span class="r-id">NEURO-2024-0089</span>
-              <div class="r-bar"><div class="r-bar-fill" style="width: 96.7%"></div></div>
-              <span class="r-pct">96.7%</span>
-              <span class="r-status">live</span>
+              <span class="r-id">CARDIO-2026-007</span>
+              <div class="r-bar"><div class="r-bar-fill" style="width: 38%"></div></div>
+              <span class="r-pct">38%</span>
+              <span class="r-status build">drafting</span>
             </div>
             <div class="dash-row">
-              <span class="r-id">DERM-2025-0011</span>
-              <div class="r-bar"><div class="r-bar-fill" style="width: 22%"></div></div>
-              <span class="r-pct">22%</span>
-              <span class="r-status build">build</span>
+              <span class="r-id">RESP-2026-022</span>
+              <div class="r-bar"><div class="r-bar-fill" style="width: 96%"></div></div>
+              <span class="r-pct">96%</span>
+              <span class="r-status">approved</span>
             </div>
             <div class="dash-row">
-              <span class="r-id">RESP-2025-0044</span>
-              <div class="r-bar"><div class="r-bar-fill" style="width: 71.8%"></div></div>
-              <span class="r-pct">71.8%</span>
-              <span class="r-status uat">uat</span>
+              <span class="r-id">DERM-2026-005</span>
+              <div class="r-bar"><div class="r-bar-fill" style="width: 14%"></div></div>
+              <span class="r-pct">14%</span>
+              <span class="r-status build">drafting</span>
             </div>
           </div>
 
           <div class="dash-panel">
-            <div class="dash-panel-head"><span>Query trend / 30d</span><span class="ph-pulse">↘ -18</span></div>
-            <div class="dash-chart">
-              <svg viewBox="0 0 320 180" preserveAspectRatio="none">
-                <!-- gridlines -->
-                <line x1="0" y1="36" x2="320" y2="36" class="gridline"/>
-                <line x1="0" y1="72" x2="320" y2="72" class="gridline"/>
-                <line x1="0" y1="108" x2="320" y2="108" class="gridline"/>
-                <line x1="0" y1="144" x2="320" y2="144" class="gridline"/>
-                <!-- area -->
-                <path d="M0,140 L24,128 L48,110 L72,118 L96,98 L120,84 L144,90 L168,72 L192,58 L216,68 L240,48 L264,42 L288,52 L312,38 L320,38 L320,180 L0,180 Z" fill="#d87654" opacity="0.10"/>
-                <!-- line -->
-                <path d="M0,140 L24,128 L48,110 L72,118 L96,98 L120,84 L144,90 L168,72 L192,58 L216,68 L240,48 L264,42 L288,52 L312,38" fill="none" stroke="#1c1a16" stroke-width="1.6"/>
-                <!-- dots -->
-                <circle cx="312" cy="38" r="3" fill="#d87654"/>
-                <circle cx="192" cy="58" r="2.5" fill="#1c1a16"/>
-                <circle cx="120" cy="84" r="2.5" fill="#1c1a16"/>
-              </svg>
-            </div>
-            <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.625rem; color: var(--text-muted); padding-top: 6px; border-top: 1px dashed var(--surface-rule-soft);">
-              <span>d-30</span><span>d-22</span><span>d-15</span><span>d-7</span><span style="color: var(--primary-700);">today</span>
+            <div class="dash-panel-head"><span>Standards / pinned</span><span class="ph-pulse">·</span></div>
+            <div style="display: flex; flex-direction: column; gap: 12px; padding-top: 4px;">
+              <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 6px 0; border-bottom: 1px dashed var(--surface-rule-soft);">
+                <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink); font-weight: 500;">USDM</span>
+                <span style="font-family: var(--font-mono); font-size: 0.6875rem; color: var(--primary-700); font-weight: 600;">4.0</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 6px 0; border-bottom: 1px dashed var(--surface-rule-soft);">
+                <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink); font-weight: 500;">ICH M11</span>
+                <span style="font-family: var(--font-mono); font-size: 0.6875rem; color: var(--primary-700); font-weight: 600;">Step 4</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 6px 0; border-bottom: 1px dashed var(--surface-rule-soft);">
+                <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink); font-weight: 500;">DDF</span>
+                <span style="font-family: var(--font-mono); font-size: 0.6875rem; color: var(--primary-700); font-weight: 600;">aligned</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 6px 0; border-bottom: 1px dashed var(--surface-rule-soft);">
+                <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink); font-weight: 500;">CDASH</span>
+                <span style="font-family: var(--font-mono); font-size: 0.6875rem; color: var(--primary-700); font-weight: 600;">2.2</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 6px 0;">
+                <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink); font-weight: 500;">NCI CT</span>
+                <span style="font-family: var(--font-mono); font-size: 0.6875rem; color: var(--primary-700); font-weight: 600;">2024-09-27</span>
+              </div>
             </div>
           </div>
         </div>
@@ -184,12 +346,12 @@
     </div>
   </div>
 
-  <!-- METRIC STRIP -->
+  <!-- METRIC STRIP — honest claims only -->
   <div class="metric-strip">
     <div class="metric-cell">
-      <span class="m-tick">+/-</span>
-      <span class="m-num brand">100<span class="small">%</span></span>
-      <span class="m-label">Audit-trail coverage</span>
+      <span class="m-tick brand">+</span>
+      <span class="m-num brand">2</span>
+      <span class="m-label">Modules live</span>
     </div>
     <div class="metric-cell">
       <span class="m-tick">↗</span>
@@ -198,92 +360,207 @@
     </div>
     <div class="metric-cell">
       <span class="m-tick">·</span>
-      <span class="m-num">12</span>
-      <span class="m-label">Cooperating agents</span>
+      <span class="m-num">84</span>
+      <span class="m-label">ICH M11 sections</span>
     </div>
     <div class="metric-cell">
       <span class="m-tick">·</span>
-      <span class="m-num">15</span>
-      <span class="m-label">Vendor adapters</span>
+      <span class="m-num">DDF</span>
+      <span class="m-label">CDISC-aligned</span>
     </div>
     <div class="metric-cell">
-      <span class="m-tick">↘</span>
-      <span class="m-num brand">0</span>
-      <span class="m-label">Unaudited mutations</span>
+      <span class="m-tick">·</span>
+      <span class="m-num">21<span class="small">CFR</span></span>
+      <span class="m-label">Part 11 posture</span>
     </div>
   </div>
 </section>
 
-<!-- MODULE 11 · AUDIT TRAIL (preview-grade — the data-viz pattern) -->
+<!-- AVAILABLE NOW -->
 <section class="module">
   <div class="container">
     <div class="section-num-bar">
-      <span class="num"><strong>§11</strong> / 12</span>
+      <span class="num"><strong>§A</strong> · live</span>
       <span class="rule"></span>
-      <span class="meta">module: audit_trail</span>
-      <span class="meta">retention: 7y</span>
-      <span class="meta">model: append-only</span>
+      <span class="meta">currently shipped</span>
+      <span class="meta">2 modules</span>
+      <span class="meta">GxP-graded · audited</span>
     </div>
-
     <div class="module-head">
       <div>
-        <h2 class="display-2">Every action recorded.<br><span class="shift">No exceptions.</span></h2>
-        <p class="lede">Append-only audit trail across every module. Tamper-evident storage. Searchable by study, subject, user, record type, event type, date range. Inspection-ready as PDF or machine-readable JSON. AI actors are distinguishable from human actors in every row.</p>
+        <h2 class="display-2">Available now.<br><span class="shift">Two modules live.</span></h2>
+        <p class="lede">Both are standards-anchored, audit-aware, and ready for early-access pilots. AI assists where structured drafting is high-leverage; humans approve every change.</p>
       </div>
-      <a href="platform.html#audit" class="module-link">read in depth →</a>
+      <a href="platform.html" class="module-link">deeper tour →</a>
     </div>
 
-    <!-- AUDIT TIMELINE VIZ -->
-    <div class="viz-frame">
-      <span class="viz-coord tl">audit/subject S001-024</span>
-      <span class="viz-coord tr">window: 24h</span>
-      <span class="viz-coord bl">42 entries</span>
-      <span class="viz-coord br">→ export</span>
-      <div class="viz-frame-head">
-        <span class="vh-id">cm-audit // timeline</span>
-        <span class="vh-meta">
-          <span>study: ACQ-2026-001</span>
-          <span>actor: any</span>
-          <span class="vh-live">tail</span>
-        </span>
+    <div class="avail-grid">
+      <a href="platform.html#m01" class="avail-card" style="text-decoration: none;">
+        <div class="ac-num">
+          <span>§01</span>
+          <span class="ac-status">live</span>
+          <span style="color: var(--text-muted); font-weight: 500;">protocol_authoring</span>
+        </div>
+        <div class="ac-title">Protocol authoring.<br><span class="shift">USDM-native.</span></div>
+        <p class="ac-desc">Author M11-aligned protocols section by section with a Claude-powered co-pilot. Every Code field binds to CDISC CT. CORE rules engine runs as the pre-export compliance gate.</p>
+        <div class="ac-standards">
+          <span class="ac-std">DDF</span>
+          <span class="ac-std">USDM 4.0</span>
+          <span class="ac-std">ICH M11</span>
+          <span class="ac-std">NCI CT</span>
+        </div>
+        <ul class="ac-bullets">
+          <li>84-section M11 generator, every section AI-drafted, human-approved</li>
+          <li>USDM 4.0 export + import; round-trip score ~100/100 on CORE rules</li>
+          <li>Bidirectional consistency — amendments auto-flag stale sections</li>
+          <li>Every AI decision audited with model version + actor type</li>
+        </ul>
+        <div class="ac-cta">read §01 in depth →</div>
+      </a>
+
+      <a href="platform.html#m02" class="avail-card" style="text-decoration: none;">
+        <div class="ac-num">
+          <span>§02</span>
+          <span class="ac-status">live</span>
+          <span style="color: var(--text-muted); font-weight: 500;">study_build</span>
+        </div>
+        <div class="ac-title">Study build.<br><span class="shift">Protocol to EDC.</span></div>
+        <p class="ac-desc">Read a USDM-based study definition (or a protocol PDF, or a USDM-JSON export) and generate a CDASH-aligned casebook. Forms, fields, codelists, edit checks. Deploy to Medidata Rave or Veeva Vault.</p>
+        <div class="ac-standards">
+          <span class="ac-std">USDM</span>
+          <span class="ac-std">PDF</span>
+          <span class="ac-std">USDM JSON</span>
+          <span class="ac-std">CDASH 2.2</span>
+        </div>
+        <ul class="ac-bullets">
+          <li>Three intake formats: USDM study definition, protocol PDF, USDM JSON</li>
+          <li>CDASH casebook output ready for Rave Architect or Veeva Casebook Objects</li>
+          <li>Visit schedule + form set derived from the protocol's SoA</li>
+          <li>Auto-generated SDS, eCRF spec, UAT scenarios</li>
+        </ul>
+        <div class="ac-cta">read §02 in depth →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="module section-alt" style="background: var(--surface-hover);">
+  <div class="container">
+    <div class="section-num-bar">
+      <span class="num"><strong>§B</strong> · roadmap</span>
+      <span class="rule"></span>
+      <span class="meta">under development</span>
+      <span class="meta">10 modules</span>
+      <span class="meta">target: end-to-end</span>
+    </div>
+    <div class="module-head">
+      <div>
+        <h2 class="display-2">On the roadmap.<br><span class="shift">Under development.</span></h2>
+        <p class="lede">The vision is end-to-end automation, module by module, with human review gates at every AI assist. Here's what's next on the build path. Pilots may include scoped previews.</p>
       </div>
-      <div class="viz-frame-body">
-        <div class="viz-timeline">
-          <div class="lane-labels">
-            <div class="lane-label human"><span class="lane-dot"></span>Human</div>
-            <div class="lane-label ai"><span class="lane-dot"></span>AI agent</div>
-            <div class="lane-label system"><span class="lane-dot"></span>System</div>
-            <div class="lane-label human"><span class="lane-dot"></span>Signature</div>
-          </div>
-          <div class="lanes">
-            <div class="lane">
-              <div class="event" style="left: 8%; width: 18%;"><span class="ev-tag">UPDATE</span><span class="ev-text">AE.AESEV · jdoe</span></div>
-              <div class="event" style="left: 38%; width: 22%;"><span class="ev-tag">CREATE</span><span class="ev-text">AE.S024-AE3 · site-12</span></div>
-              <div class="event" style="left: 72%; width: 17%;"><span class="ev-tag">APPROVE</span><span class="ev-text">Q-2026-4411 · amason</span></div>
-            </div>
-            <div class="lane">
-              <div class="event ev-ai" style="left: 12%; width: 24%;"><span class="ev-tag">AI</span><span class="ev-text">CM coding · aspirin → N02BA01</span></div>
-              <div class="event ev-ai" style="left: 50%; width: 20%;"><span class="ev-tag">AI</span><span class="ev-text">VS validation · 14 findings</span></div>
-              <div class="event ev-ai" style="left: 84%; width: 14%;"><span class="ev-tag">AI</span><span class="ev-text">Recon · 7 deltas</span></div>
-            </div>
-            <div class="lane">
-              <div class="event ev-brand" style="left: 6%; width: 14%;"><span class="ev-tag">EXPORT</span><span class="ev-text">SDTM · v1.2</span></div>
-              <div class="event ev-brand" style="left: 46%; width: 16%;"><span class="ev-tag">INGEST</span><span class="ev-text">Rave · 12,448 rows</span></div>
-              <div class="event ev-brand" style="left: 76%; width: 13%;"><span class="ev-tag">LOCK</span><span class="ev-text">study v8</span></div>
-            </div>
-            <div class="lane">
-              <div class="event" style="left: 22%; width: 15%;"><span class="ev-tag">SIGN</span><span class="ev-text">VS form · drsmith</span></div>
-              <div class="event" style="left: 58%; width: 15%;"><span class="ev-tag">SIGN</span><span class="ev-text">CM form · drsmith</span></div>
-            </div>
-          </div>
+      <a href="platform.html" class="module-link">vision → end-to-end</a>
+    </div>
+
+    <div class="roadmap-grid">
+      <div class="roadmap-card">
+        <span class="rc-num">§03</span>
+        <div class="rc-body">
+          <div class="rc-title">Data ingestion</div>
+          <div class="rc-desc">Unified vendor pipeline for EDC, central labs, imaging, ePRO, RTSM, devices.</div>
         </div>
-        <div class="viz-time-axis">
-          <div class="axis-empty"></div>
-          <div class="axis-ticks">
-            <span>09:00</span><span>10:30</span><span>12:00</span><span>13:30</span>
-            <span>15:00</span><span>16:30</span><span>18:00</span><span>now</span>
-          </div>
+        <span class="rc-tag">under dev</span>
+      </div>
+      <div class="roadmap-card">
+        <span class="rc-num">§04</span>
+        <div class="rc-body">
+          <div class="rc-title">Validation</div>
+          <div class="rc-desc">Three-level rule engine (syntactic, logical, cross-source) with severity routing.</div>
         </div>
+        <span class="rc-tag">under dev</span>
+      </div>
+      <div class="roadmap-card">
+        <span class="rc-num">§05</span>
+        <div class="rc-body">
+          <div class="rc-title">Query management</div>
+          <div class="rc-desc">One lifecycle across validation findings, reconciliation, coding ambiguities.</div>
+        </div>
+        <span class="rc-tag">under dev</span>
+      </div>
+      <div class="roadmap-card">
+        <span class="rc-num">§06</span>
+        <div class="rc-body">
+          <div class="rc-title">Medical coding</div>
+          <div class="rc-desc">MedDRA + WHO Drug with AI-assist proposals and human review gate.</div>
+        </div>
+        <span class="rc-tag">under dev</span>
+      </div>
+      <div class="roadmap-card">
+        <span class="rc-num">§07</span>
+        <div class="rc-body">
+          <div class="rc-title">Reconciliation</div>
+          <div class="rc-desc">SAE + external sub-agents for safety-DB and vendor cross-source consistency.</div>
+        </div>
+        <span class="rc-tag">under dev</span>
+      </div>
+      <div class="roadmap-card">
+        <span class="rc-num">§08</span>
+        <div class="rc-body">
+          <div class="rc-title">SDTM / ADaM</div>
+          <div class="rc-desc">Mapping spec, conformance, Define.xml, ADaM scaffolds for submission.</div>
+        </div>
+        <span class="rc-tag">under dev</span>
+      </div>
+      <div class="roadmap-card">
+        <span class="rc-num">§09</span>
+        <div class="rc-body">
+          <div class="rc-title">Analytics</div>
+          <div class="rc-desc">Role-aware KPIs, risk flags, lock-readiness gauges, study insights.</div>
+        </div>
+        <span class="rc-tag">under dev</span>
+      </div>
+      <div class="roadmap-card">
+        <span class="rc-num">§10</span>
+        <div class="rc-body">
+          <div class="rc-title">Patient profile</div>
+          <div class="rc-desc">Longitudinal subject view (visits, AEs, labs, vitals, exposure, ePRO).</div>
+        </div>
+        <span class="rc-tag">under dev</span>
+      </div>
+      <div class="roadmap-card">
+        <span class="rc-num">§11</span>
+        <div class="rc-body">
+          <div class="rc-title">Audit trail</div>
+          <div class="rc-desc">Append-only, ALCOA+, 7-year retention. Infrastructure exists; workflow integration in progress.</div>
+        </div>
+        <span class="rc-tag">under dev</span>
+      </div>
+      <div class="roadmap-card">
+        <span class="rc-num">§12</span>
+        <div class="rc-body">
+          <div class="rc-title">User admin &amp; help center</div>
+          <div class="rc-desc">RBAC, MFA, separation of duties, in-app guidance with citation-verified AI Guide.</div>
+        </div>
+        <span class="rc-tag">under dev</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="section-ink">
+  <div class="container" style="padding-top: clamp(80px, 10vw, 140px); padding-bottom: clamp(80px, 10vw, 140px);">
+    <div style="max-width: 920px;">
+      <span class="eyebrow">cm.demo</span>
+      <h2 class="display" style="color: white; margin-top: 18px; margin-bottom: 28px;">
+        Bring us a protocol.<br><span class="shift">We'll show you the live modules.</span>
+      </h2>
+      <p class="lede" style="color: rgba(255,255,255,0.72); margin-bottom: 40px;">
+        Thirty-minute working session — not a deck. Live USDM authoring, a mid-study amendment flow, and a CDASH study build. Early-access pilots welcome.
+      </p>
+      <div style="display: flex; gap: 24px; align-items: center; flex-wrap: wrap;">
+        <a href="#" class="btn btn-white" onclick="openDemoModal(); return false;">Talk to us <span class="arr">→</span></a>
+        <a href="mailto:hello@clinmaker.com" style="color: rgba(255,255,255,0.7); font-size: 0.9375rem;">or hello@clinmaker.com</a>
       </div>
     </div>
   </div>
@@ -297,18 +574,12 @@
     <span style="font-family: var(--font-body); font-weight: 500; font-size: 0.8125rem; color: var(--text-secondary);">LLC</span>
   </div>
   <div style="display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center;">
-    <a href="platform.html">Platform</a>
-    <span class="col-divider">·</span>
-    <a href="standards.html">Standards</a>
-    <span class="col-divider">·</span>
-    <a href="security.html">Security</a>
-    <span class="col-divider">·</span>
-    <a href="pricing.html">Pricing</a>
-    <span class="col-divider">·</span>
-    <a href="about.html">About</a>
-    <span class="col-divider">·</span>
-    <a href="contact.html">Contact</a>
-    <span class="col-divider">·</span>
+    <a href="platform.html">Platform</a><span class="col-divider">·</span>
+    <a href="standards.html">Standards</a><span class="col-divider">·</span>
+    <a href="security.html">Security</a><span class="col-divider">·</span>
+    <a href="pricing.html">Pricing</a><span class="col-divider">·</span>
+    <a href="about.html">About</a><span class="col-divider">·</span>
+    <a href="contact.html">Contact</a><span class="col-divider">·</span>
     <a href="https://app.clinmaker.com" target="_blank" rel="noopener">Log in →</a>
   </div>
   <div class="col-meta">

@@ -106,6 +106,7 @@
       color: var(--status-green);
     }
     .std-row .sr-status.optional { background: var(--surface-hover); color: var(--text-muted); }
+    .std-row .sr-status.roadmap { background: var(--surface-hover); color: var(--text-muted); border: 1px solid var(--surface-rule-soft); }
     .std-row:hover { background: rgba(216,118,84,0.03); }
     .std-row:hover .sr-name { color: var(--primary-700); }
 
@@ -157,7 +158,7 @@
   <span class="eyebrow brand">cm.standards/inventory · 22 standards</span>
   <h1 class="display-2" style="margin-top: 18px;">CDISC-native.<br><span class="shift">Sponsor-extensible.</span></h1>
   <p class="lede" style="margin-top: 24px; max-width: 720px;">
-    Every output is built on industry standards from the start — not bolted on at submission time. Extend with your own libraries on top. Your standards inherit from theirs.
+    Every output is built on industry standards from the start — not bolted on at submission time. Some standards are <strong style="color: var(--status-green);">live today</strong> (used by Protocol Authoring + Study Build); others are scoped for <strong style="color: var(--ink);">roadmap modules</strong> as they ship. Your sponsor extensions layer on top of CDISC either way.
   </p>
 </section>
 
@@ -199,23 +200,23 @@
       <div class="std-row">
         <span class="sr-tag">SDTM</span>
         <span class="sr-name">SDTM<span class="sr-sub">Study Data Tabulation Model</span></span>
-        <span class="sr-desc">Submission tabulation. All standard domains (DM, AE, EX, LB, VS, CM, QS, TA/TV/TS, …) plus sponsor extensions.</span>
+        <span class="sr-desc">Submission tabulation. All standard domains (DM, AE, EX, LB, VS, CM, QS, TA/TV/TS, …) plus sponsor extensions. Scoped for §08 (roadmap).</span>
         <span class="sr-ver">SDTM-IG 3.4</span>
-        <span class="sr-status">live</span>
+        <span class="sr-status roadmap">roadmap</span>
       </div>
       <div class="std-row">
         <span class="sr-tag">ADaM</span>
         <span class="sr-name">ADaM<span class="sr-sub">Analysis Data Model</span></span>
-        <span class="sr-desc">Analysis-ready datasets. ADSL, ADAE, ADLB, ADTTE scaffolds; BDS structure for custom analyses.</span>
+        <span class="sr-desc">Analysis-ready datasets. ADSL, ADAE, ADLB, ADTTE scaffolds; BDS structure for custom analyses. Scoped for §08 (roadmap).</span>
         <span class="sr-ver">ADaM-IG 1.3</span>
-        <span class="sr-status">live</span>
+        <span class="sr-status roadmap">roadmap</span>
       </div>
       <div class="std-row">
         <span class="sr-tag">DEFINE</span>
         <span class="sr-name">Define.xml<span class="sr-sub">Submission metadata package</span></span>
-        <span class="sr-desc">Metadata package for SDTM + ADaM. Auto-generated from the mapping specification.</span>
+        <span class="sr-desc">Metadata package for SDTM + ADaM. Auto-generated from the mapping specification. Scoped for §08 (roadmap).</span>
         <span class="sr-ver">Define-XML 2.1</span>
-        <span class="sr-status">live</span>
+        <span class="sr-status roadmap">roadmap</span>
       </div>
       <div class="std-row">
         <span class="sr-tag">USDM</span>
@@ -266,16 +267,16 @@
       <div class="std-row">
         <span class="sr-tag">MEDDRA</span>
         <span class="sr-name">MedDRA<span class="sr-sub">Medical Dictionary for Regulatory Activities</span></span>
-        <span class="sr-desc">AE, medical history, optional procedures/tests. LLT → PT → HLT → HLGT → SOC hierarchy.</span>
+        <span class="sr-desc">AE, medical history, optional procedures/tests. LLT → PT → HLT → HLGT → SOC hierarchy. Scoped for §06 (roadmap).</span>
         <span class="sr-ver">MedDRA 27.0</span>
-        <span class="sr-status">live</span>
+        <span class="sr-status roadmap">roadmap</span>
       </div>
       <div class="std-row">
         <span class="sr-tag">WHODRUG</span>
         <span class="sr-name">WHO Drug Global<span class="sr-sub">Concomitant medications dictionary</span></span>
-        <span class="sr-desc">Trade-name + active-ingredient resolution with ATC-level coding.</span>
+        <span class="sr-desc">Trade-name + active-ingredient resolution with ATC-level coding. Scoped for §06 (roadmap).</span>
         <span class="sr-ver">WHODrug B3</span>
-        <span class="sr-status">live</span>
+        <span class="sr-status roadmap">roadmap</span>
       </div>
       <div class="std-row">
         <span class="sr-tag">SNOMED</span>
@@ -361,9 +362,9 @@
       <div class="std-row">
         <span class="sr-tag">PRS / CTR</span>
         <span class="sr-name">ClinicalTrials.gov + EU CTR<span class="sr-sub">Public registry submissions</span></span>
-        <span class="sr-desc">CT.gov XML and CTIS structured submissions. Same pre-export compliance gate applies.</span>
+        <span class="sr-desc">CT.gov XML and CTIS structured submissions. Same pre-export compliance gate pattern. Scoped for submission flow (roadmap).</span>
         <span class="sr-ver">PRS · EU CTR 2025</span>
-        <span class="sr-status">live</span>
+        <span class="sr-status roadmap">roadmap</span>
       </div>
     </div>
   </div>

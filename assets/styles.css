@@ -61,10 +61,10 @@
   --font-mono:    'JetBrains Mono', ui-monospace, monospace;
 
   /* Display sizes — bold sans, tight tracking */
-  --d1: clamp(3.5rem, 7vw, 6.5rem);    /* hero */
-  --d2: clamp(2.5rem, 4.5vw, 4rem);    /* section heads */
-  --d3: clamp(1.75rem, 2.6vw, 2.5rem); /* sub heads */
-  --d4: clamp(1.25rem, 1.8vw, 1.75rem);/* card heads */
+  --d1: clamp(2.75rem, 5vw, 4.75rem);   /* hero */
+  --d2: clamp(2rem, 3.4vw, 3rem);       /* section heads */
+  --d3: clamp(1.5rem, 2.2vw, 2rem);     /* sub heads */
+  --d4: clamp(1.125rem, 1.6vw, 1.5rem); /* card heads */
 
   /* Spacing */
   --gutter:       clamp(20px, 3.5vw, 40px);

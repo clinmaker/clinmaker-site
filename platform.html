@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Platform — ClinMaker</title>
-  <meta name="description" content="Live today: Protocol Authoring (DDF / USDM 4.0 / ICH M11) and Study Build (USDM, PDF, USDM JSON intake). On the roadmap: ingestion, validation, queries, coding, reconciliation, SDTM/ADaM, analytics, audit, admin.">
+  <meta name="description" content="In prototype today: Protocol Authoring (DDF / USDM 4.0 / ICH M11) and Study Build (USDM, PDF, USDM JSON intake). On the roadmap: ingestion, validation, queries, coding, reconciliation, SDTM/ADaM, analytics, audit, admin.">
   <meta name="theme-color" content="#d87654">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27 viewBox=%270 0 64 64%27 fill=%27none%27%3E%3Cpath d=%27M50 14 a22 22 0 1 0 0 36%27 stroke=%27%23d87654%27 stroke-width=%276%27 stroke-linecap=%27round%27 fill=%27none%27%2F%3E%3Cpath d=%27M20 26 Q 26 32 32 26 T 44 26%27 stroke=%27%23d87654%27 stroke-width=%272.4%27 stroke-linecap=%27round%27 fill=%27none%27%2F%3E%3Cpath d=%27M20 38 Q 26 32 32 38 T 44 38%27 stroke=%27%230e7490%27 stroke-width=%272.4%27 stroke-linecap=%27round%27 fill=%27none%27%2F%3E%3Cline x1=%2726%27 y1=%2729%27 x2=%2726%27 y2=%2735%27 stroke=%27%237850dc%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%2F%3E%3Cline x1=%2732%27 y1=%2727%27 x2=%2732%27 y2=%2737%27 stroke=%27%237850dc%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%2F%3E%3Cline x1=%2738%27 y1=%2729%27 x2=%2738%27 y2=%2735%27 stroke=%27%237850dc%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%2F%3E%3C%2Fsvg%3E">
   <link rel="alternate icon" type="image/png" href="assets/favicon-256.png?v=4">
@@ -71,6 +71,7 @@
       padding: 2px 8px;
     }
     .ptoc a .pt-tag.live { background: var(--status-green-bg); color: var(--status-green); }
+    .ptoc a .pt-tag.prototype { background: var(--status-amber-bg); color: var(--status-amber); border: 1px solid var(--status-amber); }
     .ptoc a .pt-tag.road { background: var(--surface-hover); color: var(--text-muted); border: 1px solid var(--surface-rule-soft); }
 
     /* ─── PROTOCOL — compliance gate readout ───────────────────────── */
@@ -334,7 +335,7 @@
   <span class="eyebrow brand">cm.platform/index · 2 live · 10 roadmap</span>
   <h1 class="display-2" style="margin-top: 18px;">End-to-end workflow.<br><span class="shift">Module by module.</span></h1>
   <p class="lede" style="margin-top: 24px; max-width: 720px;">
-    The vision is one canonical model, one audit trail, one role system, every stage AI-assisted with human review gates. Two modules are live today. The rest are on the build path.
+    The vision is one canonical model, one audit trail, one role system, every stage AI-assisted with human review gates. Two modules are in prototype today. The rest are on the build path.
   </p>
 
   <!-- TOC -->
@@ -343,11 +344,11 @@
       <span class="label-live">● Available now</span>
       <span class="count">2</span>
       <span class="rule"></span>
-      <span>currently shipped · early access</span>
+      <span>in prototype · early access</span>
     </div>
     <div class="ptoc">
-      <a href="#m01"><span class="pt-num">§01</span><span class="pt-title">Protocol authoring</span><span class="pt-tag live">live</span></a>
-      <a href="#m02"><span class="pt-num">§02</span><span class="pt-title">Study build</span><span class="pt-tag live">live</span></a>
+      <a href="#m01"><span class="pt-num">§01</span><span class="pt-title">Protocol authoring</span><span class="pt-tag prototype">prototype</span></a>
+      <a href="#m02"><span class="pt-num">§02</span><span class="pt-title">Study build</span><span class="pt-tag prototype">prototype</span></a>
     </div>
   </nav>
 
@@ -373,15 +374,15 @@
   </nav>
 </section>
 
-<!-- ═════ §01 PROTOCOL AUTHORING (LIVE) ═════════════════════════ -->
+<!-- ═════ §01 PROTOCOL AUTHORING (PROTOTYPE) ═════════════════════ -->
 <section class="module" id="m01">
   <div class="container">
     <div class="section-num-bar">
-      <span class="num"><strong>§01</strong> · live</span>
+      <span class="num"><strong>§01</strong> · prototype</span>
       <span class="rule"></span>
       <span class="meta">module: protocol_authoring</span>
       <span class="meta">spec: DDF · USDM 4.0 · ICH M11</span>
-      <span class="meta">status: shipped</span>
+      <span class="meta">status: prototype</span>
     </div>
     <div class="module-head">
       <div>
@@ -494,11 +495,11 @@
   </div>
 </section>
 
-<!-- ═════ §02 STUDY BUILD (LIVE) ════════════════════════════════ -->
+<!-- ═════ §02 STUDY BUILD (PROTOTYPE) ═══════════════════════════ -->
 <section class="module" id="m02">
   <div class="container">
     <div class="section-num-bar">
-      <span class="num"><strong>§02</strong> · live</span>
+      <span class="num"><strong>§02</strong> · prototype</span>
       <span class="rule"></span>
       <span class="meta">module: study_build</span>
       <span class="meta">intake: USDM · PDF · USDM JSON</span>
@@ -706,7 +707,7 @@
     <div style="max-width: 920px;">
       <span class="eyebrow">cm.demo</span>
       <h2 class="display" style="color: white; margin-top: 18px; margin-bottom: 28px;">
-        Try the two live modules.<br><span class="shift">On your protocol.</span>
+        Try the two prototype modules.<br><span class="shift">On your protocol.</span>
       </h2>
       <p class="lede" style="color: rgba(255,255,255,0.72); margin-bottom: 36px;">
         Thirty-minute working session — not a deck. Live USDM authoring against your protocol; a CDASH study build from the same source. Early-access pilots welcome.

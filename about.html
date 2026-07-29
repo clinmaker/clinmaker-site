@@ -128,11 +128,61 @@
       color: var(--text-secondary);
       margin-top: auto;
     }
+    /* Mission / Vision statement blocks */
+    .mvv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-top: 1px solid var(--surface-rule);
+      border-left: 1px solid var(--surface-rule);
+      background: var(--surface-card);
+    }
+    .mvv-cell {
+      padding: 34px 36px 30px;
+      border-right: 1px solid var(--surface-rule);
+      border-bottom: 1px solid var(--surface-rule);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .mvv-cell .mvv-label {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--primary-700);
+    }
+    .mvv-cell .mvv-statement {
+      font-family: var(--font-display);
+      font-size: clamp(1.25rem, 1.9vw, 1.625rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+    .mvv-cell .mvv-short {
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px dashed var(--surface-rule-soft);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .mvv-cell .mvv-short strong { color: var(--primary-600); font-weight: 600; }
+    .value-cell .p-num { color: var(--primary-600); }
+    .value-cell.v-align {
+      background: var(--ink);
+    }
+    .value-cell.v-align .p-num { color: var(--primary-300); }
+    .value-cell.v-align .p-body { color: rgba(255,255,255,0.78); }
+    .value-cell.v-align .p-body strong { color: white; }
     @media (max-width: 900px) {
       .stack-collapse { grid-template-columns: 1fr; }
       .stack-mid { flex-direction: row; padding: 12px 0; }
       .stack-side.target { margin-top: 12px; }
       .principles { grid-template-columns: 1fr 1fr; }
+      .mvv-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 600px) {
       .principles { grid-template-columns: 1fr; }
@@ -182,7 +232,7 @@
 <section class="module" id="thesis">
   <div class="container">
     <div class="section-num-bar">
-      <span class="num"><strong>§01</strong> / 04</span>
+      <span class="num"><strong>§01</strong> / 05</span>
       <span class="rule"></span>
       <span class="meta">topic: thesis</span>
       <span class="meta">premise: collapse the stack</span>
@@ -253,7 +303,7 @@
 <!-- WRITTEN THESIS -->
 <section class="container section-tight" style="padding-bottom: clamp(56px, 7vw, 96px);">
   <div class="section-num-bar">
-    <span class="num"><strong>§02</strong> / 04</span>
+    <span class="num"><strong>§02</strong> / 05</span>
     <span class="rule"></span>
     <span class="meta">topic: written_thesis</span>
     <span class="meta">why we built it</span>
@@ -276,7 +326,7 @@
 <section class="container section-tight" style="background: var(--surface-hover); padding-top: clamp(56px, 7vw, 96px); padding-bottom: clamp(56px, 7vw, 96px); max-width: 100%;">
   <div class="container">
     <div class="section-num-bar">
-      <span class="num"><strong>§03</strong> / 04</span>
+      <span class="num"><strong>§03</strong> / 05</span>
       <span class="rule"></span>
       <span class="meta">topic: current_state</span>
       <span class="meta">2 prototype · 10 roadmap</span>
@@ -317,20 +367,81 @@
   </div>
 </section>
 
+<!-- MISSION / VISION / VALUES -->
+<section class="container section-tight" id="mission" style="padding-top: clamp(56px, 7vw, 96px); padding-bottom: clamp(56px, 7vw, 96px);">
+  <div class="section-num-bar">
+    <span class="num"><strong>§04</strong> / 05</span>
+    <span class="rule"></span>
+    <span class="meta">topic: mission_vision_values</span>
+    <span class="meta">1 mission · 1 vision · 5 values</span>
+  </div>
+  <div class="module-head">
+    <div>
+      <h2 class="display-2">What we're here to do.<br><span class="shift">And how we'll behave doing it.</span></h2>
+      <p class="lede">No jargon in this section, on purpose. If a sentence here needs a glossary, it doesn't belong here.</p>
+    </div>
+  </div>
+
+  <div class="mvv-grid" style="margin-top: 32px;">
+    <div class="mvv-cell">
+      <span class="mvv-label">mission / why we exist</span>
+      <p class="mvv-statement">We make the work behind clinical trials simpler, faster, and worthy of trust — so the people who run trials can focus on the science, and the answers patients are waiting for come sooner.</p>
+      <p class="mvv-short">short form → <strong>Simplify the work behind clinical trials.</strong></p>
+    </div>
+    <div class="mvv-cell">
+      <span class="mvv-label">vision / what we're becoming</span>
+      <p class="mvv-statement">To become the platform clinical research teams trust with their most important work — from a study's first draft to its final submission — in a world where no treatment is delayed because the work behind it was too slow.</p>
+      <p class="mvv-short">short form → <strong>Become the most trusted name in clinical trial work.</strong></p>
+    </div>
+  </div>
+
+  <div class="principles" style="margin-top: 40px;">
+    <div class="principle value-cell">
+      <span class="p-num">V-01</span>
+      <span class="p-statement">Earn trust, <span class="neg">then prove it.</span></span>
+      <span class="p-body">Everything we do can be shown, explained, and checked — by a customer, a regulator, or each other. Trust isn't a feeling we ask for; it's evidence we hand over.</span>
+    </div>
+    <div class="principle value-cell">
+      <span class="p-num">V-02</span>
+      <span class="p-statement">People <span class="neg">decide.</span></span>
+      <span class="p-body">Technology drafts, sorts, and suggests. A person makes every decision that matters, and stands behind it. We build tools that respect expertise — never tools that pretend to replace it.</span>
+    </div>
+    <div class="principle value-cell">
+      <span class="p-num">V-03</span>
+      <span class="p-statement">Say only <span class="neg">what's true.</span></span>
+      <span class="p-body">We claim what's real today and are open about what isn't yet. We'd rather show two finished things than promise twelve. Milestones over hype.</span>
+    </div>
+    <div class="principle value-cell">
+      <span class="p-num">V-04</span>
+      <span class="p-statement">Do it right <span class="neg">from the start.</span></span>
+      <span class="p-body">Quality isn't a check at the end — it's how we work from the first line. We don't cut corners we'd have to apologize for later, even when no one would notice.</span>
+    </div>
+    <div class="principle value-cell">
+      <span class="p-num">V-05</span>
+      <span class="p-statement">Remember <span class="neg">who it's for.</span></span>
+      <span class="p-body">Behind every record is a person who volunteered for a trial, and a patient waiting for its answer. That's where our urgency comes from — and our care.</span>
+    </div>
+    <div class="principle value-cell v-align">
+      <span class="p-num">READ AS ONE SENTENCE</span>
+      <span class="p-body">Because trial work is too slow and scattered, <strong>we simplify it every day</strong> — with proof, human judgment, honesty, craft, and care — <strong>until we become the platform this field trusts</strong> with the whole journey.</span>
+    </div>
+  </div>
+</section>
+
 <!-- PRINCIPLES -->
 <section class="module" id="principles">
   <div class="container">
     <div class="section-num-bar">
-      <span class="num"><strong>§04</strong> / 04</span>
+      <span class="num"><strong>§05</strong> / 05</span>
       <span class="rule"></span>
       <span class="meta">topic: principles</span>
-      <span class="meta">6 hard constraints</span>
+      <span class="meta">values → compiled to 6 hard constraints</span>
       <span class="meta">enforced platform-wide</span>
     </div>
     <div class="module-head">
       <div>
         <h2 class="display-2">What we <span class="shift">won't ship.</span></h2>
-        <p class="lede">A short list of constraints we hold ourselves to. These aren't aspirational — they're hard rules on what reaches our customers.</p>
+        <p class="lede">Our values, compiled into six hard rules on what reaches customers. These aren't aspirational — they're enforced in the product and verified per release.</p>
       </div>
       <a href="contact.html" class="module-link">ask us about these →</a>
     </div>

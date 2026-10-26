@@ -2,313 +2,211 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact &amp; Demo — ClinMaker</title>
-  <meta name="description" content="Talk to us. Thirty-minute working session on the live platform. We respond within one business day.">
-  <meta name="theme-color" content="#d87654">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Contact · ClinMaker</title>
+  <meta name="description" content="Contact the founders of ClinMaker. Request a demo or pilot, ask a general question, or ask about security and QA.">
+  <meta name="theme-color" content="#fbf3ee">
+  <meta property="og:title" content="Contact · ClinMaker">
+  <meta property="og:description" content="Talk to the people building ClinMaker. We reply within two business days.">
+  <meta property="og:image" content="https://clinmaker.com/assets/logo-lockup-tagline.png">
+  <meta property="og:url" content="https://clinmaker.com/contact.html">
+  <meta property="og:type" content="website">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27 viewBox=%270 0 64 64%27 fill=%27none%27%3E%3Cpath d=%27M50 14 a22 22 0 1 0 0 36%27 stroke=%27%23d87654%27 stroke-width=%276%27 stroke-linecap=%27round%27 fill=%27none%27%2F%3E%3Cpath d=%27M20 26 Q 26 32 32 26 T 44 26%27 stroke=%27%23d87654%27 stroke-width=%272.4%27 stroke-linecap=%27round%27 fill=%27none%27%2F%3E%3Cpath d=%27M20 38 Q 26 32 32 38 T 44 38%27 stroke=%27%230e7490%27 stroke-width=%272.4%27 stroke-linecap=%27round%27 fill=%27none%27%2F%3E%3Cline x1=%2726%27 y1=%2729%27 x2=%2726%27 y2=%2735%27 stroke=%27%237850dc%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%2F%3E%3Cline x1=%2732%27 y1=%2727%27 x2=%2732%27 y2=%2737%27 stroke=%27%237850dc%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%2F%3E%3Cline x1=%2738%27 y1=%2729%27 x2=%2738%27 y2=%2735%27 stroke=%27%237850dc%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%2F%3E%3C%2Fsvg%3E">
   <link rel="alternate icon" type="image/png" href="assets/favicon-256.png?v=4">
   <link rel="apple-touch-icon" href="assets/favicon-256.png?v=4">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css">
-  <style>
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr;
-      gap: clamp(40px, 5vw, 64px);
-      align-items: start;
-      margin-top: 36px;
-    }
-    .contact-channels { font-family: var(--font-body); }
-    .contact-channel {
-      padding: 20px 0;
-      border-bottom: 1px solid var(--surface-rule-soft);
-    }
-    .contact-channel:first-child { border-top: 1px solid var(--surface-rule); }
-    .contact-channel .ch-label {
-      font-family: var(--font-mono);
-      font-size: 0.625rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-    .contact-channel .ch-val {
-      font-family: var(--font-display);
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--ink);
-      letter-spacing: -0.015em;
-    }
-    .contact-channel .ch-val a { color: var(--primary-700); }
-    .contact-channel .ch-val a:hover { color: var(--primary-600); }
-    .contact-channel .ch-note {
-      font-family: var(--font-body);
-      font-size: 0.8125rem;
-      color: var(--text-secondary);
-      margin-top: 4px;
-      line-height: 1.5;
-    }
-    .contact-form-frame {
-      border: 1px solid var(--surface-rule);
-      padding: clamp(28px, 3.5vw, 40px);
-      background: var(--surface-card);
-    }
-    .contact-form-frame .form-eyebrow {
-      font-family: var(--font-mono);
-      font-size: 0.6875rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--primary-700);
-      margin-bottom: 10px;
-    }
-    .contact-form-frame .form-title {
-      font-family: var(--font-display);
-      font-size: clamp(1.5rem, 2.4vw, 2rem);
-      font-weight: 900;
-      letter-spacing: -0.035em;
-      color: var(--ink);
-      line-height: 1.05;
-      margin-bottom: 8px;
-    }
-    .contact-form-frame .form-title .shift { color: var(--primary-600); }
-    .contact-form-frame .form-sub {
-      font-size: 0.9375rem;
-      color: var(--text-secondary);
-      margin-bottom: 24px;
-      line-height: 1.55;
-    }
-    .edc-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px 10px;
-      margin-top: 4px;
-    }
-    .edc-grid label {
-      display: flex; align-items: center; gap: 8px;
-      font-family: var(--font-body);
-      font-size: 0.8125rem;
-      font-weight: 450;
-      color: var(--ink);
-      text-transform: none;
-      letter-spacing: 0;
-      margin: 0;
-      padding: 6px 0;
-      cursor: pointer;
-    }
-    .edc-grid label input[type=checkbox] {
-      width: 14px; height: 14px;
-      accent-color: var(--primary-600);
-      flex-shrink: 0;
-      margin: 0;
-    }
-    @media (max-width: 900px) {
-      .contact-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/v7.css?v=20261026e">
+  <script src="assets/v7.js?v=20261026e" defer></script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
-<!-- NAV -->
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="index.html" class="logo" aria-label="ClinMaker home">
-      <svg class="logo-mark" viewBox="0 0 64 64" fill="none">
-        <path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/>
-        <path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-        <path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-        <line x1="26" y1="29" x2="26" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
-        <line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
-        <line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
-      </svg>
-      <span class="logo-text"><span class="logo-text-ink">Clin</span><span class="logo-text-brand">Maker</span></span>
-    </a>
-    <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle menu">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
-    </button>
-    <div class="nav-links">
-      <a href="platform.html">Platform</a>
-      <a href="standards.html">Standards</a>
-      <a href="security.html">Security</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="about.html">About</a>
-      <a href="#" class="nav-cta" onclick="openDemoModal(); return false;">Talk to us <span class="arr">→</span></a>
+<!-- ═══════════ HEADER (shared: copy verbatim to every page) ═══════════ -->
+<header class="site-header">
+  <div class="wrap">
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="index.html" aria-label="ClinMaker home">
+        <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/><line x1="26" y1="29" x2="26" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span class="wordmark"><span>Clin</span><span class="m">Maker</span></span>
+      </a>
+      <ul class="nav-menu">
+        <li class="nav-item" data-dd>
+          <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="dd-product">Product <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="dropdown" id="dd-product">
+            <a class="dd-link" href="platform.html"><b>Platform overview</b><span>One structured study, from protocol to casebook</span></a>
+            <div class="dd-sep"></div>
+            <a class="dd-link" href="protocol-digitization.html"><b>Protocol Digitization</b><span class="tag">Ready to demo</span><span>The protocol as a structured study, in ICH M11 order</span></a>
+            <a class="dd-link" href="study-build.html"><b>Study Build</b><span class="tag">Ready to demo</span><span>CDASH casebooks built from the study</span></a>
+            <div class="dd-sep"></div>
+            <a class="dd-link" href="roadmap.html"><b>Roadmap</b><span class="tag dev">10 in development</span><span>From data ingestion to submission</span></a>
+          </div>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+        <li class="nav-item"><a class="nav-link" href="security.html">Trust</a></li>
+        <li class="nav-item" data-dd>
+          <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="dd-company">Company <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="dropdown" id="dd-company">
+            <a class="dd-link" href="about.html"><b>About</b><span>Why we started ClinMaker, our mission and values</span></a>
+            <a class="dd-link" href="team.html"><b>Team</b><span>The people building it</span></a>
+            <a class="dd-link" href="careers.html"><b>Careers</b><span>Work with us</span></a>
+            <a class="dd-link" href="contact.html"><b>Contact</b><span>Talk to the founders</span></a>
+          </div>
+        </li>
+      </ul>
+      <div class="nav-actions">
+        <a class="nav-login" href="https://app.clinmaker.com" target="_blank" rel="noopener">Log in</a>
+        <a class="btn btn-primary btn-sm" href="request.html?type=demo#request-form">Request a demo</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Menu</button>
+      </div>
+    </nav>
+    <div class="mobile-nav" id="mobile-nav">
+      <div class="m-group"><span class="label">Product</span>
+        <a href="platform.html">Platform overview</a><a href="protocol-digitization.html">Protocol Digitization</a><a href="study-build.html">Study Build</a><a href="roadmap.html">Roadmap</a>
+      </div>
+      <div class="m-group"><a href="pricing.html">Pricing</a><a href="security.html">Trust &amp; compliance</a></div>
+      <div class="m-group"><span class="label">Company</span>
+        <a href="about.html">About</a><a href="team.html">Team</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a>
+      </div>
+      <div class="m-actions">
+        <a class="btn btn-primary" href="request.html?type=demo#request-form">Request a demo</a>
+        <a class="btn btn-outline" href="https://app.clinmaker.com" target="_blank" rel="noopener">Log in</a>
+      </div>
     </div>
   </div>
-</nav>
+</header>
 
-<!-- HEADER -->
-<section class="container" style="padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(20px, 3vw, 36px);">
-  <span class="eyebrow brand">cm.contact · SLA 24h</span>
-  <h1 class="display-2" style="margin-top: 18px;">Let's talk about<br><span class="shift">your study.</span></h1>
-  <p class="lede" style="margin-top: 24px; max-width: 720px;">
-    Tell us about your program — what you're building, what's broken about your current stack, what you'd like to see. We respond within one business day.
-  </p>
+<main id="main">
+
+<!-- ═══════════ PAGE HERO ═══════════ -->
+<section class="band-top fade grain" aria-labelledby="page-h">
+  <div class="wrap page-hero">
+    <p class="crumbs"><a href="index.html">Home</a><span>/</span><span>Contact</span></p>
+    <h1 id="page-h">Talk to the people building ClinMaker.</h1>
+    <p class="lead">Ask for a demo, send us a question, or bring your QA and IT team. Every message reaches the founders, and we reply within two business days.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="request.html?type=pilot#request-form">Request a pilot</a>
+      <a class="link-arrow" href="mailto:contact@clinmaker.com">Email contact@clinmaker.com →</a>
+    </div>
+  </div>
 </section>
 
-<!-- BODY GRID -->
-<section class="container" style="padding-bottom: clamp(64px, 8vw, 112px);">
-  <div class="section-num-bar" style="margin-bottom: 16px;">
-    <span class="num"><strong>§01</strong> / 02</span>
-    <span class="rule"></span>
-    <span class="meta">channel: form + email + log-in</span>
-    <span class="meta">response: 1 business day</span>
-  </div>
-
-  <div class="contact-grid">
-    <!-- LEFT: form -->
-    <div class="contact-form-frame">
-      <div class="form-eyebrow">cm.demo/request</div>
-      <div class="form-title">Request a working <span class="shift">session.</span></div>
-      <p class="form-sub">Thirty minutes on the live platform. We'll show you protocol authoring, a mid-study amendment, and a live SDTM export against your standards.</p>
-      <form action="__FORMSPREE_ENDPOINT__" method="POST" onsubmit="return handleDemoSubmit(this, event)">
-        <div class="form-row">
-          <div class="form-group"><label>First name</label><input type="text" name="first_name" class="form-control" required></div>
-          <div class="form-group"><label>Last name</label><input type="text" name="last_name" class="form-control" required></div>
-        </div>
-        <div class="form-group"><label>Work email</label><input type="email" name="email" class="form-control" required></div>
-        <div class="form-row">
-          <div class="form-group"><label>Company</label><input type="text" name="company" class="form-control" required></div>
-          <div class="form-group"><label>Phone (optional)</label><input type="tel" name="phone" class="form-control"></div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Role</label>
-            <select name="role" class="form-control">
-              <option value="">Select…</option>
-              <option>Data Manager / Lead</option>
-              <option>Clinical Operations</option>
-              <option>Biostatistics / Programming</option>
-              <option>QA / Compliance</option>
-              <option>Medical / Safety</option>
-              <option>Executive / Sponsor leadership</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Active studies</label>
-            <select name="study_count" class="form-control">
-              <option value="">Select…</option>
-              <option>0 · evaluating</option>
-              <option>1–3</option>
-              <option>4–10</option>
-              <option>11–25</option>
-              <option>26+</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Current EDC(s)</label>
-          <div class="edc-grid">
-            <label><input type="checkbox" name="edc" value="Medidata Rave"> Medidata Rave</label>
-            <label><input type="checkbox" name="edc" value="Veeva Vault EDC"> Veeva Vault EDC</label>
-            <label><input type="checkbox" name="edc" value="OpenClinica"> OpenClinica</label>
-            <label><input type="checkbox" name="edc" value="DataLabs"> DataLabs</label>
-            <label><input type="checkbox" name="edc" value="Castor"> Castor</label>
-            <label><input type="checkbox" name="edc" value="Medrio"> Medrio</label>
-            <label><input type="checkbox" name="edc" value="In-house"> In-house / custom</label>
-            <label><input type="checkbox" name="edc" value="Other"> Other</label>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>What would you like to see?</label>
-          <textarea name="message" class="form-control" placeholder="A particular module, an integration challenge, a workflow…"></textarea>
-        </div>
-        <button type="submit" class="form-submit">Send request <span class="arr">→</span></button>
-        <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 14px; font-family: var(--font-mono); letter-spacing: 0.02em;">By submitting you agree to our privacy policy. We don't share contact info.</p>
-      </form>
+<!-- ═══════════ CONTACT ROUTES ═══════════ -->
+<section class="section" id="routes" aria-labelledby="routes-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="label">Ways to reach us</p>
+        <h2 id="routes-h">Pick the route that fits your question.</h2>
+      </div>
+      <p>All three reach the same small team. Picking one tells us what to prepare.</p>
     </div>
-
-    <!-- RIGHT: channels -->
-    <div class="contact-channels">
-      <h3 style="font-family: var(--font-display); font-size: 1.375rem; font-weight: 900; letter-spacing: -0.03em; color: var(--ink); margin-bottom: 4px;">Other channels</h3>
-      <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 28px; line-height: 1.55;">Prefer email or LinkedIn? Pick your channel.</p>
-
-      <div class="contact-channel">
-        <div class="ch-label">cm.contact/general</div>
-        <div class="ch-val"><a href="mailto:hello@clinmaker.com">hello@clinmaker.com</a></div>
-        <div class="ch-note">General inquiry. Replies within one business day.</div>
+    <div class="feat-grid">
+      <div class="feat">
+        <span class="label">01 · Demo or pilot</span>
+        <h3>Request a demo or pilot</h3>
+        <p>A 30-minute live demo, a no-charge Protocol Teardown, a pilot on one study or a quote.</p>
+        <a class="link-arrow" href="request.html#request-form">Go to the request form →</a>
       </div>
-      <div class="contact-channel">
-        <div class="ch-label">cm.contact/sales</div>
-        <div class="ch-val"><a href="mailto:sales@clinmaker.com">sales@clinmaker.com</a></div>
-        <div class="ch-note">Pricing, terms, RFP responses.</div>
+      <div class="feat">
+        <span class="label">02 · General</span>
+        <h3>General questions</h3>
+        <p>Partnerships, press or anything else. Write to <span class="mono">contact@clinmaker.com</span>.</p>
+        <a class="link-arrow" href="mailto:contact@clinmaker.com">Email us →</a>
       </div>
-      <div class="contact-channel">
-        <div class="ch-label">cm.contact/security</div>
-        <div class="ch-val"><a href="mailto:security@clinmaker.com">security@clinmaker.com</a></div>
-        <div class="ch-note">URS pack, vendor assessment, validation evidence.</div>
-      </div>
-      <div class="contact-channel">
-        <div class="ch-label">cm.contact/customers</div>
-        <div class="ch-val"><a href="https://app.clinmaker.com" target="_blank" rel="noopener">app.clinmaker.com →</a></div>
-        <div class="ch-note">Existing customers: use the in-app Help Center for support.</div>
+      <div class="feat">
+        <span class="label">03 · Security and QA</span>
+        <h3>Security and QA questions</h3>
+        <p>The controls ClinMaker is designed for, how AI is used, and where validation stands.</p>
+        <a class="link-arrow" href="security.html">Read Trust &amp; compliance →</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- COLOPHON -->
-<footer class="colophon">
-  <div class="col-brand">
-    <span>Clin</span><span class="shift">Maker</span>
-    <span class="col-divider" style="margin-left: 12px;">·</span>
-    <span style="font-family: var(--font-body); font-weight: 500; font-size: 0.8125rem; color: var(--text-secondary);">LLC</span>
+<!-- ═══════════ COMPANY DETAILS ═══════════ -->
+<section class="section alt" id="company" aria-labelledby="co-h">
+  <div class="wrap split">
+    <div>
+      <p class="label">Company details</p>
+      <h2 id="co-h">ClinMaker, LLC</h2>
+      <div class="more"><a class="link-arrow" href="team.html">Meet the team →</a><a class="link-arrow" href="careers.html">Careers →</a></div>
+    </div>
+    <dl class="spec-list">
+      <div><dt>Company</dt><dd>ClinMaker, LLC</dd></div>
+      <div><dt>Email</dt><dd><a href="mailto:contact@clinmaker.com">contact@clinmaker.com</a></dd></div>
+      <div><dt>Location</dt><dd><span class="ph">[to confirm: city, state]</span></dd></div>
+      <div><dt>Log in</dt><dd><a href="https://app.clinmaker.com" target="_blank" rel="noopener">app.clinmaker.com ↗</a> · for pilot users</dd></div>
+    </dl>
   </div>
-  <div style="display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center;">
-    <a href="platform.html">Platform</a><span class="col-divider">·</span>
-    <a href="standards.html">Standards</a><span class="col-divider">·</span>
-    <a href="security.html">Security</a><span class="col-divider">·</span>
-    <a href="pricing.html">Pricing</a><span class="col-divider">·</span>
-    <a href="about.html">About</a><span class="col-divider">·</span>
-    <a href="contact.html">Contact</a><span class="col-divider">·</span>
-    <a href="https://app.clinmaker.com" target="_blank" rel="noopener">Log in →</a>
+</section>
+
+<!-- ═══════════ GET STARTED ═══════════ -->
+<section class="section" aria-labelledby="start-h">
+  <div class="wrap">
+    <div class="td grain">
+      <div>
+        <p class="label">Get started</p>
+        <h2 id="start-h">See ClinMaker on your own protocol.</h2>
+        <p class="lead">Every pilot begins with a Protocol Teardown. Send one of your protocols under mutual NDA, and we walk your team through what ClinMaker built from it.</p>
+        <div class="td-ctas">
+          <a class="btn btn-primary" href="request.html?type=pilot#request-form">Request a pilot</a>
+          <a class="link-arrow" href="request.html?type=teardown#request-form">Request a Protocol Teardown →</a>
+        </div>
+      </div>
+      <div class="deliv">
+        <div><span class="d">Demo</span><a href="request.html?type=demo#request-form"><b>A 30-minute live walkthrough</b><span class="s">Protocol Digitization and Study Build, on our demo study.</span></a></div>
+        <div><span class="d">Teardown</span><a href="request.html?type=teardown#request-form"><b>Your protocol, in five business days</b><span class="s">A USDM 4.0 study definition, a CDASH-aligned draft casebook, a written gap report and a live readout. Under mutual NDA, no charge.</span></a></div>
+        <div><span class="d">Pilot</span><a href="request.html?type=pilot#request-form"><b>Scoped to one study</b><span class="s">Runs alongside a study you've already built, so nothing live depends on it.</span></a></div>
+      </div>
+    </div>
   </div>
-  <div class="col-meta">
-    <span>hello@clinmaker.com</span>
-    <span class="col-divider">·</span>
-    <span>© 2026</span>
+</section>
+
+</main>
+
+<!-- ═══════════ FOOTER (shared: copy verbatim to every page; footnotes optional) ═══════════ -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <a class="brand" href="index.html" aria-label="ClinMaker home">
+          <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/><line x1="26" y1="29" x2="26" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <span class="wordmark"><span>Clin</span><span class="m">Maker</span></span>
+        </a>
+        <p class="tag">Standards at the core. Submission at the finish.</p>
+        <span class="mono">contact@clinmaker.com</span>
+      </div>
+      <div class="ft-col"><h4>Product</h4><ul>
+        <li><a href="platform.html">Platform overview</a></li>
+        <li><a href="protocol-digitization.html">Protocol Digitization</a></li>
+        <li><a href="study-build.html">Study Build</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+      </ul></div>
+      <div class="ft-col"><h4>Company</h4><ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div class="ft-col"><h4>Get started</h4><ul>
+        <li><a href="request.html?type=demo#request-form">Request a demo</a></li>
+        <li><a href="request.html?type=pilot#request-form">Request a pilot</a></li>
+        <li><a href="request.html?type=teardown#request-form">Protocol Teardown</a></li>
+        <li><a href="security.html">Trust &amp; compliance</a></li>
+        <li><a href="https://app.clinmaker.com" target="_blank" rel="noopener">Log in ↗</a></li>
+      </ul></div>
+    </div>
+    <div class="ft-legal">
+      <span>© 2026 ClinMaker, LLC</span>
+      <nav aria-label="Legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="security.html">Security</a></nav>
+    </div>
+    <div class="ft-notes">
+      <p>Protocol Digitization and Study Build, and the platform they run on, are ready to demo and available for pilots. They are not yet in production use. Modules marked "In development" are not available. Not every feature uses AI.</p>
+    </div>
   </div>
 </footer>
-
-<!-- DEMO MODAL -->
-<div class="modal-overlay" id="demoModal" role="dialog" aria-labelledby="demoModalTitle" aria-modal="true">
-  <div class="modal">
-    <button class="modal-close" onclick="closeDemoModal()" aria-label="Close">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg>
-    </button>
-    <span class="eyebrow brand" style="margin-bottom: 10px;">cm.demo/request</span>
-    <h3 id="demoModalTitle" class="display-3">Talk to us.</h3>
-    <p class="lede">Thirty minutes on the live platform. Working session — not a deck. We come back within one business day.</p>
-    <form action="__FORMSPREE_ENDPOINT__" method="POST" onsubmit="return handleDemoSubmit(this, event)">
-      <div class="form-row">
-        <div class="form-group"><label>First name</label><input type="text" name="first_name" class="form-control" required></div>
-        <div class="form-group"><label>Last name</label><input type="text" name="last_name" class="form-control" required></div>
-      </div>
-      <div class="form-group"><label>Work email</label><input type="email" name="email" class="form-control" required></div>
-      <div class="form-group"><label>Company</label><input type="text" name="company" class="form-control" required></div>
-      <div class="form-group"><label>Role</label>
-        <select name="role" class="form-control">
-          <option value="">Select…</option>
-          <option>Data Manager / Lead</option>
-          <option>Clinical Operations</option>
-          <option>Biostatistics / Programming</option>
-          <option>QA / Compliance</option>
-          <option>Medical / Safety</option>
-          <option>Executive / Sponsor leadership</option>
-          <option>Other</option>
-        </select>
-      </div>
-      <div class="form-group"><label>What would you like to see?</label><textarea name="message" class="form-control" placeholder="A particular module, an integration, a workflow…"></textarea></div>
-      <button type="submit" class="form-submit">Send request <span class="arr">→</span></button>
-    </form>
-  </div>
-</div>
-
-<script src="assets/script.js"></script>
 </body>
 </html>

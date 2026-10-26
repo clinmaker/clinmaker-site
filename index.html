@@ -2,628 +2,350 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ClinMaker — End-to-end clinical data workflow automation</title>
-  <meta name="description" content="GxP-grade platform for the clinical data lifecycle. AI-assisted, human-in-the-loop. In prototype today: USDM-native protocol authoring and protocol-to-EDC study build, anchored in DDF, USDM 4.0, and ICH M11.">
-  <meta name="theme-color" content="#d87654">
-  <meta property="og:title" content="ClinMaker — End-to-end clinical data workflow automation">
-  <meta property="og:description" content="AI-assisted, human-in-the-loop. Live: protocol authoring + study build. Standards-driven.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>ClinMaker · Write the protocol once. Build the casebook from it.</title>
+  <meta name="description" content="ClinMaker makes a clinical trial protocol one structured study (USDM 4.0, ICH M11) and builds the CDASH-aligned casebook from it, exported as CDISC ODM for the EDC you already run. Protocol Digitization and Study Build are ready to demo.">
+  <meta name="theme-color" content="#fbf3ee">
+  <meta property="og:title" content="ClinMaker · Write the protocol once. Build the casebook from it.">
+  <meta property="og:description" content="One structured study, from the protocol to the casebook. Protocol Digitization and Study Build are ready to demo; ten more modules are in development.">
   <meta property="og:image" content="https://clinmaker.com/assets/logo-lockup-tagline.png">
-  <meta property="og:url" content="https://clinmaker.com">
+  <meta property="og:url" content="https://clinmaker.com/">
   <meta property="og:type" content="website">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27 viewBox=%270 0 64 64%27 fill=%27none%27%3E%3Cpath d=%27M50 14 a22 22 0 1 0 0 36%27 stroke=%27%23d87654%27 stroke-width=%276%27 stroke-linecap=%27round%27 fill=%27none%27%2F%3E%3Cpath d=%27M20 26 Q 26 32 32 26 T 44 26%27 stroke=%27%23d87654%27 stroke-width=%272.4%27 stroke-linecap=%27round%27 fill=%27none%27%2F%3E%3Cpath d=%27M20 38 Q 26 32 32 38 T 44 38%27 stroke=%27%230e7490%27 stroke-width=%272.4%27 stroke-linecap=%27round%27 fill=%27none%27%2F%3E%3Cline x1=%2726%27 y1=%2729%27 x2=%2726%27 y2=%2735%27 stroke=%27%237850dc%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%2F%3E%3Cline x1=%2732%27 y1=%2727%27 x2=%2732%27 y2=%2737%27 stroke=%27%237850dc%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%2F%3E%3Cline x1=%2738%27 y1=%2729%27 x2=%2738%27 y2=%2735%27 stroke=%27%237850dc%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%2F%3E%3C%2Fsvg%3E">
   <link rel="alternate icon" type="image/png" href="assets/favicon-256.png?v=4">
   <link rel="apple-touch-icon" href="assets/favicon-256.png?v=4">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css">
-  <style>
-    /* ─── "Available now" two-up cards ─────────────────────────────── */
-    .avail-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      border-top: 1px solid var(--surface-rule);
-      border-left: 1px solid var(--surface-rule);
-    }
-    .avail-card {
-      padding: clamp(28px, 3.5vw, 44px);
-      border-right: 1px solid var(--surface-rule);
-      border-bottom: 1px solid var(--surface-rule);
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      background: var(--surface-card);
-      transition: background 0.15s;
-    }
-    .avail-card:hover { background: var(--primary-50); }
-    .avail-card .ac-num {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      color: var(--primary-700);
-      display: flex;
-      gap: 12px;
-      align-items: baseline;
-    }
-    .avail-card .ac-num .ac-status {
-      padding: 2px 10px;
-      background: var(--status-amber-bg);
-      color: var(--status-amber);
-      border: 1px solid var(--status-amber);
-      font-size: 0.625rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .avail-card .ac-title {
-      font-family: var(--font-display);
-      font-size: clamp(1.875rem, 3vw, 2.5rem);
-      font-weight: 900;
-      letter-spacing: -0.035em;
-      line-height: 1.0;
-      color: var(--ink);
-    }
-    .avail-card .ac-title .shift { color: var(--primary-600); }
-    .avail-card .ac-desc {
-      font-size: 1rem;
-      line-height: 1.55;
-      color: var(--text-secondary);
-    }
-    .avail-card .ac-standards {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 4px;
-    }
-    .avail-card .ac-standards .ac-std {
-      font-family: var(--font-mono);
-      font-size: 0.6875rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      color: var(--primary-700);
-      padding: 3px 8px;
-      background: var(--primary-50);
-      border: 1px solid var(--primary-200);
-    }
-    .avail-card .ac-bullets {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-top: 4px;
-    }
-    .avail-card .ac-bullets li {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      font-size: 0.9375rem;
-      line-height: 1.5;
-      color: var(--text-secondary);
-    }
-    .avail-card .ac-bullets li::before {
-      content: '›';
-      color: var(--primary-600);
-      font-family: var(--font-mono);
-      font-weight: 700;
-      flex-shrink: 0;
-      margin-top: -2px;
-    }
-    .avail-card .ac-cta {
-      margin-top: auto;
-      padding-top: 12px;
-      font-family: var(--font-mono);
-      font-size: 0.8125rem;
-      font-weight: 600;
-      color: var(--primary-700);
-    }
-    .avail-card:hover .ac-cta { color: var(--primary-600); }
-
-    /* ─── "On the roadmap" slim cards ─────────────────────────────── */
-    .roadmap-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0;
-      border-top: 1px solid var(--surface-rule-soft);
-      border-left: 1px solid var(--surface-rule-soft);
-    }
-    .roadmap-card {
-      padding: 22px 24px;
-      border-right: 1px solid var(--surface-rule-soft);
-      border-bottom: 1px solid var(--surface-rule-soft);
-      display: grid;
-      grid-template-columns: 56px 1fr auto;
-      gap: 16px;
-      align-items: baseline;
-    }
-    .roadmap-card .rc-num {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--text-muted);
-    }
-    .roadmap-card .rc-body {}
-    .roadmap-card .rc-title {
-      font-family: var(--font-display);
-      font-size: 1.0625rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: var(--ink);
-      margin-bottom: 4px;
-    }
-    .roadmap-card .rc-desc {
-      font-size: 0.875rem;
-      line-height: 1.5;
-      color: var(--text-muted);
-    }
-    .roadmap-card .rc-tag {
-      font-family: var(--font-mono);
-      font-size: 0.625rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      padding: 3px 8px;
-      background: var(--surface-hover);
-      border: 1px solid var(--surface-rule-soft);
-      align-self: start;
-      white-space: nowrap;
-    }
-
-    @media (max-width: 900px) {
-      .avail-grid { grid-template-columns: 1fr; }
-      .roadmap-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/v7.css?v=20261026e">
+  <script src="assets/v7.js?v=20261026e" defer></script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
-<!-- NAV -->
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="index.html" class="logo" aria-label="ClinMaker home">
-      <svg class="logo-mark" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/>
-        <path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-        <path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-        <line x1="26" y1="29" x2="26" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
-        <line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
-        <line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
-      </svg>
-      <span class="logo-text"><span class="logo-text-ink">Clin</span><span class="logo-text-brand">Maker</span></span>
-    </a>
-    <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle menu">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
-    </button>
-    <div class="nav-links">
-      <a href="platform.html">Platform</a>
-      <a href="standards.html">Standards</a>
-      <a href="security.html">Security</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="about.html">About</a>
-      <a href="#" class="nav-cta" onclick="openDemoModal(); return false;">Talk to us <span class="arr">→</span></a>
-    </div>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-statement">
-    <span class="eyebrow brand">cm.platform · early access · v0.5.43</span>
-    <h1 class="display">
-      End-to-end clinical data<br>
-      workflow automation.<br>
-      <span class="shift">AI-assisted. Human-in-the-loop.</span>
-    </h1>
-    <p class="lede">
-      ClinMaker is the GxP-grade platform for the full clinical data lifecycle. In prototype today: USDM-native protocol authoring and protocol-to-EDC study build, anchored in DDF, USDM 4.0, and ICH M11. Other workflow modules are in active development.
-    </p>
-    <div class="hero-buttons">
-      <a href="#" class="btn btn-primary" onclick="openDemoModal(); return false;">Talk to us <span class="arr">→</span></a>
-      <a href="platform.html" class="btn btn-ghost">See the platform <span class="arr">→</span></a>
-      <span class="meta"><span class="dot"></span> 2 modules in prototype · early access · 21 CFR Part 11 · CDISC-native</span>
-    </div>
-  </div>
-
-  <!-- HERO DATA-VIZ: Protocol Authoring + Study Build dashboard -->
-  <div class="viz-frame">
-    <span class="viz-coord tl">00,00</span>
-    <span class="viz-coord tr">cm.dash/live</span>
-    <span class="viz-coord bl">v0.5.43</span>
-    <span class="viz-coord br">2026-05-19 14:08:22 UTC</span>
-    <div class="viz-frame-head">
-      <span class="vh-id">cm-dash // overview</span>
-      <span class="vh-meta">
-        <span>scope: protocols + builds</span>
-        <span>env: prod</span>
-        <span class="vh-live">live</span>
-      </span>
-    </div>
-    <div class="dash">
-      <!-- Sidebar -->
-      <aside class="dash-rail">
-        <div class="rail-label"><span>Module</span><span>·</span></div>
-        <ul>
-          <li class="active">Overview <span class="count">/</span></li>
-          <li>Protocols <span class="count">12</span></li>
-          <li>Study builds <span class="count">4</span></li>
-          <li>Standards <span class="count">·</span></li>
-          <li style="opacity: 0.4;">Ingestion <span class="count">·</span></li>
-          <li style="opacity: 0.4;">Validation <span class="count">·</span></li>
-          <li style="opacity: 0.4;">Queries <span class="count">·</span></li>
-          <li style="opacity: 0.4;">Coding <span class="count">·</span></li>
-          <li style="opacity: 0.4;">Reconciliation <span class="count">·</span></li>
-          <li style="opacity: 0.4;">SDTM <span class="count">·</span></li>
-        </ul>
-      </aside>
-
-      <!-- Main -->
-      <div class="dash-main">
-        <!-- KPI strip -->
-        <div class="dash-kpi-row">
-          <div class="dash-kpi">
-            <div class="kpi-label"><span>Protocols in flight</span><span class="delta">+3 wk</span></div>
-            <div class="kpi-val"><span class="brand">12</span></div>
-          </div>
-          <div class="dash-kpi">
-            <div class="kpi-label"><span>Sections drafted</span><span class="delta">+87 d</span></div>
-            <div class="kpi-val">487</div>
-          </div>
-          <div class="dash-kpi">
-            <div class="kpi-label"><span>USDM 4.0 score</span><span class="delta">↗</span></div>
-            <div class="kpi-val">~100<span class="small">/100</span></div>
-          </div>
-          <div class="dash-kpi">
-            <div class="kpi-label"><span>Study builds</span><span class="delta">+1 wk</span></div>
-            <div class="kpi-val">4</div>
-          </div>
-        </div>
-
-        <!-- Two-panel row -->
-        <div class="dash-grid">
-          <div class="dash-panel">
-            <div class="dash-panel-head"><span>Protocols / authoring</span><span class="ph-pulse">●</span></div>
-            <div class="dash-row">
-              <span class="r-id">ACQ-2026-001</span>
-              <div class="r-bar"><div class="r-bar-fill" style="width: 92%"></div></div>
-              <span class="r-pct">92%</span>
-              <span class="r-status">approved</span>
-            </div>
-            <div class="dash-row">
-              <span class="r-id">ONCO-2026-014</span>
-              <div class="r-bar"><div class="r-bar-fill" style="width: 71%"></div></div>
-              <span class="r-pct">71%</span>
-              <span class="r-status uat">review</span>
-            </div>
-            <div class="dash-row">
-              <span class="r-id">CARDIO-2026-007</span>
-              <div class="r-bar"><div class="r-bar-fill" style="width: 38%"></div></div>
-              <span class="r-pct">38%</span>
-              <span class="r-status build">drafting</span>
-            </div>
-            <div class="dash-row">
-              <span class="r-id">RESP-2026-022</span>
-              <div class="r-bar"><div class="r-bar-fill" style="width: 96%"></div></div>
-              <span class="r-pct">96%</span>
-              <span class="r-status">approved</span>
-            </div>
-            <div class="dash-row">
-              <span class="r-id">DERM-2026-005</span>
-              <div class="r-bar"><div class="r-bar-fill" style="width: 14%"></div></div>
-              <span class="r-pct">14%</span>
-              <span class="r-status build">drafting</span>
-            </div>
-          </div>
-
-          <div class="dash-panel">
-            <div class="dash-panel-head"><span>Standards / pinned</span><span class="ph-pulse">·</span></div>
-            <div style="display: flex; flex-direction: column; gap: 12px; padding-top: 4px;">
-              <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 6px 0; border-bottom: 1px dashed var(--surface-rule-soft);">
-                <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink); font-weight: 500;">USDM</span>
-                <span style="font-family: var(--font-mono); font-size: 0.6875rem; color: var(--primary-700); font-weight: 600;">4.0</span>
-              </div>
-              <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 6px 0; border-bottom: 1px dashed var(--surface-rule-soft);">
-                <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink); font-weight: 500;">ICH M11</span>
-                <span style="font-family: var(--font-mono); font-size: 0.6875rem; color: var(--primary-700); font-weight: 600;">Step 4</span>
-              </div>
-              <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 6px 0; border-bottom: 1px dashed var(--surface-rule-soft);">
-                <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink); font-weight: 500;">DDF</span>
-                <span style="font-family: var(--font-mono); font-size: 0.6875rem; color: var(--primary-700); font-weight: 600;">aligned</span>
-              </div>
-              <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 6px 0; border-bottom: 1px dashed var(--surface-rule-soft);">
-                <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink); font-weight: 500;">CDASH</span>
-                <span style="font-family: var(--font-mono); font-size: 0.6875rem; color: var(--primary-700); font-weight: 600;">2.2</span>
-              </div>
-              <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 6px 0;">
-                <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink); font-weight: 500;">NCI CT</span>
-                <span style="font-family: var(--font-mono); font-size: 0.6875rem; color: var(--primary-700); font-weight: 600;">2024-09-27</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- METRIC STRIP — honest claims only -->
-  <div class="metric-strip">
-    <div class="metric-cell">
-      <span class="m-tick brand">+</span>
-      <span class="m-num brand">2</span>
-      <span class="m-label">Modules in prototype</span>
-    </div>
-    <div class="metric-cell">
-      <span class="m-tick">↗</span>
-      <span class="m-num">~100<span class="small">/100</span></span>
-      <span class="m-label">USDM 4.0 round-trip</span>
-    </div>
-    <div class="metric-cell">
-      <span class="m-tick">·</span>
-      <span class="m-num">84</span>
-      <span class="m-label">ICH M11 sections</span>
-    </div>
-    <div class="metric-cell">
-      <span class="m-tick">·</span>
-      <span class="m-num">DDF</span>
-      <span class="m-label">CDISC-aligned</span>
-    </div>
-    <div class="metric-cell">
-      <span class="m-tick">·</span>
-      <span class="m-num">21<span class="small">CFR</span></span>
-      <span class="m-label">Part 11 posture</span>
-    </div>
-  </div>
-</section>
-
-<!-- AVAILABLE NOW -->
-<section class="module">
-  <div class="container">
-    <div class="section-num-bar">
-      <span class="num"><strong>§A</strong> · prototype</span>
-      <span class="rule"></span>
-      <span class="meta">early access</span>
-      <span class="meta">2 modules</span>
-      <span class="meta">GxP-graded · audited</span>
-    </div>
-    <div class="module-head">
-      <div>
-        <h2 class="display-2">Available now.<br><span class="shift">Two modules in prototype.</span></h2>
-        <p class="lede">Both are standards-anchored, audit-aware, and ready for early-access pilots. AI assists where structured drafting is high-leverage; humans approve every change.</p>
-      </div>
-      <a href="platform.html" class="module-link">deeper tour →</a>
-    </div>
-
-    <div class="avail-grid">
-      <a href="platform.html#m01" class="avail-card" style="text-decoration: none;">
-        <div class="ac-num">
-          <span>§01</span>
-          <span class="ac-status">prototype</span>
-          <span style="color: var(--text-muted); font-weight: 500;">protocol_authoring</span>
-        </div>
-        <div class="ac-title">Protocol authoring.<br><span class="shift">USDM-native.</span></div>
-        <p class="ac-desc">Author M11-aligned protocols section by section with a Claude-powered co-pilot. Every Code field binds to CDISC CT. CORE rules engine runs as the pre-export compliance gate.</p>
-        <div class="ac-standards">
-          <span class="ac-std">DDF</span>
-          <span class="ac-std">USDM 4.0</span>
-          <span class="ac-std">ICH M11</span>
-          <span class="ac-std">NCI CT</span>
-        </div>
-        <ul class="ac-bullets">
-          <li>84-section M11 generator, every section AI-drafted, human-approved</li>
-          <li>USDM 4.0 export + import; round-trip score ~100/100 on CORE rules</li>
-          <li>Bidirectional consistency — amendments auto-flag stale sections</li>
-          <li>Every AI decision audited with model version + actor type</li>
-        </ul>
-        <div class="ac-cta">read §01 in depth →</div>
+<!-- ═══════════ HEADER (shared: copy verbatim to every page) ═══════════ -->
+<header class="site-header">
+  <div class="wrap">
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="index.html" aria-label="ClinMaker home">
+        <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/><line x1="26" y1="29" x2="26" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span class="wordmark"><span>Clin</span><span class="m">Maker</span></span>
       </a>
-
-      <a href="platform.html#m02" class="avail-card" style="text-decoration: none;">
-        <div class="ac-num">
-          <span>§02</span>
-          <span class="ac-status">prototype</span>
-          <span style="color: var(--text-muted); font-weight: 500;">study_build</span>
-        </div>
-        <div class="ac-title">Study build.<br><span class="shift">Protocol to EDC.</span></div>
-        <p class="ac-desc">Read a USDM-based study definition (or a protocol PDF, or a USDM-JSON export) and generate a CDASH-aligned casebook. Forms, fields, codelists, edit checks. Deploy to Medidata Rave or Veeva Vault.</p>
-        <div class="ac-standards">
-          <span class="ac-std">USDM</span>
-          <span class="ac-std">PDF</span>
-          <span class="ac-std">USDM JSON</span>
-          <span class="ac-std">CDASH 2.2</span>
-        </div>
-        <ul class="ac-bullets">
-          <li>Three intake formats: USDM study definition, protocol PDF, USDM JSON</li>
-          <li>CDASH casebook output ready for Rave Architect or Veeva Casebook Objects</li>
-          <li>Visit schedule + form set derived from the protocol's SoA</li>
-          <li>Auto-generated SDS, eCRF spec, UAT scenarios</li>
-        </ul>
-        <div class="ac-cta">read §02 in depth →</div>
-      </a>
+      <ul class="nav-menu">
+        <li class="nav-item" data-dd>
+          <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="dd-product">Product <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="dropdown" id="dd-product">
+            <a class="dd-link" href="platform.html"><b>Platform overview</b><span>One structured study, from protocol to casebook</span></a>
+            <div class="dd-sep"></div>
+            <a class="dd-link" href="protocol-digitization.html"><b>Protocol Digitization</b><span class="tag">Ready to demo</span><span>The protocol as a structured study, in ICH M11 order</span></a>
+            <a class="dd-link" href="study-build.html"><b>Study Build</b><span class="tag">Ready to demo</span><span>CDASH casebooks built from the study</span></a>
+            <div class="dd-sep"></div>
+            <a class="dd-link" href="roadmap.html"><b>Roadmap</b><span class="tag dev">10 in development</span><span>From data ingestion to submission</span></a>
+          </div>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+        <li class="nav-item"><a class="nav-link" href="security.html">Trust</a></li>
+        <li class="nav-item" data-dd>
+          <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="dd-company">Company <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="dropdown" id="dd-company">
+            <a class="dd-link" href="about.html"><b>About</b><span>Why we started ClinMaker, our mission and values</span></a>
+            <a class="dd-link" href="team.html"><b>Team</b><span>The people building it</span></a>
+            <a class="dd-link" href="careers.html"><b>Careers</b><span>Work with us</span></a>
+            <a class="dd-link" href="contact.html"><b>Contact</b><span>Talk to the founders</span></a>
+          </div>
+        </li>
+      </ul>
+      <div class="nav-actions">
+        <a class="nav-login" href="https://app.clinmaker.com" target="_blank" rel="noopener">Log in</a>
+        <a class="btn btn-primary btn-sm" href="request.html?type=demo#request-form">Request a demo</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Menu</button>
+      </div>
+    </nav>
+    <div class="mobile-nav" id="mobile-nav">
+      <div class="m-group"><span class="label">Product</span>
+        <a href="platform.html">Platform overview</a><a href="protocol-digitization.html">Protocol Digitization</a><a href="study-build.html">Study Build</a><a href="roadmap.html">Roadmap</a>
+      </div>
+      <div class="m-group"><a href="pricing.html">Pricing</a><a href="security.html">Trust &amp; compliance</a></div>
+      <div class="m-group"><span class="label">Company</span>
+        <a href="about.html">About</a><a href="team.html">Team</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a>
+      </div>
+      <div class="m-actions">
+        <a class="btn btn-primary" href="request.html?type=demo#request-form">Request a demo</a>
+        <a class="btn btn-outline" href="https://app.clinmaker.com" target="_blank" rel="noopener">Log in</a>
+      </div>
     </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="band-top fade grain" aria-labelledby="hero-h">
+  <div class="wrap hero">
+    <p class="award"><span class="award-badge"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6 3h8v4a4 4 0 0 1-8 0V3zM6 4.5H3.5A2.5 2.5 0 0 0 6 8M14 4.5h2.5A2.5 2.5 0 0 1 14 8M10 11v3M7 17h6M8 14h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Winner</span><span>Named the winner of the <b>SCOPE 365 / TransCelerate BioPharma Solve Challenge, 2026</b>, for the best integration of standards and impact assessment.</span></p>
+    <h1 id="hero-h">Write the protocol once. Build the casebook from it.</h1>
+    <div class="hero-row">
+      <p class="hero-sub">Today every team after the protocol re-keys it, and every amendment starts that over. ClinMaker turns the protocol into one structured study and builds the casebook from it.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="request.html?type=pilot#request-form">Request a pilot</a>
+        <a class="link-arrow" href="request.html?type=teardown#request-form">Request a Protocol Teardown →</a>
+      </div>
+    </div>
+
+    <figure class="hero-shot">
+      <div class="glass-frame">
+        <div class="shot-meta"><span class="dot">Protocol Digitization · Ready to demo</span><span>Real product screen · demo study</span></div>
+        <img src="assets/screens/protocol-workspace.webp" width="1496" height="711" fetchpriority="high" alt="The ClinMaker Protocol workspace. The left panel lists the protocol's sections in ICH M11 order, the editor shows section 9, Adverse Events, generated from the structured study design, and the right panel shows the review workflow from draft to reviewed.">
+      </div>
+      <div class="notes" aria-hidden="true">
+        <div class="note"><span class="ic"><svg viewBox="0 0 20 20" fill="none"><path d="M6 3h6l3 3v11H6z" stroke="#934e36" stroke-width="1.4" stroke-linejoin="round"/><path d="M8 10h5M8 13h4" stroke="#934e36" stroke-width="1.4" stroke-linecap="round"/></svg></span><div><b>§9 Adverse events · v0.1</b><p>Generated from the structured study design</p></div></div>
+        <div class="note"><span class="ic cy"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="6.5" stroke="#0e7490" stroke-width="1.4"/><path d="M7.2 10.2l2 2 3.8-4" stroke="#0e7490" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b>Review workflow</b><p>Draft, in review, reviewed. A person reviews each section.</p></div></div>
+      </div>
+    </figure>
   </div>
 </section>
 
-<!-- ROADMAP -->
-<section class="module section-alt" style="background: var(--surface-hover);">
-  <div class="container">
-    <div class="section-num-bar">
-      <span class="num"><strong>§B</strong> · roadmap</span>
-      <span class="rule"></span>
-      <span class="meta">under development</span>
-      <span class="meta">10 modules</span>
-      <span class="meta">target: end-to-end</span>
-    </div>
-    <div class="module-head">
+<!-- ═══════════ WHY CLINMAKER EXISTS ═══════════ -->
+<section class="section" id="gap" aria-labelledby="gap-h">
+  <div class="wrap">
+    <div class="gap-grid">
       <div>
-        <h2 class="display-2">On the roadmap.<br><span class="shift">Under development.</span></h2>
-        <p class="lede">The vision is end-to-end automation, module by module, with human review gates at every AI assist. Here's what's next on the build path. Pilots may include scoped previews.</p>
+        <p class="label">Why ClinMaker exists</p>
+        <h2 id="gap-h">The protocol is still a Word document, so every later team re-keys it.</h2>
       </div>
-      <a href="platform.html" class="module-link">vision → end-to-end</a>
+      <div class="gap-copy">
+        <p>Medical writers draft the protocol and circulate it by email. Data management re-keys it into a casebook specification, the EDC (electronic data capture) team builds it, and programmers map it again for submission. Every amendment starts the cycle over.</p>
+        <p>Authoring tools focus on the document. EDC build tools start from a finished protocol, inside their own EDC. <strong>Nothing connects the two, so each team re-keys every change by hand.</strong> ClinMaker keeps one structured study, from protocol to casebook.</p>
+      </div>
     </div>
-
-    <div class="roadmap-grid">
-      <div class="roadmap-card">
-        <span class="rc-num">§03</span>
-        <div class="rc-body">
-          <div class="rc-title">Data ingestion</div>
-          <div class="rc-desc">Unified vendor pipeline for EDC, central labs, imaging, ePRO, RTSM, devices.</div>
-        </div>
-        <span class="rc-tag">under dev</span>
-      </div>
-      <div class="roadmap-card">
-        <span class="rc-num">§04</span>
-        <div class="rc-body">
-          <div class="rc-title">Validation</div>
-          <div class="rc-desc">Three-level rule engine (syntactic, logical, cross-source) with severity routing.</div>
-        </div>
-        <span class="rc-tag">under dev</span>
-      </div>
-      <div class="roadmap-card">
-        <span class="rc-num">§05</span>
-        <div class="rc-body">
-          <div class="rc-title">Query management</div>
-          <div class="rc-desc">One lifecycle across validation findings, reconciliation, coding ambiguities.</div>
-        </div>
-        <span class="rc-tag">under dev</span>
-      </div>
-      <div class="roadmap-card">
-        <span class="rc-num">§06</span>
-        <div class="rc-body">
-          <div class="rc-title">Medical coding</div>
-          <div class="rc-desc">MedDRA + WHO Drug with AI-assist proposals and human review gate.</div>
-        </div>
-        <span class="rc-tag">under dev</span>
-      </div>
-      <div class="roadmap-card">
-        <span class="rc-num">§07</span>
-        <div class="rc-body">
-          <div class="rc-title">Reconciliation</div>
-          <div class="rc-desc">SAE + external sub-agents for safety-DB and vendor cross-source consistency.</div>
-        </div>
-        <span class="rc-tag">under dev</span>
-      </div>
-      <div class="roadmap-card">
-        <span class="rc-num">§08</span>
-        <div class="rc-body">
-          <div class="rc-title">SDTM / ADaM</div>
-          <div class="rc-desc">Mapping spec, conformance, Define.xml, ADaM scaffolds for submission.</div>
-        </div>
-        <span class="rc-tag">under dev</span>
-      </div>
-      <div class="roadmap-card">
-        <span class="rc-num">§09</span>
-        <div class="rc-body">
-          <div class="rc-title">Analytics</div>
-          <div class="rc-desc">Role-aware KPIs, risk flags, lock-readiness gauges, study insights.</div>
-        </div>
-        <span class="rc-tag">under dev</span>
-      </div>
-      <div class="roadmap-card">
-        <span class="rc-num">§10</span>
-        <div class="rc-body">
-          <div class="rc-title">Patient profile</div>
-          <div class="rc-desc">Longitudinal subject view (visits, AEs, labs, vitals, exposure, ePRO).</div>
-        </div>
-        <span class="rc-tag">under dev</span>
-      </div>
-      <div class="roadmap-card">
-        <span class="rc-num">§11</span>
-        <div class="rc-body">
-          <div class="rc-title">Audit trail</div>
-          <div class="rc-desc">Append-only, ALCOA+, 7-year retention. Infrastructure exists; workflow integration in progress.</div>
-        </div>
-        <span class="rc-tag">under dev</span>
-      </div>
-      <div class="roadmap-card">
-        <span class="rc-num">§12</span>
-        <div class="rc-body">
-          <div class="rc-title">User admin &amp; help center</div>
-          <div class="rc-desc">RBAC, MFA, separation of duties, in-app guidance with citation-verified AI Guide.</div>
-        </div>
-        <span class="rc-tag">under dev</span>
-      </div>
+    <div class="stats">
+      <div class="stat"><span class="label">Time to build a study database</span><div class="n">68 days<sup><a href="#fn1" aria-label="Source 1">1</a></sup></div><p>on average, to build and release the study database.</p></div>
+      <div class="stat"><span class="label">Amendments in a Phase III protocol</span><div class="n">3.4<sup><a href="#fn2" aria-label="Source 2">2</a></sup></div><p>substantial amendments on average, and each can reopen the build.</p></div>
+      <div class="stat"><span class="label">Cost of one Phase III amendment</span><div class="n">Up to $1M<sup><a href="#fn3" aria-label="Source 3">3</a></sup></div><p>in unplanned direct cost, with nearly three months of delay.</p></div>
     </div>
   </div>
 </section>
 
-<!-- FINAL CTA -->
-<section class="section-ink">
-  <div class="container" style="padding-top: clamp(80px, 10vw, 140px); padding-bottom: clamp(80px, 10vw, 140px);">
-    <div style="max-width: 920px;">
-      <span class="eyebrow">cm.demo</span>
-      <h2 class="display" style="color: white; margin-top: 18px; margin-bottom: 28px;">
-        Bring us a protocol.<br><span class="shift">We'll show you the prototype.</span>
-      </h2>
-      <p class="lede" style="color: rgba(255,255,255,0.72); margin-bottom: 40px;">
-        Thirty-minute working session — not a deck. Live USDM authoring, a mid-study amendment flow, and a CDASH study build. Early-access pilots welcome.
-      </p>
-      <div style="display: flex; gap: 24px; align-items: center; flex-wrap: wrap;">
-        <a href="#" class="btn btn-white" onclick="openDemoModal(); return false;">Talk to us <span class="arr">→</span></a>
-        <a href="mailto:hello@clinmaker.com" style="color: rgba(255,255,255,0.7); font-size: 0.9375rem;">or hello@clinmaker.com</a>
-      </div>
+<!-- ═══════════ WHY CLINMAKER ═══════════ -->
+<section class="section flush-top" id="why" aria-labelledby="why-h">
+  <div class="wrap why-grid">
+    <div>
+      <p class="label">Why ClinMaker</p>
+      <h2 id="why-h">What ClinMaker gives sponsors and CROs.</h2>
+      <p class="intro">For teams that want the protocol and casebook on one study, run more than one EDC, or need to handle amendments once. If you run one EDC and only need the build, your EDC vendor's tools may be enough.</p>
+      <div class="more"><a class="link-arrow" href="platform.html#faq">How ClinMaker fits with your EDC →</a></div>
+    </div>
+    <div class="why-list">
+      <div><span class="k">01</span><h3>One study, protocol to casebook</h3><p>The build is generated from the approved protocol's structured study, so the protocol isn't re-keyed into the build.</p></div>
+      <div><span class="k">02</span><h3>The EDC you already run</h3><p>ClinMaker isn't tied to one EDC. The casebook exports as CDISC ODM 1.3.2 XML, an open format, and as a loader file for supported EDCs.</p></div>
+      <div><span class="k">03</span><h3>Assess an amendment before it reaches the casebook</h3><p>Your team classifies the change and signs the impact assessment. The live build stays as it is while you open a new draft from the amended protocol.</p></div>
+      <div><span class="k">04</span><h3>Built on open standards you can export</h3><p>USDM 4.0 is CDISC's model for study design, ICH M11 the harmonized protocol template, and CDASH the standard for collecting data. The protocol's USDM export is checked against CDISC CORE rules, and your study leaves in open formats.</p></div>
+      <div><span class="k">05</span><h3>A person approves every AI draft</h3><p>Every AI draft is marked Advisory. A person with the right role accepts, edits or rejects it, and the audit trail records the decision.</p></div>
+      <div><span class="k">06</span><h3>Start with a no-charge Protocol Teardown</h3><p>We structure one of your protocols in five business days. A pilot on one study follows, and nothing live depends on it.</p></div>
     </div>
   </div>
 </section>
 
-<!-- COLOPHON -->
-<footer class="colophon">
-  <div class="col-brand">
-    <span>Clin</span><span class="shift">Maker</span>
-    <span class="col-divider" style="margin-left: 12px;">·</span>
-    <span style="font-family: var(--font-body); font-weight: 500; font-size: 0.8125rem; color: var(--text-secondary);">LLC</span>
+<!-- ═══════════ THE PLATFORM (expanding cards) ═══════════ -->
+<section class="section" id="platform" aria-labelledby="plat-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="label">The platform</p>
+        <h2 id="plat-h">Two modules ready to demo, on one structured study.</h2>
+      </div>
+      <a class="go" href="platform.html">How the platform works <i><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6 14L14 6M7.5 6H14v6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i></a>
+    </div>
+
+    <div class="xcards">
+      <article class="xcard x-pd grain is-open">
+        <button class="x-toggle" type="button" aria-expanded="true" aria-controls="x1-o" aria-labelledby="x1-h"></button>
+        <div class="x-face x-closed" aria-hidden="true">
+          <div class="x-top"><span class="status ready">Ready to demo</span><span class="x-num">01</span></div>
+          <p class="x-title">Protocol Digitization</p>
+          <i class="x-go" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></i>
+        </div>
+        <div class="x-face x-opened" id="x1-o">
+          <div class="x-top"><span class="status ready">Ready to demo</span><span class="x-num" aria-hidden="true">01</span></div>
+          <div class="x-media"><img src="assets/screens/pd-guide.webp" width="1140" height="530" loading="lazy" alt="The Protocol workspace with the ICH M11 guide open: guided steps with progress 7 of 15, and section 9.1.1, Definitions of Adverse Events, in the editor."></div>
+          <div class="x-body">
+            <h3 id="x1-h">Protocol Digitization</h3>
+            <p>Write a new protocol, digitize a PDF or Word file, or import a USDM study definition. Every section follows the ICH M11 protocol template and is reviewed by a person. Sections drawn from the study design are generated from it.</p>
+            <a class="btn btn-dark btn-sm" href="protocol-digitization.html">Explore Protocol Digitization</a>
+          </div>
+        </div>
+      </article>
+      <article class="xcard x-sb grain">
+        <button class="x-toggle" type="button" aria-expanded="false" aria-controls="x2-o" aria-labelledby="x2-h"></button>
+        <div class="x-face x-closed" aria-hidden="true">
+          <div class="x-top"><span class="status ready">Ready to demo</span><span class="x-num">02</span></div>
+          <p class="x-title">Study Build</p>
+          <i class="x-go" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></i>
+        </div>
+        <div class="x-face x-opened" id="x2-o">
+          <div class="x-top"><span class="status ready">Ready to demo</span><span class="x-num" aria-hidden="true">02</span></div>
+          <div class="x-media"><img src="assets/screens/crf-ae-fields.webp" width="649" height="711" loading="lazy" alt="Field details of the Adverse Events CDASH eCRF: each field with its type, CDASH variable, SDTM target and whether it is required."></div>
+          <div class="x-body">
+            <h3 id="x2-h">Study Build</h3>
+            <p>Study Build creates the casebook from the approved protocol. Forms follow CDASH, each field carries its SDTM target where one exists, and the build exports as CDISC ODM 1.3.2 XML.</p>
+            <a class="btn btn-dark btn-sm" href="study-build.html">Explore Study Build</a>
+          </div>
+        </div>
+      </article>
+      <article class="xcard x-next grain">
+        <button class="x-toggle" type="button" aria-expanded="false" aria-controls="x3-o" aria-labelledby="x3-h"></button>
+        <div class="x-face x-closed" aria-hidden="true">
+          <div class="x-top"><span class="status dev">In development</span><span class="x-num">+10</span></div>
+          <p class="x-title">What comes next</p>
+          <i class="x-go" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></i>
+        </div>
+        <div class="x-face x-opened" id="x3-o">
+          <div class="x-top"><span class="status dev">In development</span><span class="x-num" aria-hidden="true">+10</span></div>
+          <div class="x-media"><div class="x-stages">
+              <div><span class="label">Collect and clean</span><ul><li>Data Ingestion</li><li>Data Validation</li><li>Query Management</li><li>Medical Coding</li><li>Reconciliation</li></ul></div>
+              <div><span class="label">Review and lock</span><ul><li>Data Review</li><li>Patient Profile</li><li>Database Lock</li></ul></div>
+              <div><span class="label">Submit and measure</span><ul><li>SDTM / ADaM</li><li>Analytics &amp; Monitoring</li></ul></div>
+            </div></div>
+          <div class="x-body">
+            <h3 id="x3-h">What comes next</h3>
+            <p>Ten more modules on the same structured study, from data ingestion to SDTM, ADaM and submission. Each moves to Ready to demo when we can show it working.</p>
+            <a class="btn btn-dark btn-sm" href="roadmap.html">See the roadmap</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
   </div>
-  <div style="display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center;">
-    <a href="platform.html">Platform</a><span class="col-divider">·</span>
-    <a href="standards.html">Standards</a><span class="col-divider">·</span>
-    <a href="security.html">Security</a><span class="col-divider">·</span>
-    <a href="pricing.html">Pricing</a><span class="col-divider">·</span>
-    <a href="about.html">About</a><span class="col-divider">·</span>
-    <a href="contact.html">Contact</a><span class="col-divider">·</span>
-    <a href="https://app.clinmaker.com" target="_blank" rel="noopener">Log in →</a>
+</section>
+
+<!-- ═══════════ USE CASES (horizontal rail) ═══════════ -->
+<section class="section mesh-band grain" id="use-cases" aria-labelledby="uc-h">
+  <div data-rail>
+    <div class="wrap rail-head">
+      <div>
+        <p class="label">Use cases</p>
+        <h2 id="uc-h">Every team works from the same structured study.</h2>
+        <p>Medical writing, data management, clinical operations, biostatistics and quality each start where the last team finished.</p>
+      </div>
+      <div class="rail-ctl">
+        <button type="button" data-rail-prev aria-label="Previous use cases"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M16 10H4M9 5l-5 5 5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" data-rail-next aria-label="Next use cases"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+    <div class="xrail" tabindex="0" role="region" aria-label="Use cases, scroll sideways for more">
+      <article class="uc">
+        <div class="uc-media m-pe"><img src="assets/screens/uc-sections.webp" width="560" height="350" loading="lazy" alt="The protocol's section list in ICH M11 order, from the title page and protocol summary to the introduction and trial objectives."></div>
+        <div class="uc-body"><span class="label">Protocol Digitization</span><h3>Digitize a protocol you already have</h3><p>Upload a protocol PDF or Word file and get back a structured study, every section in ICH M11 order, ready for review.</p><div class="who"><span>Medical writing</span><span>Data management</span></div></div>
+      </article>
+      <article class="uc">
+        <div class="uc-media m-pe"><img src="assets/screens/pd-guide.webp" width="1140" height="530" loading="lazy" alt="Guided ICH M11 steps with progress 7 of 15 and the next step: add a primary endpoint."></div>
+        <div class="uc-body"><span class="label">Protocol Digitization</span><h3>Write a new protocol, step by step</h3><p>Guided ICH M11 steps and guidance for each section. Sections that depend on the study design are generated from the structured study.</p><div class="who"><span>Medical writing</span><span>Clinical science</span></div></div>
+      </article>
+      <article class="uc">
+        <div class="uc-media m-vi"><img src="assets/screens/uc-review.webp" width="328" height="240" loading="lazy" alt="The review workflow for a protocol section: draft, in review and reviewed, with the option to claim the section for editing."></div>
+        <div class="uc-body"><span class="label">Review</span><h3>Approve every AI draft</h3><p>Every AI draft is marked Advisory. Claim a section, comment and run checks. Nothing is applied until a person accepts it, and the decision is recorded.</p><div class="who"><span>Medical writing</span><span>Quality</span></div></div>
+      </article>
+      <article class="uc">
+        <div class="uc-media m-cy"><img src="assets/screens/crf-ae-fields.webp" width="649" height="711" loading="lazy" alt="Adverse Events eCRF field details with CDASH variables and SDTM targets."></div>
+        <div class="uc-body"><span class="label">Study Build</span><h3>Build the casebook from the protocol</h3><p>CDASH-aligned forms, codelists and edit checks, with the SDTM target for each field that has one, taken through build validation and user acceptance testing (UAT) sign-off.</p><div class="who"><span>Data management</span><span>Clinical programming</span></div></div>
+      </article>
+      <article class="uc">
+        <div class="uc-media m-sa"><img src="assets/screens/amendment-rules.webp" width="780" height="480" loading="lazy" alt="Amendment impact rules for consent, each with a severity, the protocol sections it watches and the regulation it cites."></div>
+        <div class="uc-body"><span class="label">Amendments</span><h3>Handle an amendment once</h3><p>Classify the change, see every step it triggers, from re-consent to ethics review, and sign the impact assessment. Each step cites its regulation.</p><div class="who"><span>Regulatory affairs</span><span>Clinical operations</span><span>Quality</span></div></div>
+      </article>
+      <article class="uc">
+        <div class="uc-media m-pe glyph"><div class="uc-glyph" aria-hidden="true"><div><i></i>ClinicalTrials.gov record · draft</div><div><i></i>EU CTIS record · draft</div><div><i class="c"></i>Generated from the structured study</div></div></div>
+        <div class="uc-body"><span class="label">Registries</span><h3>Draft registry records</h3><p>Prepare ClinicalTrials.gov and EU CTIS (Clinical Trials Information System) record drafts from the same study as the protocol.</p><div class="who"><span>Regulatory affairs</span><span>Clinical operations</span></div></div>
+      </article>
+      <article class="uc">
+        <div class="uc-media m-cy glyph"><div class="uc-glyph" aria-hidden="true"><div><i class="c"></i>Protocol library · search study definitions</div><div><i></i>Compare two protocols</div><div><i class="c"></i>Reuse content from an earlier protocol</div></div></div>
+        <div class="uc-body"><span class="label">Portfolio</span><h3>Reuse what you've already built</h3><p>Search the protocol library, compare protocols, and reuse objectives, endpoints, eligibility and interventions from earlier protocols.</p><div class="who"><span>Data standards</span><span>Biostatistics</span></div></div>
+      </article>
+      <article class="uc">
+        <div class="uc-media m-vi glyph"><div class="uc-glyph" aria-hidden="true"><div><i class="v"></i>AI draft · Advisory</div><div><i></i>Accepted by a reviewer · recorded</div><div><i class="g"></i>Protocol approved · e-signed</div></div></div>
+        <div class="uc-body"><span class="label">Inspection</span><h3>Show who decided what, and why</h3><p>An append-only audit trail and e-signatures keep decisions with the study. Designed for 21 CFR Part 11, EU Annex 11 and ICH E6(R3) controls.</p><div class="who"><span>Quality</span><span>IT</span></div></div>
+      </article>
+    </div>
+    <div class="rail-progress" aria-hidden="true"><i></i></div>
   </div>
-  <div class="col-meta">
-    <span>hello@clinmaker.com</span>
-    <span class="col-divider">·</span>
-    <span>© 2026</span>
+</section>
+
+<!-- ═══════════ COMPANY + GET STARTED ═══════════ -->
+<section class="section flush-top" id="company" aria-label="The company and how to get started">
+  <div class="wrap co-grid">
+    <div class="co-card">
+      <p class="label">The company</p>
+      <h2>Founded by people who did this work.</h2>
+      <div class="letter">
+        <p>We spent our careers in data management, statistical programming and clinical operations, at CROs, sponsors and large pharma. We re-keyed the same study at every hand-off, and started again with every amendment.</p>
+        <p>ClinMaker is the platform we wanted then. Two modules work today, and we'll show you both.</p>
+      </div>
+      <div class="sig">
+        <div><span class="n">Sunish Raj</span><span class="r">Founder · Data platform</span></div>
+        <div><span class="n">[First name] Marshall</span><span class="r">Founder · Clinical operations &amp; CRO partnerships</span></div>
+        <div><span class="n">[First name] Chadha</span><span class="r">Founder · Statistical programming</span></div>
+      </div>
+      <div class="more"><a class="link-arrow" href="about.html">Why we started →</a><a class="link-arrow" href="team.html">Team →</a><a class="link-arrow" href="careers.html">Careers →</a></div>
+    </div>
+    <div class="co-card start grain">
+      <p class="label">Get started</p>
+      <h2>See ClinMaker on your own protocol.</h2>
+      <div class="deliv">
+        <div><span class="d">Demo</span><a href="request.html?type=demo#request-form"><b>A 30-minute live walkthrough</b><span class="s">Both modules, on our demo study.</span></a></div>
+        <div><span class="d">Teardown</span><a href="request.html?type=teardown#request-form"><b>Your protocol, in five business days</b><span class="s">A USDM 4.0 study definition, a CDASH-aligned draft casebook, a written gap report and a live readout. Under mutual NDA, no charge.</span></a></div>
+        <div><span class="d">Pilot</span><a href="request.html?type=pilot#request-form"><b>Scoped to one study</b><span class="s">Runs alongside a study you've already built, so nothing live depends on it.</span></a></div>
+      </div>
+      <div class="more"><a class="btn btn-primary" href="request.html?type=pilot#request-form">Request a pilot</a><a class="link-arrow" href="pricing.html">Pricing →</a></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════ FOOTER (shared: copy verbatim to every page; footnotes optional) ═══════════ -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <a class="brand" href="index.html" aria-label="ClinMaker home">
+          <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/><line x1="26" y1="29" x2="26" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <span class="wordmark"><span>Clin</span><span class="m">Maker</span></span>
+        </a>
+        <p class="tag">Standards at the core. Submission at the finish.</p>
+        <span class="mono">contact@clinmaker.com</span>
+      </div>
+      <div class="ft-col"><h4>Product</h4><ul>
+        <li><a href="platform.html">Platform overview</a></li>
+        <li><a href="protocol-digitization.html">Protocol Digitization</a></li>
+        <li><a href="study-build.html">Study Build</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+      </ul></div>
+      <div class="ft-col"><h4>Company</h4><ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div class="ft-col"><h4>Get started</h4><ul>
+        <li><a href="request.html?type=demo#request-form">Request a demo</a></li>
+        <li><a href="request.html?type=pilot#request-form">Request a pilot</a></li>
+        <li><a href="request.html?type=teardown#request-form">Protocol Teardown</a></li>
+        <li><a href="security.html">Trust &amp; compliance</a></li>
+        <li><a href="https://app.clinmaker.com" target="_blank" rel="noopener">Log in ↗</a></li>
+      </ul></div>
+    </div>
+    <div class="ft-legal">
+      <span>© 2026 ClinMaker, LLC</span>
+      <nav aria-label="Legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="security.html">Security</a></nav>
+    </div>
+    <div class="ft-notes">
+      <p id="fn1"><sup>1</sup>Tufts Center for the Study of Drug Development, eClinical Landscape Study (2017), sponsored by Veeva Systems. Average time to build and release a study database: 68.3 days.</p>
+      <p id="fn2"><sup>2</sup>Tufts CSDD Impact Report (November/December 2025), as cited by WCG Clinical (2026). Substantial amendments in a typical Phase III protocol with primary completion in 2023 to 2025.</p>
+      <p id="fn3"><sup>3</sup>WCG Clinical (August 2026), drawing on Tufts CSDD research. Phase III amendments can add nearly three months of delay and up to $1 million in unplanned direct costs per amendment.</p>
+      <p>Protocol Digitization and Study Build, and the platform they run on, are ready to demo and available for pilots. They are not yet in production use. Modules marked "In development" are not available. Not every feature uses AI.</p>
+    </div>
   </div>
 </footer>
-
-<!-- DEMO MODAL -->
-<div class="modal-overlay" id="demoModal" role="dialog" aria-labelledby="demoModalTitle" aria-modal="true">
-  <div class="modal">
-    <button class="modal-close" onclick="closeDemoModal()" aria-label="Close">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg>
-    </button>
-    <span class="eyebrow brand" style="margin-bottom: 10px;">cm.demo/request</span>
-    <h3 id="demoModalTitle" class="display-3">Talk to us.</h3>
-    <p class="lede">Thirty minutes on the live platform. Working session — not a deck. We come back within one business day.</p>
-    <form action="__FORMSPREE_ENDPOINT__" method="POST" onsubmit="return handleDemoSubmit(this, event)">
-      <div class="form-row">
-        <div class="form-group"><label>First name</label><input type="text" name="first_name" class="form-control" required></div>
-        <div class="form-group"><label>Last name</label><input type="text" name="last_name" class="form-control" required></div>
-      </div>
-      <div class="form-group"><label>Work email</label><input type="email" name="email" class="form-control" required></div>
-      <div class="form-group"><label>Company</label><input type="text" name="company" class="form-control" required></div>
-      <div class="form-group"><label>Role</label>
-        <select name="role" class="form-control">
-          <option value="">Select…</option>
-          <option>Data Manager / Lead</option>
-          <option>Clinical Operations</option>
-          <option>Biostatistics / Programming</option>
-          <option>QA / Compliance</option>
-          <option>Medical / Safety</option>
-          <option>Executive / Sponsor leadership</option>
-          <option>Other</option>
-        </select>
-      </div>
-      <div class="form-group"><label>What would you like to see?</label><textarea name="message" class="form-control" placeholder="A particular module, an integration, a workflow…"></textarea></div>
-      <button type="submit" class="form-submit">Send request <span class="arr">→</span></button>
-    </form>
-  </div>
-</div>
-
-<script src="assets/script.js"></script>
 </body>
 </html>

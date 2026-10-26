@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Study Build · The casebook built from the protocol · ClinMaker</title>
+  <meta name="description" content="Build a CDASH-aligned casebook from the approved protocol: schedule of activities, forms, codelists, edit checks and completion guidelines, with the SDTM target for each field that has one, exported as CDISC ODM 1.3.2. Ready to demo.">
+  <meta name="theme-color" content="#fbf3ee">
+  <meta property="og:title" content="Study Build · ClinMaker">
+  <meta property="og:description" content="A CDASH-aligned casebook built from the structured study, with the SDTM target for each field that has one, exported as CDISC ODM. Ready to demo and available for pilots.">
+  <meta property="og:image" content="https://clinmaker.com/assets/logo-lockup-tagline.png">
+  <meta property="og:url" content="https://clinmaker.com/study-build.html">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27 viewBox=%270 0 64 64%27 fill=%27none%27%3E%3Cpath d=%27M50 14 a22 22 0 1 0 0 36%27 stroke=%27%23d87654%27 stroke-width=%276%27 stroke-linecap=%27round%27 fill=%27none%27%2F%3E%3Cpath d=%27M20 26 Q 26 32 32 26 T 44 26%27 stroke=%27%23d87654%27 stroke-width=%272.4%27 stroke-linecap=%27round%27 fill=%27none%27%2F%3E%3Cpath d=%27M20 38 Q 26 32 32 38 T 44 38%27 stroke=%27%230e7490%27 stroke-width=%272.4%27 stroke-linecap=%27round%27 fill=%27none%27%2F%3E%3Cline x1=%2726%27 y1=%2729%27 x2=%2726%27 y2=%2735%27 stroke=%27%237850dc%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%2F%3E%3Cline x1=%2732%27 y1=%2727%27 x2=%2732%27 y2=%2737%27 stroke=%27%237850dc%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%2F%3E%3Cline x1=%2738%27 y1=%2729%27 x2=%2738%27 y2=%2735%27 stroke=%27%237850dc%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%2F%3E%3C%2Fsvg%3E">
+  <link rel="alternate icon" type="image/png" href="assets/favicon-256.png?v=4">
+  <link rel="apple-touch-icon" href="assets/favicon-256.png?v=4">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/v7.css?v=20261026e">
+  <script src="assets/v7.js?v=20261026e" defer></script>
+  <style>
+    /* Page-level: space under the status pill in a page hero; centre a tall hero screen */
+    .page-hero .eyebrow { margin-bottom: 22px; }
+    .page-hero-grid.mid { align-items: center; }
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ═══════════ HEADER (shared: copy verbatim to every page) ═══════════ -->
+<header class="site-header">
+  <div class="wrap">
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="index.html" aria-label="ClinMaker home">
+        <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/><line x1="26" y1="29" x2="26" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span class="wordmark"><span>Clin</span><span class="m">Maker</span></span>
+      </a>
+      <ul class="nav-menu">
+        <li class="nav-item" data-dd>
+          <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="dd-product">Product <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="dropdown" id="dd-product">
+            <a class="dd-link" href="platform.html"><b>Platform overview</b><span>One structured study, from protocol to casebook</span></a>
+            <div class="dd-sep"></div>
+            <a class="dd-link" href="protocol-digitization.html"><b>Protocol Digitization</b><span class="tag">Ready to demo</span><span>The protocol as a structured study, in ICH M11 order</span></a>
+            <a class="dd-link" href="study-build.html"><b>Study Build</b><span class="tag">Ready to demo</span><span>CDASH casebooks built from the study</span></a>
+            <div class="dd-sep"></div>
+            <a class="dd-link" href="roadmap.html"><b>Roadmap</b><span class="tag dev">10 in development</span><span>From data ingestion to submission</span></a>
+          </div>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+        <li class="nav-item"><a class="nav-link" href="security.html">Trust</a></li>
+        <li class="nav-item" data-dd>
+          <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="dd-company">Company <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="dropdown" id="dd-company">
+            <a class="dd-link" href="about.html"><b>About</b><span>Why we started ClinMaker, our mission and values</span></a>
+            <a class="dd-link" href="team.html"><b>Team</b><span>The people building it</span></a>
+            <a class="dd-link" href="careers.html"><b>Careers</b><span>Work with us</span></a>
+            <a class="dd-link" href="contact.html"><b>Contact</b><span>Talk to the founders</span></a>
+          </div>
+        </li>
+      </ul>
+      <div class="nav-actions">
+        <a class="nav-login" href="https://app.clinmaker.com" target="_blank" rel="noopener">Log in</a>
+        <a class="btn btn-primary btn-sm" href="request.html?type=demo#request-form">Request a demo</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Menu</button>
+      </div>
+    </nav>
+    <div class="mobile-nav" id="mobile-nav">
+      <div class="m-group"><span class="label">Product</span>
+        <a href="platform.html">Platform overview</a><a href="protocol-digitization.html">Protocol Digitization</a><a href="study-build.html">Study Build</a><a href="roadmap.html">Roadmap</a>
+      </div>
+      <div class="m-group"><a href="pricing.html">Pricing</a><a href="security.html">Trust &amp; compliance</a></div>
+      <div class="m-group"><span class="label">Company</span>
+        <a href="about.html">About</a><a href="team.html">Team</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a>
+      </div>
+      <div class="m-actions">
+        <a class="btn btn-primary" href="request.html?type=demo#request-form">Request a demo</a>
+        <a class="btn btn-outline" href="https://app.clinmaker.com" target="_blank" rel="noopener">Log in</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ═══════════ PAGE HERO ═══════════ -->
+<section class="band-top fade grain" aria-labelledby="sb-h">
+  <div class="wrap page-hero">
+    <p class="crumbs"><a href="index.html">Home</a><span>/</span><a href="platform.html">Product</a><span>/</span><span>Study Build</span></p>
+    <div class="page-hero-grid mid">
+      <div>
+        <p class="eyebrow"><b>Ready to demo</b>Available for pilots</p>
+        <h1 id="sb-h">Build the casebook from the protocol.</h1>
+        <p class="lead">Today data management and EDC (electronic data capture) teams re-key most casebooks from the protocol by hand, then again after every amendment. Study Build creates the casebook from the structured study. It produces CDASH-aligned forms, codelists and edit checks, with the SDTM target for each field that has one. Each build goes through user acceptance testing (UAT) and exports as CDISC ODM 1.3.2 XML.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="request.html?type=pilot#request-form">Request a pilot</a>
+          <a class="link-arrow" href="request.html?type=teardown#request-form">Request a Protocol Teardown →</a>
+        </div>
+      </div>
+      <figure class="glass-frame">
+        <div class="shot-meta" aria-hidden="true"><span class="dot">Form library · Adverse Events</span><span>Real product screen</span></div>
+        <img src="assets/screens/ecrf-ae-preview.webp" width="649" height="711" fetchpriority="high" alt="The eCRF preview of the Adverse Events CDASH eCRF in the ClinMaker form library. Fields such as Study Identifier, Subject Identifier for the Study, Reported Term for the Adverse Event and Adverse Event Start Date are laid out as a form, each typed as text or codelist, with required fields marked.">
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ THREE STARTING POINTS ═══════════ -->
+<section class="section tight" id="start" aria-labelledby="start-pts-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="label">Three starting points</p>
+        <h2 id="start-pts-h">Start from the protocol you have.</h2>
+      </div>
+      <p>Only one route depends on AI. Low-confidence AI extractions wait in a review queue, and every build needs a person's review and approval.</p>
+    </div>
+    <div class="feat-grid">
+      <article class="feat">
+        <span class="chip feat-tag">No AI</span>
+        <h3>An approved protocol</h3>
+        <p>Study Build converts the protocol approved in Protocol Digitization, with no AI. With the same protocol and form library, you get the same build.</p>
+        <a class="link-arrow" href="protocol-digitization.html">Protocol Digitization →</a>
+      </article>
+      <article class="feat">
+        <span class="chip ai feat-tag">AI + review queue</span>
+        <h3>An uploaded protocol</h3>
+        <p>Upload a protocol PDF or Word file. AI extracts the visits, assessments and footnotes. Forms come from the library and edit checks come from rules. Low-confidence items wait in a review queue for a person.</p>
+      </article>
+      <article class="feat">
+        <span class="chip feat-tag">Open standard</span>
+        <h3>USDM JSON</h3>
+        <p>Import a study definition in USDM, CDISC's standard data model for a study's design, from another system and build the casebook from it.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ WHAT'S IN A BUILD (horizontal rail) ═══════════ -->
+<section class="section mesh-band grain" id="build" aria-labelledby="build-h">
+  <div data-rail>
+    <div class="wrap rail-head">
+      <div>
+        <p class="label">What's in a build</p>
+        <h2 id="build-h">Forms, codelists, edit checks and site guidelines, on CDISC standards.</h2>
+        <p>All of them come from the same study. CDASH is the CDISC standard for how case report form data is collected, and SDTM is the CDISC format for study data that FDA requires in submissions. The platform includes CDISC Controlled Terminology and the CDASH and SDTM implementation guides (CDASHIG and SDTMIG).</p>
+      </div>
+      <div class="rail-ctl">
+        <button type="button" data-rail-prev aria-label="Previous build contents"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M16 10H4M9 5l-5 5 5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" data-rail-next aria-label="Next build contents"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+    <div class="xrail" tabindex="0" role="region" aria-label="What's in a build, scroll sideways for more">
+      <article class="uc">
+        <div class="uc-media m-pe glyph"><div class="uc-glyph" aria-hidden="true"><div><i></i>CDASH eCRFs</div><div><i></i>Standard forms</div><div><i class="c"></i>QRS instruments</div><div><i class="c"></i>Your sponsor forms</div></div></div>
+        <div class="uc-body"><span class="label">Form library</span><h3>Start from standard forms</h3><p>CDASH eCRFs, standard forms, QRS instruments (questionnaires, ratings and scales) and your own sponsor forms. Preview any form as an eCRF.</p><div class="who"><span>Data management</span><span>Clinical programming</span></div></div>
+      </article>
+      <article class="uc">
+        <div class="uc-media m-cy"><img src="assets/screens/crf-ae-fields.webp" width="649" height="711" loading="lazy" alt="Field details of the Adverse Events CDASH eCRF: 55 fields, each with its type, CDASH variable, SDTM target and whether it is required. AESTDAT and AESTTIM both map to AESTDTC, and fields with no SDTM target show none."></div>
+        <div class="uc-body"><span class="label">Field details</span><h3>Fields mapped from CDASH to SDTM</h3><p>Type and CDASH variable for every field, with the SDTM target for each field that has one. Standard forms use CDISC variable names only, and build validation warns when a name isn't a CDISC one.</p><div class="who"><span>Clinical programming</span><span>Biostatistics</span></div></div>
+      </article>
+      <article class="uc">
+        <div class="uc-media m-vi glyph"><div class="uc-glyph" aria-hidden="true"><div><i class="v"></i>Visits and activities</div><div><i></i>From the protocol's schedule</div><div><i class="c"></i>One grid for the build</div></div></div>
+        <div class="uc-body"><span class="label">Schedule of activities</span><h3>The schedule, as a grid</h3><p>The protocol's visits and activities carry into the build as a schedule-of-activities grid.</p><div class="who"><span>Data management</span><span>Clinical operations</span></div></div>
+      </article>
+      <article class="uc">
+        <div class="uc-media m-sa glyph"><div class="uc-glyph" aria-hidden="true"><div><i class="c"></i>Codelists · CDISC Controlled Terminology</div><div><i></i>Edit checks · per form</div><div><i class="v"></i>AI proposals · review queue</div></div></div>
+        <div class="uc-body"><span class="label">Codelists and edit checks</span><h3>Checks and codelists built in</h3><p>Codelists from CDISC Controlled Terminology and edit checks on each form. A check that AI proposes waits in the review queue.</p><div class="who"><span>Data management</span><span>Clinical programming</span></div></div>
+      </article>
+      <article class="uc">
+        <div class="uc-media m-pe glyph"><div class="uc-glyph" aria-hidden="true"><div><i></i>eCRF completion guidelines</div><div><i class="c"></i>Part of the same build</div></div></div>
+        <div class="uc-body"><span class="label">Guidelines</span><h3>eCRF completion guidelines</h3><p>Completion guidelines for sites are part of the same build as the forms they describe.</p><div class="who"><span>Data management</span><span>Clinical operations</span></div></div>
+      </article>
+    </div>
+    <div class="rail-progress" aria-hidden="true"><i></i></div>
+  </div>
+</section>
+
+<!-- ═══════════ LIFECYCLE AND AMENDMENTS ═══════════ -->
+<section class="section" id="lifecycle" aria-labelledby="life-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="label">Lifecycle and amendments</p>
+        <h2 id="life-h">From draft to live, with a record at every step.</h2>
+      </div>
+      <p>Each build moves through five stages. When the protocol changes, the live build stays as it is. You open a new draft of the build from the amended protocol.</p>
+    </div>
+    <div class="feat-grid two">
+      <article class="feat">
+        <span class="label">Lifecycle</span>
+        <h3>Five stages, from Draft to Live</h3>
+        <ol class="wf" aria-label="Build lifecycle">
+          <li><span class="chip">Draft</span></li>
+          <li><span class="chip">In review</span></li>
+          <li><span class="chip">UAT</span></li>
+          <li><span class="chip">Approved</span></li>
+          <li><span class="chip ready">Live</span></li>
+        </ol>
+        <p>Stage changes made in Study Build take a snapshot. The build keeps its validation results and the UAT sign-off. A build can't move to UAT or Approved until its review queue is empty.</p>
+      </article>
+      <article class="feat" id="amendments">
+        <span class="label">Amendments</span>
+        <h3>Amendments go through a new draft of the build</h3>
+        <p>The clinical content of fields that come from the protocol is locked in the build. ClinMaker gives each change in the new draft one of three labels:</p>
+        <div class="chips" aria-label="Change labels"><span class="chip">Additive</span><span class="chip">Breaking</span><span class="chip">Semantic</span></div>
+        <a class="link-arrow" href="protocol-digitization.html#amendments">See how Protocol Digitization assesses an amendment →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ INTO YOUR EDC ═══════════ -->
+<section class="section tint" id="edc" aria-labelledby="edc-h">
+  <div class="wrap split">
+    <div>
+      <p class="label">Into your EDC</p>
+      <h2 id="edc-h">Exported as CDISC ODM and as an EDC loader file.</h2>
+      <p class="body">The build exports as CDISC ODM 1.3.2 XML, an open CDISC format for exchanging study designs, with loader files for specific EDCs. The final loader file is produced only from an approved build, and it is checked against the loader's rules first.</p>
+      <p class="body">If you run one EDC and only need the build, your EDC vendor's tools may be enough. Study Build is for teams that want the casebook built from the protocol, or that run more than one EDC.</p>
+    </div>
+    <dl class="spec-list">
+      <div><dt>Export</dt><dd>CDISC ODM 1.3.2 XML</dd></div>
+      <div><dt>EDC loaders</dt><dd><span class="ph">[to confirm: which EDC loaders to name]</span></dd></div>
+      <div><dt>Before the final loader</dt><dd>Approved build, approved forms, loader file rules</dd></div>
+      <div><dt>Standards</dt><dd>USDM 4.0, CDASH, SDTM targets, CDISC Controlled Terminology</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ═══════════ GET STARTED ═══════════ -->
+<section class="section" aria-labelledby="cta-h">
+  <div class="wrap">
+    <div class="td grain">
+      <div>
+        <p class="label">Get started</p>
+        <h2 id="cta-h">See your casebook built from your protocol.</h2>
+        <p class="lead">Send a protocol under mutual NDA for a Protocol Teardown. Within five business days, you get a USDM 4.0 study definition and a CDASH-aligned draft casebook built from it. Every pilot starts with one.</p>
+        <div class="td-ctas">
+          <a class="btn btn-primary" href="request.html?type=pilot#request-form">Request a pilot</a>
+          <a class="link-arrow" href="request.html?type=teardown#request-form">Request a Protocol Teardown →</a>
+        </div>
+      </div>
+      <div class="deliv">
+        <div><span class="d">Demo</span><a href="request.html?type=demo#request-form"><b>A 30-minute live walkthrough</b><span class="s">Both modules, on our demo study.</span></a></div>
+        <div><span class="d">Teardown</span><a href="request.html?type=teardown#request-form"><b>Your protocol, in five business days</b><span class="s">A USDM 4.0 study definition, a CDASH-aligned draft casebook, a written gap report and a live readout. Under mutual NDA, no charge.</span></a></div>
+        <div><span class="d">Pilot</span><a href="request.html?type=pilot#request-form"><b>Scoped to one study</b><span class="s">Runs alongside a study you've already built, so nothing live depends on it.</span></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════ FOOTER (shared: copy verbatim to every page; footnotes optional) ═══════════ -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <a class="brand" href="index.html" aria-label="ClinMaker home">
+          <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/><line x1="26" y1="29" x2="26" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <span class="wordmark"><span>Clin</span><span class="m">Maker</span></span>
+        </a>
+        <p class="tag">Standards at the core. Submission at the finish.</p>
+        <span class="mono">contact@clinmaker.com</span>
+      </div>
+      <div class="ft-col"><h4>Product</h4><ul>
+        <li><a href="platform.html">Platform overview</a></li>
+        <li><a href="protocol-digitization.html">Protocol Digitization</a></li>
+        <li><a href="study-build.html">Study Build</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+      </ul></div>
+      <div class="ft-col"><h4>Company</h4><ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div class="ft-col"><h4>Get started</h4><ul>
+        <li><a href="request.html?type=demo#request-form">Request a demo</a></li>
+        <li><a href="request.html?type=pilot#request-form">Request a pilot</a></li>
+        <li><a href="request.html?type=teardown#request-form">Protocol Teardown</a></li>
+        <li><a href="security.html">Trust &amp; compliance</a></li>
+        <li><a href="https://app.clinmaker.com" target="_blank" rel="noopener">Log in ↗</a></li>
+      </ul></div>
+    </div>
+    <div class="ft-legal">
+      <span>© 2026 ClinMaker, LLC</span>
+      <nav aria-label="Legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="security.html">Security</a></nav>
+    </div>
+    <div class="ft-notes">
+      <p>Protocol Digitization and Study Build, and the platform they run on, are ready to demo and available for pilots. They are not yet in production use. Modules marked "In development" are not available. Not every feature uses AI.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

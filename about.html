@@ -2,577 +2,288 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About — ClinMaker</title>
-  <meta name="description" content="The clinical data stack, collapsed into one platform. Built by people who've spent careers running clinical trials.">
-  <meta name="theme-color" content="#d87654">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>About · ClinMaker</title>
+  <meta name="description" content="Why three founders with 50+ years in clinical data started ClinMaker: our mission, vision and values, why now, and where the company is today.">
+  <meta name="theme-color" content="#fbf3ee">
+  <meta property="og:title" content="About · ClinMaker">
+  <meta property="og:description" content="Why we started ClinMaker, what we are here to do, and where the company is today.">
+  <meta property="og:image" content="https://clinmaker.com/assets/logo-lockup-tagline.png">
+  <meta property="og:url" content="https://clinmaker.com/about.html">
+  <meta property="og:type" content="website">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27 viewBox=%270 0 64 64%27 fill=%27none%27%3E%3Cpath d=%27M50 14 a22 22 0 1 0 0 36%27 stroke=%27%23d87654%27 stroke-width=%276%27 stroke-linecap=%27round%27 fill=%27none%27%2F%3E%3Cpath d=%27M20 26 Q 26 32 32 26 T 44 26%27 stroke=%27%23d87654%27 stroke-width=%272.4%27 stroke-linecap=%27round%27 fill=%27none%27%2F%3E%3Cpath d=%27M20 38 Q 26 32 32 38 T 44 38%27 stroke=%27%230e7490%27 stroke-width=%272.4%27 stroke-linecap=%27round%27 fill=%27none%27%2F%3E%3Cline x1=%2726%27 y1=%2729%27 x2=%2726%27 y2=%2735%27 stroke=%27%237850dc%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%2F%3E%3Cline x1=%2732%27 y1=%2727%27 x2=%2732%27 y2=%2737%27 stroke=%27%237850dc%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%2F%3E%3Cline x1=%2738%27 y1=%2729%27 x2=%2738%27 y2=%2735%27 stroke=%27%237850dc%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%2F%3E%3C%2Fsvg%3E">
   <link rel="alternate icon" type="image/png" href="assets/favicon-256.png?v=4">
   <link rel="apple-touch-icon" href="assets/favicon-256.png?v=4">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css">
-  <style>
-    .stack-collapse {
-      display: grid;
-      grid-template-columns: 1fr 80px 1fr;
-      gap: 0;
-      align-items: stretch;
-    }
-    .stack-side {
-      padding: 8px 0;
-    }
-    .stack-side h4 {
-      font-family: var(--font-mono);
-      font-size: 0.6875rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 12px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--surface-rule);
-    }
-    .stack-side .ss-tool {
-      display: flex;
-      justify-content: space-between;
-      padding: 11px 0;
-      border-bottom: 1px dashed var(--surface-rule-soft);
-      font-family: var(--font-mono);
-      font-size: 0.8125rem;
-      color: var(--text-secondary);
-    }
-    .stack-side .ss-tool:last-child { border-bottom: 0; }
-    .stack-side .ss-tool .ss-name { color: var(--ink); font-weight: 500; }
-    .stack-side .ss-tool .ss-pain { color: var(--status-amber); font-size: 0.6875rem; }
-    .stack-mid {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-      padding-top: 40px;
-      color: var(--primary-600);
-    }
-    .stack-mid .sm-arr {
-      font-family: var(--font-display);
-      font-size: 2rem;
-      font-weight: 700;
-      line-height: 1;
-    }
-    .stack-mid .sm-label {
-      font-family: var(--font-mono);
-      font-size: 0.625rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      text-align: center;
-    }
-    .stack-side.target {
-      background: var(--ink);
-      color: white;
-      padding: 24px 28px;
-    }
-    .stack-side.target h4 {
-      color: var(--primary-300);
-      border-bottom-color: rgba(255,255,255,0.15);
-    }
-    .stack-side.target .ss-tool {
-      color: rgba(255,255,255,0.75);
-      border-bottom-color: rgba(255,255,255,0.08);
-    }
-    .stack-side.target .ss-tool .ss-name { color: white; }
-    .stack-side.target .ss-tool .ss-pain { color: var(--primary-400, #de8567); }
-    .stack-side .ss-target-block {
-      padding: 24px 28px 16px;
-      background: var(--ink);
-      margin: -8px -8px 0;
-    }
-    /* Principles inventory */
-    .principles {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-      border-top: 1px solid var(--surface-rule);
-      border-left: 1px solid var(--surface-rule);
-    }
-    .principle {
-      padding: 28px 26px;
-      border-right: 1px solid var(--surface-rule);
-      border-bottom: 1px solid var(--surface-rule);
-      min-height: 200px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .principle .p-num {
-      font-family: var(--font-mono);
-      font-size: 0.6875rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      color: var(--primary-700);
-    }
-    .principle .p-statement {
-      font-family: var(--font-display);
-      font-size: 1.375rem;
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      line-height: 1.05;
-      color: var(--ink);
-    }
-    .principle .p-statement .neg { color: var(--primary-600); }
-    .principle .p-body {
-      font-size: 0.875rem;
-      line-height: 1.55;
-      color: var(--text-secondary);
-      margin-top: auto;
-    }
-    /* Mission / Vision statement blocks */
-    .mvv-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      border-top: 1px solid var(--surface-rule);
-      border-left: 1px solid var(--surface-rule);
-      background: var(--surface-card);
-    }
-    .mvv-cell {
-      padding: 34px 36px 30px;
-      border-right: 1px solid var(--surface-rule);
-      border-bottom: 1px solid var(--surface-rule);
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .mvv-cell .mvv-label {
-      font-family: var(--font-mono);
-      font-size: 0.6875rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--primary-700);
-    }
-    .mvv-cell .mvv-statement {
-      font-family: var(--font-display);
-      font-size: clamp(1.25rem, 1.9vw, 1.625rem);
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      line-height: 1.2;
-      color: var(--ink);
-    }
-    .mvv-cell .mvv-short {
-      margin-top: auto;
-      padding-top: 14px;
-      border-top: 1px dashed var(--surface-rule-soft);
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-    .mvv-cell .mvv-short strong { color: var(--primary-600); font-weight: 600; }
-    .value-cell .p-num { color: var(--primary-600); }
-    .value-cell.v-align {
-      background: var(--ink);
-    }
-    .value-cell.v-align .p-num { color: var(--primary-300); }
-    .value-cell.v-align .p-body { color: rgba(255,255,255,0.78); }
-    .value-cell.v-align .p-body strong { color: white; }
-    @media (max-width: 900px) {
-      .stack-collapse { grid-template-columns: 1fr; }
-      .stack-mid { flex-direction: row; padding: 12px 0; }
-      .stack-side.target { margin-top: 12px; }
-      .principles { grid-template-columns: 1fr 1fr; }
-      .mvv-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 600px) {
-      .principles { grid-template-columns: 1fr; }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/v7.css?v=20261026e">
+  <script src="assets/v7.js?v=20261026e" defer></script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
-<!-- NAV -->
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="index.html" class="logo" aria-label="ClinMaker home">
-      <svg class="logo-mark" viewBox="0 0 64 64" fill="none">
-        <path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/>
-        <path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-        <path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-        <line x1="26" y1="29" x2="26" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
-        <line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
-        <line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
-      </svg>
-      <span class="logo-text"><span class="logo-text-ink">Clin</span><span class="logo-text-brand">Maker</span></span>
-    </a>
-    <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle menu">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
-    </button>
-    <div class="nav-links">
-      <a href="platform.html">Platform</a>
-      <a href="standards.html">Standards</a>
-      <a href="security.html">Security</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="about.html">About</a>
-      <a href="#" class="nav-cta" onclick="openDemoModal(); return false;">Talk to us <span class="arr">→</span></a>
+<!-- ═══════════ HEADER (shared: copy verbatim to every page) ═══════════ -->
+<header class="site-header">
+  <div class="wrap">
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="index.html" aria-label="ClinMaker home">
+        <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/><line x1="26" y1="29" x2="26" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span class="wordmark"><span>Clin</span><span class="m">Maker</span></span>
+      </a>
+      <ul class="nav-menu">
+        <li class="nav-item" data-dd>
+          <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="dd-product">Product <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="dropdown" id="dd-product">
+            <a class="dd-link" href="platform.html"><b>Platform overview</b><span>One structured study, from protocol to casebook</span></a>
+            <div class="dd-sep"></div>
+            <a class="dd-link" href="protocol-digitization.html"><b>Protocol Digitization</b><span class="tag">Ready to demo</span><span>The protocol as a structured study, in ICH M11 order</span></a>
+            <a class="dd-link" href="study-build.html"><b>Study Build</b><span class="tag">Ready to demo</span><span>CDASH casebooks built from the study</span></a>
+            <div class="dd-sep"></div>
+            <a class="dd-link" href="roadmap.html"><b>Roadmap</b><span class="tag dev">10 in development</span><span>From data ingestion to submission</span></a>
+          </div>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+        <li class="nav-item"><a class="nav-link" href="security.html">Trust</a></li>
+        <li class="nav-item" data-dd>
+          <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="dd-company">Company <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="dropdown" id="dd-company">
+            <a class="dd-link" href="about.html"><b>About</b><span>Why we started ClinMaker, our mission and values</span></a>
+            <a class="dd-link" href="team.html"><b>Team</b><span>The people building it</span></a>
+            <a class="dd-link" href="careers.html"><b>Careers</b><span>Work with us</span></a>
+            <a class="dd-link" href="contact.html"><b>Contact</b><span>Talk to the founders</span></a>
+          </div>
+        </li>
+      </ul>
+      <div class="nav-actions">
+        <a class="nav-login" href="https://app.clinmaker.com" target="_blank" rel="noopener">Log in</a>
+        <a class="btn btn-primary btn-sm" href="request.html?type=demo#request-form">Request a demo</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Menu</button>
+      </div>
+    </nav>
+    <div class="mobile-nav" id="mobile-nav">
+      <div class="m-group"><span class="label">Product</span>
+        <a href="platform.html">Platform overview</a><a href="protocol-digitization.html">Protocol Digitization</a><a href="study-build.html">Study Build</a><a href="roadmap.html">Roadmap</a>
+      </div>
+      <div class="m-group"><a href="pricing.html">Pricing</a><a href="security.html">Trust &amp; compliance</a></div>
+      <div class="m-group"><span class="label">Company</span>
+        <a href="about.html">About</a><a href="team.html">Team</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a>
+      </div>
+      <div class="m-actions">
+        <a class="btn btn-primary" href="request.html?type=demo#request-form">Request a demo</a>
+        <a class="btn btn-outline" href="https://app.clinmaker.com" target="_blank" rel="noopener">Log in</a>
+      </div>
     </div>
   </div>
-</nav>
+</header>
 
-<!-- HEADER -->
-<section class="container" style="padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(32px, 4vw, 48px);">
-  <span class="eyebrow brand">cm.about · independent · LLC</span>
-  <h1 class="display-2" style="margin-top: 18px;">The clinical data stack,<br><span class="shift">collapsed into one platform.</span></h1>
-  <p class="lede" style="margin-top: 24px; max-width: 720px;">
-    Built by people who've spent careers running clinical trials — and who've felt every seam in the legacy stack.
-  </p>
-</section>
+<main id="main">
 
-<!-- THESIS — stack collapse viz -->
-<section class="module" id="thesis">
-  <div class="container">
-    <div class="section-num-bar">
-      <span class="num"><strong>§01</strong> / 05</span>
-      <span class="rule"></span>
-      <span class="meta">topic: thesis</span>
-      <span class="meta">premise: collapse the stack</span>
-      <span class="meta">8 tools → 1 platform</span>
-    </div>
-    <div class="module-head">
+<!-- ═══════════ PAGE HERO ═══════════ -->
+<section class="band-top fade grain" aria-labelledby="page-h">
+  <div class="wrap page-hero">
+    <div class="page-hero-grid">
       <div>
-        <h2 class="display-2">Most clinical data work is<br><span class="shift">plumbing, not science.</span></h2>
-        <p class="lede">A typical Phase III trial uses eight or more tools: an EDC, a coding system, a SDTM mapper, a SAE reconciler, a query manager, an analytics layer, a CDISC standards library, and a workflow engine. Each has its own user list, audit trail, integration team. The teams spend more time exchanging files than analysing them.</p>
-      </div>
-      <a href="platform.html" class="module-link">end-to-end vision →</a>
-    </div>
-
-    <div class="viz-frame">
-      <span class="viz-coord tl">stack/before · after</span>
-      <span class="viz-coord tr">collapse</span>
-      <span class="viz-coord bl">8 tools → 1 platform</span>
-      <span class="viz-coord br">user lists: 8 → 1</span>
-      <div class="viz-frame-head">
-        <span class="vh-id">cm-thesis // stack_collapse</span>
-        <span class="vh-meta">
-          <span>integration teams: many → one</span>
-          <span>audit trails: many → one</span>
-          <span class="vh-live">premise</span>
-        </span>
-      </div>
-      <div class="viz-frame-body">
-        <div class="stack-collapse">
-          <div class="stack-side">
-            <h4>Legacy stack · 8 tools</h4>
-            <div class="ss-tool"><span class="ss-name">EDC</span><span class="ss-pain">vendor lock</span></div>
-            <div class="ss-tool"><span class="ss-name">Coding (MedDRA / WHODrug)</span><span class="ss-pain">batch sync</span></div>
-            <div class="ss-tool"><span class="ss-name">SDTM mapper</span><span class="ss-pain">manual</span></div>
-            <div class="ss-tool"><span class="ss-name">SAE reconciler</span><span class="ss-pain">spreadsheet</span></div>
-            <div class="ss-tool"><span class="ss-name">Query manager</span><span class="ss-pain">email-driven</span></div>
-            <div class="ss-tool"><span class="ss-name">Analytics layer</span><span class="ss-pain">delayed</span></div>
-            <div class="ss-tool"><span class="ss-name">CDISC library</span><span class="ss-pain">paid plug-in</span></div>
-            <div class="ss-tool"><span class="ss-name">Workflow engine</span><span class="ss-pain">JIRA-grade</span></div>
-          </div>
-          <div class="stack-mid">
-            <div class="sm-label">collapses</div>
-            <div class="sm-arr">⇒</div>
-            <div class="sm-label">into</div>
-          </div>
-          <div class="stack-side target">
-            <h4>ClinMaker · 1 platform</h4>
-            <div class="ss-tool"><span class="ss-name">AI-assisted workflows</span><span class="ss-pain">human-in-loop</span></div>
-            <div class="ss-tool"><span class="ss-name">One canonical data model</span><span class="ss-pain">end-to-end</span></div>
-            <div class="ss-tool"><span class="ss-name">One audit trail</span><span class="ss-pain">append-only</span></div>
-            <div class="ss-tool"><span class="ss-name">One RBAC + 11 roles</span><span class="ss-pain">MFA required</span></div>
-            <div class="ss-tool"><span class="ss-name">CDISC + USDM built in</span><span class="ss-pain">version-pinned</span></div>
-            <div class="ss-tool"><span class="ss-name">15 vendor adapters</span><span class="ss-pain">OID-keyed</span></div>
-            <div class="ss-tool"><span class="ss-name">CORE rules pre-export</span><span class="ss-pain">blocks ERR</span></div>
-            <div class="ss-tool"><span class="ss-name">Inspection-ready</span><span class="ss-pain">7y retention</span></div>
-          </div>
+        <p class="crumbs"><a href="index.html">Home</a><span>/</span><span>About</span></p>
+        <h1 id="page-h">We're building the platform we needed.</h1>
+        <p class="lead">A clinical trial protocol is still a document that every later team re-keys, and every amendment repeats the work. ClinMaker exists to make the protocol one structured study, and to build the casebook from it.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="request.html?type=pilot#request-form">Request a pilot</a>
+          <a class="link-arrow" href="request.html?type=teardown#request-form">Request a Protocol Teardown →</a>
         </div>
-        <div class="gate-summary" style="border-top: 1px solid var(--surface-rule); margin-top: 14px; padding-top: 14px; display: flex; gap: 24px; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); flex-wrap: wrap;">
-          <span>user lists collapsed: <strong style="color: var(--ink);">8 → 1</strong></span>
-          <span>audit trails collapsed: <strong style="color: var(--ink);">8 → 1</strong></span>
-          <span>integration teams: <strong style="color: var(--ink);">many → 1</strong></span>
-          <span style="margin-left: auto; color: var(--ink); font-weight: 600;">→ lock in weeks, not months</span>
-        </div>
+      </div>
+      <div class="mission">
+        <span class="label">Recognition · 2026</span>
+        <p>Named the winner of the SCOPE 365 / TransCelerate BioPharma Solve Challenge, 2026, for the best integration of standards and impact assessment.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- WRITTEN THESIS -->
-<section class="container section-tight" style="padding-bottom: clamp(56px, 7vw, 96px);">
-  <div class="section-num-bar">
-    <span class="num"><strong>§02</strong> / 05</span>
-    <span class="rule"></span>
-    <span class="meta">topic: written_thesis</span>
-    <span class="meta">why we built it</span>
+<!-- ═══════════ WHY WE STARTED ═══════════ -->
+<section class="section" id="why" aria-labelledby="why-h">
+  <div class="wrap note-grid">
+    <div class="note-side">
+      <p class="label">Why we started</p>
+      <h2 id="why-h">A note from the founders.</h2>
+      <div class="faces" aria-hidden="true"><span>SR</span><span>M</span><span>C</span></div>
+      <p class="yrs">50+ years combined · CROs, sponsors, large pharma</p>
+    </div>
+    <div class="letter">
+      <p>We spent our careers on the receiving end of EDC (electronic data capture) builds. Between us we have more than 50 years in data management, statistical programming and clinical operations, at CROs, sponsors and large pharma.</p>
+      <p>From where we sat, every hand-off meant building the same study again. Medical writers wrote the protocol as a document. Someone re-keyed it into a casebook specification and someone else built it in the EDC. Later, programmers mapped it all again for SDTM and ADaM.</p>
+      <p>The industry numbers match what we saw. Building and releasing a study database takes 68 days on average.<sup><a href="#fn-1" aria-label="Source 1">1</a></sup> A typical Phase III protocol now goes through 3.4 substantial amendments,<sup><a href="#fn-2" aria-label="Source 2">2</a></sup> and each one can add up to $1 million in unplanned direct cost and nearly three months of delay.<sup><a href="#fn-3" aria-label="Source 3">3</a></sup> Every amendment sent the work back through the chain.</p>
+      <p>So we built ClinMaker around <strong>one structured study, from the protocol to the casebook</strong>. Your team writes it once, and every later step reads from it. When the protocol changes, you classify, assess and sign the amendment once, before it reaches the casebook.</p>
+      <p>Two modules, Protocol Digitization and Study Build, are ready to demo today, on the platform they share. Ten more are in development. We'd rather show you two working things than promise twelve.</p>
+      <div class="sig">
+        <div><span class="n">Sunish Raj</span><span class="r">Founder · Data platform</span></div>
+        <div><span class="n"><span class="ph">[First name]</span> Marshall</span><span class="r">Founder · Clinical operations &amp; CRO partnerships</span></div>
+        <div><span class="n"><span class="ph">[First name]</span> Chadha</span><span class="r">Founder · Statistical programming</span></div>
+      </div>
+      <p class="ps">Sources for the three industry figures are at the bottom of this page.</p>
+    </div>
   </div>
-  <div style="display: grid; grid-template-columns: 280px 1fr; gap: 56px; align-items: start;">
+</section>
+
+<!-- ═══════════ WHY NOW ═══════════ -->
+<section class="section mesh-band grain" id="why-now" aria-labelledby="now-h">
+  <div class="wrap">
+    <div class="gap-grid">
+      <div>
+        <p class="label">Why now</p>
+        <h2 id="now-h">The standards for structuring a protocol now exist.</h2>
+      </div>
+      <div class="gap-copy">
+        <p>Until recently, protocols had no shared structure, so they could only be documents. CDISC's USDM (Unified Study Definitions Model) now gives study design a shared data model. ICH M11 gives the protocol a harmonized template and section order. CDASH and CDISC Controlled Terminology already define how casebook data is collected.</p>
+        <p><strong>Together they make a structured study possible, and a casebook built from it.</strong> ClinMaker is built on these open standards, so your study leaves in open formats.</p>
+      </div>
+    </div>
+    <div class="std-line">
+      <span class="label">Built on</span>
+      <span class="s">USDM 4.0</span><span class="s">ICH M11</span><span class="s">CDASH</span><span class="s">CDISC Controlled Terminology</span><span class="s">SDTMIG</span><span class="s">CDISC ODM 1.3.2</span><span class="s">CDISC CORE rules</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ MISSION, VISION AND VALUES ═══════════ -->
+<section class="section" id="mission" aria-labelledby="mission-h">
+  <div class="wrap values-grid">
     <div>
-      <h3 class="display-3" style="font-size: 1.5rem;">Why we built ClinMaker.</h3>
-      <p style="font-family: var(--font-mono); font-size: 0.6875rem; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 12px;">est. 2026 · LLC · independent</p>
+      <p class="label">Mission and vision</p>
+      <h2 id="mission-h">What we're here to do, and where it leads.</h2>
+      <div class="mission">
+        <span class="label">Mission</span>
+        <p>We make the work behind clinical trials simpler, faster and worthy of trust, so the people who run trials can focus on the science, and the answers patients are waiting for come sooner.</p>
+        <p class="short"><b>In short:</b> Simplify the work behind clinical trials.</p>
+      </div>
+      <div class="mission">
+        <span class="label">Vision</span>
+        <p>To become the platform clinical research teams trust with their most important work, from a study's first draft to its final submission, in a world where no treatment is delayed because the work behind it was too slow.</p>
+        <p class="short"><b>In short:</b> Become the most trusted name in clinical trial work.</p>
+      </div>
     </div>
-    <div class="prose">
-      <p>The cost of the legacy stack is not just budget. It's lock time, audit risk, and the inability to know — at any moment — how clean your data really is. By the time a sponsor realises a reconciliation issue went unresolved for three weeks, the answer is already a query backlog, a SDTM blocker, and a slipped submission.</p>
-      <p>ClinMaker exists to collapse that work into a coherent platform: one canonical data model, one audit trail, one role model, AI-assisted with human review gates at every decision. Every action is recorded. Every artefact is traceable. Every standard is enforced where data is collected — not patched in at submission.</p>
-      <p>We're building it <strong>module by module, in the open</strong>. Today: Protocol Authoring + Study Build are in prototype. Ten more workflow modules are on the build path. The vision is end-to-end automation; we ship modules one at a time, each with the same audit posture and human-in-the-loop discipline.</p>
-      <p>We're an <strong>independent software company</strong>. Not part of a holding group, not VC-backed, not optimising for an exit. We build the platform, we use it ourselves, and we ship it under direct change control.</p>
+    <div id="values">
+      <p class="label">Five values we hold ourselves to</p>
+      <div class="vals gap-top">
+        <div><h3>Earn trust, then prove it.</h3><p>Everything we do can be shown, explained and checked, by a customer, a regulator or each other.</p></div>
+        <div><h3>People decide.</h3><p>Technology drafts, sorts and suggests; a person makes every decision that matters, and stands behind it.</p></div>
+        <div><h3>Say only what's true.</h3><p>We claim what's real today and are open about what isn't yet. We'd rather show two working things than promise twelve.</p></div>
+        <div><h3>Do it right from the start.</h3><p>Quality is how we work from the first line, not a check at the end.</p></div>
+        <div><h3>Remember who it's for.</h3><p>Behind every record is a person who volunteered for a trial, and a patient waiting for its answer.</p></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- WHERE WE ARE TODAY -->
-<section class="container section-tight" style="background: var(--surface-hover); padding-top: clamp(56px, 7vw, 96px); padding-bottom: clamp(56px, 7vw, 96px); max-width: 100%;">
-  <div class="container">
-    <div class="section-num-bar">
-      <span class="num"><strong>§03</strong> / 05</span>
-      <span class="rule"></span>
-      <span class="meta">topic: current_state</span>
-      <span class="meta">2 prototype · 10 roadmap</span>
-      <span class="meta">early access</span>
-    </div>
-    <div class="module-head">
+<!-- ═══════════ WHERE WE ARE TODAY ═══════════ -->
+<section class="section alt" id="today" aria-labelledby="today-h">
+  <div class="wrap">
+    <div class="sec-head">
       <div>
-        <h2 class="display-2">Where we are today.<br><span class="shift">Two modules in prototype.</span></h2>
-        <p class="lede">We don't claim a finished platform. We claim two prototype modules, a clear roadmap for the rest, and the same audit + GxP posture across everything we ship — current and future.</p>
+        <p class="label">Where we are today</p>
+        <h2 id="today-h">Where ClinMaker stands today.</h2>
       </div>
-      <a href="platform.html" class="module-link">see modules →</a>
+      <p>We don't have customers to name yet, so you won't find logos, quotes or case studies on this site.</p>
     </div>
-
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 32px; border-top: 1px solid var(--surface-rule); border-left: 1px solid var(--surface-rule); background: var(--surface-card);">
-      <div style="padding: 28px 32px; border-right: 1px solid var(--surface-rule); border-bottom: 1px solid var(--surface-rule); display: flex; flex-direction: column; gap: 12px;">
-        <div style="display: flex; gap: 12px; align-items: baseline;">
-          <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600; color: var(--primary-700);">§01</span>
-          <span style="font-family: var(--font-mono); font-size: 0.625rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; background: var(--status-amber-bg); color: var(--status-amber); border: 1px solid var(--status-amber);">prototype</span>
-        </div>
-        <div style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 900; letter-spacing: -0.03em; color: var(--ink);">Protocol authoring</div>
-        <p style="font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.55;">USDM-native, M11-aligned, DDF-conformant. AI co-pilot drafts every section; humans approve. CORE rules engine blocks ERROR-severity exports.</p>
-        <div style="font-family: var(--font-mono); font-size: 0.6875rem; color: var(--text-muted); margin-top: 4px;">standards · DDF · USDM 4.0 · ICH M11 · NCI CT</div>
+    <div class="feat-grid">
+      <div class="feat">
+        <span class="status ready feat-tag">Ready to demo</span>
+        <h3>Protocol Digitization and Study Build</h3>
+        <p>Available for demos and pilots. Not yet in production use.</p>
+        <a class="link-arrow" href="platform.html">Explore the platform →</a>
       </div>
-      <div style="padding: 28px 32px; border-right: 1px solid var(--surface-rule); border-bottom: 1px solid var(--surface-rule); display: flex; flex-direction: column; gap: 12px;">
-        <div style="display: flex; gap: 12px; align-items: baseline;">
-          <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600; color: var(--primary-700);">§02</span>
-          <span style="font-family: var(--font-mono); font-size: 0.625rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; background: var(--status-amber-bg); color: var(--status-amber); border: 1px solid var(--status-amber);">prototype</span>
-        </div>
-        <div style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 900; letter-spacing: -0.03em; color: var(--ink);">Study build</div>
-        <p style="font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.55;">USDM definition (or PDF, or USDM JSON) → CDASH casebook. Forms, fields, codelists, edit checks. Deploy to Rave or Veeva.</p>
-        <div style="font-family: var(--font-mono); font-size: 0.6875rem; color: var(--text-muted); margin-top: 4px;">intake · USDM · PDF · USDM JSON · output · CDASH 2.2</div>
+      <div class="feat">
+        <span class="chip ready feat-tag">Built in</span>
+        <h3>The platform they run on</h3>
+        <p>The structured study model, the CDISC standards library, roles, e-signatures and the audit trail, under both modules.</p>
+        <a class="link-arrow" href="platform.html">How the platform works →</a>
+      </div>
+      <div class="feat">
+        <span class="status dev feat-tag">In development</span>
+        <h3>Ten more modules</h3>
+        <p>From data ingestion and cleaning to database lock, SDTM / ADaM and submission.</p>
+        <a class="link-arrow" href="roadmap.html">See the roadmap →</a>
       </div>
     </div>
-
-    <p class="prose" style="margin-top: 32px; max-width: 720px;">
-      The other ten workflow modules — ingestion, validation, queries, coding, reconciliation, SDTM/ADaM, analytics, patient profile, audit trail, user admin &amp; help — are <strong>under development</strong>. We don't commit dates publicly. We commit milestones. Early-access pilots may include scoped previews of in-development modules.
-    </p>
-  </div>
-</section>
-
-<!-- MISSION / VISION / VALUES -->
-<section class="container section-tight" id="mission" style="padding-top: clamp(56px, 7vw, 96px); padding-bottom: clamp(56px, 7vw, 96px);">
-  <div class="section-num-bar">
-    <span class="num"><strong>§04</strong> / 05</span>
-    <span class="rule"></span>
-    <span class="meta">topic: mission_vision_values</span>
-    <span class="meta">1 mission · 1 vision · 5 values</span>
-  </div>
-  <div class="module-head">
-    <div>
-      <h2 class="display-2">What we're here to do.<br><span class="shift">And how we'll behave doing it.</span></h2>
-      <p class="lede">No jargon in this section, on purpose. If a sentence here needs a glossary, it doesn't belong here.</p>
-    </div>
-  </div>
-
-  <div class="mvv-grid" style="margin-top: 32px;">
-    <div class="mvv-cell">
-      <span class="mvv-label">mission / why we exist</span>
-      <p class="mvv-statement">We make the work behind clinical trials simpler, faster, and worthy of trust — so the people who run trials can focus on the science, and the answers patients are waiting for come sooner.</p>
-      <p class="mvv-short">short form → <strong>Simplify the work behind clinical trials.</strong></p>
-    </div>
-    <div class="mvv-cell">
-      <span class="mvv-label">vision / what we're becoming</span>
-      <p class="mvv-statement">To become the platform clinical research teams trust with their most important work — from a study's first draft to its final submission — in a world where no treatment is delayed because the work behind it was too slow.</p>
-      <p class="mvv-short">short form → <strong>Become the most trusted name in clinical trial work.</strong></p>
-    </div>
-  </div>
-
-  <div class="principles" style="margin-top: 40px;">
-    <div class="principle value-cell">
-      <span class="p-num">V-01</span>
-      <span class="p-statement">Earn trust, <span class="neg">then prove it.</span></span>
-      <span class="p-body">Everything we do can be shown, explained, and checked — by a customer, a regulator, or each other. Trust isn't a feeling we ask for; it's evidence we hand over.</span>
-    </div>
-    <div class="principle value-cell">
-      <span class="p-num">V-02</span>
-      <span class="p-statement">People <span class="neg">decide.</span></span>
-      <span class="p-body">Technology drafts, sorts, and suggests. A person makes every decision that matters, and stands behind it. We build tools that respect expertise — never tools that pretend to replace it.</span>
-    </div>
-    <div class="principle value-cell">
-      <span class="p-num">V-03</span>
-      <span class="p-statement">Say only <span class="neg">what's true.</span></span>
-      <span class="p-body">We claim what's real today and are open about what isn't yet. We'd rather show two finished things than promise twelve. Milestones over hype.</span>
-    </div>
-    <div class="principle value-cell">
-      <span class="p-num">V-04</span>
-      <span class="p-statement">Do it right <span class="neg">from the start.</span></span>
-      <span class="p-body">Quality isn't a check at the end — it's how we work from the first line. We don't cut corners we'd have to apologize for later, even when no one would notice.</span>
-    </div>
-    <div class="principle value-cell">
-      <span class="p-num">V-05</span>
-      <span class="p-statement">Remember <span class="neg">who it's for.</span></span>
-      <span class="p-body">Behind every record is a person who volunteered for a trial, and a patient waiting for its answer. That's where our urgency comes from — and our care.</span>
-    </div>
-    <div class="principle value-cell v-align">
-      <span class="p-num">READ AS ONE SENTENCE</span>
-      <span class="p-body">Because trial work is too slow and scattered, <strong>we simplify it every day</strong> — with proof, human judgment, honesty, craft, and care — <strong>until we become the platform this field trusts</strong> with the whole journey.</span>
+    <div class="status-strip team-strip gap-top">
+      <span class="label">The company</span>
+      <div class="items">
+        <span class="faces" aria-hidden="true"><span>SR</span><span>M</span><span>C</span></span>
+        <p>ClinMaker, LLC. Three founders, all reachable at contact@clinmaker.com.</p>
+      </div>
+      <div class="team-links"><a class="link-arrow" href="team.html">Team →</a><a class="link-arrow" href="careers.html">Careers →</a></div>
     </div>
   </div>
 </section>
 
-<!-- PRINCIPLES -->
-<section class="module" id="principles">
-  <div class="container">
-    <div class="section-num-bar">
-      <span class="num"><strong>§05</strong> / 05</span>
-      <span class="rule"></span>
-      <span class="meta">topic: principles</span>
-      <span class="meta">values → compiled to 6 hard constraints</span>
-      <span class="meta">enforced platform-wide</span>
-    </div>
-    <div class="module-head">
+<!-- ═══════════ GET STARTED ═══════════ -->
+<section class="section" aria-labelledby="start-h">
+  <div class="wrap">
+    <div class="td grain">
       <div>
-        <h2 class="display-2">What we <span class="shift">won't ship.</span></h2>
-        <p class="lede">Our values, compiled into six hard rules on what reaches customers. These aren't aspirational — they're enforced in the product and verified per release.</p>
-      </div>
-      <a href="contact.html" class="module-link">ask us about these →</a>
-    </div>
-
-    <div class="viz-frame">
-      <span class="viz-coord tl">principles/index</span>
-      <span class="viz-coord tr">6 constraints</span>
-      <span class="viz-coord bl">enforced platform-wide</span>
-      <span class="viz-coord br">→ verified per release</span>
-      <div class="viz-frame-head">
-        <span class="vh-id">cm-principles // inventory</span>
-        <span class="vh-meta">
-          <span>scope: every module</span>
-          <span>exceptions: none</span>
-          <span class="vh-live">tested</span>
-        </span>
-      </div>
-      <div class="viz-frame-body">
-        <div class="principles">
-          <div class="principle">
-            <span class="p-num">P-01</span>
-            <span class="p-statement"><span class="neg">No</span> unaudited mutation.</span>
-            <span class="p-body">If a value changed, the audit trail explains who, what, when, and why. There are no exceptions, no exempt modules, no batch-write bypasses.</span>
-          </div>
-          <div class="principle">
-            <span class="p-num">P-02</span>
-            <span class="p-statement"><span class="neg">No</span> black-box AI.</span>
-            <span class="p-body">Every AI decision surfaces inputs, confidence, and rationale. Humans approve or reject; the system records the decision. AI rows are distinguishable from human rows in the audit.</span>
-          </div>
-          <div class="principle">
-            <span class="p-num">P-03</span>
-            <span class="p-statement"><span class="neg">No</span> standards as afterthought.</span>
-            <span class="p-body">CDISC, USDM, MedDRA, WHO Drug are wired into the data model — not bolted on at export. Standards version pin per study.</span>
-          </div>
-          <div class="principle">
-            <span class="p-num">P-04</span>
-            <span class="p-statement"><span class="neg">No</span> deferred compliance.</span>
-            <span class="p-body">GxP isn't an enterprise tier you upgrade to. 21 CFR Part 11 posture is the floor for every customer, every study, every environment.</span>
-          </div>
-          <div class="principle">
-            <span class="p-num">P-05</span>
-            <span class="p-statement"><span class="neg">No</span> vendor lock-in.</span>
-            <span class="p-body">Export your data, your audit trail, your mapping specs at any time. Open formats, open standards. Your data is yours, always.</span>
-          </div>
-          <div class="principle">
-            <span class="p-num">P-06</span>
-            <span class="p-statement"><span class="neg">No</span> fake "AI-powered".</span>
-            <span class="p-body">If a workflow runs deterministically, that's what we ship. AI is for problems that genuinely need judgement — not for decoration.</span>
-          </div>
+        <p class="label">Get started</p>
+        <h2 id="start-h">See what we've built so far.</h2>
+        <p class="lead">Start with a no-charge Protocol Teardown of one of your protocols, or book a 30-minute live demo first.</p>
+        <div class="td-ctas">
+          <a class="btn btn-primary" href="request.html?type=pilot#request-form">Request a pilot</a>
+          <a class="link-arrow" href="request.html?type=teardown#request-form">Request a Protocol Teardown →</a>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- FINAL CTA -->
-<section class="section-ink">
-  <div class="container" style="padding-top: clamp(72px, 9vw, 112px); padding-bottom: clamp(72px, 9vw, 112px);">
-    <div style="max-width: 920px;">
-      <span class="eyebrow">cm.demo</span>
-      <h2 class="display-2" style="color: white; margin-top: 18px; margin-bottom: 28px;">
-        Curious to talk?<br><span class="shift">30 minutes. Live platform.</span>
-      </h2>
-      <p class="lede" style="color: rgba(255,255,255,0.72); margin-bottom: 36px;">
-        We'll show you the working platform — not a slideshow. Working session, not a deck.
-      </p>
-      <div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
-        <a href="#" class="btn btn-white" onclick="openDemoModal(); return false;">Talk to us <span class="arr">→</span></a>
-        <a href="platform.html" style="color: rgba(255,255,255,0.7); font-size: 0.9375rem;">or tour the platform</a>
+      <div class="deliv">
+        <div><span class="d">Demo</span><a href="request.html?type=demo#request-form"><b>A 30-minute live walkthrough</b><span class="s">Protocol Digitization and Study Build, on our demo study.</span></a></div>
+        <div><span class="d">Teardown</span><a href="request.html?type=teardown#request-form"><b>Your protocol, in five business days</b><span class="s">A USDM 4.0 study definition, a CDASH-aligned draft casebook, a written gap report and a live readout. Under mutual NDA, no charge.</span></a></div>
+        <div><span class="d">Pilot</span><a href="request.html?type=pilot#request-form"><b>Scoped to one study</b><span class="s">Runs alongside a study you've already built, so nothing live depends on it.</span></a></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- COLOPHON -->
-<footer class="colophon">
-  <div class="col-brand">
-    <span>Clin</span><span class="shift">Maker</span>
-    <span class="col-divider" style="margin-left: 12px;">·</span>
-    <span style="font-family: var(--font-body); font-weight: 500; font-size: 0.8125rem; color: var(--text-secondary);">LLC</span>
-  </div>
-  <div style="display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center;">
-    <a href="platform.html">Platform</a><span class="col-divider">·</span>
-    <a href="standards.html">Standards</a><span class="col-divider">·</span>
-    <a href="security.html">Security</a><span class="col-divider">·</span>
-    <a href="pricing.html">Pricing</a><span class="col-divider">·</span>
-    <a href="about.html">About</a><span class="col-divider">·</span>
-    <a href="contact.html">Contact</a><span class="col-divider">·</span>
-    <a href="https://app.clinmaker.com" target="_blank" rel="noopener">Log in →</a>
-  </div>
-  <div class="col-meta">
-    <span>hello@clinmaker.com</span>
-    <span class="col-divider">·</span>
-    <span>© 2026</span>
+</main>
+
+<!-- ═══════════ FOOTER (shared: copy verbatim to every page; footnotes optional) ═══════════ -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <a class="brand" href="index.html" aria-label="ClinMaker home">
+          <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/><line x1="26" y1="29" x2="26" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <span class="wordmark"><span>Clin</span><span class="m">Maker</span></span>
+        </a>
+        <p class="tag">Standards at the core. Submission at the finish.</p>
+        <span class="mono">contact@clinmaker.com</span>
+      </div>
+      <div class="ft-col"><h4>Product</h4><ul>
+        <li><a href="platform.html">Platform overview</a></li>
+        <li><a href="protocol-digitization.html">Protocol Digitization</a></li>
+        <li><a href="study-build.html">Study Build</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+      </ul></div>
+      <div class="ft-col"><h4>Company</h4><ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div class="ft-col"><h4>Get started</h4><ul>
+        <li><a href="request.html?type=demo#request-form">Request a demo</a></li>
+        <li><a href="request.html?type=pilot#request-form">Request a pilot</a></li>
+        <li><a href="request.html?type=teardown#request-form">Protocol Teardown</a></li>
+        <li><a href="security.html">Trust &amp; compliance</a></li>
+        <li><a href="https://app.clinmaker.com" target="_blank" rel="noopener">Log in ↗</a></li>
+      </ul></div>
+    </div>
+    <div class="ft-legal">
+      <span>© 2026 ClinMaker, LLC</span>
+      <nav aria-label="Legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="security.html">Security</a></nav>
+    </div>
+    <div class="ft-notes">
+      <p id="fn-1"><sup>1</sup>Tufts Center for the Study of Drug Development, eClinical Landscape Study (2017), sponsored by Veeva Systems. Average time to build and release a study database: 68.3 days.</p>
+      <p id="fn-2"><sup>2</sup>Tufts CSDD Impact Report (November/December 2025), as cited by WCG Clinical (2026). Substantial amendments in a typical Phase III protocol with primary completion in 2023 to 2025.</p>
+      <p id="fn-3"><sup>3</sup>WCG Clinical (August 2026), drawing on Tufts CSDD research. Phase III amendments can add nearly three months of delay and up to $1 million in unplanned direct costs per amendment.</p>
+      <p>Protocol Digitization and Study Build, and the platform they run on, are ready to demo and available for pilots. They are not yet in production use. Modules marked "In development" are not available. Not every feature uses AI.</p>
+    </div>
   </div>
 </footer>
-
-<!-- DEMO MODAL -->
-<div class="modal-overlay" id="demoModal" role="dialog" aria-labelledby="demoModalTitle" aria-modal="true">
-  <div class="modal">
-    <button class="modal-close" onclick="closeDemoModal()" aria-label="Close">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg>
-    </button>
-    <span class="eyebrow brand" style="margin-bottom: 10px;">cm.demo/request</span>
-    <h3 id="demoModalTitle" class="display-3">Talk to us.</h3>
-    <p class="lede">Thirty minutes on the live platform. Working session — not a deck. We come back within one business day.</p>
-    <form action="__FORMSPREE_ENDPOINT__" method="POST" onsubmit="return handleDemoSubmit(this, event)">
-      <div class="form-row">
-        <div class="form-group"><label>First name</label><input type="text" name="first_name" class="form-control" required></div>
-        <div class="form-group"><label>Last name</label><input type="text" name="last_name" class="form-control" required></div>
-      </div>
-      <div class="form-group"><label>Work email</label><input type="email" name="email" class="form-control" required></div>
-      <div class="form-group"><label>Company</label><input type="text" name="company" class="form-control" required></div>
-      <div class="form-group"><label>Role</label>
-        <select name="role" class="form-control">
-          <option value="">Select…</option>
-          <option>Data Manager / Lead</option>
-          <option>Clinical Operations</option>
-          <option>Biostatistics / Programming</option>
-          <option>QA / Compliance</option>
-          <option>Medical / Safety</option>
-          <option>Executive / Sponsor leadership</option>
-          <option>Other</option>
-        </select>
-      </div>
-      <div class="form-group"><label>What would you like to see?</label><textarea name="message" class="form-control" placeholder="A particular module, an integration, a workflow…"></textarea></div>
-      <button type="submit" class="form-submit">Send request <span class="arr">→</span></button>
-    </form>
-  </div>
-</div>
-
-<script src="assets/script.js"></script>
 </body>
 </html>

@@ -2,645 +2,338 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Security &amp; Compliance — ClinMaker</title>
-  <meta name="description" content="GxP-grade by design. 21 CFR Part 11, EU Annex 11, ICH E6(R3). Append-only audit, RBAC, MFA, encryption, GDPR pseudonymization, 7-year retention.">
-  <meta name="theme-color" content="#d87654">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Trust &amp; compliance · ClinMaker</title>
+  <meta name="description" content="How ClinMaker is designed for 21 CFR Part 11, EU Annex 11 and ICH E6(R3) controls: a hash-chained audit trail, e-signatures, roles, single sign-on, tenant isolation and AI controls. And where validation stands.">
+  <meta name="theme-color" content="#fbf3ee">
+  <meta property="og:title" content="Trust &amp; compliance · ClinMaker">
+  <meta property="og:description" content="Designed for 21 CFR Part 11, EU Annex 11 and ICH E6(R3) controls. How each one works today, and what is not done yet.">
+  <meta property="og:image" content="https://clinmaker.com/assets/logo-lockup-tagline.png">
+  <meta property="og:url" content="https://clinmaker.com/security.html">
+  <meta property="og:type" content="website">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27 viewBox=%270 0 64 64%27 fill=%27none%27%3E%3Cpath d=%27M50 14 a22 22 0 1 0 0 36%27 stroke=%27%23d87654%27 stroke-width=%276%27 stroke-linecap=%27round%27 fill=%27none%27%2F%3E%3Cpath d=%27M20 26 Q 26 32 32 26 T 44 26%27 stroke=%27%23d87654%27 stroke-width=%272.4%27 stroke-linecap=%27round%27 fill=%27none%27%2F%3E%3Cpath d=%27M20 38 Q 26 32 32 38 T 44 38%27 stroke=%27%230e7490%27 stroke-width=%272.4%27 stroke-linecap=%27round%27 fill=%27none%27%2F%3E%3Cline x1=%2726%27 y1=%2729%27 x2=%2726%27 y2=%2735%27 stroke=%27%237850dc%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%2F%3E%3Cline x1=%2732%27 y1=%2727%27 x2=%2732%27 y2=%2737%27 stroke=%27%237850dc%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%2F%3E%3Cline x1=%2738%27 y1=%2729%27 x2=%2738%27 y2=%2735%27 stroke=%27%237850dc%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%2F%3E%3C%2Fsvg%3E">
   <link rel="alternate icon" type="image/png" href="assets/favicon-256.png?v=4">
   <link rel="apple-touch-icon" href="assets/favicon-256.png?v=4">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css">
-  <style>
-    /* ALCOA+ mapping — 9-cell grid */
-    .alcoa {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-      border-top: 1px solid var(--surface-rule);
-      border-left: 1px solid var(--surface-rule);
-    }
-    .alcoa-cell {
-      padding: 18px 20px;
-      border-right: 1px solid var(--surface-rule);
-      border-bottom: 1px solid var(--surface-rule);
-    }
-    .alcoa-cell .a-letter {
-      font-family: var(--font-display);
-      font-size: 2.25rem;
-      font-weight: 900;
-      letter-spacing: -0.04em;
-      color: var(--primary-600);
-      line-height: 1;
-      display: block;
-      margin-bottom: 8px;
-    }
-    .alcoa-cell .a-name {
-      font-family: var(--font-body);
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--ink);
-      margin-bottom: 6px;
-      letter-spacing: -0.01em;
-    }
-    .alcoa-cell .a-desc {
-      font-family: var(--font-mono);
-      font-size: 0.6875rem;
-      color: var(--text-muted);
-      line-height: 1.45;
-    }
-    .alcoa-cell .a-impl {
-      margin-top: 8px;
-      font-family: var(--font-mono);
-      font-size: 0.625rem;
-      color: var(--status-green);
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    /* Topology */
-    .topo {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      line-height: 1.7;
-    }
-    .topo-row {
-      display: grid;
-      grid-template-columns: 160px 1fr 140px;
-      gap: 16px;
-      padding: 12px 0;
-      align-items: center;
-      border-bottom: 1px dashed var(--surface-rule-soft);
-    }
-    .topo-row:last-child { border-bottom: 0; }
-    .topo-row.head {
-      font-size: 0.625rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      border-bottom: 1px solid var(--surface-rule);
-      padding-bottom: 10px;
-    }
-    .topo-row .t-layer {
-      font-weight: 600;
-      color: var(--primary-700);
-    }
-    .topo-row .t-detail {
-      color: var(--text-secondary);
-    }
-    .topo-row .t-detail strong { color: var(--ink); }
-    .topo-row .t-pill {
-      font-size: 0.625rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 3px 8px;
-      background: var(--status-green-bg);
-      color: var(--status-green);
-      text-align: center;
-    }
-
-    /* Validation checklist */
-    .vcheck {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      border-top: 1px solid var(--surface-rule);
-      border-left: 1px solid var(--surface-rule);
-    }
-    .vcheck-cell {
-      padding: 18px 22px;
-      border-right: 1px solid var(--surface-rule);
-      border-bottom: 1px solid var(--surface-rule);
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-    }
-    .vcheck-cell .v-tick {
-      flex-shrink: 0;
-      width: 20px; height: 20px;
-      background: var(--status-green);
-      color: white;
-      font-size: 0.8125rem;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-body);
-      font-weight: 700;
-    }
-    .vcheck-cell .v-content {}
-    .vcheck-cell .v-name {
-      font-family: var(--font-display);
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--ink);
-      letter-spacing: -0.015em;
-      margin-bottom: 4px;
-    }
-    .vcheck-cell .v-detail {
-      font-family: var(--font-mono);
-      font-size: 0.6875rem;
-      color: var(--text-muted);
-      line-height: 1.45;
-    }
-    .vcheck-cell .v-meta {
-      margin-top: 4px;
-      font-family: var(--font-mono);
-      font-size: 0.625rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--primary-700);
-      font-weight: 600;
-    }
-
-    @media (max-width: 900px) {
-      .alcoa { grid-template-columns: 1fr 1fr; }
-      .vcheck { grid-template-columns: 1fr; }
-      .topo-row { grid-template-columns: 120px 1fr 100px; gap: 10px; font-size: 0.6875rem; }
-    }
-    @media (max-width: 600px) {
-      .alcoa { grid-template-columns: 1fr; }
-      .topo-row { grid-template-columns: 1fr; gap: 4px; }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/v7.css?v=20261026e">
+  <script src="assets/v7.js?v=20261026e" defer></script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
-<!-- NAV -->
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="index.html" class="logo" aria-label="ClinMaker home">
-      <svg class="logo-mark" viewBox="0 0 64 64" fill="none">
-        <path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/>
-        <path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-        <path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-        <line x1="26" y1="29" x2="26" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
-        <line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
-        <line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/>
-      </svg>
-      <span class="logo-text"><span class="logo-text-ink">Clin</span><span class="logo-text-brand">Maker</span></span>
-    </a>
-    <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle menu">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
-    </button>
-    <div class="nav-links">
-      <a href="platform.html">Platform</a>
-      <a href="standards.html">Standards</a>
-      <a href="security.html">Security</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="about.html">About</a>
-      <a href="#" class="nav-cta" onclick="openDemoModal(); return false;">Talk to us <span class="arr">→</span></a>
+<!-- ═══════════ HEADER (shared: copy verbatim to every page) ═══════════ -->
+<header class="site-header">
+  <div class="wrap">
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="index.html" aria-label="ClinMaker home">
+        <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/><line x1="26" y1="29" x2="26" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span class="wordmark"><span>Clin</span><span class="m">Maker</span></span>
+      </a>
+      <ul class="nav-menu">
+        <li class="nav-item" data-dd>
+          <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="dd-product">Product <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="dropdown" id="dd-product">
+            <a class="dd-link" href="platform.html"><b>Platform overview</b><span>One structured study, from protocol to casebook</span></a>
+            <div class="dd-sep"></div>
+            <a class="dd-link" href="protocol-digitization.html"><b>Protocol Digitization</b><span class="tag">Ready to demo</span><span>The protocol as a structured study, in ICH M11 order</span></a>
+            <a class="dd-link" href="study-build.html"><b>Study Build</b><span class="tag">Ready to demo</span><span>CDASH casebooks built from the study</span></a>
+            <div class="dd-sep"></div>
+            <a class="dd-link" href="roadmap.html"><b>Roadmap</b><span class="tag dev">10 in development</span><span>From data ingestion to submission</span></a>
+          </div>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+        <li class="nav-item"><a class="nav-link" href="security.html">Trust</a></li>
+        <li class="nav-item" data-dd>
+          <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="dd-company">Company <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="dropdown" id="dd-company">
+            <a class="dd-link" href="about.html"><b>About</b><span>Why we started ClinMaker, our mission and values</span></a>
+            <a class="dd-link" href="team.html"><b>Team</b><span>The people building it</span></a>
+            <a class="dd-link" href="careers.html"><b>Careers</b><span>Work with us</span></a>
+            <a class="dd-link" href="contact.html"><b>Contact</b><span>Talk to the founders</span></a>
+          </div>
+        </li>
+      </ul>
+      <div class="nav-actions">
+        <a class="nav-login" href="https://app.clinmaker.com" target="_blank" rel="noopener">Log in</a>
+        <a class="btn btn-primary btn-sm" href="request.html?type=demo#request-form">Request a demo</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Menu</button>
+      </div>
+    </nav>
+    <div class="mobile-nav" id="mobile-nav">
+      <div class="m-group"><span class="label">Product</span>
+        <a href="platform.html">Platform overview</a><a href="protocol-digitization.html">Protocol Digitization</a><a href="study-build.html">Study Build</a><a href="roadmap.html">Roadmap</a>
+      </div>
+      <div class="m-group"><a href="pricing.html">Pricing</a><a href="security.html">Trust &amp; compliance</a></div>
+      <div class="m-group"><span class="label">Company</span>
+        <a href="about.html">About</a><a href="team.html">Team</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a>
+      </div>
+      <div class="m-actions">
+        <a class="btn btn-primary" href="request.html?type=demo#request-form">Request a demo</a>
+        <a class="btn btn-outline" href="https://app.clinmaker.com" target="_blank" rel="noopener">Log in</a>
+      </div>
     </div>
   </div>
-</nav>
+</header>
 
-<!-- HEADER -->
-<section class="container" style="padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(32px, 4vw, 48px);">
-  <span class="eyebrow brand">cm.security/posture · GxP-grade</span>
-  <h1 class="display-2" style="margin-top: 18px;">GxP-grade by design,<br><span class="shift">not by retrofit.</span></h1>
-  <p class="lede" style="margin-top: 24px; max-width: 720px;">
-    Audit trail, RBAC, MFA, separation of duties, encryption are foundational architecture — not features you toggle on later. Inspection-readiness is the default state.
-  </p>
+<main id="main">
+
+<!-- ═══════════ PAGE HERO ═══════════ -->
+<section class="band-top fade grain" aria-labelledby="page-h">
+  <div class="wrap page-hero">
+    <p class="crumbs"><a href="index.html">Home</a><span>/</span><span>Trust &amp; compliance</span></p>
+    <h1 id="page-h">ClinMaker's controls today, and what isn't done yet.</h1>
+    <p class="lead">ClinMaker is designed for 21 CFR Part 11, EU Annex 11 and ICH E6(R3) controls. These are the FDA and EU rules for electronic records and computerized systems, and the ICH good clinical practice guideline.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="request.html?type=pilot#request-form">Request a pilot</a>
+      <a class="link-arrow" href="#controls">See the controls →</a>
+    </div>
+    <div class="chips">
+      <span class="chip ready">Designed for Part 11 · Annex 11 · E6(R3)</span>
+      <span class="chip dev">Not yet validated</span>
+      <span class="chip dev">No pen test yet</span>
+      <span class="chip dev">No SOC 2</span>
+    </div>
+  </div>
 </section>
 
-<!-- §01 AUDIT — ALCOA+ -->
-<section class="module" id="audit">
-  <div class="container">
-    <div class="section-num-bar">
-      <span class="num"><strong>§01</strong> / 04</span>
-      <span class="rule"></span>
-      <span class="meta">topic: audit_trail</span>
-      <span class="meta">retention: 7y</span>
-      <span class="meta">model: append-only · tamper-evident</span>
-    </div>
-    <div class="module-head">
+<!-- ═══════════ CONTROLS ═══════════ -->
+<section class="section" id="controls" aria-labelledby="controls-h">
+  <div class="wrap">
+    <div class="sec-head">
       <div>
-        <h2 class="display-2">Append-only.<br><span class="shift">ALCOA+. 7-year retention.</span></h2>
-        <p class="lede">Every GxP-relevant action is recorded as an immutable audit entry: actor, timestamp with timezone, previous vs new values, reason, study/site/subject context. Tamper-evident storage. AI actors are distinguishable from human actors in every row.</p>
+        <p class="label">Controls</p>
+        <h2 id="controls-h">The controls, as they work today.</h2>
       </div>
-      <a href="platform.html#m11" class="module-link">timeline →</a>
+      <p>Each one is part of the platform that Protocol Digitization and Study Build run on, mapped to the clauses your SOPs already cite.</p>
     </div>
-
-    <div class="viz-frame">
-      <span class="viz-coord tl">audit/principles</span>
-      <span class="viz-coord tr">ICH E6(R3) mapping</span>
-      <span class="viz-coord bl">9 / 9 implemented</span>
-      <span class="viz-coord br">verified per release</span>
-      <div class="viz-frame-head">
-        <span class="vh-id">cm-audit // ALCOA+_matrix</span>
-        <span class="vh-meta">
-          <span>standard: ICH E6(R3)</span>
-          <span>verified: 2026-05-13</span>
-          <span class="vh-live">aligned</span>
-        </span>
+    <div class="ctl-card">
+      <div class="ctl-top">
+        <span class="t"><b>TABLE 1</b> · Controls in the platform</span>
+        <span class="chip dev">Not yet validated</span>
       </div>
-      <div class="viz-frame-body">
-        <div class="alcoa">
-          <div class="alcoa-cell">
-            <span class="a-letter">A</span>
-            <div class="a-name">Attributable</div>
-            <div class="a-desc">Every action carries actor_id, role, and origin (human / agent / system).</div>
-            <div class="a-impl">→ audit.actor_id NOT NULL</div>
-          </div>
-          <div class="alcoa-cell">
-            <span class="a-letter">L</span>
-            <div class="a-name">Legible</div>
-            <div class="a-desc">Stored as structured JSON with human-readable previous/new value diffs.</div>
-            <div class="a-impl">→ JSON + PDF export</div>
-          </div>
-          <div class="alcoa-cell">
-            <span class="a-letter">C</span>
-            <div class="a-name">Contemporaneous</div>
-            <div class="a-desc">Recorded synchronously with the source transaction. No deferred audit batches.</div>
-            <div class="a-impl">→ in-transaction insert</div>
-          </div>
-          <div class="alcoa-cell">
-            <span class="a-letter">O</span>
-            <div class="a-name">Original</div>
-            <div class="a-desc">Source record preserved; updates land as new audit rows, never overwrites.</div>
-            <div class="a-impl">→ append-only DDL</div>
-          </div>
-          <div class="alcoa-cell">
-            <span class="a-letter">A</span>
-            <div class="a-name">Accurate</div>
-            <div class="a-desc">Type-checked previous/new values; reason field required for sensitive fields.</div>
-            <div class="a-impl">→ schema-enforced</div>
-          </div>
-          <div class="alcoa-cell">
-            <span class="a-letter">C</span>
-            <div class="a-name">Complete</div>
-            <div class="a-desc">Every GxP-relevant module emits to one trail. No exempt modules.</div>
-            <div class="a-impl">→ 12 / 12 modules</div>
-          </div>
-          <div class="alcoa-cell">
-            <span class="a-letter">C</span>
-            <div class="a-name">Consistent</div>
-            <div class="a-desc">Single audit schema platform-wide. One actor_id namespace.</div>
-            <div class="a-impl">→ single source</div>
-          </div>
-          <div class="alcoa-cell">
-            <span class="a-letter">E</span>
-            <div class="a-name">Enduring</div>
-            <div class="a-desc">7-year retention minimum. Encrypted backups independently.</div>
-            <div class="a-impl">→ S3 + KMS rotation</div>
-          </div>
-          <div class="alcoa-cell">
-            <span class="a-letter">A</span>
-            <div class="a-name">Available</div>
-            <div class="a-desc">Searchable by study / subject / user / record / event / date. Inspection-ready export.</div>
-            <div class="a-impl">→ &lt;5min query · &lt;2min export</div>
-          </div>
-        </div>
+      <div class="tscroll" tabindex="0" role="region" aria-label="Controls table. Scrolls sideways on small screens.">
+        <table class="ctl">
+          <caption class="sr-only">How ClinMaker is designed for 21 CFR Part 11, EU Annex 11 and ICH E6(R3) controls, with the clauses each control relates to</caption>
+          <thead>
+            <tr><th scope="col">Control</th><th scope="col">How it works in ClinMaker</th><th scope="col">Reference</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Audit trail</th>
+              <td>Append-only and hash-chained. Each record names the user and the time. A chain verifier recomputes each record's hash link and reports breaks and gaps. Database rules block edits and deletes.</td>
+              <td class="ref"><span>21 CFR 11.10(e)</span><span>EU Annex 11 §9</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Electronic signatures</th>
+              <td>The signer re-enters their password and gives a reason, and the signature is linked to the record it signs. Used to approve a protocol, sign an amendment impact assessment and override the export gate.</td>
+              <td class="ref"><span>21 CFR 11.50</span><span>21 CFR 11.70</span><span>21 CFR 11.200</span><span>EU Annex 11 §14</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Roles and permissions</th>
+              <td>Fine-grained sponsor roles with separation of duties, and blinding rules that limit who can see unblinded information.</td>
+              <td class="ref"><span>21 CFR 11.10(d)</span><span>21 CFR 11.10(g)</span><span>EU Annex 11 §12</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Identity</th>
+              <td>Single sign-on with OIDC or SAML, multi-factor authentication and SCIM user provisioning from your identity provider.</td>
+              <td class="ref"><span>21 CFR 11.10(d)</span><span>21 CFR 11.300</span><span>EU Annex 11 §12</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Tenant isolation</th>
+              <td>ClinMaker keeps each sponsor's data apart at the database level, using row-level security.</td>
+              <td class="ref"><span>21 CFR 11.10(d)</span><span>EU Annex 11 §7</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Records and snapshots</th>
+              <td>A study build takes a snapshot when its stage changes in Study Build, from Draft through In review, UAT and Approved to Live. An approved amendment can't be changed. The study exports in open formats: USDM JSON and CDISC ODM 1.3.2.</td>
+              <td class="ref"><span>21 CFR 11.10(b)</span><span>21 CFR 11.10(c)</span><span>EU Annex 11 §7, §8</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Export gate</th>
+              <td>Before a protocol is exported as USDM JSON or a registry draft, a gate runs schema, completeness and CDISC CORE conformance checks. Overriding an error takes an e-signature and a reason.</td>
+              <td class="ref"><span>21 CFR 11.10(f)</span><span>EU Annex 11 §5</span></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
+    <p class="fig-cap"><span class="s">“Designed for” means the control is part of how ClinMaker is built. It is not a certification, and it does not replace the validation you carry out for your own intended use.</span></p>
   </div>
 </section>
 
-<!-- §02 ACCESS — RBAC matrix -->
-<section class="module" id="access">
-  <div class="container">
-    <div class="section-num-bar">
-      <span class="num"><strong>§02</strong> / 04</span>
-      <span class="rule"></span>
-      <span class="meta">topic: access_control</span>
-      <span class="meta">roles: 11 predefined</span>
-      <span class="meta">MFA: required for all</span>
+<!-- ═══════════ AI CONTROLS ═══════════ -->
+<section class="section alt" id="ai" aria-labelledby="ai-h">
+  <div class="wrap hitl">
+    <div>
+      <p class="label">AI controls</p>
+      <h2 id="ai-h" class="h2">A person decides on each AI suggestion, and the audit trail records the decision.</h2>
+      <ul class="ticks">
+        <li><span><b>Source kept on import.</b> Sections imported from a PDF or Word file keep the text they came from.</span></li>
+        <li><span><b>Marked Advisory.</b> AI output carries an Advisory label. Its accuracy is not yet measured.</span></li>
+        <li><span><b>A person decides.</b> A person accepts, edits or rejects each AI suggestion, and no build is approved without a person. Sections accepted from AI are stamped as AI-accepted.</span></li>
+        <li><span><b>A patient-identifier filter.</b> Every prompt is checked for identifier patterns, such as subject IDs, before it reaches a model.</span></li>
+        <li><span><b>AI activity is audited.</b> AI drafts, extractions and decisions are written to the audit trail.</span></li>
+      </ul>
+      <div class="trust-sub"><span>Not every feature uses AI</span><span>Protocol-to-build conversion uses none</span></div>
     </div>
-    <div class="module-head">
+    <figure aria-labelledby="fig1-cap">
+      <div class="rec-panel grain">
+        <div class="rec-toast t1"><div class="row1"><b><span class="ai-chip">Advisory</span></b><span>09:38</span></div>§5.1 Inclusion criteria drafted.</div>
+        <div class="rec">
+          <div class="rec-hd"><span class="rec-t">Review record</span><span class="spec-tag">Illustration</span></div>
+          <dl class="rec-dl">
+            <div><dt>Proposal</dt><dd><span class="ai-chip">Advisory · accuracy not measured</span>§5.1 Inclusion criteria<span class="sub">ICH M11 section 5.1</span></dd></div>
+            <div><dt>Reviewer</dt><dd>J. Ortega · Medical writer</dd></div>
+            <div><dt>Decision</dt><dd class="hl">Rejected</dd></div>
+            <div><dt>Reason</dt><dd>Criterion 3 leaves out the laboratory thresholds in Appendix 2.</dd></div>
+            <div><dt>Time (UTC)</dt><dd>2026-10-14 09:42:17</dd></div>
+          </dl>
+        </div>
+        <div class="rec-toast t2"><div class="row1"><b>Audit trail</b><span>09:42</span></div>AI draft, decision and reason recorded.</div>
+      </div>
+      <figcaption class="fig-cap" id="fig1-cap">
+        <span class="t"><b>FIG. 1</b> · What is recorded for one AI proposal</span>
+        <span class="s">Illustration, not a product screen. Names and values are examples.</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ═══════════ STATUS ═══════════ -->
+<section class="section" id="status" aria-labelledby="status-h">
+  <div class="wrap">
+    <div class="split">
       <div>
-        <h2 class="display-2">RBAC. MFA.<br><span class="shift">Separation of duties.</span></h2>
-        <p class="lede">Unique user accounts — no shared logins, ever. Eleven predefined roles with fine-grained permissions per module, per data domain, per blinding scope. Conflicting roles cannot stack on a single user. The user who creates a record cannot approve it.</p>
+        <p class="label">Where things stand</p>
+        <h2 id="status-h">What isn't done yet.</h2>
+        <p class="body">Protocol Digitization and Study Build are ready to demo and available for pilots. ClinMaker is not yet in production use, and it holds no real patient data. We share where validation stands with every pilot sponsor.</p>
+        <div class="more"><a class="link-arrow" href="contact.html">Ask about any of these →</a></div>
       </div>
-      <a href="platform.html#m12" class="module-link">RBAC matrix →</a>
+      <dl class="spec-list" id="data">
+        <div><dt>Validation</dt><dd>Not validated. Validation documentation is in preparation. No IQ/OQ/PQ has been executed yet. <span class="ph">[to confirm: target dates]</span></dd></div>
+        <div><dt>Penetration test</dt><dd>Not done yet. <span class="ph">[to confirm: date]</span></dd></div>
+        <div><dt>SOC 2</dt><dd>No SOC 2 report, and no ISO certification. <span class="ph">[to confirm: dates]</span></dd></div>
+        <div><dt>Hosting</dt><dd><span class="ph">[to confirm: hosting provider and region]</span></dd></div>
+        <div><dt>Subprocessors</dt><dd><span class="ph">[to confirm: list of subprocessors]</span></dd></div>
+        <div><dt>AI provider</dt><dd><span class="ph">[to confirm: AI provider, data retention and training terms]</span></dd></div>
+        <div><dt>Encryption</dt><dd><span class="ph">[to confirm: in transit and at rest]</span></dd></div>
+      </dl>
     </div>
-
-    <div class="viz-frame">
-      <span class="viz-coord tl">access/policy</span>
-      <span class="viz-coord tr">policy version: v4.2</span>
-      <span class="viz-coord bl">SoD enforced at permission layer</span>
-      <span class="viz-coord br">audited per change</span>
-      <div class="viz-frame-head">
-        <span class="vh-id">cm-access // authentication_stack</span>
-        <span class="vh-meta">
-          <span>session timeout: 30m</span>
-          <span>lockout: 5 attempts</span>
-          <span class="vh-live">enforced</span>
-        </span>
-      </div>
-      <div class="viz-frame-body topo">
-        <div class="topo-row head">
-          <span>Layer</span><span>Detail</span><span style="text-align:right;">Status</span>
-        </div>
-        <div class="topo-row">
-          <span class="t-layer">identity</span>
-          <span class="t-detail"><strong>Email, user-ID, or phone</strong> · password + OTP · OTP-only where policy permits</span>
-          <span class="t-pill">required</span>
-        </div>
-        <div class="topo-row">
-          <span class="t-layer">2nd factor</span>
-          <span class="t-detail"><strong>OTP</strong> via email · SMS · authenticator app · random · single-use · time-limited · rate-limited</span>
-          <span class="t-pill">required</span>
-        </div>
-        <div class="topo-row">
-          <span class="t-layer">SSO (opt-in)</span>
-          <span class="t-detail"><strong>SAML 2.0</strong> + <strong>OIDC</strong> · Okta · Azure AD · Ping · custom IdP</span>
-          <span class="t-pill">supported</span>
-        </div>
-        <div class="topo-row">
-          <span class="t-layer">RBAC</span>
-          <span class="t-detail">11 predefined roles · fine-grained per <strong>module × data domain × blinding scope</strong> · extendable per sponsor</span>
-          <span class="t-pill">enforced</span>
-        </div>
-        <div class="topo-row">
-          <span class="t-layer">SoD</span>
-          <span class="t-detail"><strong>Separation of duties</strong> · creator ≠ approver · coder ≠ QC · blocked at the permission layer</span>
-          <span class="t-pill">enforced</span>
-        </div>
-        <div class="topo-row">
-          <span class="t-layer">onboarding</span>
-          <span class="t-detail">Training-gated · approval workflow · effective-dated role changes · periodic access reviews</span>
-          <span class="t-pill">audited</span>
-        </div>
-        <div class="topo-row">
-          <span class="t-layer">offboarding</span>
-          <span class="t-detail">Immediate revocation · session invalidation · bulk operations preserve individual auditability</span>
-          <span class="t-pill">immediate</span>
-        </div>
-      </div>
+    <div class="included gap-top" id="teardown">
+      <span class="label">Protocol Teardown</span>
+      <p>We sign a mutual NDA before any protocol changes hands, then send a secure upload link. Please never email a protocol. Only the Teardown team can open it, and we delete it on request. Retention period: <span class="ph">[to confirm]</span>.</p>
+      <a class="link-arrow" href="request.html?type=teardown#request-form">Request a Protocol Teardown →</a>
     </div>
   </div>
 </section>
 
-<!-- §03 INFRASTRUCTURE topology -->
-<section class="module" id="infra">
-  <div class="container">
-    <div class="section-num-bar">
-      <span class="num"><strong>§03</strong> / 04</span>
-      <span class="rule"></span>
-      <span class="meta">topic: infrastructure</span>
-      <span class="meta">tenant model: shared + dedicated</span>
-      <span class="meta">encryption: TLS 1.3 + AES-256-GCM</span>
-    </div>
-    <div class="module-head">
+<!-- ═══════════ FAQ ═══════════ -->
+<section class="section alt" id="faq" aria-labelledby="faq-h">
+  <div class="wrap">
+    <div class="sec-head">
       <div>
-        <h2 class="display-2">Encrypted in transit.<br><span class="shift">In rest. Between modules.</span></h2>
-        <p class="lede">AWS hosting in the US region. EC2 + RDS Postgres + S3 + CloudFront in a private VPC. Bastion-only SSH. Container images scanned on every build. Three environments (DEV / SANDBOX / PROD) with separate databases, separate keys, separate logging. Production deploys are user-authorised.</p>
+        <p class="label">FAQ</p>
+        <h2 id="faq-h">Questions QA and IT ask us.</h2>
       </div>
-      <a href="contact.html" class="module-link">request URS pack →</a>
+      <p>For other questions, write to <a href="mailto:contact@clinmaker.com">contact@clinmaker.com</a>. We reply within two business days.</p>
     </div>
-
-    <div class="viz-frame">
-      <span class="viz-coord tl">infra/topology</span>
-      <span class="viz-coord tr">AWS · us-east</span>
-      <span class="viz-coord bl">3 environments</span>
-      <span class="viz-coord br">tenant: shared (default)</span>
-      <div class="viz-frame-head">
-        <span class="vh-id">cm-infra // stack</span>
-        <span class="vh-meta">
-          <span>region: us-east-1</span>
-          <span>EU / APAC: on enterprise</span>
-          <span class="vh-live">healthy</span>
-        </span>
-      </div>
-      <div class="viz-frame-body topo">
-        <div class="topo-row head">
-          <span>Layer</span><span>Detail</span><span style="text-align:right;">Status</span>
+    <div class="faq">
+      <details>
+        <summary>Is ClinMaker validated?</summary>
+        <div class="ans">
+          <p>No. Validation documentation is in preparation and no IQ/OQ/PQ has been executed. The sponsor or CRO that uses the system validates it for its intended use, and we support that work.</p>
         </div>
-        <div class="topo-row">
-          <span class="t-layer">transport</span>
-          <span class="t-detail"><strong>TLS 1.3</strong> · HSTS · ECDHE-RSA-AES256-GCM-SHA384 preferred · A+ rating</span>
-          <span class="t-pill">enforced</span>
+      </details>
+      <details>
+        <summary>How do electronic signatures work?</summary>
+        <div class="ans">
+          <p>The signer re-enters their password and gives a reason. The signature is linked to the record it signs, such as an approved protocol, an amendment impact assessment or an export override.</p>
         </div>
-        <div class="topo-row">
-          <span class="t-layer">storage</span>
-          <span class="t-detail"><strong>AES-256-GCM</strong> at rest · KMS rotation per sponsor policy · backups encrypted with separate keys</span>
-          <span class="t-pill">enforced</span>
+      </details>
+      <details>
+        <summary>Do you train AI on our data?</summary>
+        <div class="ans">
+          <p><span class="ph">[to confirm: AI provider data terms]</span></p>
+          <p>What holds today: a patient-identifier filter checks every prompt before it reaches a model, and AI activity is written to the audit trail.</p>
         </div>
-        <div class="topo-row">
-          <span class="t-layer">database</span>
-          <span class="t-detail"><strong>RDS PostgreSQL</strong> · row-level blinding enforced at the repository layer · optional segregated-storage mode</span>
-          <span class="t-pill">enforced</span>
+      </details>
+      <details>
+        <summary>Can we export everything?</summary>
+        <div class="ans">
+          <p>Yes. The study exports as USDM JSON once it passes the export checks, or with a signed override. The casebook exports as CDISC ODM 1.3.2 XML, with codelists from CDISC Controlled Terminology where one exists.</p>
         </div>
-        <div class="topo-row">
-          <span class="t-layer">network</span>
-          <span class="t-detail">Private VPC · bastion-only SSH · no inbound internet to RDS · WAF + Shield</span>
-          <span class="t-pill">isolated</span>
-        </div>
-        <div class="topo-row">
-          <span class="t-layer">tenancy</span>
-          <span class="t-detail">Shared on Pilot/Sponsor · <strong>dedicated AWS account</strong> on Enterprise · BYO-KMS supported</span>
-          <span class="t-pill">tiered</span>
-        </div>
-        <div class="topo-row">
-          <span class="t-layer">environments</span>
-          <span class="t-detail"><strong>DEV / SANDBOX / PROD</strong> separate · tag-gated promotion · production deploys user-authorised</span>
-          <span class="t-pill">three</span>
-        </div>
-        <div class="topo-row">
-          <span class="t-layer">observability</span>
-          <span class="t-detail">Structured logs · request tracing · real-time error alerts · on-call diagnostics without SSH</span>
-          <span class="t-pill">live</span>
-        </div>
-        <div class="topo-row">
-          <span class="t-layer">GDPR</span>
-          <span class="t-detail">Pseudonymization workflow · dual sign-off (DPO + QA) · deterministic hashing of PII</span>
-          <span class="t-pill">supported</span>
-        </div>
-      </div>
+      </details>
     </div>
   </div>
 </section>
 
-<!-- §04 VALIDATION evidence -->
-<section class="module" id="validation">
-  <div class="container">
-    <div class="section-num-bar">
-      <span class="num"><strong>§04</strong> / 04</span>
-      <span class="rule"></span>
-      <span class="meta">topic: validation_evidence</span>
-      <span class="meta">refresh: per-release</span>
-      <span class="meta">scope: URS Pack · IQ/OQ/PQ</span>
-    </div>
-    <div class="module-head">
+<!-- ═══════════ QA AND IT REVIEW ═══════════ -->
+<section class="section" id="review" aria-labelledby="review-h">
+  <div class="wrap">
+    <div class="td grain">
       <div>
-        <h2 class="display-2">Inspection-ready,<br><span class="shift">out of the box.</span></h2>
-        <p class="lede">Validation deliverables are generated from the same source of truth as the code: User Requirements, Functional Requirements, Validation Plan, Risk Assessment, IQ/OQ/PQ scripts, Traceability Matrix. Refreshed on every release. Shipped under NDA.</p>
-      </div>
-      <a href="contact.html" class="module-link">request URS pack →</a>
-    </div>
-
-    <div class="viz-frame">
-      <span class="viz-coord tl">validation/pack</span>
-      <span class="viz-coord tr">deliverables: 8</span>
-      <span class="viz-coord bl">refresh: per release</span>
-      <span class="viz-coord br">format: PDF + Word</span>
-      <div class="viz-frame-head">
-        <span class="vh-id">cm-validation // URS_pack</span>
-        <span class="vh-meta">
-          <span>release: v0.5.43</span>
-          <span>generated: 2026-05-13</span>
-          <span class="vh-live">current</span>
-        </span>
-      </div>
-      <div class="viz-frame-body">
-        <div class="vcheck">
-          <div class="vcheck-cell">
-            <span class="v-tick">✓</span>
-            <div class="v-content">
-              <div class="v-name">User Requirements Specification</div>
-              <div class="v-detail">Sponsor-facing requirements organized by module. URS-XX-NNN identifier scheme. ~340 requirements at v0.5.43.</div>
-              <div class="v-meta">URS-PACK · pdf + docx</div>
-            </div>
-          </div>
-          <div class="vcheck-cell">
-            <span class="v-tick">✓</span>
-            <div class="v-content">
-              <div class="v-name">Functional Requirements Specification</div>
-              <div class="v-detail">Engineering-facing specs traced 1:1 to URS. FRS-XX-NNN. Linked to test scripts.</div>
-              <div class="v-meta">FRS · pdf + docx</div>
-            </div>
-          </div>
-          <div class="vcheck-cell">
-            <span class="v-tick">✓</span>
-            <div class="v-content">
-              <div class="v-name">Validation Plan</div>
-              <div class="v-detail">Scope, approach, deliverables, roles. Aligned to 21 CFR Part 11 + Annex 11 + ICH E6(R3).</div>
-              <div class="v-meta">VP-v4.2 · pdf</div>
-            </div>
-          </div>
-          <div class="vcheck-cell">
-            <span class="v-tick">✓</span>
-            <div class="v-content">
-              <div class="v-name">Risk Assessment</div>
-              <div class="v-detail">Module-by-module risk scoring · controls matrix · residual risk register.</div>
-              <div class="v-meta">RA · xlsx</div>
-            </div>
-          </div>
-          <div class="vcheck-cell">
-            <span class="v-tick">✓</span>
-            <div class="v-content">
-              <div class="v-name">IQ / OQ / PQ Scripts</div>
-              <div class="v-detail">Installation, operational, performance qualification scripts. Executed evidence per release.</div>
-              <div class="v-meta">IQOQPQ · pdf + xlsx</div>
-            </div>
-          </div>
-          <div class="vcheck-cell">
-            <span class="v-tick">✓</span>
-            <div class="v-content">
-              <div class="v-name">Traceability Matrix</div>
-              <div class="v-detail">URS → FRS → test → executed-evidence → release. Fully linked, exportable as machine-readable.</div>
-              <div class="v-meta">TM · xlsx + JSON</div>
-            </div>
-          </div>
-          <div class="vcheck-cell">
-            <span class="v-tick">✓</span>
-            <div class="v-content">
-              <div class="v-name">Audit-trail sample export</div>
-              <div class="v-detail">Anonymised example of audit-trail JSON + PDF export for inspection / vendor assessment.</div>
-              <div class="v-meta">SAMPLE · pdf + json</div>
-            </div>
-          </div>
-          <div class="vcheck-cell">
-            <span class="v-tick">✓</span>
-            <div class="v-content">
-              <div class="v-name">Security one-pager</div>
-              <div class="v-detail">Posture summary: encryption, tenancy, RBAC, MFA, retention. Suitable for procurement.</div>
-              <div class="v-meta">SEC · pdf</div>
-            </div>
-          </div>
+        <p class="label">For your QA and IT review</p>
+        <h2 id="review-h">Bring us your checklist.</h2>
+        <p class="lead">If you're assessing ClinMaker for a pilot, we'll work through your questions with you, in the product.</p>
+        <div class="td-ctas">
+          <a class="btn btn-primary" href="request.html?type=pilot#request-form">Request a pilot</a>
+          <a class="link-arrow" href="contact.html">Ask a QA or IT question →</a>
         </div>
-        <div class="gate-summary">
-          <span>release: <strong>v0.5.43</strong></span>
-          <span>refresh cadence: <strong>per release</strong></span>
-          <span>distribution: <strong>under NDA</strong></span>
-          <span>format: <strong>PDF + Word + Excel + JSON</strong></span>
-          <span style="margin-left:auto;">request → <strong style="color: var(--primary-700);">security@clinmaker.com</strong></span>
-        </div>
+      </div>
+      <div class="deliv">
+        <div><span class="d">Live</span><span><b>A walkthrough of the controls</b><span class="s">Audit trail and chain verifier, e-signatures, roles and the review queues.</span></span></div>
+        <div><span class="d">Status</span><span><b>Where validation stands</b><span class="s">The documentation in preparation, and what is still to do.</span></span></div>
+        <div><span class="d">Questionnaires</span><span><b>Security questionnaire answers</b><span class="s"><span class="ph">[to confirm]</span></span></span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FINAL CTA -->
-<section class="section-ink">
-  <div class="container" style="padding-top: clamp(72px, 9vw, 112px); padding-bottom: clamp(72px, 9vw, 112px);">
-    <div style="max-width: 920px;">
-      <span class="eyebrow">cm.security</span>
-      <h2 class="display-2" style="color: white; margin-top: 18px; margin-bottom: 28px;">
-        Want our posture<br><span class="shift">in writing?</span>
-      </h2>
-      <p class="lede" style="color: rgba(255,255,255,0.72); margin-bottom: 36px;">
-        We'll send the URS Pack, a security one-pager, and a sample audit-trail export — all under NDA, within one business day.
-      </p>
-      <div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
-        <a href="#" class="btn btn-white" onclick="openDemoModal(); return false;">Talk to us <span class="arr">→</span></a>
-        <a href="mailto:security@clinmaker.com" style="color: rgba(255,255,255,0.7); font-size: 0.9375rem;">or security@clinmaker.com</a>
-      </div>
-    </div>
-  </div>
-</section>
+</main>
 
-<!-- COLOPHON -->
-<footer class="colophon">
-  <div class="col-brand">
-    <span>Clin</span><span class="shift">Maker</span>
-    <span class="col-divider" style="margin-left: 12px;">·</span>
-    <span style="font-family: var(--font-body); font-weight: 500; font-size: 0.8125rem; color: var(--text-secondary);">LLC</span>
-  </div>
-  <div style="display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center;">
-    <a href="platform.html">Platform</a><span class="col-divider">·</span>
-    <a href="standards.html">Standards</a><span class="col-divider">·</span>
-    <a href="security.html">Security</a><span class="col-divider">·</span>
-    <a href="pricing.html">Pricing</a><span class="col-divider">·</span>
-    <a href="about.html">About</a><span class="col-divider">·</span>
-    <a href="contact.html">Contact</a><span class="col-divider">·</span>
-    <a href="https://app.clinmaker.com" target="_blank" rel="noopener">Log in →</a>
-  </div>
-  <div class="col-meta">
-    <span>hello@clinmaker.com</span>
-    <span class="col-divider">·</span>
-    <span>© 2026</span>
+<!-- ═══════════ FOOTER (shared: copy verbatim to every page; footnotes optional) ═══════════ -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <a class="brand" href="index.html" aria-label="ClinMaker home">
+          <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/><line x1="26" y1="29" x2="26" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <span class="wordmark"><span>Clin</span><span class="m">Maker</span></span>
+        </a>
+        <p class="tag">Standards at the core. Submission at the finish.</p>
+        <span class="mono">contact@clinmaker.com</span>
+      </div>
+      <div class="ft-col"><h4>Product</h4><ul>
+        <li><a href="platform.html">Platform overview</a></li>
+        <li><a href="protocol-digitization.html">Protocol Digitization</a></li>
+        <li><a href="study-build.html">Study Build</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+      </ul></div>
+      <div class="ft-col"><h4>Company</h4><ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div class="ft-col"><h4>Get started</h4><ul>
+        <li><a href="request.html?type=demo#request-form">Request a demo</a></li>
+        <li><a href="request.html?type=pilot#request-form">Request a pilot</a></li>
+        <li><a href="request.html?type=teardown#request-form">Protocol Teardown</a></li>
+        <li><a href="security.html">Trust &amp; compliance</a></li>
+        <li><a href="https://app.clinmaker.com" target="_blank" rel="noopener">Log in ↗</a></li>
+      </ul></div>
+    </div>
+    <div class="ft-legal">
+      <span>© 2026 ClinMaker, LLC</span>
+      <nav aria-label="Legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="security.html">Security</a></nav>
+    </div>
+    <div class="ft-notes">
+      <p>Protocol Digitization and Study Build, and the platform they run on, are ready to demo and available for pilots. They are not yet in production use. Modules marked "In development" are not available. Not every feature uses AI.</p>
+    </div>
   </div>
 </footer>
-
-<!-- DEMO MODAL -->
-<div class="modal-overlay" id="demoModal" role="dialog" aria-labelledby="demoModalTitle" aria-modal="true">
-  <div class="modal">
-    <button class="modal-close" onclick="closeDemoModal()" aria-label="Close">
-      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg>
-    </button>
-    <span class="eyebrow brand" style="margin-bottom: 10px;">cm.demo/request</span>
-    <h3 id="demoModalTitle" class="display-3">Talk to us.</h3>
-    <p class="lede">Thirty minutes on the live platform. Working session — not a deck. We come back within one business day.</p>
-    <form action="__FORMSPREE_ENDPOINT__" method="POST" onsubmit="return handleDemoSubmit(this, event)">
-      <div class="form-row">
-        <div class="form-group"><label>First name</label><input type="text" name="first_name" class="form-control" required></div>
-        <div class="form-group"><label>Last name</label><input type="text" name="last_name" class="form-control" required></div>
-      </div>
-      <div class="form-group"><label>Work email</label><input type="email" name="email" class="form-control" required></div>
-      <div class="form-group"><label>Company</label><input type="text" name="company" class="form-control" required></div>
-      <div class="form-group"><label>Role</label>
-        <select name="role" class="form-control">
-          <option value="">Select…</option>
-          <option>Data Manager / Lead</option>
-          <option>Clinical Operations</option>
-          <option>Biostatistics / Programming</option>
-          <option>QA / Compliance</option>
-          <option>Medical / Safety</option>
-          <option>Executive / Sponsor leadership</option>
-          <option>Other</option>
-        </select>
-      </div>
-      <div class="form-group"><label>What would you like to see?</label><textarea name="message" class="form-control" placeholder="A particular module, an integration, a workflow…"></textarea></div>
-      <button type="submit" class="form-submit">Send request <span class="arr">→</span></button>
-    </form>
-  </div>
-</div>
-
-<script src="assets/script.js"></script>
 </body>
 </html>

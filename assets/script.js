@@ -43,12 +43,21 @@ function handleDemoSubmit(form, e) {
   e.preventDefault();
   const btn = form.querySelector('.form-submit');
   const endpoint = form.action;
-  if (!endpoint || endpoint.includes('__FORMSPREE_ENDPOINT__')) { showFormSuccess(form); return; }
+  if (!endpoint || endpoint.includes('__FORMSPREE_ENDPOINT__')) { showFormFallback(form); return; }
   btn.disabled = true; btn.innerHTML = 'Sending…';
   fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
     .then((res) => { if (res.ok) showFormSuccess(form); else throw new Error('fail'); })
-    .catch(() => { btn.disabled = false; btn.innerHTML = 'Try again'; alert('Something went wrong. Please email hello@clinmaker.com.'); });
+    .catch(() => { btn.disabled = false; btn.innerHTML = 'Try again'; alert('Something went wrong. Please email contact@clinmaker.com.'); });
   return false;
+}
+// The form service isn't connected yet: say so plainly, and offer an email that carries what the visitor typed
+function showFormFallback(form) {
+  const v = (n) => { const el = form.elements[n]; return el && el.value ? String(el.value).trim() : ''; };
+  const name = [v('first_name'), v('last_name')].filter(Boolean).join(' ');
+  const lines = [['Name', name], ['Email', v('email')], ['Company', v('company')], ['Role', v('role')], ['Message', v('message') || v('description')]]
+    .filter((l) => l[1]).map((l) => l[0] + ': ' + l[1]);
+  const href = 'mailto:contact@clinmaker.com?subject=' + encodeURIComponent('ClinMaker demo request') + '&body=' + encodeURIComponent(lines.join('\n'));
+  form.outerHTML = `<div class="form-success"><div class="display-3">Please email us.</div><p>Our request form isn't connected yet, so this request was not sent. Email <a href="${href}">contact@clinmaker.com</a> and we'll get back to you. The link opens an email with what you entered.</p></div>`;
 }
 function showFormSuccess(form) {
   form.outerHTML = `<div class="form-success"><div class="display-3">Request received.</div><p>Someone from the ClinMaker team will reach out within one business day.</p></div>`;

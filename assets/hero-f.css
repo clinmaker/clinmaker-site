@@ -1,0 +1,57 @@
+/* Hero F: hero E's design with Apple-style motion.
+   1. It starts like a film: the headline rises, the screens switch on, the C draws, then the fields flow.
+   2. It plays, then rests: each field passes through the C twice and settles in the casebook as its CDASH name.
+   3. It hands off on scroll: the hero recedes and fades as the next section rises over it.
+   Nothing moves for reduced motion (hero E's static state applies). */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* 1. The screens switch on: from soft and slightly large to sharp, instead of E's 3D turn */
+  .hf .fv-left .fv-shot, .hf .fv-right .fv-shot { transform-origin: 50% 60%; }
+  .hf .fv-left .fv-shot { animation: hf-on 1.5s var(--ease) .45s both; }
+  .hf .fv-right .fv-shot { animation: hf-on 1.5s var(--ease) .62s both; }
+
+  /* 2. The fields start once the C has drawn, run twice, then settle (hero-f.js adds .settled) */
+  .hf .fv-chip, .hf .fv-chip span { animation-iteration-count: 2; animation-fill-mode: both; }
+  .hf .fv-chip.k1, .hf .fv-chip.k1 span { animation-delay: 2.4s; }
+  .hf .fv-chip.k2, .hf .fv-chip.k2 span { animation-delay: 3.6s; }
+  .hf .fv-chip.k3, .hf .fv-chip.k3 span { animation-delay: 4.8s; }
+  .hf.again .fv-chip.k1, .hf.again .fv-chip.k1 span { animation-delay: .3s; }
+  .hf.again .fv-chip.k2, .hf.again .fv-chip.k2 span { animation-delay: 1.5s; }
+  .hf.again .fv-chip.k3, .hf.again .fv-chip.k3 span { animation-delay: 2.7s; }
+
+  .hf .fv-chip.settled { left: auto; right: 0; background: var(--cyan-50); border-color: var(--cyan-200); animation: hf-land .6s var(--ease) both; }
+  .hf .fv-chip.settled .a { opacity: 0; animation: none; }
+  .hf .fv-chip.settled .b { opacity: 1; animation: none; }
+
+  .hf .fv-lanes i::after { transition: opacity .8s ease; }
+  .hf.rested .fv-lanes i::after { opacity: 0; animation-play-state: paused; }
+
+  /* Held: paused by the visitor, or the hero is off screen */
+  .hf.held .fv-chip, .hf.held .fv-chip span, .hf.held .fv-lanes i::after { animation-play-state: paused; }
+
+  /* 3. Scroll hand-off: the hero recedes as the page moves on (browsers without scroll timelines just scroll) */
+  @supports (animation-timeline: scroll()) {
+    .hf > .hero { transform-origin: 50% 0; animation: hf-recede linear both; animation-timeline: scroll(root); animation-range: 0 90vh; }
+  }
+}
+
+@keyframes hf-on {
+  from { opacity: 0; transform: translateY(14px) scale(1.06); filter: blur(10px) saturate(.7); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+@keyframes hf-land { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: none; } }
+@keyframes hf-recede {
+  0% { transform: none; opacity: 1; }
+  35% { opacity: 1; }
+  100% { transform: translateY(14vh) scale(.94); opacity: 0; }
+}
+
+/* The one control: pause while it plays, replay once it rests. Same dark glass as the rail controls */
+.hf .flowviz figcaption { display: flex; justify-content: center; align-items: center; gap: 10px; }
+.hf-ctl { width: 32px; height: 32px; flex-shrink: 0; display: grid; place-items: center; padding: 0; border: 0; border-radius: 50%; cursor: pointer;
+  color: var(--bg-body); background: rgba(28,26,22,.78); -webkit-backdrop-filter: blur(10px) saturate(1.4); backdrop-filter: blur(10px) saturate(1.4);
+  box-shadow: 0 12px 26px -18px rgba(28,26,22,.6); transition: background-color var(--t-quick) ease, opacity var(--t-move) ease; }
+.hf-ctl:hover { background: rgba(28,26,22,.92); }
+.hf-ctl:focus-visible { outline-color: var(--bg-body); outline-offset: -3px; }
+.hf-ctl svg { width: 12px; height: 12px; }
+@media (prefers-reduced-motion: reduce) { .hf-ctl { display: none; } }

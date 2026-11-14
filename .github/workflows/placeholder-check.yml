@@ -1,0 +1,14 @@
+name: Placeholder check
+# main is published by GitHub Pages, so pages must not carry placeholder text when they reach it.
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+jobs:
+  placeholders:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: No placeholder text in the site pages
+        run: sh .githooks/check-placeholders.sh

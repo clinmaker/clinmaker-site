@@ -1,0 +1,63 @@
+/* Hero D: one immersive frame. The brand C, at scale, holds the real product. */
+.hd { position: relative; overflow: hidden; background: none; min-height: min(100vh, 980px); padding-bottom: clamp(48px, 7vh, 84px); display: flex; flex-direction: column; justify-content: center; }
+@supports (height: 100svh) { .hd { min-height: min(100svh, 980px); } }
+.hd.grain::after { z-index: 1; opacity: .16; -webkit-mask-image: linear-gradient(180deg, #000 60%, transparent); mask-image: linear-gradient(180deg, #000 60%, transparent); }
+.hd > .wrap { position: relative; z-index: 2; width: 100%; }
+
+/* The light field: soft, deep, almost photographic */
+.hd-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; background: linear-gradient(118deg, #f8d9c9 0%, #fbece3 26%, #f6f1ed 50%, #e2eff2 74%, #cfe7ee 100%); }
+.hd-bg i { position: absolute; border-radius: 50%; filter: blur(70px); will-change: transform; }
+.hd-bg i:nth-child(1) { width: 62vw; height: 62vw; left: -22vw; top: -30vw; background: radial-gradient(circle, rgba(240,150,114,.62), rgba(240,150,114,0) 64%); }
+.hd-bg i:nth-child(2) { width: 54vw; height: 54vw; right: -16vw; top: -6vw; background: radial-gradient(circle, rgba(104,186,208,.55), rgba(104,186,208,0) 64%); }
+.hd-bg i:nth-child(3) { width: 46vw; height: 46vw; left: 30vw; bottom: -26vw; background: radial-gradient(circle, rgba(186,166,240,.42), rgba(186,166,240,0) 64%); }
+.hd-bg i:nth-child(4) { width: 50vw; height: 30vw; right: 4vw; top: 30%; background: radial-gradient(closest-side, rgba(255,255,255,.75), rgba(255,255,255,0)); }
+.hd-bg::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 180px; background: linear-gradient(180deg, rgba(251,248,246,0), var(--bg-body)); }
+
+/* Type: big, calm, confident */
+.hd-h { position: relative; z-index: 3; margin-top: clamp(10px, 2vh, 24px); font-size: clamp(2.6rem, 5.1vw, 4.75rem); font-weight: 600; line-height: 1; letter-spacing: -0.034em; color: var(--ink); }
+.hd-h span { display: block; }
+.hd-h span + span { color: var(--brand-700); }
+
+.hd-row { margin-top: clamp(40px, 6.4vh, 64px); display: grid; grid-template-columns: minmax(250px, 330px) minmax(0, 1fr); gap: clamp(32px, 4vw, 56px); align-items: start; }
+.hd-copy { padding-top: 6px; }
+.hd-sub { font-size: clamp(1.05rem, 1.3vw, 1.2rem); line-height: 1.5; color: var(--ink-2); text-wrap: pretty; }
+.hd-ctas { margin-top: 28px; display: grid; justify-items: start; gap: 18px; }
+.hd-ctas .btn { padding: 16px 28px; font-size: 16.5px; box-shadow: 0 18px 34px -18px rgba(147,78,54,.7); }
+
+/* The product, framed by the brand C */
+.hd-stage { position: relative; min-width: 0; }
+.hd-c { position: absolute; z-index: 0; width: 680px; height: 680px; left: -140px; top: 50%; margin-top: -315px; overflow: visible; pointer-events: none; }
+.hd-c .solid { fill: none; stroke: url(#hd-grad); stroke-width: 44; stroke-linecap: round; }
+.hd-c .sheen { fill: none; stroke: rgba(255,255,255,.55); stroke-width: 3; stroke-linecap: round; }
+.hd-c .line { fill: none; stroke: rgba(14,116,144,.42); stroke-width: 1.6; stroke-linecap: round; }
+.hd-shot { position: relative; z-index: 2; margin: 0; width: min(calc(100% + var(--edge) - 24px), 1120px); padding: 10px; border-radius: 24px; background: rgba(255,255,255,.5); border: 1px solid rgba(255,255,255,.95); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: 0 70px 120px -64px rgba(74,39,28,.6), 0 30px 60px -40px rgba(14,116,144,.25); }
+.hd-shot img { display: block; width: 100%; height: auto; border-radius: 15px; border: 1px solid var(--border-subtle); background: #fff; }
+.hd-shot figcaption { position: absolute; right: 18px; bottom: -30px; font-size: 12.5px; color: var(--ink-muted); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .hd-bg i { animation: aura-drift 30s ease-in-out infinite alternate; }
+  .hd-bg i:nth-child(2) { animation-duration: 36s; animation-delay: -9s; }
+  .hd-bg i:nth-child(3) { animation-duration: 42s; animation-delay: -16s; }
+  .hd-c path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: hd-draw 1.9s cubic-bezier(.65,.05,.25,1) .35s forwards; }
+  .hd-c .sheen { animation-delay: .75s; }
+  .hd-c .line { animation-duration: 2.4s; animation-delay: .6s; }
+  .hd-shot { animation: hd-in 1.25s cubic-bezier(.2,.7,.2,1) .3s both; }
+  .hd-shot figcaption { animation: fade-in 1s ease 1.4s both; }
+}
+@keyframes hd-draw { to { stroke-dashoffset: 0; } }
+@keyframes hd-in { from { opacity: 0; transform: translate3d(48px, 10px, 0); } to { opacity: 1; transform: none; } }
+
+@media (max-height: 820px) and (min-width: 921px) {
+  .hd-h { font-size: clamp(2.4rem, 4.4vw, 3.9rem); margin-top: 14px; }
+  .hd-row { margin-top: 34px; }
+  .hd-c { width: 600px; height: 600px; margin-top: -280px; left: -122px; }
+}
+@media (max-width: 920px) {
+  .hd { min-height: 0; }
+  .hd-row { grid-template-columns: minmax(0, 1fr); gap: 34px; margin-top: 22px; }
+  .hd-ctas { margin-top: 22px; }
+  .hd-shot { width: 100%; padding: 6px; border-radius: 18px; }
+  .hd-shot img { border-radius: 12px; }
+  .hd-c { width: 120%; height: auto; aspect-ratio: 1; left: -18%; margin-top: 0; top: 50%; transform: translateY(-50%); }
+  .hd-shot figcaption { position: static; margin-top: 12px; }
+}

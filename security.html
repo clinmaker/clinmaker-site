@@ -16,9 +16,9 @@
   <link rel="apple-touch-icon" href="assets/favicon-256.png?v=4">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/v7.css?v=20261026e">
-  <script src="assets/v7.js?v=20261026e" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=IBM+Plex+Mono:wght@400;500&family=Inter:opsz,wght@14..32,400..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/v7.css?v=20261028j">
+  <script src="assets/v7.js?v=20261028j" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -86,7 +86,7 @@
     <h1 id="page-h">ClinMaker's controls today, and what isn't done yet.</h1>
     <p class="lead">ClinMaker is designed for 21 CFR Part 11, EU Annex 11 and ICH E6(R3) controls. These are the FDA and EU rules for electronic records and computerized systems, and the ICH good clinical practice guideline.</p>
     <div class="hero-ctas">
-      <a class="btn btn-primary" href="request.html?type=pilot#request-form">Request a pilot</a>
+      <a class="btn btn-primary" href="request.html?type=teardown#request-form">Request a Protocol Teardown</a>
       <a class="link-arrow" href="#controls">See the controls →</a>
     </div>
     <div class="chips">
@@ -212,18 +212,18 @@
         <div class="more"><a class="link-arrow" href="contact.html">Ask about any of these →</a></div>
       </div>
       <dl class="spec-list" id="data">
-        <div><dt>Validation</dt><dd>Not validated. Validation documentation is in preparation. No IQ/OQ/PQ has been executed yet. <span class="ph">[to confirm: target dates]</span></dd></div>
-        <div><dt>Penetration test</dt><dd>Not done yet. <span class="ph">[to confirm: date]</span></dd></div>
-        <div><dt>SOC 2</dt><dd>No SOC 2 report, and no ISO certification. <span class="ph">[to confirm: dates]</span></dd></div>
-        <div><dt>Hosting</dt><dd><span class="ph">[to confirm: hosting provider and region]</span></dd></div>
-        <div><dt>Subprocessors</dt><dd><span class="ph">[to confirm: list of subprocessors]</span></dd></div>
-        <div><dt>AI provider</dt><dd><span class="ph">[to confirm: AI provider, data retention and training terms]</span></dd></div>
-        <div><dt>Encryption</dt><dd><span class="ph">[to confirm: in transit and at rest]</span></dd></div>
+        <div><dt>Validation</dt><dd>Not validated. Validation documentation is in preparation. No IQ/OQ/PQ has been executed yet. <span class="ph" hidden data-todo>[to confirm: target dates]</span></dd></div>
+        <div><dt>Penetration test</dt><dd>Not done yet. <span class="ph" hidden data-todo>[to confirm: date]</span></dd></div>
+        <div><dt>SOC 2</dt><dd>No SOC 2 report, and no ISO certification. <span class="ph" hidden data-todo>[to confirm: dates]</span></dd></div>
+        <div hidden data-todo><dt>Hosting</dt><dd><span class="ph">[to confirm: hosting provider and region]</span></dd></div>
+        <div hidden data-todo><dt>Subprocessors</dt><dd><span class="ph">[to confirm: list of subprocessors]</span></dd></div>
+        <div hidden data-todo><dt>AI provider</dt><dd><span class="ph">[to confirm: AI provider, data retention and training terms]</span></dd></div>
+        <div hidden data-todo><dt>Encryption</dt><dd><span class="ph">[to confirm: in transit and at rest]</span></dd></div>
       </dl>
     </div>
     <div class="included gap-top" id="teardown">
       <span class="label">Protocol Teardown</span>
-      <p>We sign a mutual NDA before any protocol changes hands, then send a secure upload link. Please never email a protocol. Only the Teardown team can open it, and we delete it on request. Retention period: <span class="ph">[to confirm]</span>.</p>
+      <p>We sign a mutual NDA before any protocol changes hands, then send a secure upload link. Please never email a protocol. Only the Teardown team can open it, and we delete it on request. <span hidden data-todo>Retention period: <span class="ph">[to confirm]</span>.</span></p>
       <a class="link-arrow" href="request.html?type=teardown#request-form">Request a Protocol Teardown →</a>
     </div>
   </div>
@@ -255,7 +255,7 @@
       <details>
         <summary>Do you train AI on our data?</summary>
         <div class="ans">
-          <p><span class="ph">[to confirm: AI provider data terms]</span></p>
+          <p hidden data-todo><span class="ph">[to confirm: AI provider data terms]</span></p>
           <p>What holds today: a patient-identifier filter checks every prompt before it reaches a model, and AI activity is written to the audit trail.</p>
         </div>
       </details>
@@ -278,14 +278,14 @@
         <h2 id="review-h">Bring us your checklist.</h2>
         <p class="lead">If you're assessing ClinMaker for a pilot, we'll work through your questions with you, in the product.</p>
         <div class="td-ctas">
-          <a class="btn btn-primary" href="request.html?type=pilot#request-form">Request a pilot</a>
+          <a class="btn btn-primary" href="request.html?type=teardown#request-form">Request a Protocol Teardown</a>
           <a class="link-arrow" href="contact.html">Ask a QA or IT question →</a>
         </div>
       </div>
       <div class="deliv">
         <div><span class="d">Live</span><span><b>A walkthrough of the controls</b><span class="s">Audit trail and chain verifier, e-signatures, roles and the review queues.</span></span></div>
         <div><span class="d">Status</span><span><b>Where validation stands</b><span class="s">The documentation in preparation, and what is still to do.</span></span></div>
-        <div><span class="d">Questionnaires</span><span><b>Security questionnaire answers</b><span class="s"><span class="ph">[to confirm]</span></span></span></div>
+        <div hidden data-todo><span class="d">Questionnaires</span><span><b>Security questionnaire answers</b><span class="s"><span class="ph">[to confirm]</span></span></span></div>
       </div>
     </div>
   </div>

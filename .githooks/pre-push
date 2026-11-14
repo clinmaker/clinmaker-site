@@ -1,0 +1,12 @@
+#!/bin/sh
+# Blocks a push to main (which GitHub Pages publishes) while any page still has placeholder text.
+# Other branches push freely. To push anyway, deliberately: git push --no-verify
+while read -r local_ref local_sha remote_ref remote_sha; do
+  if [ "$remote_ref" = "refs/heads/main" ]; then
+    sh "$(git rev-parse --show-toplevel)/.githooks/check-placeholders.sh" || {
+      echo "Push to main stopped: fill the placeholders above first (main is the live site)."
+      exit 1
+    }
+  fi
+done
+exit 0

@@ -16,9 +16,9 @@
   <link rel="apple-touch-icon" href="assets/favicon-256.png?v=4">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/v7.css?v=20261026e">
-  <script src="assets/v7.js?v=20261026e" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=IBM+Plex+Mono:wght@400;500&family=Inter:opsz,wght@14..32,400..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/v7.css?v=20261028j">
+  <script src="assets/v7.js?v=20261028j" defer></script>
   <style>
     /* Page-level: space under the status pill in a page hero; centre a tall hero screen */
     .page-hero .eyebrow { margin-bottom: 22px; }
@@ -94,13 +94,13 @@
         <h1 id="sb-h">Build the casebook from the protocol.</h1>
         <p class="lead">Today data management and EDC (electronic data capture) teams re-key most casebooks from the protocol by hand, then again after every amendment. Study Build creates the casebook from the structured study. It produces CDASH-aligned forms, codelists and edit checks, with the SDTM target for each field that has one. Each build goes through user acceptance testing (UAT) and exports as CDISC ODM 1.3.2 XML.</p>
         <div class="hero-ctas">
-          <a class="btn btn-primary" href="request.html?type=pilot#request-form">Request a pilot</a>
-          <a class="link-arrow" href="request.html?type=teardown#request-form">Request a Protocol Teardown →</a>
+          <a class="btn btn-primary" href="request.html?type=teardown#request-form">Request a Protocol Teardown</a>
+          <a class="link-arrow" href="request.html?type=pilot#request-form">Request a pilot →</a>
         </div>
       </div>
       <figure class="glass-frame">
         <div class="shot-meta" aria-hidden="true"><span class="dot">Form library · Adverse Events</span><span>Real product screen</span></div>
-        <img src="assets/screens/ecrf-ae-preview.webp" width="649" height="711" fetchpriority="high" alt="The eCRF preview of the Adverse Events CDASH eCRF in the ClinMaker form library. Fields such as Study Identifier, Subject Identifier for the Study, Reported Term for the Adverse Event and Adverse Event Start Date are laid out as a form, each typed as text or codelist, with required fields marked.">
+        <img src="assets/screens/ecrf-ae-preview.webp?v=hd1" width="1022" height="1066" fetchpriority="high" alt="The eCRF preview of the Adverse Events CDASH eCRF in the ClinMaker form library. Fields such as Study Identifier, Subject Identifier for the Study, Reported Term for the Adverse Event and Adverse Event Start Date are laid out as a form, each typed as text or codelist, with required fields marked.">
       </figure>
     </div>
   </div>
@@ -146,10 +146,6 @@
         <h2 id="build-h">Forms, codelists, edit checks and site guidelines, on CDISC standards.</h2>
         <p>All of them come from the same study. CDASH is the CDISC standard for how case report form data is collected, and SDTM is the CDISC format for study data that FDA requires in submissions. The platform includes CDISC Controlled Terminology and the CDASH and SDTM implementation guides (CDASHIG and SDTMIG).</p>
       </div>
-      <div class="rail-ctl">
-        <button type="button" data-rail-prev aria-label="Previous build contents"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M16 10H4M9 5l-5 5 5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <button type="button" data-rail-next aria-label="Next build contents"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      </div>
     </div>
     <div class="xrail" tabindex="0" role="region" aria-label="What's in a build, scroll sideways for more">
       <article class="uc">
@@ -157,7 +153,7 @@
         <div class="uc-body"><span class="label">Form library</span><h3>Start from standard forms</h3><p>CDASH eCRFs, standard forms, QRS instruments (questionnaires, ratings and scales) and your own sponsor forms. Preview any form as an eCRF.</p><div class="who"><span>Data management</span><span>Clinical programming</span></div></div>
       </article>
       <article class="uc">
-        <div class="uc-media m-cy"><img src="assets/screens/crf-ae-fields.webp" width="649" height="711" loading="lazy" alt="Field details of the Adverse Events CDASH eCRF: 55 fields, each with its type, CDASH variable, SDTM target and whether it is required. AESTDAT and AESTTIM both map to AESTDTC, and fields with no SDTM target show none."></div>
+        <div class="uc-media m-cy"><img src="assets/screens/crf-ae-fields.webp?v=hd1" width="1022" height="1066" loading="lazy" alt="Field details of the Adverse Events CDASH eCRF: 55 fields, each with its type, CDASH variable, SDTM target and whether it is required. AESTDAT and AESTTIM both map to AESTDTC, and fields with no SDTM target show none."></div>
         <div class="uc-body"><span class="label">Field details</span><h3>Fields mapped from CDASH to SDTM</h3><p>Type and CDASH variable for every field, with the SDTM target for each field that has one. Standard forms use CDISC variable names only, and build validation warns when a name isn't a CDISC one.</p><div class="who"><span>Clinical programming</span><span>Biostatistics</span></div></div>
       </article>
       <article class="uc">
@@ -173,7 +169,6 @@
         <div class="uc-body"><span class="label">Guidelines</span><h3>eCRF completion guidelines</h3><p>Completion guidelines for sites are part of the same build as the forms they describe.</p><div class="who"><span>Data management</span><span>Clinical operations</span></div></div>
       </article>
     </div>
-    <div class="rail-progress" aria-hidden="true"><i></i></div>
   </div>
 </section>
 
@@ -222,7 +217,7 @@
     </div>
     <dl class="spec-list">
       <div><dt>Export</dt><dd>CDISC ODM 1.3.2 XML</dd></div>
-      <div><dt>EDC loaders</dt><dd><span class="ph">[to confirm: which EDC loaders to name]</span></dd></div>
+      <div hidden data-todo><dt>EDC loaders</dt><dd><span class="ph">[to confirm: which EDC loaders to name]</span></dd></div>
       <div><dt>Before the final loader</dt><dd>Approved build, approved forms, loader file rules</dd></div>
       <div><dt>Standards</dt><dd>USDM 4.0, CDASH, SDTM targets, CDISC Controlled Terminology</dd></div>
     </dl>
@@ -238,8 +233,8 @@
         <h2 id="cta-h">See your casebook built from your protocol.</h2>
         <p class="lead">Send a protocol under mutual NDA for a Protocol Teardown. Within five business days, you get a USDM 4.0 study definition and a CDASH-aligned draft casebook built from it. Every pilot starts with one.</p>
         <div class="td-ctas">
-          <a class="btn btn-primary" href="request.html?type=pilot#request-form">Request a pilot</a>
-          <a class="link-arrow" href="request.html?type=teardown#request-form">Request a Protocol Teardown →</a>
+          <a class="btn btn-primary" href="request.html?type=teardown#request-form">Request a Protocol Teardown</a>
+          <a class="link-arrow" href="request.html?type=pilot#request-form">Request a pilot →</a>
         </div>
       </div>
       <div class="deliv">

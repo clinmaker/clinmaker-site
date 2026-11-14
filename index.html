@@ -16,9 +16,9 @@
   <link rel="apple-touch-icon" href="assets/favicon-256.png?v=4">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/v7.css?v=20261026e">
-  <script src="assets/v7.js?v=20261026e" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=IBM+Plex+Mono:wght@400;500&family=Inter:opsz,wght@14..32,400..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/v7.css?v=20261028j">
+  <script src="assets/v7.js?v=20261028j" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -80,30 +80,46 @@
 <main id="main">
 
 <!-- ═══════════ HERO ═══════════ -->
-<section class="band-top fade grain" aria-labelledby="hero-h">
+<section class="band-top grain hero-band he" aria-labelledby="hero-h">
+  <div class="hd-bg" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
   <div class="wrap hero">
-    <p class="award"><span class="award-badge"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6 3h8v4a4 4 0 0 1-8 0V3zM6 4.5H3.5A2.5 2.5 0 0 0 6 8M14 4.5h2.5A2.5 2.5 0 0 1 14 8M10 11v3M7 17h6M8 14h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Winner</span><span>Named the winner of the <b>SCOPE 365 / TransCelerate BioPharma Solve Challenge, 2026</b>, for the best integration of standards and impact assessment.</span></p>
-    <h1 id="hero-h">Write the protocol once. Build the casebook from it.</h1>
-    <div class="hero-row">
-      <p class="hero-sub">Today every team after the protocol re-keys it, and every amendment starts that over. ClinMaker turns the protocol into one structured study and builds the casebook from it.</p>
+    <p class="label hero-for rise">For sponsors and CROs</p>
+    <h1 id="hero-h"><span class="rise">Write the protocol once.</span> <span class="rise d1">Build the casebook from it.</span></h1>
+    <div class="hero-row rise d2">
+      <p class="hero-sub">After the protocol is written, every team re-keys it. ClinMaker keeps one structured study, from protocol to casebook.</p>
       <div class="hero-ctas">
-        <a class="btn btn-primary" href="request.html?type=pilot#request-form">Request a pilot</a>
-        <a class="link-arrow" href="request.html?type=teardown#request-form">Request a Protocol Teardown →</a>
+        <a class="btn btn-primary" href="request.html?type=teardown#request-form">Request a Protocol Teardown</a>
+        <a class="link-play" href="platform.html#walkthrough" data-sheet="sheet-walkthrough"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8.2 6.6v6.8l5.4-3.4z" fill="currentColor"/></svg>Watch the walkthrough</a>
       </div>
     </div>
 
-    <figure class="hero-shot">
-      <div class="glass-frame">
-        <div class="shot-meta"><span class="dot">Protocol Digitization · Ready to demo</span><span>Real product screen · demo study</span></div>
-        <img src="assets/screens/protocol-workspace.webp" width="1496" height="711" fetchpriority="high" alt="The ClinMaker Protocol workspace. The left panel lists the protocol's sections in ICH M11 order, the editor shows section 9, Adverse Events, generated from the structured study design, and the right panel shows the review workflow from draft to reviewed.">
+    <figure class="flowviz" aria-labelledby="fv-cap">
+      <div class="fv-stage">
+        <div class="fv-panel fv-left">
+          <p class="fv-label"><span class="dot"></span>Your protocol <small>ICH M11</small></p>
+          <div class="fv-shot"><img src="assets/screens/protocol-section-9-2.webp?v=hd1" width="1220" height="762" fetchpriority="high" alt="Section 9.2 of a protocol in the ClinMaker Protocol workspace: timing and procedures for collecting and reporting adverse events."></div>
+        </div>
+        <div class="fv-core" aria-hidden="true">
+          <p class="fv-label fv-mid">One structured study <small>USDM 4.0</small></p>
+          <div class="fv-lanes"><i></i><i></i><i></i></div>
+          <svg class="he-c" viewBox="-400 -400 800 800" aria-hidden="true"><defs><linearGradient id="he-grad" gradientUnits="userSpaceOnUse" x1="-260" y1="-300" x2="160" y2="300"><stop offset="0" stop-color="#f9c9b2"/><stop offset=".55" stop-color="#ea9472"/><stop offset="1" stop-color="#d27a58"/></linearGradient></defs><path class="line" pathLength="1" d="M191.6 -273.6 A334 334 0 1 0 191.6 273.6"/><path class="solid" pathLength="1" d="M172.1 -245.7 A300 300 0 1 0 172.1 245.7"/><path class="sheen" pathLength="1" d="M179 -255.6 A312 312 0 1 0 179 255.6"/></svg>
+          <span class="fv-chip k1"><span class="a">adverse event</span><span class="b">AETERM</span></span><span class="fv-chip k2"><span class="a">onset date</span><span class="b">AESTDAT</span></span><span class="fv-chip k3"><span class="a">severity</span><span class="b">AESEV</span></span>
+        </div>
+        <div class="fv-panel fv-right">
+          <p class="fv-label"><span class="dot cy"></span>Your casebook <small>CDASH</small></p>
+          <div class="fv-shot"><img src="assets/screens/ecrf-ae-preview.webp?v=hd1" width="1022" height="1066" fetchpriority="high" alt="The Adverse Events CDASH eCRF in the ClinMaker form library, with the reported term, start date and other fields laid out as a form."></div>
+        </div>
       </div>
-      <div class="notes" aria-hidden="true">
-        <div class="note"><span class="ic"><svg viewBox="0 0 20 20" fill="none"><path d="M6 3h6l3 3v11H6z" stroke="#934e36" stroke-width="1.4" stroke-linejoin="round"/><path d="M8 10h5M8 13h4" stroke="#934e36" stroke-width="1.4" stroke-linecap="round"/></svg></span><div><b>§9 Adverse events · v0.1</b><p>Generated from the structured study design</p></div></div>
-        <div class="note"><span class="ic cy"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="6.5" stroke="#0e7490" stroke-width="1.4"/><path d="M7.2 10.2l2 2 3.8-4" stroke="#0e7490" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b>Review workflow</b><p>Draft, in review, reviewed. A person reviews each section.</p></div></div>
-      </div>
+      <figcaption id="fv-cap">Real screens from our demo study.</figcaption>
     </figure>
   </div>
 </section>
+
+<aside class="award-toast" id="award-toast" data-until="2027-04-30" aria-label="Recognition" hidden>
+  <span class="award-badge"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6 3h8v4a4 4 0 0 1-8 0V3zM6 4.5H3.5A2.5 2.5 0 0 0 6 8M14 4.5h2.5A2.5 2.5 0 0 1 14 8M10 11v3M7 17h6M8 14h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Winner</span>
+  <p>Named the winner of the <b>SCOPE 365 / TransCelerate BioPharma Solve Challenge, 2026</b>, for the best integration of standards and impact assessment.</p>
+  <button type="button" aria-label="Dismiss"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+</aside>
 
 <!-- ═══════════ WHY CLINMAKER EXISTS ═══════════ -->
 <section class="section" id="gap" aria-labelledby="gap-h">
@@ -114,14 +130,13 @@
         <h2 id="gap-h">The protocol is still a Word document, so every later team re-keys it.</h2>
       </div>
       <div class="gap-copy">
-        <p>Medical writers draft the protocol and circulate it by email. Data management re-keys it into a casebook specification, the EDC (electronic data capture) team builds it, and programmers map it again for submission. Every amendment starts the cycle over.</p>
-        <p>Authoring tools focus on the document. EDC build tools start from a finished protocol, inside their own EDC. <strong>Nothing connects the two, so each team re-keys every change by hand.</strong> ClinMaker keeps one structured study, from protocol to casebook.</p>
+        <p>Authoring tools stop at the document. EDC build tools start from a finished one. <strong>Nothing connects the two, and every amendment starts the cycle over.</strong></p>
       </div>
     </div>
     <div class="stats">
-      <div class="stat"><span class="label">Time to build a study database</span><div class="n">68 days<sup><a href="#fn1" aria-label="Source 1">1</a></sup></div><p>on average, to build and release the study database.</p></div>
-      <div class="stat"><span class="label">Amendments in a Phase III protocol</span><div class="n">3.4<sup><a href="#fn2" aria-label="Source 2">2</a></sup></div><p>substantial amendments on average, and each can reopen the build.</p></div>
-      <div class="stat"><span class="label">Cost of one Phase III amendment</span><div class="n">Up to $1M<sup><a href="#fn3" aria-label="Source 3">3</a></sup></div><p>in unplanned direct cost, with nearly three months of delay.</p></div>
+      <div class="stat"><div class="n">68 days<sup><a href="#fn1" aria-label="Source 1">1</a></sup></div><p>to build and release a study database</p></div>
+      <div class="stat"><div class="n">3.4<sup><a href="#fn2" aria-label="Source 2">2</a></sup></div><p>substantial amendments in a typical Phase III protocol</p></div>
+      <div class="stat"><div class="n">Up to $1M<sup><a href="#fn3" aria-label="Source 3">3</a></sup></div><p>unplanned cost of one Phase III amendment</p></div>
     </div>
   </div>
 </section>
@@ -132,16 +147,14 @@
     <div>
       <p class="label">Why ClinMaker</p>
       <h2 id="why-h">What ClinMaker gives sponsors and CROs.</h2>
-      <p class="intro">For teams that want the protocol and casebook on one study, run more than one EDC, or need to handle amendments once. If you run one EDC and only need the build, your EDC vendor's tools may be enough.</p>
+      <p class="intro">For teams on more than one EDC, or with frequent amendments.</p>
       <div class="more"><a class="link-arrow" href="platform.html#faq">How ClinMaker fits with your EDC →</a></div>
     </div>
     <div class="why-list">
-      <div><span class="k">01</span><h3>One study, protocol to casebook</h3><p>The build is generated from the approved protocol's structured study, so the protocol isn't re-keyed into the build.</p></div>
-      <div><span class="k">02</span><h3>The EDC you already run</h3><p>ClinMaker isn't tied to one EDC. The casebook exports as CDISC ODM 1.3.2 XML, an open format, and as a loader file for supported EDCs.</p></div>
-      <div><span class="k">03</span><h3>Assess an amendment before it reaches the casebook</h3><p>Your team classifies the change and signs the impact assessment. The live build stays as it is while you open a new draft from the amended protocol.</p></div>
-      <div><span class="k">04</span><h3>Built on open standards you can export</h3><p>USDM 4.0 is CDISC's model for study design, ICH M11 the harmonized protocol template, and CDASH the standard for collecting data. The protocol's USDM export is checked against CDISC CORE rules, and your study leaves in open formats.</p></div>
-      <div><span class="k">05</span><h3>A person approves every AI draft</h3><p>Every AI draft is marked Advisory. A person with the right role accepts, edits or rejects it, and the audit trail records the decision.</p></div>
-      <div><span class="k">06</span><h3>Start with a no-charge Protocol Teardown</h3><p>We structure one of your protocols in five business days. A pilot on one study follows, and nothing live depends on it.</p></div>
+      <div><span class="k">01</span><h3>One study, protocol to casebook</h3><p>The build is generated from the approved protocol, not re-keyed.</p></div>
+      <div><span class="k">02</span><h3>Open standards, your EDC</h3><p>ICH M11, USDM 4.0 and CDASH in. CDISC ODM 1.3.2 out.</p></div>
+      <div><span class="k">03</span><h3>Amendments, assessed once</h3><p>Classify the change and sign the impact assessment. The live build stays as it is.</p></div>
+      <div><span class="k">04</span><h3>A person approves every AI draft</h3><p>Drafts stay Advisory until someone accepts them. Every decision is recorded.</p></div>
     </div>
   </div>
 </section>
@@ -167,10 +180,10 @@
         </div>
         <div class="x-face x-opened" id="x1-o">
           <div class="x-top"><span class="status ready">Ready to demo</span><span class="x-num" aria-hidden="true">01</span></div>
-          <div class="x-media"><img src="assets/screens/pd-guide.webp" width="1140" height="530" loading="lazy" alt="The Protocol workspace with the ICH M11 guide open: guided steps with progress 7 of 15, and section 9.1.1, Definitions of Adverse Events, in the editor."></div>
+          <div class="x-media"><img src="assets/screens/pd-guide.webp?v=hd1" width="1725" height="839" loading="lazy" alt="The Protocol workspace with the ICH M11 guide open: guided steps with progress 7 of 15, and section 9.1.1, Definitions of Adverse Events, in the editor."></div>
           <div class="x-body">
             <h3 id="x1-h">Protocol Digitization</h3>
-            <p>Write a new protocol, digitize a PDF or Word file, or import a USDM study definition. Every section follows the ICH M11 protocol template and is reviewed by a person. Sections drawn from the study design are generated from it.</p>
+            <p>Write, digitize or import a protocol. Every section follows ICH M11 and is reviewed by a person.</p>
             <a class="btn btn-dark btn-sm" href="protocol-digitization.html">Explore Protocol Digitization</a>
           </div>
         </div>
@@ -184,10 +197,10 @@
         </div>
         <div class="x-face x-opened" id="x2-o">
           <div class="x-top"><span class="status ready">Ready to demo</span><span class="x-num" aria-hidden="true">02</span></div>
-          <div class="x-media"><img src="assets/screens/crf-ae-fields.webp" width="649" height="711" loading="lazy" alt="Field details of the Adverse Events CDASH eCRF: each field with its type, CDASH variable, SDTM target and whether it is required."></div>
+          <div class="x-media"><img src="assets/screens/crf-ae-fields.webp?v=hd1" width="1022" height="1066" loading="lazy" alt="Field details of the Adverse Events CDASH eCRF: each field with its type, CDASH variable, SDTM target and whether it is required."></div>
           <div class="x-body">
             <h3 id="x2-h">Study Build</h3>
-            <p>Study Build creates the casebook from the approved protocol. Forms follow CDASH, each field carries its SDTM target where one exists, and the build exports as CDISC ODM 1.3.2 XML.</p>
+            <p>The casebook, built from the approved protocol: CDASH forms with SDTM targets, exported as CDISC ODM.</p>
             <a class="btn btn-dark btn-sm" href="study-build.html">Explore Study Build</a>
           </div>
         </div>
@@ -208,7 +221,7 @@
             </div></div>
           <div class="x-body">
             <h3 id="x3-h">What comes next</h3>
-            <p>Ten more modules on the same structured study, from data ingestion to SDTM, ADaM and submission. Each moves to Ready to demo when we can show it working.</p>
+            <p>Ten more modules on the same study, from data ingestion to submission.</p>
             <a class="btn btn-dark btn-sm" href="roadmap.html">See the roadmap</a>
           </div>
         </div>
@@ -225,66 +238,76 @@
       <div>
         <p class="label">Use cases</p>
         <h2 id="uc-h">Every team works from the same structured study.</h2>
-        <p>Medical writing, data management, clinical operations, biostatistics and quality each start where the last team finished.</p>
-      </div>
-      <div class="rail-ctl">
-        <button type="button" data-rail-prev aria-label="Previous use cases"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M16 10H4M9 5l-5 5 5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <button type="button" data-rail-next aria-label="Next use cases"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </div>
     </div>
     <div class="xrail" tabindex="0" role="region" aria-label="Use cases, scroll sideways for more">
       <article class="uc">
-        <div class="uc-media m-pe"><img src="assets/screens/uc-sections.webp" width="560" height="350" loading="lazy" alt="The protocol's section list in ICH M11 order, from the title page and protocol summary to the introduction and trial objectives."></div>
-        <div class="uc-body"><span class="label">Protocol Digitization</span><h3>Digitize a protocol you already have</h3><p>Upload a protocol PDF or Word file and get back a structured study, every section in ICH M11 order, ready for review.</p><div class="who"><span>Medical writing</span><span>Data management</span></div></div>
+        <div class="uc-media m-pe"><img src="assets/screens/uc-sections.webp?v=hd1" width="840" height="525" loading="lazy" alt="The protocol's section list in ICH M11 order, from the title page and protocol summary to the introduction and trial objectives."></div>
+        <div class="uc-body"><span class="label">Protocol Digitization</span><h3>Digitize a protocol you already have</h3><p>Upload a PDF or Word file. Get a structured study in ICH M11 order.</p><div class="who"><span>Medical writing</span><span>Data management</span></div></div>
+        <button type="button" class="uc-plus" aria-haspopup="dialog" aria-label="More: Digitize a protocol you already have" hidden><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4.5v11M4.5 10h11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <template class="uc-more"><p class="label">Protocol Digitization</p><h2>Digitize a protocol you already have</h2><p class="lede">Upload the protocol you have, as a PDF or Word file. AI extracts the sections and the study design for a person to review.</p><p class="lede">Each imported section keeps its original text. The result is one structured study on USDM 4.0, in ICH M11 order.</p><a class="link-arrow" href="protocol-digitization.html">Protocol Digitization →</a><figure class="m-pe"><img src="assets/screens/uc-more-import.webp?v=1" width="1160" height="725" loading="lazy" alt="The More actions menu in the Protocol workspace, open on Import from PDF/DOCX."></figure></template>
       </article>
       <article class="uc">
-        <div class="uc-media m-pe"><img src="assets/screens/pd-guide.webp" width="1140" height="530" loading="lazy" alt="Guided ICH M11 steps with progress 7 of 15 and the next step: add a primary endpoint."></div>
-        <div class="uc-body"><span class="label">Protocol Digitization</span><h3>Write a new protocol, step by step</h3><p>Guided ICH M11 steps and guidance for each section. Sections that depend on the study design are generated from the structured study.</p><div class="who"><span>Medical writing</span><span>Clinical science</span></div></div>
+        <div class="uc-media m-pe"><img src="assets/screens/pd-guide.webp?v=hd1" width="1725" height="839" loading="lazy" alt="Guided ICH M11 steps with progress 7 of 15 and the next step: add a primary endpoint."></div>
+        <div class="uc-body"><span class="label">Protocol Digitization</span><h3>Write a new protocol, step by step</h3><p>Guided ICH M11 steps, with design sections generated from the study.</p><div class="who"><span>Medical writing</span><span>Clinical science</span></div></div>
+        <button type="button" class="uc-plus" aria-haspopup="dialog" aria-label="More: Write a new protocol, step by step" hidden><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4.5v11M4.5 10h11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <template class="uc-more"><p class="label">Protocol Digitization</p><h2>Write a new protocol, step by step</h2><p class="lede">Guided steps take the team from study identification to design, with ICH M11 guidance in each section.</p><p class="lede">Design sections are generated from the study. Author and Review modes and change proposals are built in.</p><a class="link-arrow" href="protocol-digitization.html">Protocol Digitization →</a><figure class="m-pe"><img src="assets/screens/pd-guide.webp?v=hd1" width="1725" height="839" loading="lazy" alt="Guided ICH M11 steps with progress 7 of 15 and the next step: add a primary endpoint."></figure></template>
       </article>
       <article class="uc">
-        <div class="uc-media m-vi"><img src="assets/screens/uc-review.webp" width="328" height="240" loading="lazy" alt="The review workflow for a protocol section: draft, in review and reviewed, with the option to claim the section for editing."></div>
-        <div class="uc-body"><span class="label">Review</span><h3>Approve every AI draft</h3><p>Every AI draft is marked Advisory. Claim a section, comment and run checks. Nothing is applied until a person accepts it, and the decision is recorded.</p><div class="who"><span>Medical writing</span><span>Quality</span></div></div>
+        <div class="uc-media m-vi"><img src="assets/screens/uc-review.webp?v=hd1" width="500" height="365" loading="lazy" alt="The review workflow for a protocol section: draft, in review and reviewed, with the option to claim the section for editing."></div>
+        <div class="uc-body"><span class="label">Review</span><h3>Approve every AI draft</h3><p>Drafts stay Advisory until a person accepts them.</p><div class="who"><span>Medical writing</span><span>Quality</span></div></div>
+        <button type="button" class="uc-plus" aria-haspopup="dialog" aria-label="More: Approve every AI draft" hidden><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4.5v11M4.5 10h11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <template class="uc-more"><p class="label">Review</p><h2>Approve every AI draft</h2><p class="lede">AI drafts sections, objectives, endpoints, eligibility and the schedule. Each draft is labeled Advisory, because its accuracy is not yet measured.</p><p class="lede">A person accepts or rejects each one. A rejection needs a reason, and the audit trail records every decision.</p><a class="link-arrow" href="protocol-digitization.html">Protocol Digitization →</a><figure class="m-vi"><img src="assets/screens/uc-more-ai.webp?v=1" width="1240" height="775" loading="lazy" alt="The AI menu in the Protocol workspace, with Improve, M11 tone, Check vs SoA and Protocol Intelligence, and changes shown as proposals."></figure></template>
       </article>
       <article class="uc">
-        <div class="uc-media m-cy"><img src="assets/screens/crf-ae-fields.webp" width="649" height="711" loading="lazy" alt="Adverse Events eCRF field details with CDASH variables and SDTM targets."></div>
-        <div class="uc-body"><span class="label">Study Build</span><h3>Build the casebook from the protocol</h3><p>CDASH-aligned forms, codelists and edit checks, with the SDTM target for each field that has one, taken through build validation and user acceptance testing (UAT) sign-off.</p><div class="who"><span>Data management</span><span>Clinical programming</span></div></div>
+        <div class="uc-media m-cy"><img src="assets/screens/crf-ae-fields.webp?v=hd1" width="1022" height="1066" loading="lazy" alt="Adverse Events eCRF field details with CDASH variables and SDTM targets."></div>
+        <div class="uc-body"><span class="label">Study Build</span><h3>Build the casebook from the protocol</h3><p>CDASH forms, codelists and edit checks, through UAT sign-off.</p><div class="who"><span>Data management</span><span>Clinical programming</span></div></div>
+        <button type="button" class="uc-plus" aria-haspopup="dialog" aria-label="More: Build the casebook from the protocol" hidden><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4.5v11M4.5 10h11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <template class="uc-more"><p class="label">Study Build</p><h2>Build the casebook from the protocol</h2><p class="lede">Study Build turns the approved protocol into CDASH-aligned forms, codelists and edit checks, with no AI. The same protocol and form library give the same build.</p><p class="lede">Each field shows its CDASH variable and, where one exists, its SDTM target. The build exports as CDISC ODM 1.3.2 XML.</p><a class="link-arrow" href="study-build.html">Study Build →</a><figure class="m-cy"><img src="assets/screens/uc-more-fields.webp?v=1" width="920" height="600" loading="lazy" alt="Field details for the Adverse Events CDASH eCRF, with the CDASH variable and SDTM target for each field."></figure></template>
       </article>
       <article class="uc">
-        <div class="uc-media m-sa"><img src="assets/screens/amendment-rules.webp" width="780" height="480" loading="lazy" alt="Amendment impact rules for consent, each with a severity, the protocol sections it watches and the regulation it cites."></div>
-        <div class="uc-body"><span class="label">Amendments</span><h3>Handle an amendment once</h3><p>Classify the change, see every step it triggers, from re-consent to ethics review, and sign the impact assessment. Each step cites its regulation.</p><div class="who"><span>Regulatory affairs</span><span>Clinical operations</span><span>Quality</span></div></div>
+        <div class="uc-media m-sa"><img src="assets/screens/amendment-rules.webp?v=hd1" width="1251" height="748" loading="lazy" alt="Amendment impact rules for consent, each with a severity, the protocol sections it watches and the regulation it cites."></div>
+        <div class="uc-body"><span class="label">Amendments</span><h3>Handle an amendment once</h3><p>Classify the change, see the steps it triggers, and sign the assessment.</p><div class="who"><span>Regulatory affairs</span><span>Clinical operations</span><span>Quality</span></div></div>
+        <button type="button" class="uc-plus" aria-haspopup="dialog" aria-label="More: Handle an amendment once" hidden><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4.5v11M4.5 10h11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <template class="uc-more"><p class="label">Amendments</p><h2>Handle an amendment once</h2><p class="lede">Classify the change and see every step it triggers, from re-consent to the casebook build. Each step cites its regulation.</p><p class="lede">A reviewer decides each finding and signs the impact assessment. A person then opens a new draft of the build from the amended protocol.</p><a class="link-arrow" href="platform.html">Platform overview →</a><figure class="m-sa"><img src="assets/screens/amendment-rules.webp?v=hd1" width="1251" height="748" loading="lazy" alt="Amendment impact rules for consent, each with a severity, the protocol sections it watches and the regulation it cites."></figure></template>
       </article>
       <article class="uc">
         <div class="uc-media m-pe glyph"><div class="uc-glyph" aria-hidden="true"><div><i></i>ClinicalTrials.gov record · draft</div><div><i></i>EU CTIS record · draft</div><div><i class="c"></i>Generated from the structured study</div></div></div>
-        <div class="uc-body"><span class="label">Registries</span><h3>Draft registry records</h3><p>Prepare ClinicalTrials.gov and EU CTIS (Clinical Trials Information System) record drafts from the same study as the protocol.</p><div class="who"><span>Regulatory affairs</span><span>Clinical operations</span></div></div>
+        <div class="uc-body"><span class="label">Registries</span><h3>Draft registry records</h3><p>ClinicalTrials.gov and EU CTIS drafts from the same study.</p><div class="who"><span>Regulatory affairs</span><span>Clinical operations</span></div></div>
+        <button type="button" class="uc-plus" aria-haspopup="dialog" aria-label="More: Draft registry records" hidden><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4.5v11M4.5 10h11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <template class="uc-more"><p class="label">Registries</p><h2>Draft registry records</h2><p class="lede">ClinicalTrials.gov and EU CTIS drafts are generated from the same structured study as the protocol.</p><p class="lede">Before export, each draft passes schema, completeness and CDISC CORE conformance checks. Overriding an error takes an e-signature and a reason.</p><a class="link-arrow" href="protocol-digitization.html">Protocol Digitization →</a><figure class="m-pe"><img src="assets/screens/uc-more-export.webp?v=1" width="1600" height="860" loading="lazy" alt="The Export step in Review mode: USDM v4.0, ClinicalTrials.gov and EU CTIS exports, each with its compliance findings, above the submission readiness checklist."></figure></template>
       </article>
       <article class="uc">
         <div class="uc-media m-cy glyph"><div class="uc-glyph" aria-hidden="true"><div><i class="c"></i>Protocol library · search study definitions</div><div><i></i>Compare two protocols</div><div><i class="c"></i>Reuse content from an earlier protocol</div></div></div>
-        <div class="uc-body"><span class="label">Portfolio</span><h3>Reuse what you've already built</h3><p>Search the protocol library, compare protocols, and reuse objectives, endpoints, eligibility and interventions from earlier protocols.</p><div class="who"><span>Data standards</span><span>Biostatistics</span></div></div>
+        <div class="uc-body"><span class="label">Portfolio</span><h3>Reuse what you've already built</h3><p>Search, compare and reuse content from earlier protocols.</p><div class="who"><span>Data standards</span><span>Biostatistics</span></div></div>
+        <button type="button" class="uc-plus" aria-haspopup="dialog" aria-label="More: Reuse what you've already built" hidden><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4.5v11M4.5 10h11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <template class="uc-more"><p class="label">Portfolio</p><h2>Reuse what you've already built</h2><p class="lede">Search the protocol library, compare two protocols and reuse content from earlier ones.</p><p class="lede">Studies are linked by therapeutic area and intervention.</p><a class="link-arrow" href="protocol-digitization.html">Protocol Digitization →</a><figure class="m-cy glyph"><div class="uc-glyph" aria-hidden="true"><div><i class="c"></i>Protocol library · search study definitions</div><div><i></i>Compare two protocols</div><div><i class="c"></i>Reuse content from an earlier protocol</div></div></figure></template>
       </article>
       <article class="uc">
         <div class="uc-media m-vi glyph"><div class="uc-glyph" aria-hidden="true"><div><i class="v"></i>AI draft · Advisory</div><div><i></i>Accepted by a reviewer · recorded</div><div><i class="g"></i>Protocol approved · e-signed</div></div></div>
-        <div class="uc-body"><span class="label">Inspection</span><h3>Show who decided what, and why</h3><p>An append-only audit trail and e-signatures keep decisions with the study. Designed for 21 CFR Part 11, EU Annex 11 and ICH E6(R3) controls.</p><div class="who"><span>Quality</span><span>IT</span></div></div>
+        <div class="uc-body"><span class="label">Inspection</span><h3>Show who decided what, and why</h3><p>Audit trail and e-signatures, designed for Part 11 and Annex 11 controls.</p><div class="who"><span>Quality</span><span>IT</span></div></div>
+        <button type="button" class="uc-plus" aria-haspopup="dialog" aria-label="More: Show who decided what, and why" hidden><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4.5v11M4.5 10h11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <template class="uc-more"><p class="label">Inspection</p><h2>Show who decided what, and why</h2><p class="lede">The audit trail is append-only and hash-chained. Each record names the user and the time, and a chain verifier reports any breaks or gaps.</p><p class="lede">Signers re-enter their password and give a reason, and each signature is linked to the record it signs.</p><a class="link-arrow" href="security.html">Trust and security →</a><figure class="m-vi"><img src="assets/screens/uc-more-audit.webp?v=1" width="1020" height="640" loading="lazy" alt="The review panel for a protocol section, with workflow status, comments and changes, checks, reviewers, and the audit and signatures history."></figure></template>
       </article>
     </div>
-    <div class="rail-progress" aria-hidden="true"><i></i></div>
   </div>
 </section>
 
 <!-- ═══════════ COMPANY + GET STARTED ═══════════ -->
-<section class="section flush-top" id="company" aria-label="The company and how to get started">
+<section class="section" id="company" aria-label="The company and how to get started">
   <div class="wrap co-grid">
     <div class="co-card">
       <p class="label">The company</p>
       <h2>Founded by people who did this work.</h2>
       <div class="letter">
-        <p>We spent our careers in data management, statistical programming and clinical operations, at CROs, sponsors and large pharma. We re-keyed the same study at every hand-off, and started again with every amendment.</p>
-        <p>ClinMaker is the platform we wanted then. Two modules work today, and we'll show you both.</p>
+        <p>We spent our careers in data management, programming and clinical operations, re-keying the same study at every hand-off. ClinMaker is the platform we wanted then.</p>
       </div>
       <div class="sig">
-        <div><span class="n">Sunish Raj</span><span class="r">Founder · Data platform</span></div>
-        <div><span class="n">[First name] Marshall</span><span class="r">Founder · Clinical operations &amp; CRO partnerships</span></div>
-        <div><span class="n">[First name] Chadha</span><span class="r">Founder · Statistical programming</span></div>
+        <div><span class="n">Sunish Raj</span><span class="r">Founder &amp; CEO</span></div>
+        <div><span class="n">Matthew Marshall</span><span class="r">Co-Founder &amp; COO</span></div>
+        <div><span class="n">Kamal Chadha</span><span class="r">Co-Founder &amp; CTO</span></div>
       </div>
+      <p class="co-award"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6 3h8v4a4 4 0 0 1-8 0V3zM6 4.5H3.5A2.5 2.5 0 0 0 6 8M14 4.5h2.5A2.5 2.5 0 0 1 14 8M10 11v3M7 17h6M8 14h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Named the winner of the SCOPE 365 / TransCelerate BioPharma Solve Challenge, 2026, for the best integration of standards and impact assessment.</span></p>
       <div class="more"><a class="link-arrow" href="about.html">Why we started →</a><a class="link-arrow" href="team.html">Team →</a><a class="link-arrow" href="careers.html">Careers →</a></div>
     </div>
     <div class="co-card start grain">
@@ -292,14 +315,15 @@
       <h2>See ClinMaker on your own protocol.</h2>
       <div class="deliv">
         <div><span class="d">Demo</span><a href="request.html?type=demo#request-form"><b>A 30-minute live walkthrough</b><span class="s">Both modules, on our demo study.</span></a></div>
-        <div><span class="d">Teardown</span><a href="request.html?type=teardown#request-form"><b>Your protocol, in five business days</b><span class="s">A USDM 4.0 study definition, a CDASH-aligned draft casebook, a written gap report and a live readout. Under mutual NDA, no charge.</span></a></div>
-        <div><span class="d">Pilot</span><a href="request.html?type=pilot#request-form"><b>Scoped to one study</b><span class="s">Runs alongside a study you've already built, so nothing live depends on it.</span></a></div>
+        <div><span class="d">Teardown</span><a href="request.html?type=teardown#request-form"><b>Your protocol, in five business days</b><span class="s">A USDM study, a draft casebook and a gap report. No charge, under NDA.</span></a></div>
+        <div><span class="d">Pilot</span><a href="request.html?type=pilot#request-form"><b>Scoped to one study</b><span class="s">Runs alongside a live study. Nothing depends on it.</span></a></div>
       </div>
-      <div class="more"><a class="btn btn-primary" href="request.html?type=pilot#request-form">Request a pilot</a><a class="link-arrow" href="pricing.html">Pricing →</a></div>
+      <div class="more"><a class="btn btn-primary" href="request.html?type=teardown#request-form">Request a Protocol Teardown</a><a class="link-arrow" href="pricing.html">Pricing →</a></div>
     </div>
   </div>
 </section>
 
+<template id="sheet-walkthrough"><p class="label">Walkthrough</p><h2>The product, screen by screen.</h2><p class="lede">Real screens from our demo study, from the uploaded protocol to the casebook fields. 70 seconds, captions on screen, no sound.</p><div class="sheet-video"><video controls muted playsinline autoplay preload="metadata" aria-label="ClinMaker walkthrough, from protocol to casebook"><source src="assets/video/walkthrough.webm" type="video/webm"><source src="assets/video/walkthrough.mp4" type="video/mp4"></video></div></template>
 </main>
 
 <!-- ═══════════ FOOTER (shared: copy verbatim to every page; footnotes optional) ═══════════ -->

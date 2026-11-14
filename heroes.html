@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>ClinMaker hero comparison</title>
+  <!-- Draft review page: compares the home-page hero options. Remove it, and the index-?.html drafts,
+       before v7 goes to main (the placeholder check blocks that push while they exist). -->
+  <style>
+    :root { --bg:#fbf8f6; --ink:#1c1a16; --muted:#5e5749; --line:#e6d9cd; --on:#b15e41; --on-ink:#ffffff; --chip:#ffffff; color-scheme: light; }
+    html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); font: 14px/1.4 -apple-system, "Segoe UI", system-ui, sans-serif; }
+    .bar { height: 52px; box-sizing: border-box; display: flex; align-items: center; gap: 8px; padding: 0 12px; border-bottom: 1px solid var(--line); overflow-x: auto; white-space: nowrap; }
+    .bar b { font-weight: 600; margin-right: 6px; }
+    .bar button { font: inherit; color: var(--ink); background: var(--chip); border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; cursor: pointer; }
+    .bar button[aria-pressed="true"] { background: var(--on); border-color: var(--on); color: var(--on-ink); }
+    .bar span { margin-left: auto; color: var(--muted); }
+    iframe { display: block; width: 100%; height: calc(100% - 52px); border: 0; background: #fbf8f6; }
+  </style>
+</head>
+<body>
+  <div class="bar" role="toolbar" aria-label="Hero versions">
+    <b>Hero</b>
+    <button type="button" data-src="index.html" aria-pressed="true">E · Live (A + D blend)</button>
+    <button type="button" data-src="index-f.html" aria-pressed="false">F · E with Apple-style motion</button>
+    <button type="button" data-src="index-b.html" aria-pressed="false">B · The transformation</button>
+    <button type="button" data-src="index-d.html" aria-pressed="false">D · Full-bleed</button>
+    <button type="button" data-src="index-a.html" aria-pressed="false">A · The flow</button>
+    <span>Only the hero differs. A and D are older reference versions.</span>
+  </div>
+  <iframe id="view" src="index.html" title="ClinMaker home page preview"></iframe>
+  <script>
+    (function () {
+      var frame = document.getElementById('view');
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.bar button'));
+      btns.forEach(function (b) {
+        b.addEventListener('click', function () {
+          frame.src = b.dataset.src;
+          btns.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

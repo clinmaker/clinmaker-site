@@ -16,9 +16,9 @@
   <link rel="apple-touch-icon" href="assets/favicon-256.png?v=4">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/v7.css?v=20261026e">
-  <script src="assets/v7.js?v=20261026e" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=IBM+Plex+Mono:wght@400;500&family=Inter:opsz,wght@14..32,400..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/v7.css?v=20261028j">
+  <script src="assets/v7.js?v=20261028j" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -87,8 +87,8 @@
     <div class="hero-row">
       <p class="hero-sub">ClinMaker holds the protocol as one structured study and builds the casebook from it, so each team after the protocol starts from data instead of re-keying a document.</p>
       <div class="hero-ctas">
-        <a class="btn btn-primary" href="request.html?type=pilot#request-form">Request a pilot</a>
-        <a class="link-arrow" href="request.html?type=teardown#request-form">Request a Protocol Teardown →</a>
+        <a class="btn btn-primary" href="request.html?type=teardown#request-form">Request a Protocol Teardown</a>
+        <a class="link-arrow" href="request.html?type=pilot#request-form">Request a pilot →</a>
       </div>
     </div>
     <div class="hero-shot">
@@ -97,12 +97,12 @@
           <div class="f1r">
             <div class="shotcard">
               <p class="shot-label"><span>Protocol workspace</span><span>§9.2 · ICH M11</span></p>
-              <img src="assets/screens/protocol-section-9-2.webp" width="790" height="493" loading="lazy" alt="Section 9.2 of a protocol in the ClinMaker Protocol workspace, Timing and Procedures for Collection and Reporting, shown in document view.">
+              <img src="assets/screens/protocol-section-9-2.webp?v=hd1" width="1220" height="762" loading="lazy" alt="Section 9.2 of a protocol in the ClinMaker Protocol workspace, Timing and Procedures for Collection and Reporting, shown in document view.">
             </div>
             <div class="conn" aria-hidden="true"><i class="dot"></i><i class="ln"></i><i class="ah"></i><span class="lbl">build</span></div>
             <div class="shotcard">
               <p class="shot-label"><span>Study Build · CRF library</span><span>CDASH eCRF</span></p>
-              <img src="assets/screens/ecrf-ae-preview.webp" width="649" height="711" loading="lazy" alt="The Adverse Events CDASH eCRF in the ClinMaker CRF library, showing the form preview with required fields marked.">
+              <img src="assets/screens/ecrf-ae-preview.webp?v=hd1" width="1022" height="1066" loading="lazy" alt="The Adverse Events CDASH eCRF in the ClinMaker CRF library, showing the form preview with required fields marked.">
             </div>
           </div>
         </div>
@@ -112,6 +112,32 @@
         </figcaption>
       </figure>
     </div>
+  </div>
+</section>
+
+<!-- ═══════════ WALKTHROUGH (video, plays on click) ═══════════ -->
+<section class="section tight" id="walkthrough" aria-labelledby="wt-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="label">Walkthrough</p>
+        <h2 id="wt-h">The product, screen by screen.</h2>
+      </div>
+      <p>Real screens from our demo study, from the uploaded protocol to the casebook fields.</p>
+    </div>
+    <figure class="vplayer" data-video>
+      <video controls muted playsinline preload="none" hidden aria-label="ClinMaker walkthrough, from protocol to casebook">
+        <source src="assets/video/walkthrough.webm" type="video/webm">
+        <source src="assets/video/walkthrough.mp4" type="video/mp4">
+      </video>
+      <button class="vp-cover" type="button" aria-label="Play the 70-second walkthrough">
+        <svg class="vp-mark" viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/><line x1="26" y1="29" x2="26" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span class="vp-title"><span>Write the protocol once.</span> <span>Build the casebook from it.</span></span>
+        <span class="vp-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>
+        <span class="vp-meta">70 seconds &middot; captions on screen, no sound</span>
+      </button>
+      <p class="vp-msg" hidden>The walkthrough couldn&rsquo;t load. In the meantime, <a href="request.html?type=teardown#request-form">request a Protocol Teardown</a> to see ClinMaker on your own protocol.</p>
+    </figure>
   </div>
 </section>
 
@@ -149,10 +175,6 @@
         <p class="label">The platform</p>
         <h2 id="fd-h">What both modules stand on.</h2>
       </div>
-      <div class="rail-ctl">
-        <button type="button" data-rail-prev aria-label="Previous platform capabilities"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M16 10H4M9 5l-5 5 5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <button type="button" data-rail-next aria-label="Next platform capabilities"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      </div>
     </div>
     <div class="xrail" tabindex="0" role="region" aria-label="Platform capabilities, scroll sideways for more">
       <article class="feat"><h3>One structured study</h3><p>Stored in USDM 4.0, CDISC's model for study design. Every module reads from it and writes to it.</p></article>
@@ -165,7 +187,6 @@
       <article class="feat"><h3>AI governance</h3><p>Model provider and routing settings, an AI evidence policy, and the Advisory label on every AI output.</p></article>
       <article class="feat"><h3>Protocol library</h3><p>Search and compare protocols, linked by therapeutic area and intervention, and reuse objectives, endpoints and eligibility.</p></article>
     </div>
-    <div class="rail-progress" aria-hidden="true"><i></i></div>
   </div>
 </section>
 
@@ -177,7 +198,7 @@
         <p class="label">Where it is going</p>
         <h2 id="flow-h">The same study, carried on to submission.</h2>
       </div>
-      <p>Two stages are ready to demo. The other six are in development, with no dates. Your EDC and other source systems stay the source of truth.</p>
+      <p>Two stages are ready to demo. The other six stages, ten modules in all, are in development, with no dates. Your EDC and other source systems stay the source of truth.</p>
     </div>
     <figure aria-labelledby="fig2-cap">
       <div class="plate">
@@ -228,6 +249,40 @@
   </div>
 </section>
 
+<!-- ═══════════ HOW IT COMPARES ═══════════ -->
+<section class="section" id="compare" aria-labelledby="cmp-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="label">How it compares</p>
+        <h2 id="cmp-h">Where ClinMaker fits.</h2>
+      </div>
+      <p>Most teams combine a protocol tool, their EDC's own builder and a CRO. ClinMaker keeps the protocol and the casebook on one structured study.</p>
+    </div>
+    <div class="ctl-card">
+      <div class="ctl-top">
+        <span class="t"><b>TABLE 1</b> · The ways teams work today</span>
+        <span class="note">Categories, not vendors</span>
+      </div>
+      <div class="tscroll" tabindex="0" role="region" aria-label="Comparison table. Scrolls sideways on small screens.">
+        <table class="ctl cmp">
+          <thead>
+            <tr><th scope="col"><span class="sr-only">What it does</span></th><th scope="col">Protocol design tool</th><th scope="col">Build tool inside one EDC</th><th scope="col">CRO build service</th><th scope="col" class="us">ClinMaker</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Writes the protocol in ICH M11 and USDM structure</th><td>Yes</td><td class="na">Not its main job</td><td class="na">Not its main job</td><td class="us">Yes</td></tr>
+            <tr><th scope="row">Builds the casebook from the same study</th><td class="na">Not its main job</td><td>Yes</td><td>By hand, from the document</td><td class="us">Yes</td></tr>
+            <tr><th scope="row">Works with more than one EDC</th><td>Varies</td><td>Its own EDC only</td><td>Yes</td><td class="us">Yes, through CDISC ODM</td></tr>
+            <tr><th scope="row">Carries an amendment through to the build</th><td class="na">Not its main job</td><td>Within its own EDC</td><td>Through change orders</td><td class="us">Yes, after a signed impact assessment</td></tr>
+            <tr><th scope="row">Exports the study in open standards</th><td>Often USDM</td><td>Varies</td><td>Varies</td><td class="us">USDM JSON and CDISC ODM</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p class="cmp-note">If you run one EDC and only need the build, your EDC vendor's tool may be enough.</p>
+  </div>
+</section>
+
 <!-- ═══════════ FAQ ═══════════ -->
 <section class="section" id="faq" aria-labelledby="faq-h">
   <div class="wrap why-grid">
@@ -238,7 +293,15 @@
     <div class="faq">
       <details>
         <summary>My EDC vendor already builds studies from the protocol. Why ClinMaker?</summary>
-        <div class="ans"><p>If you run one EDC and only need the build, your EDC vendor's tools may be enough. ClinMaker is for sponsors and CROs that want the protocol and the casebook on one structured study, run more than one EDC, or need to handle amendments once, before they reach the casebook.</p><p>ClinMaker isn't tied to one EDC. The casebook exports as CDISC ODM 1.3.2 XML, plus EDC-specific loader files <span class="ph">[to confirm: which EDC loaders to name]</span>. Your EDC stays the system your sites use and the source of the clinical data.</p></div>
+        <div class="ans"><p>If you run one EDC and only need the build, your EDC vendor's tools may be enough. ClinMaker is for sponsors and CROs that want the protocol and the casebook on one structured study, run more than one EDC, or need to handle amendments once, before they reach the casebook.</p><p>ClinMaker isn't tied to one EDC. The casebook exports as CDISC ODM 1.3.2 XML, plus EDC-specific loader files<span class="ph" hidden data-todo> [to confirm: which EDC loaders to name]</span>. Your EDC stays the system your sites use and the source of the clinical data.</p></div>
+      </details>
+      <details>
+        <summary>You're a new company with no customers yet. Why take the risk?</summary>
+        <div class="ans"><p>Don't bet a live study on us. Start with a no-charge Protocol Teardown on one of your protocols. A pilot then runs alongside a study you've already built, so nothing live depends on it.</p></div>
+      </details>
+      <details>
+        <summary>Why not have our CRO build the casebook?</summary>
+        <div class="ans"><p>Your CRO can keep doing the work, in ClinMaker. The casebook is built from the approved protocol instead of being re-keyed from a document, and an amendment is assessed once and carried into a new draft of the build. Your CRO works in the same study as you.</p></div>
       </details>
       <details>
         <summary>Can we use Protocol Digitization without Study Build?</summary>
@@ -261,14 +324,14 @@
         <h2 id="start-h">See the platform on your own protocol.</h2>
         <p class="lead">Request a Protocol Teardown: share one protocol under mutual NDA, and we show you what ClinMaker built from it. A pilot then runs alongside a study you've already built.</p>
         <div class="td-ctas">
-          <a class="btn btn-primary" href="request.html?type=pilot#request-form">Request a pilot</a>
-          <a class="link-arrow" href="request.html?type=teardown#request-form">Request a Protocol Teardown →</a>
+          <a class="btn btn-primary" href="request.html?type=teardown#request-form">Request a Protocol Teardown</a>
+          <a class="link-arrow" href="request.html?type=pilot#request-form">Request a pilot →</a>
         </div>
       </div>
       <div class="deliv">
+        <div><span class="d">Demo</span><a href="request.html?type=demo#request-form"><b>A 30-minute live walkthrough</b><span class="s">Both modules, on our demo study.</span></a></div>
         <div><span class="d">Teardown</span><a href="request.html?type=teardown#request-form"><b>Your protocol, in five business days</b><span class="s">A USDM 4.0 study definition, a CDASH-aligned draft casebook, a written gap report and a live readout. Under mutual NDA, no charge.</span></a></div>
         <div><span class="d">Pilot</span><a href="request.html?type=pilot#request-form"><b>Scoped to one study</b><span class="s">Runs alongside a study you've already built, so nothing live depends on it.</span></a></div>
-        <div><span class="d">Demo</span><a href="request.html?type=demo#request-form"><b>A 30-minute live walkthrough</b><span class="s">Both modules, on our demo study.</span></a></div>
       </div>
     </div>
   </div>

@@ -1,0 +1,113 @@
+/* Hero B: phrases in the protocol become casebook fields.
+   It sits on hero E's light field and headline. When the build is done, the real Study Build screen
+   is one click away, in a sheet, instead of shrunk into the card. */
+.tb { margin: clamp(22px, 2.6vw, 34px) 0 0; }
+.tb-stage { position: relative; display: grid; grid-template-columns: minmax(0, 1.12fr) 84px minmax(0, 1fr); align-items: stretch; }
+.tb-col { display: grid; grid-template-rows: auto 1fr; gap: 10px; min-width: 0; }
+.tb-label { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 13.5px; font-weight: 600; color: var(--ink); }
+.tb-label small { font-size: 12px; font-weight: 500; color: var(--ink-muted); }
+.tb-label .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--brand-500); box-shadow: 0 0 0 4px rgba(216,118,84,.18); }
+.tb-label .dot.cy { background: var(--cyan); box-shadow: 0 0 0 4px rgba(14,116,144,.15); }
+.tb-card { position: relative; z-index: 2; border-radius: 22px; padding: clamp(18px, 2vw, 26px); background: rgba(255,255,255,.9); border: 1px solid rgba(255,255,255,.95);
+  box-shadow: 0 60px 110px -60px rgba(74,39,28,.55), 0 26px 50px -36px rgba(14,116,144,.22); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  height: clamp(300px, calc(100vh - 540px), 400px); overflow: hidden; }
+@supports (height: 100svh) { .tb-card { height: clamp(300px, calc(100svh - 540px), 400px); } }
+
+/* The protocol passage: a document, so it reads in a serif, as it does in the product */
+.tb-doc .sec { font: 500 12px/1 var(--mono); color: var(--ai-violet); }
+.tb-doc h3 { margin: 10px 0 0; font: 700 clamp(1.15rem, 1.6vw, 1.45rem)/1.2 Georgia, "Times New Roman", serif; letter-spacing: -0.01em; color: var(--ink); }
+.tb-doc p { margin: 11px 0 0; font: 400 clamp(.92rem, 1.1vw, 1.02rem)/1.52 Georgia, "Times New Roman", serif; color: var(--ink-2); }
+.tb-doc p b { color: var(--ink); }
+.tb-doc mark { color: inherit; border-radius: 4px; padding: 0 2px; margin: 0 -2px; background: linear-gradient(var(--brand-100), var(--brand-100)) no-repeat 0 100% / 0% 100%;
+  box-shadow: inset 0 -2px 0 rgba(216,118,84,0); transition: background-size .5s var(--ease), box-shadow .35s ease, background-color .35s ease; }
+.tb-doc mark.on { background-size: 100% 100%; box-shadow: inset 0 -2px 0 var(--brand-500); }
+.tb-doc mark.done { background-size: 100% 100%; background-image: linear-gradient(rgba(250,229,218,.55), rgba(250,229,218,.55)); box-shadow: inset 0 -1.5px 0 var(--brand-300); }
+
+/* The bridge: the ClinMaker mark, which each field passes through */
+.tb-bridge { position: relative; display: flex; align-items: center; justify-content: center; padding-top: 30px; }
+.tb-bridge i { position: absolute; left: 8px; right: 8px; top: calc(50% + 15px); height: 1px; background: linear-gradient(90deg, rgba(216,118,84,.5), rgba(14,116,144,.5)); }
+.tb-bridge svg.mark { position: relative; width: 46px; height: 46px; padding: 7px; border-radius: 15px; background: #fff; border: 1px solid var(--brand-200); box-shadow: 0 12px 28px -14px rgba(177,94,65,.6); }
+.tb-bridge svg.mark.pulse { animation: tb-pulse .7s var(--ease); }
+@keyframes tb-pulse {
+  0% { transform: scale(1); box-shadow: 0 12px 28px -14px rgba(177,94,65,.6), 0 0 0 0 rgba(216,118,84,.28); }
+  45% { transform: scale(1.12); box-shadow: 0 16px 32px -14px rgba(177,94,65,.6), 0 0 0 10px rgba(216,118,84,0); }
+  100% { transform: scale(1); box-shadow: 0 12px 28px -14px rgba(177,94,65,.6), 0 0 0 0 rgba(216,118,84,0); }
+}
+
+/* The casebook form, built row by row */
+.tb-form { display: grid; grid-template-rows: auto auto 1fr; }
+.tb-form .head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.tb-form .head b { font-size: 16px; font-weight: 600; color: var(--ink); }
+.tb-form .head .tb-tag { font: 500 11px/1 var(--mono); color: var(--cyan-700); background: var(--cyan-50); border: 1px solid var(--cyan-200); border-radius: 999px; padding: 5px 8px; }
+.tb-cols, .tb-row { display: grid; grid-template-columns: minmax(0, 1fr) 84px 84px; gap: 10px; align-items: center; }
+.tb-cols { margin-top: 14px; padding: 0 10px 8px; border-bottom: 1px solid var(--border-subtle); font-size: 11.5px; font-weight: 600; color: var(--ink-muted); }
+.tb-rows { display: grid; align-content: start; gap: 6px; padding-top: 8px; }
+.tb-row { position: relative; min-height: 40px; padding: 0 10px; border-radius: 10px; font-size: 13.5px; color: var(--ink); transition: background-color .5s ease, box-shadow .5s ease; }
+.tb-row::before { content: ""; position: absolute; inset: 0; border-radius: 10px; border: 1px dashed var(--border); background: rgba(239,231,224,.35); transition: opacity .4s ease; }
+.tb-row > * { position: relative; opacity: 0; transform: translateY(5px); transition: opacity .4s ease, transform .55s var(--ease); }
+.tb-row > :nth-child(2) { transition-delay: .06s; }
+.tb-row > :nth-child(3) { transition-delay: .12s; }
+.tb-row code { font: 500 12px/1 var(--mono); color: var(--cyan-700); }
+.tb-row code.sd { color: var(--ink-muted); }
+.tb-row.in::before { opacity: 0; }
+.tb-row.in { background: var(--cyan-50); box-shadow: inset 0 0 0 1px var(--cyan-200); }
+.tb-row.in > * { opacity: 1; transform: none; }
+.tb-row.land { animation: tb-land 1s var(--ease); }
+@keyframes tb-land { 0% { box-shadow: inset 0 0 0 1px var(--cyan-200), 0 0 0 0 rgba(14,116,144,.32); } 100% { box-shadow: inset 0 0 0 1px var(--cyan-200), 0 0 0 9px rgba(14,116,144,0); } }
+
+/* The way to the real screen, revealed when the build is done */
+.tb-head-r { display: grid; justify-items: end; align-items: center; }
+.tb-head-r > * { grid-area: 1 / 1; }
+.tb-tag { transition: opacity .35s ease, transform .5s var(--ease); }
+.tb-stage.done .tb-tag { opacity: 0; transform: translateY(-6px); }
+.tb-real-link { display: inline-flex; align-items: center; gap: 6px; padding: 7px 10px 7px 12px; border-radius: 999px; white-space: nowrap;
+  font: 600 12.5px/1 var(--sans); color: var(--cyan-800, #155e75); text-decoration: none; background: var(--cyan-50); border: 1px solid var(--cyan-200);
+  visibility: hidden; opacity: 0; transform: translateY(6px); transition: opacity .5s ease, transform .6s var(--ease), visibility 0s linear .6s, background-color var(--t-quick) ease; }
+.tb-real-link svg { width: 14px; height: 14px; }
+.tb-real-link:hover { background: #fff; }
+.tb-stage.done .tb-real-link { visibility: visible; opacity: 1; transform: none; transition: opacity .5s ease, transform .6s var(--ease), visibility 0s, background-color var(--t-quick) ease; }
+.tb-stage.done .tb-real-link.nudge { animation: tb-nudge 1.4s var(--ease) .4s; }
+@keyframes tb-nudge { 0% { box-shadow: 0 0 0 0 rgba(14,116,144,.35); } 100% { box-shadow: 0 0 0 12px rgba(14,116,144,0); } }
+
+/* The phrase in flight: it turns into its CDASH name as it crosses the mark */
+.tb-fly { position: absolute; left: 0; top: 0; z-index: 5; pointer-events: none; display: grid; place-items: center; height: 32px; padding: 0 12px; border-radius: 10px;
+  background: #fff; border: 1px solid var(--brand-300); box-shadow: 0 16px 30px -14px rgba(177,94,65,.6); will-change: transform, opacity;
+  transition: background-color .3s ease, border-color .3s ease, box-shadow .3s ease; }
+.tb-fly span { grid-area: 1 / 1; white-space: nowrap; transition: opacity .3s ease; }
+.tb-fly .p { font: 600 12.5px/1 var(--sans); color: var(--brand-800); }
+.tb-fly .v { font: 500 12.5px/1 var(--mono); color: var(--cyan-700); opacity: 0; }
+.tb-fly.var { background: var(--cyan-50); border-color: var(--cyan-200); box-shadow: 0 16px 30px -14px rgba(14,116,144,.5); }
+.tb-fly.var .p { opacity: 0; }
+.tb-fly.var .v { opacity: 1; }
+
+/* Caption and the one control: pause while it plays, replay once it rests */
+.tb-foot { margin-top: 14px; display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 12.5px; color: var(--ink-muted); }
+.hb-ctl { width: 32px; height: 32px; flex-shrink: 0; display: grid; place-items: center; padding: 0; border: 0; border-radius: 50%; cursor: pointer;
+  color: var(--bg-body); background: rgba(28,26,22,.78); -webkit-backdrop-filter: blur(10px) saturate(1.4); backdrop-filter: blur(10px) saturate(1.4);
+  box-shadow: 0 12px 26px -18px rgba(28,26,22,.6); transition: background-color var(--t-quick) ease; }
+.hb-ctl:hover { background: rgba(28,26,22,.92); }
+.hb-ctl:focus-visible { outline-color: var(--bg-body); outline-offset: -3px; }
+.hb-ctl svg { width: 12px; height: 12px; }
+
+/* Entrance: the cards switch on like hero F's screens */
+@media (prefers-reduced-motion: no-preference) {
+  .hb .tb-label { animation: fade-in .8s ease .6s both; }
+  .hb .tb-card { transform-origin: 50% 60%; animation: hb-on 1.4s var(--ease) .45s both; }
+  .hb .tb-form-card { animation-delay: .62s; }
+  .hb .tb-bridge { animation: fade-in 1s ease .9s both; }
+}
+@keyframes hb-on {
+  from { opacity: 0; transform: translateY(14px) scale(1.04); filter: blur(8px) saturate(.7); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+
+@media (max-width: 920px) {
+  .tb-stage { grid-template-columns: minmax(0, 1fr); }
+  .tb-bridge { height: 64px; padding-top: 0; }
+  .tb-bridge i { top: 8px; bottom: 8px; left: 50%; right: auto; width: 1px; height: auto; background: linear-gradient(180deg, rgba(216,118,84,.5), rgba(14,116,144,.5)); }
+  .tb-card { height: auto; min-height: 0; }
+  .tb-form-card { min-height: 360px; }
+  .tb-cols, .tb-row { grid-template-columns: minmax(0, 1fr) 72px 72px; gap: 6px; }
+  .tb-row { font-size: 12.5px; }
+}
+@media (max-height: 800px) and (min-width: 921px) { .tb { margin-top: 18px; } }

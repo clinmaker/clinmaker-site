@@ -63,6 +63,27 @@
     });
   });
 
+  /* Scroll cue: a moment after load, on the first screen only; it leaves for good once the visitor scrolls */
+  var cue = doc.querySelector('.scroll-cue');
+  if (cue) {
+    var cueGone = false;
+    var cueScroll = function () { if (window.scrollY > 40) cueLeave(); };
+    var cueLeave = function () {
+      if (cueGone) return;
+      cueGone = true;
+      window.removeEventListener('scroll', cueScroll);
+      cue.classList.remove('in');
+      setTimeout(function () { cue.hidden = true; }, 600);
+    };
+    window.addEventListener('scroll', cueScroll, { passive: true });
+    cue.addEventListener('click', cueLeave);
+    setTimeout(function () {
+      if (cueGone || window.scrollY > 40) return;
+      cue.hidden = false;
+      requestAnimationFrame(function () { requestAnimationFrame(function () { cue.classList.add('in'); }); });
+    }, 3500);
+  }
+
   /* Recognition notice: slides in once per visit, leaves on its own, ends after its date */
   var toast = doc.getElementById('award-toast');
   if (toast) {
@@ -266,10 +287,10 @@
   /* Scroll reveal: content that starts below the fold eases in once as it arrives. Items that arrive
      together are staggered. Nothing above the fold is touched, and nothing moves for reduced motion. */
   if (!stillMotion && 'IntersectionObserver' in window) {
-    var GROUPS = '.feat-grid, .why-list, .why-grid, .gap-grid, .included, .team, .steps, .stage-defs, .co-grid, .stats, ' +
+    var GROUPS = '.feat-grid, .why-list, .why-grid, .gap-grid, .included, .team, .steps, .stage-defs, .co-grid, .stats, .proof-row, ' +
       '.opts, .price-parts, .ben-row, .vals, .incl, .eq, [data-rail]';
     var UNITS = '.sec-head, .team-head, .xcards, main figure, .ctl-card, .faq, .placeholder, .std-line, .spec-list, .prose, ' +
-      '.status-strip, .ticks, .handoff, .split, .form-card, .note-side, .letter, .td, .chips, .cmp-note, .rates-note, .incl-note';
+      '.status-strip, .ticks, .handoff, .split, .form-card, .note-side, .letter, .td, .chips, .cmp-note, .rates-note, .incl-note, .next-hook';
     var picked = [];
     var take = function (el) {
       for (var k = 0; k < picked.length; k++) if (picked[k] === el || picked[k].contains(el) || el.contains(picked[k])) return;

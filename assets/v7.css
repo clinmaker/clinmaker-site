@@ -1008,6 +1008,37 @@ html:has(.sheet[open]) { overflow: hidden; }
   .award-toast .award-badge { display: none; }
 }
 
+/* ───────── Home: keep the visitor moving ───────── */
+/* A quiet cue in the corner of the first screen, so the hero never looks like the whole page.
+   Wide screens only: on phones the hero already runs off the screen. */
+.scroll-cue { position: fixed; right: 24px; bottom: 24px; z-index: 50; display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px 10px 18px; border-radius: 999px;
+  font: 500 14px/1 var(--sans); color: var(--ink); text-decoration: none; background: rgba(255,255,255,.82); border: 1px solid rgba(28,26,22,.08);
+  box-shadow: 0 16px 34px -20px rgba(74,39,28,.5); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  opacity: 0; transform: translateY(12px); transition: opacity .5s ease, transform .6s var(--ease), background-color var(--t-quick) ease; }
+.scroll-cue[hidden] { display: none; }
+.scroll-cue.in { opacity: 1; transform: none; }
+.scroll-cue:hover { background: #fff; }
+.scroll-cue svg { width: 15px; height: 15px; color: var(--brand-600); }
+@media (prefers-reduced-motion: no-preference) { .scroll-cue.in svg { animation: cue-bob 1.6s var(--ease) .6s 3; } }
+@keyframes cue-bob { 0%, 100% { transform: none; } 50% { transform: translateY(4px); } }
+@media (max-width: 920px) { .scroll-cue { display: none !important; } }
+
+/* Proof strip: the award and the standards, early on the page */
+.proof { border-block: 1px solid var(--border-subtle); background: var(--bg-body); }
+.proof-row { display: flex; align-items: center; justify-content: space-between; gap: 18px 40px; flex-wrap: wrap; padding-block: clamp(22px, 3vw, 30px); }
+.proof-award { display: flex; align-items: flex-start; gap: 10px; margin: 0; max-width: 34em; font-size: 14.5px; line-height: 1.45; color: var(--ink-2); }
+.proof-award svg { width: 20px; height: 20px; flex-shrink: 0; margin-top: 1px; color: var(--brand-600); }
+.proof-std { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 0; }
+.proof-k { margin-right: 4px; font-size: 12.5px; font-weight: 600; color: var(--ink-muted); }
+.std { font: 500 12px/1 var(--mono); color: var(--ink-2); padding: 7px 10px; border-radius: 999px; background: var(--bg-elevated); border: 1px solid var(--border); }
+
+/* One-line hooks into the next section */
+.next-hook { margin: clamp(30px, 4vw, 52px) 0 0; text-align: center; }
+.next-hook a { display: inline-flex; align-items: center; gap: 8px; font-size: 15.5px; font-weight: 500; color: var(--ink-muted); text-decoration: none; transition: color var(--t-quick) ease; }
+.next-hook a:hover { color: var(--brand-700); }
+.next-hook svg { width: 15px; height: 15px; transition: transform var(--t-move) var(--ease); }
+.next-hook a:hover svg { transform: translateY(3px); }
+
 /* ───────── Scroll reveal: content below the fold eases in once as it arrives ─────────
    v7.js adds .rv only to elements that start below the fold, so nothing is hidden without JS,
    above the fold, or for reduced motion. It removes both classes once the move has finished. */

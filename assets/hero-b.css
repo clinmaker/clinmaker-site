@@ -15,8 +15,8 @@
 
 /* The protocol passage: a document, so it reads in a serif, as it does in the product */
 .tb-doc .sec { font: 500 12px/1 var(--mono); color: var(--ai-violet); }
-.tb-doc h3 { margin: 10px 0 0; font: 700 clamp(1.15rem, 1.6vw, 1.45rem)/1.2 Georgia, "Times New Roman", serif; letter-spacing: -0.01em; color: var(--ink); }
-.tb-doc p { margin: 11px 0 0; font: 400 clamp(.92rem, 1.1vw, 1.02rem)/1.52 Georgia, "Times New Roman", serif; color: var(--ink-2); }
+.tb-doc h3 { margin: 10px 0 0; font: 700 clamp(1.15rem, 1.6vw, 1.75rem)/1.2 Georgia, "Times New Roman", serif; letter-spacing: -0.01em; color: var(--ink); }
+.tb-doc p { margin: 11px 0 0; font: 400 clamp(.92rem, 1.12vw, 1.2rem)/1.52 Georgia, "Times New Roman", serif; color: var(--ink-2); }
 .tb-doc p b { color: var(--ink); }
 .tb-doc mark { color: inherit; border-radius: 4px; padding: 0 2px; margin: 0 -2px; background: linear-gradient(var(--brand-100), var(--brand-100)) no-repeat 0 100% / 0% 100%;
   box-shadow: inset 0 -2px 0 rgba(216,118,84,0); transition: background-size .5s var(--ease), box-shadow .35s ease, background-color .35s ease; }
@@ -42,12 +42,12 @@
 .tb-cols, .tb-row { display: grid; grid-template-columns: minmax(0, 1fr) 84px 84px; gap: 10px; align-items: center; }
 .tb-cols { margin-top: 14px; padding: 0 10px 8px; border-bottom: 1px solid var(--border-subtle); font-size: 11.5px; font-weight: 600; color: var(--ink-muted); }
 .tb-rows { display: grid; align-content: start; gap: 6px; padding-top: 8px; }
-.tb-row { position: relative; min-height: 40px; padding: 0 10px; border-radius: 10px; font-size: 13.5px; color: var(--ink); transition: background-color .5s ease, box-shadow .5s ease; }
+.tb-row { position: relative; min-height: clamp(40px, 2.8vw, 50px); padding: 0 10px; border-radius: 10px; font-size: clamp(13.5px, .95vw, 15px); color: var(--ink); transition: background-color .5s ease, box-shadow .5s ease; }
 .tb-row::before { content: ""; position: absolute; inset: 0; border-radius: 10px; border: 1px dashed var(--border); background: rgba(239,231,224,.35); transition: opacity .4s ease; }
 .tb-row > * { position: relative; opacity: 0; transform: translateY(5px); transition: opacity .4s ease, transform .55s var(--ease); }
 .tb-row > :nth-child(2) { transition-delay: .06s; }
 .tb-row > :nth-child(3) { transition-delay: .12s; }
-.tb-row code { font: 500 12px/1 var(--mono); color: var(--cyan-700); }
+.tb-row code { font: 500 clamp(12px, .8vw, 13.5px)/1 var(--mono); color: var(--cyan-700); }
 .tb-row code.sd { color: var(--ink-muted); }
 .tb-row.in::before { opacity: 0; }
 .tb-row.in { background: var(--cyan-50); box-shadow: inset 0 0 0 1px var(--cyan-200); }

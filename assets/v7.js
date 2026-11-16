@@ -227,6 +227,20 @@
     build();
   });
 
+  /* Award highlight: the wreath grows in once the card is well in view */
+  if (!stillMotion && 'IntersectionObserver' in window) {
+    each('.award-hl', function (sec) {
+      var card = sec.querySelector('.award-card') || sec;
+      sec.classList.add('armed');
+      var seen = new IntersectionObserver(function (en) {
+        if (en[0].intersectionRatio < 0.45) return;
+        sec.classList.add('in-view');
+        seen.disconnect();
+      }, { threshold: [0, 0.45] });
+      seen.observe(card);
+    });
+  }
+
   /* Tile sheets: a card's "+" (or the card itself) opens a little more in a sheet over the blurred page.
      A native modal dialog keeps focus inside, closes on Esc, and returns focus to the card's button. */
   var sheetSources = doc.querySelectorAll('template.uc-more');

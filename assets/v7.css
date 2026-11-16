@@ -22,8 +22,8 @@
   --display: Inter, -apple-system, "Segoe UI", system-ui, sans-serif;
   --brandfont: Inter, -apple-system, system-ui, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
-  --wrap: 1240px;
-  --gutter: clamp(16px, 4vw, 40px);
+  --wrap: 1680px;
+  --gutter: clamp(16px, 4.5vw, 80px);
   --edge: max(var(--gutter), calc((100vw - var(--wrap)) / 2 + var(--gutter)));
   --nav-h: 84px;
   --r-card: 28px;
@@ -1031,6 +1031,43 @@ html:has(.sheet[open]) { overflow: hidden; }
 .proof-std { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 0; }
 .proof-k { margin-right: 4px; font-size: 12.5px; font-weight: 600; color: var(--ink-muted); }
 .std { font: 500 12px/1 var(--mono); color: var(--ink-2); padding: 7px 10px; border-radius: 999px; background: var(--bg-elevated); border: 1px solid var(--border); }
+
+/* Award highlight: the recognition gets a band of its own, so nobody scrolls past it */
+.award-hl { padding-block: clamp(52px, 6vw, 96px); }
+.award-card { position: relative; overflow: hidden; display: grid; grid-template-columns: clamp(170px, 19vw, 270px) minmax(0, 1fr); align-items: center; gap: clamp(24px, 4vw, 72px);
+  padding: clamp(28px, 4vw, 60px) clamp(28px, 5vw, 80px); border-radius: var(--r-card);
+  background: radial-gradient(60% 130% at 12% 50%, rgba(255,255,255,.8), rgba(255,255,255,0) 62%), linear-gradient(118deg, #f8d9c9 0%, #fbe7dc 36%, #f6efe9 62%, #e2eff2 100%);
+  border: 1px solid rgba(255,255,255,.95); box-shadow: 0 60px 110px -70px rgba(74,39,28,.6), 0 24px 48px -36px rgba(14,116,144,.2); }
+.award-card > * { position: relative; z-index: 2; }
+.award-emblem .laurel { display: block; width: 100%; height: auto; overflow: visible; }
+.award-emblem .stem { fill: none; stroke: #c27453; stroke-width: 1.7; stroke-linecap: round; }
+.award-emblem .leaf { fill: url(#leaf-g); transform-box: fill-box; transform-origin: center; }
+.award-emblem .yr { font: 700 16px/1 var(--display); fill: var(--brand-700); letter-spacing: .08em; }
+.award-copy .label { color: var(--brand-700); }
+.award-copy h2 { margin-top: 12px; max-width: 21em; font: 600 clamp(1.75rem, 3.1vw, 3rem)/1.08 var(--display); letter-spacing: -0.028em; color: var(--ink); text-wrap: balance; }
+.award-sub { margin-top: 14px; max-width: 32em; font-size: clamp(1.08rem, 1.45vw, 1.35rem); line-height: 1.45; color: var(--brand-800); }
+.award-std { margin-top: 24px; justify-content: center; }
+/* The wreath grows in and the card catches the light, once, when it comes into view (v7.js adds .armed and .in-view) */
+@media (prefers-reduced-motion: no-preference) {
+  .award-hl.armed .stem { stroke-dasharray: 1; stroke-dashoffset: 1; }
+  .award-hl.armed .leaf, .award-hl.armed .cup, .award-hl.armed .yr { opacity: 0; }
+  .award-hl.armed.in-view .stem { animation: award-stem 1.1s var(--ease) .1s forwards; }
+  .award-hl.armed.in-view .leaf { animation: award-leaf .6s var(--ease) both; animation-delay: calc(var(--i) * 42ms + .2s); }
+  .award-hl.armed.in-view .cup { animation: award-cup .8s var(--ease) 1s both; transform-box: fill-box; transform-origin: center bottom; }
+  .award-hl.armed.in-view .yr { animation: fade-in .8s ease 1.2s both; }
+  .award-card::before { content: ""; position: absolute; z-index: 1; inset: -30% -60%; pointer-events: none; opacity: 0;
+    background: linear-gradient(105deg, rgba(255,255,255,0) 42%, rgba(255,255,255,.65) 50%, rgba(255,255,255,0) 58%); transform: translateX(-55%); }
+  .award-hl.armed.in-view .award-card::before { animation: award-shine 1.8s var(--ease) .9s both; }
+}
+@keyframes award-stem { to { stroke-dashoffset: 0; } }
+@keyframes award-leaf { from { opacity: 0; transform: scale(.2) rotate(-12deg); } to { opacity: 1; transform: none; } }
+@keyframes award-cup { from { opacity: 0; transform: translateY(8px) scale(.9); } to { opacity: 1; transform: none; } }
+@keyframes award-shine { 0% { opacity: 0; transform: translateX(-55%); } 20% { opacity: 1; } 100% { opacity: 0; transform: translateX(55%); } }
+@media (max-width: 920px) {
+  .award-card { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; }
+  .award-emblem { width: 170px; }
+  .award-copy h2, .award-sub { margin-inline: auto; }
+}
 
 /* One-line hooks into the next section */
 .next-hook { margin: clamp(30px, 4vw, 52px) 0 0; text-align: center; }

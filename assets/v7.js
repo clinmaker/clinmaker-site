@@ -362,33 +362,7 @@
     });
   });
 
-  /* Pricing: build-your-plan configurator */
-  var cfg = doc.getElementById('config');
-  if (cfg) {
-    var labelOf = function (input) { var t = input.closest('.opt'); return t ? t.querySelector('.t').firstChild.textContent.trim() : input.value; };
-    var update = function () {
-      var mods = Array.prototype.slice.call(cfg.querySelectorAll('input[name="modules"]:checked')).map(labelOf);
-      var early = Array.prototype.slice.call(cfg.querySelectorAll('input[name="early"]:checked')).map(labelOf);
-      var pick = function (name) { var el = cfg.querySelector('input[name="' + name + '"]:checked'); return el ? labelOf(el) : '—'; };
-      var services = Array.prototype.slice.call(cfg.querySelectorAll('input[name="services"]:checked')).map(labelOf);
-      var set = function (id, v) { var el = doc.getElementById(id); if (el) el.textContent = v; };
-      set('sum-modules', mods.length ? mods.join(', ') : 'None selected yet');
-      set('sum-early', early.length ? early.join(', ') : 'None selected');
-      set('sum-scale', pick('scale'));
-      set('sum-start', pick('start'));
-      set('sum-hosting', pick('hosting'));
-      set('sum-services', services.length ? services.join(', ') : 'None selected');
-      var q = new URLSearchParams();
-      q.set('type', 'quote');
-      cfg.querySelectorAll('input:checked').forEach(function (i) { q.append(i.name, i.value); });
-      var link = doc.getElementById('sum-request');
-      if (link) link.href = 'request.html?' + q.toString() + '#request-form';
-    };
-    cfg.addEventListener('change', update);
-    update();
-  }
-
-  /* Request form: prefill from the pricing configurator, submit to the form service */
+  /* Request form: pre-select the request type from the link, submit to the form service */
   var form = doc.getElementById('request-form');
   if (form) {
     var params = new URLSearchParams(location.search);
@@ -397,12 +371,6 @@
       var map = { demo: 'req-demo', pilot: 'req-pilot', teardown: 'req-teardown', quote: 'req-quote' };
       var box = doc.getElementById(map[type]); if (box) box.checked = true;
     }
-    var plan = [];
-    ['modules', 'early', 'scale', 'start', 'hosting', 'services'].forEach(function (k) {
-      var v = params.getAll(k); if (v.length) plan.push(k + ': ' + v.join(', '));
-    });
-    var planField = doc.getElementById('f-plan');
-    if (planField && plan.length) { planField.value = plan.join('\n'); var wrapP = doc.getElementById('plan-wrap'); if (wrapP) wrapP.hidden = false; }
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();

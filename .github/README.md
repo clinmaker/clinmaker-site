@@ -34,7 +34,7 @@ git config core.hooksPath .githooks
 
 1. Connect the request form to a form service delivering to contact@clinmaker.com, and send one test request.
 2. Fill the Trust page facts (hosting, subprocessors, AI provider terms, encryption) and the counsel's wording for Privacy and Terms.
-3. Choose the hero, move it into `index.html`, and delete `heroes.html`, the `index-?.html` drafts and `assets/hero-*`.
+3. Move hero B (the team's pick, `index-b.html`, with the use cases straight after the hero) into `index.html`, and delete `heroes.html`, the `index-?.html` drafts and `assets/hero-*` except the B files it needs.
 4. Get the placeholder check passing, add redirects from the old page addresses, and review on desktop and phone.
 
 ## Design decisions so far
@@ -48,3 +48,4 @@ git config core.hooksPath .githooks
 - One motion system: tokens in `:root` of `assets/v7.css`, scroll reveals in `assets/v7.js`, and nothing moves under reduced motion.
 - Founders: Sunish Raj (Founder & CEO), Matthew Marshall (Co-Founder & COO), Kamal Chadha (Co-Founder & CTO).
 - Contact address: contact@clinmaker.com.
+- No pricing on the website. `pricing.html` only redirects old links to the request form with a quote selected.

@@ -111,3 +111,27 @@
   .tb-row { font-size: 12.5px; }
 }
 @media (max-height: 800px) and (min-width: 921px) { .tb { margin-top: 18px; } }
+
+/* Section choices: pick a protocol section and watch it build */
+.tb-picks { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
+.tb-picks[hidden] { display: none; }
+.tb-picks-k { margin-right: 4px; font-size: 13px; font-weight: 600; color: var(--ink-muted); }
+.tb-picks button { font: 500 13.5px/1 var(--sans); color: var(--ink-2); padding: 9px 15px; border-radius: 999px; border: 1px solid rgba(28,26,22,.1);
+  background: rgba(255,255,255,.6); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); cursor: pointer;
+  transition: background-color var(--t-quick) ease, color var(--t-quick) ease, border-color var(--t-quick) ease; }
+.tb-picks button:hover { background: #fff; color: var(--ink); }
+.tb-picks button[aria-selected="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg-body); }
+.tb-picks button.nudge { animation: tb-pick-nudge 1.5s var(--ease) 2; }
+@keyframes tb-pick-nudge { 0% { box-shadow: 0 0 0 0 rgba(216,118,84,.45); } 100% { box-shadow: 0 0 0 12px rgba(216,118,84,0); } }
+
+/* Switching section: the cards' contents fade out, change, and fade back in */
+.tb-doc > *, .tb-rows, .tb-form .head b, .tb-cols, .tb-col .tb-label small, .tb-foot span { transition: opacity .26s ease; }
+.tb-stage.swap .tb-doc > *, .tb-stage.swap .tb-rows, .tb-stage.swap .tb-form .head b, .tb-stage.swap .tb-cols, .tb-stage.swap .tb-col .tb-label small { opacity: 0; }
+
+/* Only adverse events has a real Study Build screen behind it; the others keep their tag */
+.tb-stage.no-real .tb-real-link { display: none; }
+.tb-stage.no-real.done .tb-tag { opacity: 1; transform: none; }
+
+/* Once a build is done, a highlighted phrase can be sent again */
+.tb-stage.done .tb-doc mark { cursor: pointer; }
+.tb-stage.done .tb-doc mark:hover { box-shadow: inset 0 -2px 0 var(--brand-500); }

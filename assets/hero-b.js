@@ -1,23 +1,80 @@
 /* Hero B: each highlighted phrase in the protocol flies through the ClinMaker mark and lands in the
-   casebook as its CDASH field. Then the way to the real Study Build screen appears, and it rests.
-   One clock drives everything, so pause, off-screen holds and replay are exact. Reduced motion: final state. */
+   casebook as its CDASH field. Visitors can pick a protocol section (adverse events, vital signs,
+   eligibility) and, once a build is done, click any highlighted phrase to send it again.
+   One clock drives everything, so pause, off-screen holds, replay and switching are exact.
+   Reduced motion: each section shows its finished state. */
 (function () {
   'use strict';
   var stage = document.querySelector('.tb-stage');
   var cap = document.querySelector('.tb-foot');
   if (!stage || !cap) return;
-  var marks = Array.prototype.slice.call(stage.querySelectorAll('.tb-doc mark'));
-  var rows = Array.prototype.slice.call(stage.querySelectorAll('.tb-row'));
+  var docCard = stage.querySelector('.tb-doc');
+  var rowsBox = stage.querySelector('.tb-rows');
+  var formName = stage.querySelector('.tb-form .head b');
+  var colLabel = stage.querySelectorAll('.tb-cols span')[1];
+  var refLabel = stage.querySelector('.tb-col .tb-label small');
+  var capText = cap.querySelector('span');
   var hub = stage.querySelector('.tb-bridge svg.mark');
   var link = stage.querySelector('.tb-real-link');
+  var picks = document.querySelector('.tb-picks');
   var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* The sections: adverse events is what the page shows first; the others come from templates */
+  var sets = {
+    ae: { doc: docCard.innerHTML, rows: rowsBox.innerHTML, form: formName.textContent, col: colLabel.textContent,
+          ref: refLabel.textContent, cap: capText.textContent, real: true }
+  };
+  Array.prototype.forEach.call(document.querySelectorAll('template.tb-set'), function (t) {
+    var frag = t.content;
+    sets[t.getAttribute('data-set')] = {
+      doc: frag.querySelector('.doc').innerHTML, rows: frag.querySelector('.rows').innerHTML,
+      form: t.getAttribute('data-form'), col: t.getAttribute('data-col'), ref: t.getAttribute('data-ref'),
+      cap: t.getAttribute('data-cap'), real: false
+    };
+  });
+  var current = 'ae', marks = [], rows = [];
+
+  /* Which rows each phrase lands in: data-rows="0,1" sends one phrase to two fields; otherwise the next row */
+  var map = function () {
+    marks = Array.prototype.slice.call(docCard.querySelectorAll('mark'));
+    rows = Array.prototype.slice.call(rowsBox.querySelectorAll('.tb-row'));
+    var next = 0;
+    marks.forEach(function (m) {
+      var listed = m.getAttribute('data-rows');
+      var idx = listed ? listed.split(',').map(Number) : [next];
+      m._rows = idx.map(function (i) { return rows[i]; }).filter(Boolean);
+      next = Math.max.apply(null, idx) + 1;
+    });
+  };
+  var apply = function (key) {
+    var s = sets[key];
+    docCard.innerHTML = s.doc; rowsBox.innerHTML = s.rows;
+    formName.textContent = s.form; colLabel.textContent = s.col; refLabel.textContent = s.ref; capText.textContent = s.cap;
+    stage.classList.toggle('no-real', !s.real);
+    current = key;
+    map();
+  };
   var finalState = function () {
     marks.forEach(function (m) { m.classList.remove('on'); m.classList.add('done'); });
     rows.forEach(function (r) { r.classList.add('in'); });
     stage.classList.add('done');
   };
-  if (still || !window.requestAnimationFrame) { finalState(); return; }
+  map();
+
+  /* Section choices (shown only when this script runs) */
+  var tabs = picks ? Array.prototype.slice.call(picks.querySelectorAll('[role="tab"]')) : [];
+  if (picks) picks.hidden = false;
+
+  if (still || !window.requestAnimationFrame) {
+    finalState();
+    tabs.forEach(function (t) {
+      t.addEventListener('click', function () {
+        tabs.forEach(function (x) { x.setAttribute('aria-selected', String(x === t)); });
+        stage.classList.remove('done'); apply(t.getAttribute('data-set')); finalState();
+      });
+    });
+    return;
+  }
 
   /* The control, beside the caption */
   var ICONS = {
@@ -33,7 +90,7 @@
   cap.appendChild(btn);
   var icon = btn.querySelector('svg');
 
-  var paused = false, offscreen = false, tabHidden = false, done = false, started = false;
+  var paused = false, offscreen = false, tabHidden = false, done = false, started = false, swapping = false, nudged = false;
   var held = function () { return paused || offscreen || tabHidden; };
   var paint = function () {
     var state = done ? 'replay' : (paused ? 'play' : 'pause');
@@ -42,23 +99,12 @@
   };
 
   /* One clock: time only advances while nothing holds it */
-  var clock = 0, last = 0, tasks = [];
+  var clock = 0, last = 0, tasks = [], flights = [];
   var at = function (ms, fn) { tasks.push({ t: clock + ms, fn: fn }); };
-  var frame = function (now) {
-    var dt = last ? Math.min(now - last, 64) : 0;
-    last = now;
-    if (!held()) clock += dt;
-    var due = tasks.filter(function (k) { return k.t <= clock; });
-    tasks = tasks.filter(function (k) { return k.t > clock; });
-    due.forEach(function (k) { k.fn(); });
-    if (flights.length) flights.slice().forEach(step);
-    requestAnimationFrame(frame);
-  };
-
-  /* A phrase in flight, along a curve, turning into its CDASH name as it crosses the mark */
-  var flights = [];
   var FLY = 980;
   var ease = function (t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
+
+  /* A phrase in flight, along a curve, turning into its CDASH name as it crosses the mark */
   var launch = function (mark, row) {
     var box = stage.getBoundingClientRect(), a = mark.getBoundingClientRect();
     var target = row.querySelector('code') || row, b = target.getBoundingClientRect();
@@ -86,33 +132,86 @@
     f.chip.style.opacity = o.toFixed(3);
     if (!f.pulsed && e >= .42) { f.pulsed = true; if (hub) { hub.classList.remove('pulse'); void hub.getBoundingClientRect(); hub.classList.add('pulse'); } }
     if (!f.morphed && e >= .5) { f.morphed = true; f.chip.classList.add('var'); }
-    if (!f.landed && p >= .86) { f.landed = true; f.row.classList.add('in', 'land'); }
+    if (!f.landed && p >= .86) { f.landed = true; f.row.classList.remove('land'); void f.row.offsetWidth; f.row.classList.add('in', 'land'); }
     if (p >= 1) { f.chip.remove(); flights.splice(flights.indexOf(f), 1); }
   };
+  var frame = function (now) {
+    var dt = last ? Math.min(now - last, 64) : 0;
+    last = now;
+    if (!held()) clock += dt;
+    var due = tasks.filter(function (k) { return k.t <= clock; });
+    tasks = tasks.filter(function (k) { return k.t > clock; });
+    due.forEach(function (k) { k.fn(); });
+    if (flights.length) flights.slice().forEach(step);
+    requestAnimationFrame(frame);
+  };
 
-  /* The sequence: highlight, fly, land, next */
-  var play = function () {
+  /* One phrase: highlight, fly to each of its fields, settle */
+  var send = function (mark, t0) {
+    var targets = mark._rows || [];
+    if (!targets.length) return t0;
+    at(t0, function () { mark.classList.remove('done'); mark.classList.add('on'); });
+    targets.forEach(function (row, j) { at(t0 + 320 + j * 170, function () { launch(mark, row); }); });
+    var span = 320 + FLY + (targets.length - 1) * 170;
+    at(t0 + span, function () { mark.classList.remove('on'); mark.classList.add('done'); });
+    return t0 + span + 120;
+  };
+  var stop = function () {
     tasks = []; flights.forEach(function (f) { f.chip.remove(); }); flights = [];
+  };
+
+  /* The whole section */
+  var play = function () {
+    stop();
     marks.forEach(function (m) { m.classList.remove('on', 'done'); });
     rows.forEach(function (r) { r.classList.remove('in', 'land'); });
     stage.classList.remove('done');
     if (link) link.classList.remove('nudge');
     done = false; paused = false; paint();
     var t = 0;
-    marks.forEach(function (mark, i) {
-      var row = rows[i];
-      if (!row) return;
-      at(t, function () { mark.classList.add('on'); });
-      at(t + 320, function () { launch(mark, row); });
-      at(t + 320 + FLY, function () { mark.classList.remove('on'); mark.classList.add('done'); });
-      t += 320 + FLY + 120;
-    });
+    marks.forEach(function (mark) { t = send(mark, t); });
     at(t + 350, function () {
       stage.classList.add('done');
-      if (link) link.classList.add('nudge');
+      if (link && !stage.classList.contains('no-real')) link.classList.add('nudge');
       done = true; paint();
+      /* Once, after the first build: invite a look at another section */
+      if (!nudged && tabs[1]) { nudged = true; tabs[1].classList.add('nudge'); }
     });
   };
+
+  /* Switching section: fade the cards, swap the content, build it */
+  var choose = function (key) {
+    if (swapping || !sets[key]) return;
+    tabs.forEach(function (t) { var on = t.getAttribute('data-set') === key; t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; t.classList.remove('nudge'); });
+    if (key === current && !done) return;
+    started = true; swapping = true; stop();
+    stage.classList.add('swap');
+    setTimeout(function () {
+      apply(key);
+      marks.forEach(function (m) { m.classList.remove('on', 'done'); });
+      rows.forEach(function (r) { r.classList.remove('in', 'land'); });
+      stage.classList.remove('done');
+      requestAnimationFrame(function () { stage.classList.remove('swap'); swapping = false; at(250, play); });
+    }, 260);
+  };
+  tabs.forEach(function (t, i) {
+    t.tabIndex = t.getAttribute('aria-selected') === 'true' ? 0 : -1;
+    t.addEventListener('click', function () { choose(t.getAttribute('data-set')); });
+    t.addEventListener('keydown', function (e) {
+      var d = e.key === 'ArrowRight' ? 1 : (e.key === 'ArrowLeft' ? -1 : 0);
+      if (!d) return;
+      e.preventDefault();
+      var n = tabs[(i + d + tabs.length) % tabs.length];
+      n.focus(); choose(n.getAttribute('data-set'));
+    });
+  });
+
+  /* Once a build is done, any highlighted phrase can be sent again */
+  docCard.addEventListener('click', function (e) {
+    var m = e.target.closest('mark');
+    if (!m || !done || paused) return;
+    send(m, 0);
+  });
 
   btn.addEventListener('click', function () {
     if (done) { play(); return; }

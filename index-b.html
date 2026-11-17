@@ -101,12 +101,6 @@
     </aside>
 
     <figure class="tb" aria-labelledby="tb-cap">
-      <div class="tb-picks" role="tablist" aria-label="Choose a protocol section" hidden>
-        <span class="tb-picks-k">Try a section</span>
-        <button type="button" role="tab" aria-selected="true" data-set="ae">Adverse events</button>
-        <button type="button" role="tab" aria-selected="false" data-set="vs">Vital signs</button>
-        <button type="button" role="tab" aria-selected="false" data-set="ie">Eligibility</button>
-      </div>
       <div class="tb-stage">
         <div class="tb-col">
           <p class="tb-label"><span class="dot"></span>Your protocol <small>ICH M11 · §9</small></p>
@@ -128,8 +122,6 @@
           </div>
         </div>
       </div>
-      <template class="tb-set" data-set="vs" data-ref="ICH M11 · §9.2" data-form="Vital Signs" data-col="Test code" data-cap="Protocol text from a sample protocol. Each highlighted phrase becomes a casebook field."><div class="doc"><p class="sec">§9.2 · Safety assessments</p><h3>Safety Assessments</h3><p>Adverse events (continuous capture from informed consent)</p><p>Vital signs (<mark data-short="blood pressure" data-rows="0,1">blood pressure</mark>, <mark data-short="heart rate">heart rate</mark>, <mark data-short="respiratory rate">respiratory rate</mark>, <mark data-short="temperature">temperature</mark>)</p><p>12-lead ECG at Screening, Baseline, Week 12, with central reading for QTcF</p><p>Clinical laboratory panel (hematology, chemistry, urinalysis) at Screening, Baseline, Week 4, Week 12</p></div><div class="rows"><div class="tb-row" data-var="SYSBP"><span>Systolic Blood Pressure (mmHg)</span><code>SYSBP</code><code class="sd">VSORRES</code></div><div class="tb-row" data-var="DIABP"><span>Diastolic Blood Pressure (mmHg)</span><code>DIABP</code><code class="sd">VSORRES</code></div><div class="tb-row" data-var="PULSE"><span>Pulse / Heart Rate (bpm)</span><code>PULSE</code><code class="sd">VSORRES</code></div><div class="tb-row" data-var="RESP"><span>Respiratory Rate (breaths/min)</span><code>RESP</code><code class="sd">VSORRES</code></div><div class="tb-row" data-var="TEMP"><span>Temperature</span><code>TEMP</code><code class="sd">VSORRES</code></div></div></template>
-      <template class="tb-set" data-set="ie" data-ref="ICH M11 · §6" data-form="Eligibility Criteria" data-col="CDASH" data-cap="Protocol text from a sample protocol. Each highlighted phrase becomes a casebook field."><div class="doc"><p class="sec">§6 · Eligibility criteria</p><h3>Study Population</h3><p><b><mark data-short="Inclusion">Inclusion</mark> Criteria.</b> Subjects must <mark data-short="meet ALL">meet ALL</mark> of the following:</p><p>1. Adults aged 18-65 years <mark data-short="at screening">at screening</mark>.</p><p>4. <mark data-short="criterion 4">Body Mass Index 18.5-35 kg/m²</mark>.</p><p><b>Exclusion Criteria.</b> Subjects must NOT meet ANY of the following.</p></div><div class="rows"><div class="tb-row" data-var="IECAT"><span>Category (Inclusion/Exclusion)</span><code>IECAT</code><code class="sd">IECAT</code></div><div class="tb-row" data-var="IEYN"><span>Were All Eligibility Criteria Met?</span><code>IEYN</code><code class="sd" title="CDASHIG gives no SDTM target for this field">—</code></div><div class="tb-row" data-var="IEDAT"><span>Assessment Date</span><code>IEDAT</code><code class="sd">IEDTC</code></div><div class="tb-row" data-var="IETESTCD"><span>Criterion Not Met (if applicable)</span><code>IETESTCD</code><code class="sd">IETESTCD</code></div></div></template>
       <figcaption class="tb-foot" id="tb-cap"><span>Protocol text from our demo study. Each highlighted phrase becomes a casebook field.</span></figcaption>
     </figure>
   </div>

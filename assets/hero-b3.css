@@ -89,3 +89,46 @@
 
 /* Keep "protocol-first" on one line when the headline wraps on phones */
 .hb3 h1 .nw { font-style: normal; white-space: nowrap; }
+
+/* ───── The hero graphic: one clean scene, the product on a monitor (after faro.ai's) ───── */
+.hscene { grid-area: tb; position: relative; margin: clamp(24px, 2.8vw, 40px) 0 0; height: clamp(320px, calc(100vh - 400px), 580px); border-radius: var(--r-card); overflow: hidden; isolation: isolate;
+  box-shadow: 0 50px 100px -70px rgba(74,39,28,.55); }
+@supports (height: 100svh) { .hscene { height: clamp(320px, calc(100svh - 400px), 580px); } }
+.hs-room { position: absolute; inset: 0; }
+.hs-room > i { position: absolute; }
+/* The wall: warm on the window side, cooler away from it */
+.hs-room { background: linear-gradient(100deg, #f4ede6 0%, #eee8e2 45%, #e6e8e7 100%); }
+.hs-room > .hs-light { inset: 0; background: radial-gradient(60% 90% at 14% 8%, rgba(255,250,244,.95), rgba(255,250,244,0) 70%), radial-gradient(40% 60% at 92% 30%, rgba(206,226,232,.55), rgba(206,226,232,0) 70%); }
+/* Someone passing by, out of focus: depth without detail */
+.hs-room > .hs-blur { width: 30%; right: 2%; top: 4%; bottom: 18%;
+  background: radial-gradient(50% 50% at 50% 45%, rgba(120,150,165,.55), rgba(120,150,165,0) 70%), radial-gradient(40% 35% at 40% 20%, rgba(216,118,84,.25), rgba(216,118,84,0) 70%);
+  filter: blur(34px); opacity: .8; }
+/* The desk: a lighter surface with a soft front edge */
+.hs-room > .hs-desk { left: 0; right: 0; bottom: 0; height: 21%; background: linear-gradient(180deg, #e9e0d6 0%, #ddd1c4 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.7); }
+.hs-desk::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 30%; background: linear-gradient(180deg, rgba(0,0,0,0), rgba(74,39,28,.06)); }
+/* A faint dot grid in the corner, fading out */
+.hs-room > .hs-dots { top: 0; right: 0; width: 34%; height: 46%; background-image: radial-gradient(rgba(28,26,22,.2) 1.2px, transparent 1.4px); background-size: 16px 16px;
+  -webkit-mask-image: radial-gradient(120% 100% at 100% 0%, #000 0%, transparent 70%); mask-image: radial-gradient(120% 100% at 100% 0%, #000 0%, transparent 70%); }
+
+/* The monitor: a thin black bezel, an aluminium stand, its foot on the desk */
+.hs-monitor { position: absolute; left: 50%; bottom: 9%; height: 78%; aspect-ratio: 1.28; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; z-index: 2; }
+.hs-screen { position: relative; width: 100%; height: 80%; padding: .9%; border-radius: 12px; background: #141416;
+  box-shadow: 0 34px 60px -34px rgba(40,28,20,.6), 0 12px 24px -16px rgba(40,28,20,.4), inset 0 0 0 1px rgba(255,255,255,.08); }
+.hs-screen img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 0 0; border-radius: 6px; background: #fff; }
+/* A soft reflection across the glass */
+.hs-screen::after { content: ""; position: absolute; inset: .9%; border-radius: 6px; pointer-events: none; background: linear-gradient(115deg, rgba(255,255,255,.16) 0%, rgba(255,255,255,0) 38%); }
+.hs-neck { width: 10%; height: 15%; margin-top: -1px; background: linear-gradient(90deg, #c9c3bc 0%, #f1eeea 45%, #dedad5 72%, #c2bcb5 100%); clip-path: polygon(8% 0, 92% 0, 100% 100%, 0 100%); }
+.hs-foot { width: 26%; height: 3.4%; border-radius: 2px 2px 7px 7px; background: linear-gradient(180deg, #f2efeb 0%, #cdc7c0 100%); box-shadow: 0 12px 18px -10px rgba(40,28,20,.55); }
+
+/* The screen switches on once the scene has risen */
+@media (prefers-reduced-motion: no-preference) {
+  .hs-screen img { animation: hs-on 1.5s var(--ease) .7s both; }
+  .hs-screen::after { animation: fade-in 1.2s ease 1.2s both; }
+}
+@keyframes hs-on { from { opacity: 0; filter: blur(6px) brightness(.4); transform: scale(1.03); } to { opacity: 1; filter: none; transform: none; } }
+
+@media (max-width: 720px) {
+  .hscene { height: auto; aspect-ratio: 4 / 3.4; border-radius: 22px; }
+  .hs-monitor { height: 70%; bottom: 10%; }
+  .hs-screen { border-radius: 8px; }
+}

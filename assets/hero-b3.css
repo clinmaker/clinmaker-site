@@ -1,0 +1,83 @@
+/* B3 · the whole picture. The hero names the platform's full reach, then a map of the trial shows
+   where ClinMaker is on it today: two parts ready to demo, three coming next. Further down, "What comes next"
+   repeats the same map with the modules in each part. */
+
+/* ───── The trial map, in the hero (where the section pills used to be) ───── */
+.hb3 .hero { grid-template-areas: "head award" "row row" "map map" "tb tb"; }
+.tmap { grid-area: map; min-width: 0; margin-top: clamp(14px, 1.6vw, 22px); display: flex; align-items: center; gap: 20px; }
+.tmap-k { flex-shrink: 0; margin: 0; display: grid; gap: 4px; font-size: 13px; font-weight: 600; line-height: 1.2; color: var(--ink-muted); }
+.tmap-key { display: flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 500; white-space: nowrap; }
+.tmap-key i { width: 7px; height: 7px; border-radius: 50%; }
+.tmap-key i.r { background: var(--brand-600); }
+.tmap-key i.c { margin-left: 6px; box-shadow: inset 0 0 0 1.5px var(--ink-muted); }
+.tmap ol { list-style: none; margin: 0; padding: 0; flex: 1; min-width: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 18px; }
+.tmap li { position: relative; min-width: 0; }
+/* The line between two parts: solid while it is ready, dashed where it is still coming */
+.tmap li + li::before { content: ""; position: absolute; right: 100%; top: 50%; width: 18px; border-top: 1.5px solid var(--brand-300); }
+.tmap li.next::before { border-top: 1.5px dashed rgba(28,26,22,.24); }
+.tmap a { display: flex; align-items: center; gap: 8px; height: 38px; padding: 0 14px; border-radius: 12px; text-decoration: none; border: 1px solid transparent;
+  transition: background-color var(--t-quick) ease, transform var(--t-move) var(--ease); }
+.tmap a:hover { transform: translateY(-1px); }
+.tmap a:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
+.tmap a > i { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.tmap b { min-width: 0; font: 600 14px/1.2 var(--sans); color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tmap .now a { background: rgba(255,255,255,.88); border-color: rgba(255,255,255,.95); box-shadow: 0 16px 30px -22px rgba(74,39,28,.5); }
+.tmap .now a:hover { background: #fff; }
+.tmap .now:nth-child(1) a > i { background: var(--brand-600); }
+.tmap .now:nth-child(2) a > i { background: var(--cyan); }
+.tmap .next a { background: rgba(255,255,255,.3); border: 1px dashed rgba(28,26,22,.2); }
+.tmap .next a:hover { background: rgba(255,255,255,.6); }
+.tmap .next a > i { box-shadow: inset 0 0 0 1.5px var(--ink-muted); }
+.tmap .next b { color: var(--ink-2); font-weight: 500; }
+/* Narrower screens: the label and key sit above the five parts */
+@media (max-width: 1180px) {
+  .tmap { display: grid; gap: 10px; }
+  .tmap-k { display: flex; align-items: center; gap: 14px; }
+  .tmap ol { gap: 14px; }
+  .tmap li + li::before { width: 14px; }
+  .tmap a { padding: 0 11px; gap: 7px; }
+  .tmap b { font-size: 13.5px; }
+}
+@media (max-width: 900px) and (min-width: 721px) {
+  .tmap a { height: auto; min-height: 38px; padding-block: 6px; }
+  .tmap b { white-space: normal; overflow: visible; }
+}
+
+/* ───── What works today ───── */
+.now-std { margin: 0 0 clamp(22px, 2.4vw, 32px); }
+.now-std .link-arrow { margin-left: 10px; font-size: 14px; }
+
+/* ───── What comes next: the same map, with the modules in each part ───── */
+.next-intro { margin: 0; max-width: 46em; font-size: 17px; line-height: 1.55; color: var(--ink-2); }
+.trail { list-style: none; margin: clamp(26px, 3vw, 40px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 18px; }
+@media (max-width: 1199px) { .trail { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 720px) { .trail { grid-template-columns: minmax(0, 1fr); } }
+.trail > li { min-width: 0; display: grid; align-content: start; gap: 12px; padding: clamp(18px, 1.8vw, 24px); border-radius: 22px; }
+.trail .t-note { margin: 0; font-size: 14px; line-height: 1.5; color: var(--ink-muted); }
+.trail .t-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.trail .k { font: 500 12px/1 var(--mono); color: var(--ink-muted); }
+.trail h3 { margin: 6px 0 0; font: 600 clamp(1.1rem, 1.35vw, 1.3rem)/1.2 var(--display); letter-spacing: -0.015em; color: var(--ink); }
+.trail ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 14.5px; color: var(--ink-2); }
+.trail ul li { display: flex; align-items: center; gap: 8px; }
+.trail ul li::before { content: ""; width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; background: var(--border-strong); }
+.trail .now { background: linear-gradient(160deg, #fff 0%, var(--brand-50) 100%); border: 1px solid var(--brand-200); box-shadow: 0 30px 60px -44px rgba(74,39,28,.5); }
+.trail .now:nth-child(2) { background: linear-gradient(160deg, #fff 0%, var(--cyan-50) 100%); border-color: var(--cyan-200); }
+.trail .now ul li { font-weight: 600; color: var(--ink); }
+.trail .now ul li::before { background: var(--brand-500); }
+.trail .now:nth-child(2) ul li::before { background: var(--cyan); }
+.trail .next { background: rgba(255,255,255,.45); border: 1px dashed var(--border-strong); }
+
+/* ───── Phones: the map scrolls sideways, and the badge sits under the buttons ───── */
+@media (max-width: 720px) {
+  .hb3 .hero { grid-template-areas: "head" "row" "award" "map" "tb"; }
+  .tmap ol { display: flex; gap: 22px; overflow-x: auto; scroll-snap-type: x proximity; padding: 2px 2px 8px; margin: 0 -2px; scrollbar-width: none; }
+  .tmap ol::-webkit-scrollbar { display: none; }
+  .tmap li { flex: 0 0 auto; scroll-snap-align: start; }
+  .tmap b { overflow: visible; }
+}
+@media (prefers-reduced-motion: reduce) { .tmap a:hover { transform: none; } }
+/* Short laptop screens: a little less air around the map, so the hero still fits one screen */
+@media (max-height: 800px) and (min-width: 921px) {
+  .tmap { margin-top: 12px; }
+  .hb3 .tb { margin-top: 12px; }
+}

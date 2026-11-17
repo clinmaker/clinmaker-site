@@ -100,7 +100,12 @@
 /* Short laptop screens: less padding, so the four steps still fit */
 @media (max-height: 820px) and (min-width: 901px) { .hub { padding-block: 12px; } }
 /* Narrow laptops: each card keeps its standard and its name; the one-line description steps aside */
-@media (max-width: 1199px) and (min-width: 901px) { .hn-t > span { display: none; } }
+@media (max-width: 1199px) and (min-width: 901px) {
+  .hn-t > span { display: none; }
+  .hub-node { grid-template-columns: 32px minmax(0, 1fr); gap: 10px; }
+  .hn-ic { width: 32px; height: 32px; }
+  .hn-t small { font-size: 10px; white-space: nowrap; }
+}
 /* Ripples from the protocol: it is the one source */
 .hub::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; pointer-events: none;
   background: repeating-radial-gradient(circle at 50% 50%, rgba(177,94,65,.11) 0 1px, rgba(177,94,65,0) 1.5px 58px);
@@ -125,11 +130,10 @@
 .hub-node.next b { color: var(--ink-2); font-weight: 500; }
 
 /* The pipeline's end: the submission package, where everything downstream arrives */
-.hub-node.end { width: min(100%, 310px); padding-block: 12px; border: 1px solid var(--brand-300);
-  background: linear-gradient(135deg, #fff 0%, var(--brand-50) 100%); box-shadow: 0 0 0 5px rgba(255,255,255,.5), 0 26px 50px -28px rgba(177,94,65,.6); }
+/* Same size as the other steps; only its colour marks it as the end point */
+.hub-node.end { border: 1px solid var(--brand-300); background: linear-gradient(135deg, #fff 0%, var(--brand-50) 100%); box-shadow: 0 20px 40px -26px rgba(177,94,65,.55); }
 .hub-node.end .hn-ic { background: var(--brand-600); color: #fff; }
 .hub-node.end small { color: var(--brand-700); }
-.hub-node.end b { font-size: 15.5px; }
 
 /* The protocol, at the centre */
 .hub-doc { position: relative; z-index: 1; padding: 18px 18px 16px; border-radius: 20px; background: #fff; border: 1px solid var(--brand-200);

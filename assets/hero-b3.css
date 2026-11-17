@@ -190,3 +190,38 @@
   .hub-r .hn-t small::before { content: counter(step) " · "; color: var(--cyan-700); }
 }
 @media (max-width: 720px) { .hub-l { grid-template-columns: minmax(0, 1fr); } }
+
+/* ───── The protocol card turns from unstructured text into a structured study ─────
+   hero-b3.js cycles .is-raw (the draft document) and .is-marking (phrases tagged with their ICH M11 section).
+   Without the script, or with reduced motion, the card simply shows the structured study. */
+.hd-swap { display: grid; }
+.hd-swap > span { grid-area: 1 / 1; display: flex; align-items: center; gap: 9px; transition: opacity .5s ease, transform .6s var(--ease); }
+.hd-title { margin-right: auto; min-width: 0; }
+.hd-title b { margin-right: 0; }
+.hd-title .a b { font: 500 12.5px/1.2 var(--mono); color: var(--ink-2); white-space: nowrap; }
+.doc-ic { width: 24px; height: 24px; flex-shrink: 0; color: var(--ink-muted); }
+.hd-k.hd-swap > .a, .hd-foot.hd-swap > .a { color: var(--ink-muted); }
+.hub-doc.is-raw .hd-swap > .b { opacity: 0; transform: translateY(4px); }
+.hub-doc:not(.is-raw) .hd-swap > .a { opacity: 0; transform: translateY(-4px); }
+
+.hd-body { position: relative; }
+.hd-raw { position: absolute; inset: 0; margin: 0; overflow: hidden; padding: 2px 2px 0; font: 400 11.5px/1.6 Georgia, "Times New Roman", serif; color: var(--ink-2); text-align: justify; hyphens: auto;
+  -webkit-mask-image: linear-gradient(#000 86%, transparent); mask-image: linear-gradient(#000 86%, transparent);
+  transition: opacity .55s ease, filter .55s ease, transform .7s var(--ease); }
+.hub-doc:not(.is-raw) .hd-raw { opacity: 0; filter: blur(4px); transform: scale(.98); pointer-events: none; }
+.hd-raw mark { color: inherit; background: transparent; border-radius: 3px; padding: 0 1px; box-shadow: inset 0 -1.5px 0 rgba(216,118,84,0);
+  transition: background-color .4s ease, box-shadow .4s ease; transition-delay: calc(var(--k, 0) * 260ms); }
+.hd-raw mark sup { margin-left: 2px; font: 600 8.5px/1 var(--mono); color: var(--brand-700); opacity: 0; transition: opacity .3s ease; transition-delay: calc(var(--k, 0) * 260ms + 150ms); }
+.hub-doc.is-marking .hd-raw mark { background: var(--brand-100); box-shadow: inset 0 -1.5px 0 var(--brand-500); }
+.hub-doc.is-marking .hd-raw mark sup { opacity: 1; }
+.hd-secs li { transition: opacity .45s ease, transform .6s var(--ease); transition-delay: calc(var(--k, 0) * 90ms + 250ms); }
+.hub-doc.is-raw .hd-secs li { opacity: 0; transform: translateY(8px); transition-delay: 0s; }
+
+/* While the protocol is still a document, nothing flows downstream */
+.hub-lines .flow, .hub-lines .pulses { transition: opacity .7s ease; }
+.hub.is-raw .hub-lines .flow { opacity: .28; }
+.hub.is-raw .hub-lines .pulses { opacity: 0; }
+.hub-node { transition: filter .7s ease; }
+.hub.is-raw .hub-node { filter: grayscale(.7) opacity(.55); }
+@media (max-width: 1360px) { .hd-raw { font-size: 11px; line-height: 1.55; } }
+@media (max-width: 1199px) { .hd-raw { font-size: 10.5px; line-height: 1.5; } }

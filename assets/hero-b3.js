@@ -25,7 +25,7 @@
 
   var draw = function () {
     if (!svg || getComputedStyle(svg).display === 'none') return;
-    var W = hub.clientWidth, H = hub.clientHeight, d0 = box(doc), out = '';
+    var W = hub.clientWidth, H = hub.clientHeight, d0 = box(doc), out = '', pulses = '';
     svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
 
     /* Left: straight from the protocol */
@@ -36,7 +36,7 @@
       var d = 'M' + f(x1) + ' ' + f(y1) + ' C' + f(x1 + dx) + ' ' + f(y1) + ' ' + f(x2 - dx) + ' ' + f(y2) + ' ' + f(x2) + ' ' + f(y2);
       out += '<path class="hl now l" d="' + d + '" pathLength="1" style="--i:' + k + '"/>';
       out += '<circle class="hd now l" cx="' + f(x2) + '" cy="' + f(y2) + '" r="3" style="--i:' + k + '"/>';
-      if (!still) out += pulse('l', d, 2.8, (2.2 + k * 0.6).toFixed(2));
+      if (!still) pulses += pulse('l', d, 2.8, (2.2 + k * 0.6).toFixed(2));
     });
 
     /* Right: the pipeline, protocol to submission */
@@ -55,9 +55,9 @@
         out += '<line class="tick" x1="' + f(railX + 9) + '" y1="' + f(ys[k]) + '" x2="' + f(b.x) + '" y2="' + f(ys[k]) + '" style="--i:' + (k + 3) + '"/>';
         out += '<g class="stop' + (end ? ' end' : '') + '" style="--i:' + (k + 3) + '"><circle cx="' + f(railX) + '" cy="' + f(ys[k]) + '" r="9"/><text x="' + f(railX) + '" y="' + f(ys[k]) + '">' + (k + 1) + '</text></g>';
       });
-      if (!still) { out += pulse('r', rail, 4.2, '2.4'); out += pulse('r', rail, 4.2, '4.5'); }
+      if (!still) { pulses += pulse('r', rail, 4.2, '2.4'); pulses += pulse('r', rail, 4.2, '4.5'); }
     }
-    svg.innerHTML = out;
+    svg.innerHTML = '<g class="flow">' + out + '</g><g class="pulses">' + pulses + '</g>';
   };
 
   var queued = false;
@@ -68,6 +68,32 @@
   else window.addEventListener('resize', schedule);
   /* After the first draw has played, later redraws (on resize) appear at once */
   setTimeout(function () { hub.classList.add('drawn'); }, 3400);
+  /* The protocol card: a draft document, then its phrases tagged with ICH M11 sections, then the structured study.
+     It holds the structured view, then plays again; it rests while off screen, and is still with reduced motion. */
+  var timers = [], visible = true, playing = false;
+  var later = function (ms, fn) { timers.push(setTimeout(fn, ms)); };
+  var raw = function (on) { hub.classList.toggle('is-raw', on); doc.classList.toggle('is-raw', on); };
+  var cycle = function () {
+    timers.forEach(clearTimeout); timers = [];
+    if (!visible) { playing = false; return; }
+    playing = true;
+    doc.classList.remove('is-marking'); raw(true);
+    later(1500, function () { doc.classList.add('is-marking'); });
+    later(3900, function () { raw(false); });
+    later(3900 + 900, function () { doc.classList.remove('is-marking'); });
+    later(3900 + 8000, cycle);
+  };
+  if (!still && doc.querySelector('.hd-raw')) {
+    cycle();
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) {
+        visible = en[0].isIntersecting;
+        if (visible && !playing) cycle();
+        if (!visible) { timers.forEach(clearTimeout); timers = []; playing = false; raw(false); }
+      }, { threshold: 0.25 }).observe(hub);
+    }
+  }
+
   /* The points of light rest while the graphic is off screen */
   if ('IntersectionObserver' in window && svg && svg.pauseAnimations) {
     new IntersectionObserver(function (en) { if (en[0].isIntersecting) svg.unpauseAnimations(); else svg.pauseAnimations(); }).observe(hub);

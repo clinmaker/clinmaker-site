@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="assets/v7.css?v=20261116f">
   <link rel="stylesheet" href="assets/hero-b.css?v=6">
   <link rel="stylesheet" href="assets/story.css?v=1">
-  <link rel="stylesheet" href="assets/hero-b3.css?v=3">
+  <link rel="stylesheet" href="assets/hero-b3.css?v=10">
   <script src="assets/v7.js?v=20261116f" defer></script>
   <script src="assets/hero-b.js?v=4" defer></script>
   <script src="assets/story.js?v=1" defer></script>
@@ -88,11 +88,10 @@
   <div class="hd-bg" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
   <div class="wrap hero">
     <div class="hero-head">
-      <p class="label hero-for rise">For sponsors and CROs</p>
-      <h1 id="hero-h"><span class="rise">The clinical trial platform,</span> <span class="rise d1">from protocol to submission.</span></h1>
+      <h1 id="hero-h"><span class="rise">The <i class="nw">protocol-first</i> platform</span> <span class="rise d1">for clinical development.</span></h1>
     </div>
     <div class="hero-row rise d2">
-      <p class="hero-sub">One structured study for every team, across the whole trial. It starts with the protocol and the casebook built from it, both ready to demo today.</p>
+      <p class="hero-sub">Sponsors and CROs write the protocol once, as one structured study, and every team builds from it: the casebook today, data review and submission next.</p>
       <div class="hero-ctas">
         <a class="btn btn-primary" href="request.html?type=teardown#request-form">Request a Protocol Teardown</a>
         <a class="link-play" href="platform.html#walkthrough" data-sheet="sheet-walkthrough"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8.2 6.6v6.8l5.4-3.4z" fill="currentColor"/></svg>Watch the walkthrough</a>
@@ -102,17 +101,6 @@
     <aside class="hero-award" aria-label="Award">
       <img src="assets/award/scope365-winner.webp?v=1" width="360" height="360" decoding="async" alt="SCOPE 365 Winner badge. ClinMaker was named the winner of the SCOPE 365 / TransCelerate BioPharma Solve Challenge, 2026, for the best integration of standards and impact assessment.">
     </aside>
-
-    <nav class="tmap rise d2" aria-label="The trial, on one study">
-      <p class="tmap-k"><span>The trial, on one study</span><span class="tmap-key" aria-hidden="true"><i class="r"></i>Ready to demo<i class="c"></i>Coming next</span></p>
-      <ol>
-        <li class="now"><a href="#now"><i aria-hidden="true"></i><b>Protocol</b><span class="sr-only">, ready to demo</span></a></li>
-        <li class="now"><a href="#now"><i aria-hidden="true"></i><b>Casebook</b><span class="sr-only">, ready to demo</span></a></li>
-        <li class="next"><a href="#next"><i aria-hidden="true"></i><b>Collect and clean</b><span class="sr-only">, coming next</span></a></li>
-        <li class="next"><a href="#next"><i aria-hidden="true"></i><b>Review and lock</b><span class="sr-only">, coming next</span></a></li>
-        <li class="next"><a href="#next"><i aria-hidden="true"></i><b>Submit and measure</b><span class="sr-only">, coming next</span></a></li>
-      </ol>
-    </nav>
 
     <figure class="tb" aria-labelledby="tb-cap">
       <div class="tb-stage">
@@ -141,8 +129,38 @@
   </div>
 </section>
 
-<a class="scroll-cue" href="#gap" hidden><span>See where it starts</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 3v10M3.5 8.5L8 13l4.5-4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+<a class="scroll-cue" href="#journey" hidden><span>See the whole platform</span><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 3v10M3.5 8.5L8 13l4.5-4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 
+
+<!-- ═══════════ THE WHOLE PICTURE: ONE STUDY, DESIGN TO SUBMISSION ═══════════ -->
+<section class="section journey" id="journey" aria-labelledby="journey-h">
+  <div class="wrap">
+    <h2 id="journey-h" class="journey-h"><span>One structured study,</span> <span>from design to submission.</span></h2>
+    <ol class="jcols">
+      <li class="j now">
+        <div class="j-top"><h3>Design the protocol</h3><a class="j-go" href="protocol-digitization.html" aria-label="Protocol Digitization"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11M11 5.5l4.5 4.5-4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        <p>Written or imported in ICH M11 order, and reviewed by a person.</p>
+        <div class="j-shot" aria-hidden="true"><span class="status ready">Ready to demo</span><div class="j-card"><div class="jc-head"><b>Protocol v1</b><span class="pill ok">Approved</span></div><ul class="jc-list"><li><span>§5</span>Objectives and endpoints</li><li><span>§6</span>Eligibility criteria</li><li><span>§9</span>Safety assessments</li></ul><p class="jc-foot ok"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="currentColor"/><path d="M5 8.2l2 2 4-4.2" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Approved with an e-signature</p></div></div>
+      </li>
+      <li class="j now">
+        <div class="j-top"><h3>Build the study</h3><a class="j-go" href="study-build.html" aria-label="Study Build"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11M11 5.5l4.5 4.5-4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        <p>The casebook built from the approved protocol: CDASH forms with SDTM targets.</p>
+        <div class="j-shot" aria-hidden="true"><span class="status ready">Ready to demo</span><div class="j-card"><div class="jc-head"><b>Adverse Events</b><span class="pill cy">CDASH eCRF</span></div><ul class="jc-vars"><li><code>AETERM</code><i></i><code class="sd">AETERM</code></li><li><code>AESTDAT</code><i></i><code class="sd">AESTDTC</code></li><li><code>AETOXGR</code><i></i><code class="sd">AETOXGR</code></li></ul><p class="jc-foot cy"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="currentColor"/><path d="M5 8.2l2 2 4-4.2" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Exported as CDISC ODM 1.3.2</p></div></div>
+      </li>
+      <li class="j now">
+        <div class="j-top"><h3>Amend it once</h3><a class="j-go" href="#amendment" aria-label="Follow one amendment through"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11M11 5.5l4.5 4.5-4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        <p>Classify the change, see every step it triggers, and sign the assessment once.</p>
+        <div class="j-shot" aria-hidden="true"><span class="status ready">Ready to demo</span><div class="j-card"><div class="jc-head"><b>Impact assessment</b><span class="pill br">Major</span></div><p class="jc-change">12-lead ECG added at <ins>Week 4</ins></p><p class="jc-pills"><span class="pill hi">2 Blockers</span><span class="pill md">3 Warnings</span></p><p class="jc-foot ok"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="currentColor"/><path d="M5 8.2l2 2 4-4.2" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Signed and approved</p></div></div>
+      </li>
+      <li class="j next">
+        <div class="j-top"><h3>Run and submit</h3><a class="j-go" href="#next" aria-label="What comes next"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11M11 5.5l4.5 4.5-4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        <p>Data collection, review and submission, on the same study.</p>
+        <div class="j-shot" aria-hidden="true"><span class="status dev">In development</span><div class="j-card j-card-next"><ul class="jc-mods"><li>Data Ingestion</li><li>Query Management</li><li>Medical Coding</li><li>Database Lock</li><li>SDTM / ADaM</li><li class="jc-more">+5 more</li></ul></div></div>
+      </li>
+    </ol>
+  </div>
+  <div class="wrap"><p class="next-hook"><a href="#gap">Why it starts with the protocol<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 3v10M3.5 8.5L8 13l4.5-4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p></div>
+</section>
 
 <!-- ═══════════ WHERE IT STARTS ═══════════ -->
 <section class="section" id="gap" aria-labelledby="gap-h">

@@ -1,53 +1,73 @@
-/* B3 · the whole picture. The hero names the platform's full reach, then a map of the trial shows
-   where ClinMaker is on it today: two parts ready to demo, three coming next. Further down, "What comes next"
-   repeats the same map with the modules in each part. */
+/* B3 · the whole picture. The hero says what ClinMaker is and who it is for; the band under it shows the
+   whole platform at a glance (design, build, amend, then run and submit), each part with one line and one
+   small product moment. Further down, "What comes next" lists every module still in development. */
 
-/* ───── The trial map, in the hero (where the section pills used to be) ───── */
-.hb3 .hero { grid-template-areas: "head award" "row row" "map map" "tb tb"; }
-.tmap { grid-area: map; min-width: 0; margin-top: clamp(14px, 1.6vw, 22px); display: flex; align-items: center; gap: 20px; }
-.tmap-k { flex-shrink: 0; margin: 0; display: grid; gap: 4px; font-size: 13px; font-weight: 600; line-height: 1.2; color: var(--ink-muted); }
-.tmap-key { display: flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 500; white-space: nowrap; }
-.tmap-key i { width: 7px; height: 7px; border-radius: 50%; }
-.tmap-key i.r { background: var(--brand-600); }
-.tmap-key i.c { margin-left: 6px; box-shadow: inset 0 0 0 1.5px var(--ink-muted); }
-.tmap ol { list-style: none; margin: 0; padding: 0; flex: 1; min-width: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 18px; }
-.tmap li { position: relative; min-width: 0; }
-/* The line between two parts: solid while it is ready, dashed where it is still coming */
-.tmap li + li::before { content: ""; position: absolute; right: 100%; top: 50%; width: 18px; border-top: 1.5px solid var(--brand-300); }
-.tmap li.next::before { border-top: 1.5px dashed rgba(28,26,22,.24); }
-.tmap a { display: flex; align-items: center; gap: 8px; height: 38px; padding: 0 14px; border-radius: 12px; text-decoration: none; border: 1px solid transparent;
+/* ───── The whole platform, right after the hero ───── */
+.journey-h { margin: 0; max-width: 20em; font: 600 clamp(1.9rem, 3.2vw, 3rem)/1.08 var(--display); letter-spacing: -0.028em; color: var(--ink); }
+.journey-h span { display: block; }
+.journey-h span + span { color: var(--ink-muted); }
+.jcols { --jg: clamp(32px, 3.6vw, 56px); list-style: none; margin: clamp(28px, 3.4vw, 48px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: var(--jg); row-gap: 0; border-top: 1px solid var(--border-subtle); }
+.jcols > li { position: relative; min-width: 0; display: grid; grid-row: span 3; grid-template-rows: subgrid; row-gap: 8px; padding-top: 24px; }
+/* A hairline halfway between two columns, so every column (and its panel) is the same width */
+.jcols > li + li::before { content: ""; position: absolute; top: 0; bottom: 0; left: calc(var(--jg) / -2); border-left: 1px solid var(--border-subtle); }
+.j-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.j-top h3 { margin: 0; font: 600 clamp(1.05rem, 1.25vw, 1.25rem)/1.25 var(--display); letter-spacing: -0.012em; color: var(--ink); }
+.j-go { flex-shrink: 0; width: 32px; height: 32px; display: grid; place-items: center; border-radius: 50%; color: var(--brand-600);
   transition: background-color var(--t-quick) ease, transform var(--t-move) var(--ease); }
-.tmap a:hover { transform: translateY(-1px); }
-.tmap a:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
-.tmap a > i { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-.tmap b { min-width: 0; font: 600 14px/1.2 var(--sans); color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.tmap .now a { background: rgba(255,255,255,.88); border-color: rgba(255,255,255,.95); box-shadow: 0 16px 30px -22px rgba(74,39,28,.5); }
-.tmap .now a:hover { background: #fff; }
-.tmap .now:nth-child(1) a > i { background: var(--brand-600); }
-.tmap .now:nth-child(2) a > i { background: var(--cyan); }
-.tmap .next a { background: rgba(255,255,255,.3); border: 1px dashed rgba(28,26,22,.2); }
-.tmap .next a:hover { background: rgba(255,255,255,.6); }
-.tmap .next a > i { box-shadow: inset 0 0 0 1.5px var(--ink-muted); }
-.tmap .next b { color: var(--ink-2); font-weight: 500; }
-/* Narrower screens: the label and key sit above the five parts */
-@media (max-width: 1180px) {
-  .tmap { display: grid; gap: 10px; }
-  .tmap-k { display: flex; align-items: center; gap: 14px; }
-  .tmap ol { gap: 14px; }
-  .tmap li + li::before { width: 14px; }
-  .tmap a { padding: 0 11px; gap: 7px; }
-  .tmap b { font-size: 13.5px; }
+.j-go svg { width: 18px; height: 18px; }
+.j-go:hover { background: var(--brand-50); transform: translateX(2px); }
+.j-go:focus-visible { outline: 2px solid var(--brand-600); outline-offset: 2px; }
+.jcols > li > p { margin: 0; max-width: 26em; font-size: 15px; line-height: 1.5; color: var(--ink-2); }
+
+/* Each part's product moment: a small card floating on a soft panel */
+.j-shot { position: relative; min-width: 0; margin-top: 14px; min-height: clamp(210px, 17vw, 290px); border-radius: 20px; display: grid; place-items: center; padding: 50px 16px 18px;
+  background: radial-gradient(70% 70% at 30% 20%, rgba(255,255,255,.75), rgba(255,255,255,0) 70%), linear-gradient(150deg, var(--brand-100), #f6efe9 55%, var(--cyan-50)); }
+.jcols > li:nth-child(2) .j-shot { background: radial-gradient(70% 70% at 30% 20%, rgba(255,255,255,.75), rgba(255,255,255,0) 70%), linear-gradient(150deg, var(--cyan-50), var(--cyan-100) 55%, #eef3f1); }
+.jcols > li:nth-child(3) .j-shot { background: radial-gradient(70% 70% at 30% 20%, rgba(255,255,255,.75), rgba(255,255,255,0) 70%), linear-gradient(150deg, #f7efe9, var(--brand-50) 50%, var(--cyan-50)); }
+.j.next .j-shot { background: repeating-linear-gradient(135deg, rgba(28,26,22,.025) 0 10px, rgba(28,26,22,0) 10px 20px), #f6f3ef; border: 1px dashed var(--border-strong); }
+.j-shot > .status { position: absolute; left: 14px; top: 14px; }
+.j-card { width: 100%; min-width: 0; max-width: 300px; padding: 14px 14px 12px; border-radius: 14px; background: rgba(255,255,255,.96); border: 1px solid rgba(255,255,255,.95);
+  box-shadow: 0 30px 50px -30px rgba(74,39,28,.45), 0 10px 20px -16px rgba(14,116,144,.25); font-size: 13px; color: var(--ink-2);
+  transition: transform .6s var(--ease); }
+.jcols > li:hover .j-card { transform: translateY(-3px); }
+.jc-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 10px; }
+.jc-head b { min-width: 0; font: 600 13.5px/1.2 var(--sans); color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.j-card .pill { font-size: 10.5px; padding: 5px 7px; }
+.jc-list, .jc-vars, .jc-mods { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.jc-list li { display: block; padding: 6px 8px; border-radius: 8px; background: #faf7f4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.jc-list li span { margin-right: 8px; font: 500 11px/1.5 var(--mono); color: var(--ai-violet); }
+.jc-vars li { display: grid; grid-template-columns: auto minmax(8px, 1fr) auto; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 8px; background: var(--cyan-50); box-shadow: inset 0 0 0 1px var(--cyan-200); }
+.jc-vars i { height: 1px; background: linear-gradient(90deg, var(--cyan-200), var(--cyan)); }
+.jc-vars code { font: 500 11.5px/1.2 var(--mono); color: var(--cyan-700); }
+.jc-vars code.sd { color: var(--ink-muted); }
+.jc-change { margin: 0; padding: 8px; border-radius: 8px; background: #faf7f4; font: 400 13px/1.4 Georgia, "Times New Roman", serif; color: var(--ink); }
+.jc-change ins { text-decoration: none; color: #155e75; background: var(--cyan-50); box-shadow: inset 0 -2px 0 var(--cyan); border-radius: 3px; padding: 0 2px; }
+.jc-pills { margin: 8px 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.jc-foot { margin: 10px 0 0; display: flex; align-items: center; gap: 7px; font-size: 12.5px; font-weight: 600; }
+.jc-foot svg { width: 15px; height: 15px; flex-shrink: 0; }
+.jc-foot.ok { color: #1f6b46; }
+.jc-foot.cy { color: var(--cyan-700); }
+.j-card-next { background: rgba(255,255,255,.7); border: 1px dashed var(--border-strong); box-shadow: none; }
+.jc-mods { display: flex; flex-wrap: wrap; }
+.jc-mods li { padding: 5px 8px; border-radius: 8px; border: 1px dashed var(--border); color: var(--ink-2); white-space: nowrap; font-size: 12px; }
+.jc-mods li.jc-more { border-style: solid; border-color: transparent; color: var(--ink-muted); }
+
+@media (max-width: 1100px) {
+  .jcols { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 28px; border-top: 0; }
+  .jcols > li:nth-child(n+3) { margin-top: 36px; }
+  .jcols > li { padding-top: 0; }
+  .jcols > li + li::before { display: none; }
 }
-@media (max-width: 900px) and (min-width: 721px) {
-  .tmap a { height: auto; min-height: 38px; padding-block: 6px; }
-  .tmap b { white-space: normal; overflow: visible; }
+@media (max-width: 640px) {
+  .jcols { grid-template-columns: minmax(0, 1fr); }
 }
+@media (prefers-reduced-motion: reduce) { .j-go:hover, .jcols > li:hover .j-card { transform: none; } }
 
 /* ───── What works today ───── */
 .now-std { margin: 0 0 clamp(22px, 2.4vw, 32px); }
 .now-std .link-arrow { margin-left: 10px; font-size: 14px; }
 
-/* ───── What comes next: the same map, with the modules in each part ───── */
+/* ───── What comes next: every module still in development ───── */
 .next-intro { margin: 0; max-width: 46em; font-size: 17px; line-height: 1.55; color: var(--ink-2); }
 .trail { list-style: none; margin: clamp(26px, 3vw, 40px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 18px; }
 @media (max-width: 1199px) { .trail { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
@@ -67,17 +87,5 @@
 .trail .now:nth-child(2) ul li::before { background: var(--cyan); }
 .trail .next { background: rgba(255,255,255,.45); border: 1px dashed var(--border-strong); }
 
-/* ───── Phones: the map scrolls sideways, and the badge sits under the buttons ───── */
-@media (max-width: 720px) {
-  .hb3 .hero { grid-template-areas: "head" "row" "award" "map" "tb"; }
-  .tmap ol { display: flex; gap: 22px; overflow-x: auto; scroll-snap-type: x proximity; padding: 2px 2px 8px; margin: 0 -2px; scrollbar-width: none; }
-  .tmap ol::-webkit-scrollbar { display: none; }
-  .tmap li { flex: 0 0 auto; scroll-snap-align: start; }
-  .tmap b { overflow: visible; }
-}
-@media (prefers-reduced-motion: reduce) { .tmap a:hover { transform: none; } }
-/* Short laptop screens: a little less air around the map, so the hero still fits one screen */
-@media (max-height: 800px) and (min-width: 921px) {
-  .tmap { margin-top: 12px; }
-  .hb3 .tb { margin-top: 12px; }
-}
+/* Keep "protocol-first" on one line when the headline wraps on phones */
+.hb3 h1 .nw { font-style: normal; white-space: nowrap; }

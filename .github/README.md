@@ -16,7 +16,7 @@ python3 -m http.server 8790
 ```
 
 Then open http://localhost:8790/. Open http://localhost:8790/heroes.html to compare the home-page hero options:
-E is the current `index.html`; F, B, D and A are `index-f.html`, `index-b.html`, `index-d.html` and `index-a.html`.
+E is the current `index.html`; F, B, D and A are `index-f.html`, `index-b.html`, `index-d.html` and `index-a.html`. `index-b2.html` is B with the amendment scroll story (`assets/story.css`, `assets/story.js`) after "What ClinMaker gives sponsors and CROs".
 
 After changing `assets/v7.css` or `assets/v7.js`, bump the `?v=` tag on every page so browsers load the new file.
 
@@ -34,7 +34,7 @@ git config core.hooksPath .githooks
 
 1. Connect the request form to a form service delivering to contact@clinmaker.com, and send one test request.
 2. Fill the Trust page facts (hosting, subprocessors, AI provider terms, encryption) and the counsel's wording for Privacy and Terms.
-3. Move hero B (the team's pick, `index-b.html`, with the use cases straight after the hero) into `index.html`, and delete `heroes.html`, the `index-?.html` drafts and `assets/hero-*` except the B files it needs.
+3. Move hero B (the team's pick, `index-b.html`, with the use cases straight after the hero) into `index.html`, and delete `heroes.html`, the `index-*.html` drafts and `assets/hero-*` except the B files it needs. If the team keeps the amendment story, start from `index-b2.html` instead and keep `assets/story.*`.
 4. Get the placeholder check passing, add redirects from the old page addresses, and review on desktop and phone.
 
 ## Design decisions so far

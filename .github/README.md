@@ -16,7 +16,7 @@ python3 -m http.server 8790
 ```
 
 Then open http://localhost:8790/. Open http://localhost:8790/heroes.html to compare the home-page hero options:
-E is the current `index.html`; F, B, D and A are `index-f.html`, `index-b.html`, `index-d.html` and `index-a.html`. `index-b2.html` is B with the amendment scroll story (`assets/story.css`, `assets/story.js`) after "What ClinMaker gives sponsors and CROs". `index-b3.html` ("B3 · the whole picture", `assets/hero-b3.css`) leads with what ClinMaker is ("The protocol-first platform for clinical development."), follows the hero with the whole platform in four parts (design, build, amend, then run and submit, which is in development), and orders the page as: where it starts, what works today, what comes next, the people building it.
+E is the current `index.html`; F, B, D and A are `index-f.html`, `index-b.html`, `index-d.html` and `index-a.html`. `index-b2.html` is B with the amendment scroll story (`assets/story.css`, `assets/story.js`) after "What ClinMaker gives sponsors and CROs". `index-b3.html` ("B3 · the whole picture", `assets/hero-b3.css`) leads with what ClinMaker is ("The protocol-first platform for clinical development."), shows the protocol at the centre of the hero with each team's work drawn from it (`assets/hero-b3.js` draws the lines), follows the hero with the whole platform in four parts (design, build, amend, then run and submit, which is in development), and orders the page as: where it starts, what works today, what comes next, the people building it.
 
 After changing `assets/v7.css` or `assets/v7.js`, bump the `?v=` tag on every page so browsers load the new file.
 

@@ -90,45 +90,78 @@
 /* Keep "protocol-first" on one line when the headline wraps on phones */
 .hb3 h1 .nw { font-style: normal; white-space: nowrap; }
 
-/* ───── The hero graphic: one clean scene, the product on a monitor (after faro.ai's) ───── */
-.hscene { grid-area: tb; position: relative; margin: clamp(24px, 2.8vw, 40px) 0 0; height: clamp(320px, calc(100vh - 400px), 580px); border-radius: var(--r-card); overflow: hidden; isolation: isolate;
-  box-shadow: 0 50px 100px -70px rgba(74,39,28,.55); }
-@supports (height: 100svh) { .hscene { height: clamp(320px, calc(100svh - 400px), 580px); } }
-.hs-room { position: absolute; inset: 0; }
-.hs-room > i { position: absolute; }
-/* The wall: warm on the window side, cooler away from it */
-.hs-room { background: linear-gradient(100deg, #f4ede6 0%, #eee8e2 45%, #e6e8e7 100%); }
-.hs-room > .hs-light { inset: 0; background: radial-gradient(60% 90% at 14% 8%, rgba(255,250,244,.95), rgba(255,250,244,0) 70%), radial-gradient(40% 60% at 92% 30%, rgba(206,226,232,.55), rgba(206,226,232,0) 70%); }
-/* Someone passing by, out of focus: depth without detail */
-.hs-room > .hs-blur { width: 30%; right: 2%; top: 4%; bottom: 18%;
-  background: radial-gradient(50% 50% at 50% 45%, rgba(120,150,165,.55), rgba(120,150,165,0) 70%), radial-gradient(40% 35% at 40% 20%, rgba(216,118,84,.25), rgba(216,118,84,0) 70%);
-  filter: blur(34px); opacity: .8; }
-/* The desk: a lighter surface with a soft front edge */
-.hs-room > .hs-desk { left: 0; right: 0; bottom: 0; height: 21%; background: linear-gradient(180deg, #e9e0d6 0%, #ddd1c4 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.7); }
-.hs-desk::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 30%; background: linear-gradient(180deg, rgba(0,0,0,0), rgba(74,39,28,.06)); }
-/* A faint dot grid in the corner, fading out */
-.hs-room > .hs-dots { top: 0; right: 0; width: 34%; height: 46%; background-image: radial-gradient(rgba(28,26,22,.2) 1.2px, transparent 1.4px); background-size: 16px 16px;
-  -webkit-mask-image: radial-gradient(120% 100% at 100% 0%, #000 0%, transparent 70%); mask-image: radial-gradient(120% 100% at 100% 0%, #000 0%, transparent 70%); }
+/* ───── The hero graphic: one protocol at the centre, every team's work drawn from it ─────
+   hero-b3.js draws the lines from the protocol to each card; solid while it is ready, dashed while it is coming. */
+.hub { grid-area: tb; position: relative; margin: clamp(24px, 2.8vw, 40px) 0 0; height: clamp(320px, calc(100vh - 400px), 560px);
+  display: grid; grid-template-columns: minmax(0, 1fr) clamp(230px, 24vw, 330px) minmax(0, 1fr); column-gap: clamp(56px, 7vw, 128px); align-items: center;
+  padding: clamp(18px, 2.4vw, 36px) clamp(20px, 3vw, 48px); border-radius: var(--r-card); isolation: isolate;
+  background: rgba(255,255,255,.38); border: 1px solid rgba(255,255,255,.85); box-shadow: 0 50px 100px -70px rgba(74,39,28,.5); }
+@supports (height: 100svh) { .hub { height: clamp(320px, calc(100svh - 400px), 560px); } }
+/* Ripples from the protocol: it is the one source */
+.hub::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; pointer-events: none;
+  background: repeating-radial-gradient(circle at 50% 50%, rgba(177,94,65,.11) 0 1px, rgba(177,94,65,0) 1.5px 58px);
+  -webkit-mask-image: radial-gradient(closest-side at 50% 50%, #000 25%, transparent 100%); mask-image: radial-gradient(closest-side at 50% 50%, #000 25%, transparent 100%); }
+.hub-lines { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; overflow: visible; pointer-events: none; }
 
-/* The monitor: a thin black bezel, an aluminium stand, its foot on the desk */
-.hs-monitor { position: absolute; left: 50%; bottom: 9%; height: 78%; aspect-ratio: 1.28; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; z-index: 2; }
-.hs-screen { position: relative; width: 100%; height: 80%; padding: .9%; border-radius: 12px; background: #141416;
-  box-shadow: 0 34px 60px -34px rgba(40,28,20,.6), 0 12px 24px -16px rgba(40,28,20,.4), inset 0 0 0 1px rgba(255,255,255,.08); }
-.hs-screen img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 0 0; border-radius: 6px; background: #fff; }
-/* A soft reflection across the glass */
-.hs-screen::after { content: ""; position: absolute; inset: .9%; border-radius: 6px; pointer-events: none; background: linear-gradient(115deg, rgba(255,255,255,.16) 0%, rgba(255,255,255,0) 38%); }
-.hs-neck { width: 10%; height: 15%; margin-top: -1px; background: linear-gradient(90deg, #c9c3bc 0%, #f1eeea 45%, #dedad5 72%, #c2bcb5 100%); clip-path: polygon(8% 0, 92% 0, 100% 100%, 0 100%); }
-.hs-foot { width: 26%; height: 3.4%; border-radius: 2px 2px 7px 7px; background: linear-gradient(180deg, #f2efeb 0%, #cdc7c0 100%); box-shadow: 0 12px 18px -10px rgba(40,28,20,.55); }
+/* The cards around it: what each team builds from the protocol */
+.hub-side { list-style: none; margin: 0; padding: 0; display: grid; align-content: center; gap: clamp(10px, 1.3vw, 18px); z-index: 1; }
+.hub-l { justify-items: end; }
+.hub-r { justify-items: start; }
+.hub-node { width: min(100%, 290px); display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 12px; align-items: center; padding: 11px 14px 11px 11px; border-radius: 16px;
+  background: rgba(255,255,255,.94); border: 1px solid rgba(255,255,255,.95); box-shadow: 0 20px 40px -28px rgba(74,39,28,.45); }
+.hn-ic { width: 36px; height: 36px; border-radius: 11px; display: grid; place-items: center; background: var(--brand-50); color: var(--brand-600); }
+.hub-r .hn-ic { background: var(--cyan-50); color: var(--cyan-700); }
+.hn-ic svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.hn-t { min-width: 0; display: grid; gap: 1px; }
+.hn-t small { font: 500 10.5px/1.35 var(--mono); color: var(--ink-muted); }
+.hn-t b { font: 600 14.5px/1.25 var(--sans); color: var(--ink); }
+.hn-t > span { font-size: 12.5px; line-height: 1.35; color: var(--ink-muted); }
+.hub-node.next { background: rgba(255,255,255,.4); border: 1px dashed rgba(28,26,22,.24); box-shadow: none; }
+.hub-node.next .hn-ic { background: transparent; border: 1px dashed var(--border-strong); color: var(--ink-muted); }
+.hub-node.next b { color: var(--ink-2); font-weight: 500; }
 
-/* The screen switches on once the scene has risen */
+/* The protocol, at the centre */
+.hub-doc { position: relative; z-index: 1; padding: 18px 18px 16px; border-radius: 20px; background: #fff; border: 1px solid var(--brand-200);
+  box-shadow: 0 0 0 8px rgba(255,255,255,.55), 0 40px 80px -40px rgba(74,39,28,.55), 0 14px 30px -20px rgba(14,116,144,.25); }
+.hd-top { display: flex; align-items: center; gap: 9px; }
+.hd-top .mark { width: 26px; height: 26px; flex-shrink: 0; }
+.hd-top b { margin-right: auto; font: 600 15.5px/1.2 var(--sans); color: var(--ink); }
+.hd-top .pill { font-size: 10.5px; padding: 5px 7px; }
+.hd-k { margin: 9px 0 12px; font: 500 11.5px/1.3 var(--mono); color: var(--ai-violet); }
+.hd-secs { list-style: none; margin: 0; padding: 0; display: grid; gap: 5px; }
+.hd-secs li { padding: 6px 9px; border-radius: 8px; background: #faf7f4; font: 400 13px/1.35 Georgia, "Times New Roman", serif; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hd-secs li span { margin-right: 8px; font: 500 11px/1 var(--mono); color: var(--brand-600); }
+.hd-foot { margin: 12px 0 0; font-size: 12.5px; font-weight: 600; color: var(--brand-700); }
+
+/* The lines (drawn by hero-b3.js) */
+.hub-lines .hl { fill: none; stroke-width: 1.5; }
+.hub-lines .hl.now.l { stroke: var(--brand-400); }
+.hub-lines .hl.now.r { stroke: var(--cyan); stroke-opacity: .75; }
+.hub-lines .hl.next { stroke: rgba(28,26,22,.3); stroke-dasharray: .014 .014; }
+.hub-lines .hd { fill: #fff; stroke-width: 1.5; }
+.hub-lines .hd.now.l { stroke: var(--brand-400); }
+.hub-lines .hd.now.r { stroke: var(--cyan); }
+.hub-lines .hd.next { stroke: rgba(28,26,22,.3); }
+.hub-lines .hp.l { fill: var(--brand-500); }
+.hub-lines .hp.r { fill: var(--cyan); }
+
+/* Entrance: the protocol settles, the cards appear, the lines draw out to them */
 @media (prefers-reduced-motion: no-preference) {
-  .hs-screen img { animation: hs-on 1.5s var(--ease) .7s both; }
-  .hs-screen::after { animation: fade-in 1.2s ease 1.2s both; }
+  .hub-doc { animation: hub-doc .9s var(--ease) .35s both; }
+  .hub-node { animation: fade-in .7s ease both; animation-delay: calc(var(--i) * 90ms + .7s); }
+  .hub:not(.drawn) .hl.now { stroke-dasharray: 1; stroke-dashoffset: 1; animation: hl-draw 1s var(--ease) forwards; animation-delay: calc(var(--i) * 110ms + .9s); }
+  .hub:not(.drawn) .hl.next, .hub:not(.drawn) .hd { opacity: 0; animation: fade-in .8s ease forwards; animation-delay: calc(var(--i) * 110ms + 1.2s); }
 }
-@keyframes hs-on { from { opacity: 0; filter: blur(6px) brightness(.4); transform: scale(1.03); } to { opacity: 1; filter: none; transform: none; } }
+@keyframes hub-doc { from { opacity: 0; transform: translateY(10px) scale(.97); } to { opacity: 1; transform: none; } }
+@keyframes hl-draw { to { stroke-dashoffset: 0; } }
 
-@media (max-width: 720px) {
-  .hscene { height: auto; aspect-ratio: 4 / 3.4; border-radius: 22px; }
-  .hs-monitor { height: 70%; bottom: 10%; }
-  .hs-screen { border-radius: 8px; }
+/* Tablets and phones: the protocol on top, the cards in a grid under it, no lines */
+@media (max-width: 900px) {
+  .hub { height: auto; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 12px; row-gap: 12px; padding: 18px; }
+  .hub::before { background-size: auto; -webkit-mask-image: radial-gradient(closest-side at 50% 22%, #000 20%, transparent 100%); mask-image: radial-gradient(closest-side at 50% 22%, #000 20%, transparent 100%); }
+  .hub-lines { display: none; }
+  .hub-side { display: contents; }
+  .hub-doc { grid-column: 1 / -1; grid-row: 1; justify-self: center; width: min(100%, 380px); margin-bottom: 6px; }
+  .hub-node { width: 100%; }
 }
+@media (max-width: 560px) { .hub { grid-template-columns: minmax(0, 1fr); } }

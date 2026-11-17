@@ -92,11 +92,15 @@
 
 /* ───── The hero graphic: one protocol at the centre, every team's work drawn from it ─────
    hero-b3.js draws the lines from the protocol to each card; solid while it is ready, dashed while it is coming. */
-.hub { grid-area: tb; position: relative; margin: clamp(24px, 2.8vw, 40px) 0 0; height: clamp(320px, calc(100vh - 400px), 560px);
+.hub { grid-area: tb; position: relative; margin: clamp(24px, 2.8vw, 40px) 0 0; height: clamp(320px, calc(100vh - 405px), 560px);
   display: grid; grid-template-columns: minmax(0, 1fr) clamp(230px, 24vw, 330px) minmax(0, 1fr); column-gap: clamp(56px, 7vw, 128px); align-items: center;
-  padding: clamp(18px, 2.4vw, 36px) clamp(20px, 3vw, 48px); border-radius: var(--r-card); isolation: isolate;
+  padding: clamp(14px, 2vw, 32px) clamp(20px, 3vw, 48px); border-radius: var(--r-card); isolation: isolate;
   background: rgba(255,255,255,.38); border: 1px solid rgba(255,255,255,.85); box-shadow: 0 50px 100px -70px rgba(74,39,28,.5); }
-@supports (height: 100svh) { .hub { height: clamp(320px, calc(100svh - 400px), 560px); } }
+@supports (height: 100svh) { .hub { height: clamp(320px, calc(100svh - 405px), 560px); } }
+/* Short laptop screens: less padding, so the four steps still fit */
+@media (max-height: 820px) and (min-width: 901px) { .hub { padding-block: 12px; } }
+/* Narrow laptops: each card keeps its standard and its name; the one-line description steps aside */
+@media (max-width: 1199px) and (min-width: 901px) { .hn-t > span { display: none; } }
 /* Ripples from the protocol: it is the one source */
 .hub::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; pointer-events: none;
   background: repeating-radial-gradient(circle at 50% 50%, rgba(177,94,65,.11) 0 1px, rgba(177,94,65,0) 1.5px 58px);
@@ -104,10 +108,10 @@
 .hub-lines { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; overflow: visible; pointer-events: none; }
 
 /* The cards around it: what each team builds from the protocol */
-.hub-side { list-style: none; margin: 0; padding: 0; display: grid; align-content: center; gap: clamp(10px, 1.3vw, 18px); z-index: 1; }
+.hub-side { list-style: none; margin: 0; padding: 0; display: grid; align-content: center; gap: clamp(8px, 1.1vw, 14px); z-index: 1; }
 .hub-l { justify-items: end; }
 .hub-r { justify-items: start; }
-.hub-node { width: min(100%, 290px); display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 12px; align-items: center; padding: 11px 14px 11px 11px; border-radius: 16px;
+.hub-node { width: min(100%, 290px); display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 12px; align-items: center; padding: 9px 14px 9px 10px; border-radius: 16px;
   background: rgba(255,255,255,.94); border: 1px solid rgba(255,255,255,.95); box-shadow: 0 20px 40px -28px rgba(74,39,28,.45); }
 .hn-ic { width: 36px; height: 36px; border-radius: 11px; display: grid; place-items: center; background: var(--brand-50); color: var(--brand-600); }
 .hub-r .hn-ic { background: var(--cyan-50); color: var(--cyan-700); }
@@ -119,6 +123,13 @@
 .hub-node.next { background: rgba(255,255,255,.4); border: 1px dashed rgba(28,26,22,.24); box-shadow: none; }
 .hub-node.next .hn-ic { background: transparent; border: 1px dashed var(--border-strong); color: var(--ink-muted); }
 .hub-node.next b { color: var(--ink-2); font-weight: 500; }
+
+/* The pipeline's end: the submission package, where everything downstream arrives */
+.hub-node.end { width: min(100%, 310px); padding-block: 12px; border: 1px solid var(--brand-300);
+  background: linear-gradient(135deg, #fff 0%, var(--brand-50) 100%); box-shadow: 0 0 0 5px rgba(255,255,255,.5), 0 26px 50px -28px rgba(177,94,65,.6); }
+.hub-node.end .hn-ic { background: var(--brand-600); color: #fff; }
+.hub-node.end small { color: var(--brand-700); }
+.hub-node.end b { font-size: 15.5px; }
 
 /* The protocol, at the centre */
 .hub-doc { position: relative; z-index: 1; padding: 18px 18px 16px; border-radius: 20px; background: #fff; border: 1px solid var(--brand-200);
@@ -144,24 +155,34 @@
 .hub-lines .hd.next { stroke: rgba(28,26,22,.3); }
 .hub-lines .hp.l { fill: var(--brand-500); }
 .hub-lines .hp.r { fill: var(--cyan); }
+.hub-lines .rail { fill: none; stroke: var(--cyan); stroke-opacity: .55; stroke-width: 1.5; }
+.hub-lines .tick { stroke: var(--cyan); stroke-opacity: .55; stroke-width: 1.5; }
+.hub-lines .stop circle { fill: #fff; stroke: var(--cyan); stroke-width: 1.5; }
+.hub-lines .stop text { font: 500 10px var(--mono); fill: var(--cyan-700); text-anchor: middle; dominant-baseline: central; }
+.hub-lines .stop.end circle { fill: var(--brand-600); stroke: var(--brand-600); }
+.hub-lines .stop.end text { fill: #fff; }
 
 /* Entrance: the protocol settles, the cards appear, the lines draw out to them */
 @media (prefers-reduced-motion: no-preference) {
   .hub-doc { animation: hub-doc .9s var(--ease) .35s both; }
   .hub-node { animation: fade-in .7s ease both; animation-delay: calc(var(--i) * 90ms + .7s); }
   .hub:not(.drawn) .hl.now { stroke-dasharray: 1; stroke-dashoffset: 1; animation: hl-draw 1s var(--ease) forwards; animation-delay: calc(var(--i) * 110ms + .9s); }
-  .hub:not(.drawn) .hl.next, .hub:not(.drawn) .hd { opacity: 0; animation: fade-in .8s ease forwards; animation-delay: calc(var(--i) * 110ms + 1.2s); }
+  .hub:not(.drawn) .hl.next, .hub:not(.drawn) .hd, .hub:not(.drawn) .tick, .hub:not(.drawn) .stop { opacity: 0; animation: fade-in .8s ease forwards; animation-delay: calc(var(--i) * 110ms + 1.2s); }
+  .hub:not(.drawn) .rail { stroke-dasharray: 1; stroke-dashoffset: 1; animation: hl-draw 1.8s var(--ease) 1s forwards; }
 }
 @keyframes hub-doc { from { opacity: 0; transform: translateY(10px) scale(.97); } to { opacity: 1; transform: none; } }
 @keyframes hl-draw { to { stroke-dashoffset: 0; } }
 
-/* Tablets and phones: the protocol on top, the cards in a grid under it, no lines */
+/* Tablets and phones: the protocol, then the pipeline in order, then what comes straight from the protocol; no lines */
 @media (max-width: 900px) {
-  .hub { height: auto; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 12px; row-gap: 12px; padding: 18px; }
-  .hub::before { background-size: auto; -webkit-mask-image: radial-gradient(closest-side at 50% 22%, #000 20%, transparent 100%); mask-image: radial-gradient(closest-side at 50% 22%, #000 20%, transparent 100%); }
+  .hub { height: auto; display: flex; flex-direction: column; align-items: stretch; gap: 12px; padding: 18px; }
+  .hub::before { -webkit-mask-image: radial-gradient(closest-side at 50% 18%, #000 20%, transparent 100%); mask-image: radial-gradient(closest-side at 50% 18%, #000 20%, transparent 100%); }
   .hub-lines { display: none; }
-  .hub-side { display: contents; }
-  .hub-doc { grid-column: 1 / -1; grid-row: 1; justify-self: center; width: min(100%, 380px); margin-bottom: 6px; }
-  .hub-node { width: 100%; }
+  .hub-doc { order: 0; align-self: center; width: min(100%, 380px); margin-bottom: 6px; }
+  .hub-r { order: 1; justify-items: stretch; counter-reset: step; }
+  .hub-l { order: 2; justify-items: stretch; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 6px; }
+  .hub-node, .hub-node.end { width: 100%; }
+  .hub-r .hub-node { counter-increment: step; }
+  .hub-r .hn-t small::before { content: counter(step) " · "; color: var(--cyan-700); }
 }
-@media (max-width: 560px) { .hub { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 720px) { .hub-l { grid-template-columns: minmax(0, 1fr); } }

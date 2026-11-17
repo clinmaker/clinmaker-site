@@ -43,7 +43,7 @@ git config core.hooksPath .githooks
 - Real product screens from the demo study, with study identifiers kept out of frame. No stock imagery.
 - Keep text light, especially on the home page. Every product claim is checked against the platform code.
 - Status labels are "Ready to demo" and "In development". No "AI-powered", "validated" or speed claims.
-- "Request a Protocol Teardown" is the main call to action, with the pilot second. The order everywhere is demo, Teardown, pilot.
+- "Request a demo" is the main call to action, with the pilot second. The order everywhere is demo, then pilot. The Protocol Teardown offer was dropped on 17 Nov 2026.
 - Card rails show three cards with the next one peeking in, a dark dot pill with play/pause, and auto-advance that pauses on hover, focus or off screen.
 - One motion system: tokens in `:root` of `assets/v7.css`, scroll reveals in `assets/v7.js`, and nothing moves under reduced motion.
 - Founders: Sunish Raj (Founder & CEO), Matthew Marshall (Co-Founder & COO), Kamal Chadha (Co-Founder & CTO).

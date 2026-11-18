@@ -52,3 +52,4 @@ git config core.hooksPath .githooks
 - Headings use one scale for the whole site, set as `--h1-home`, `--h1-page` and `--h2` in `assets/v7.css`: about 60, 49 and 40px at 1440 wide. Section headings stay within two lines.
 - The Product menu follows the home page's story: Platform overview, Standards, Protocol Digitization, Study Build, then the Roadmap (what comes next).
 - Every page has a one-line inline style just before `assets/v7.css` that hides the body until the stylesheet applies (`cm-reveal`, shown after 3 s regardless). It stops an unstyled first paint, where the logo SVG would fill the whole page. Copy it into any new page.
+- Fonts are served from `assets/fonts` (no Google Fonts request). Before launch, add the SIL Open Font License 1.1 text as `assets/fonts/OFL.txt` (see `assets/fonts/NOTICE.md`).

@@ -16,7 +16,7 @@ python3 -m http.server 8790
 ```
 
 Then open http://localhost:8790/. Open http://localhost:8790/heroes.html to compare the home-page hero options:
-E is the current `index.html`; F, B, D and A are `index-f.html`, `index-b.html`, `index-d.html` and `index-a.html`. `index-b2.html` is B with the amendment scroll story (`assets/story.css`, `assets/story.js`) after "What ClinMaker gives sponsors and CROs". `index-b3.html` ("B3 · the whole picture", `assets/hero-b3.css`) leads with what ClinMaker is ("The unified clinical platform, built on CDISC standards."), shows the platform concept in the hero: the structured protocol at the centre, what comes straight from it on the left, and a numbered pipeline on the right from the casebook to the submission package, each step tagged with its standard (`assets/hero-b3.js` draws the lines), follows the hero with the whole platform in four parts (design, build, amend, then run and submit, which is in development), and orders the page as: where it starts, what works today, what comes next, the people building it.
+E is the current `index.html`; F, B, D and A are `index-f.html`, `index-b.html`, `index-d.html` and `index-a.html`. `index-b2.html` is B with the amendment scroll story (`assets/story.css`, `assets/story.js`) after "What ClinMaker gives sponsors and CROs". `index-b3.html` ("B3 · the whole picture", `assets/hero-b3.css`) leads with what ClinMaker is ("The unified clinical platform, built on CDISC standards."), shows the platform concept in the hero: the structured protocol at the centre, what comes straight from it on the left, and a numbered pipeline on the right from the casebook to the submission package, each step tagged with its standard (`assets/hero-b3.js` draws the lines), follows the hero with the whole platform in four parts (design, build, amend, then run and submit, which is in development), and orders the page as: where it starts, where ClinMaker is today (the two modules ready to demo, then the three parts in development), use cases, and one closing "Start with a demo, then a pilot." section. The amendment scroll story lives on the Protocol Digitization page (`assets/story.*`).
 
 After changing `assets/v7.css` or `assets/v7.js`, bump the `?v=` tag on every page so browsers load the new file.
 
@@ -49,3 +49,5 @@ git config core.hooksPath .githooks
 - Founders: Sunish Raj (Founder & CEO), Matthew Marshall (Co-Founder & COO), Kamal Chadha (Co-Founder & CTO).
 - Contact address: contact@clinmaker.com.
 - No pricing on the website. `pricing.html` only redirects old links to the request form with a quote selected.
+- Headings use one scale for the whole site, set as `--h1-home`, `--h1-page` and `--h2` in `assets/v7.css`: about 60, 49 and 40px at 1440 wide. Section headings stay within two lines.
+- The Product menu follows the home page's story: Platform overview, Standards, Protocol Digitization, Study Build, then the Roadmap (what comes next).

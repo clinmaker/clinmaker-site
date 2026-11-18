@@ -5,7 +5,7 @@
 .story-pin { padding-block: clamp(64px, 8vw, 112px); }
 .story-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
 .story-copy .label { color: var(--brand-700); }
-.story-copy h2 { margin-top: 12px; max-width: 15em; font: 600 clamp(1.9rem, 3.2vw, 3rem)/1.06 var(--display); letter-spacing: -0.028em; color: var(--ink); }
+.story-copy h2 { margin-top: 12px; max-width: 15em; font: 500 var(--h2)/1.05 var(--display); letter-spacing: -0.026em; color: var(--ink); }
 .story-intro { margin-top: 14px; max-width: 34em; font-size: 17px; line-height: 1.55; color: var(--ink-2); }
 .story-steps { list-style: none; margin: 24px 0 0; padding: 0; display: grid; gap: 6px; }
 .story-step { all: unset; box-sizing: border-box; width: 100%; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 10px; padding: 14px 16px; border-radius: 16px; cursor: pointer;

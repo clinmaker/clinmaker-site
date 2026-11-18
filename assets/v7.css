@@ -55,6 +55,8 @@
 html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--nav-h) + 12px); }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 body { margin: 0; background: var(--bg-body); color: var(--ink); font-family: var(--sans); font-size: 17px; line-height: 1.55; letter-spacing: 0; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+/* Each page's head hides the body until this stylesheet applies, so nothing unstyled flashes on load */
+body { opacity: 1; animation: none; }
 a { color: inherit; }
 img, svg { max-width: 100%; }
 h1, h2, h3, h4, p, figure, blockquote, dl, dd { margin: 0; }

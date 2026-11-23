@@ -134,4 +134,18 @@
     if (still || !('IntersectionObserver' in window)) cd.classList.add('in');
     else new IntersectionObserver(function (en, o) { if (en[0].isIntersecting) { cd.classList.add('in'); o.disconnect(); } }, { threshold: 0.2 }).observe(cd);
   }
+  /* The row nearest the middle of the screen is in focus; the others rest */
+  var cdRows = cd ? Array.prototype.slice.call(cd.querySelectorAll('.cd-row')) : [];
+  if (cdRows.length && !still) {
+    var focusRow = function () {
+      var mid = window.innerHeight * 0.5, best = null, bestD = 1e9, r = cd.getBoundingClientRect();
+      var inView = r.top < window.innerHeight * 0.75 && r.bottom > window.innerHeight * 0.25;
+      cd.classList.toggle('focusing', inView);
+      cdRows.forEach(function (row) { var q = row.getBoundingClientRect(), d = Math.abs(q.top + q.height / 2 - mid); if (d < bestD) { bestD = d; best = row; } });
+      cdRows.forEach(function (row) { row.classList.toggle('on', row === best); });
+    };
+    var cdTick = false;
+    window.addEventListener('scroll', function () { if (!cdTick) { cdTick = true; requestAnimationFrame(function () { cdTick = false; focusRow(); }); } }, { passive: true });
+    focusRow();
+  }
 })();

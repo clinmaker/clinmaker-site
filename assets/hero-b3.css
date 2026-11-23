@@ -354,3 +354,13 @@
 #gap .cd { margin-top: clamp(28px, 3vw, 44px); }
 .cd-ch b, .cd-dl b { font-size: clamp(1.1rem, 1.4vw, 1.3rem); }
 .cd-h { font-size: clamp(1.2rem, 1.6vw, 1.5rem); }
+
+/* ───── Its own section: a tinted band, a heading that invites reading, one row in focus at a time ───── */
+.cd-band { background: linear-gradient(180deg, var(--bg-body) 0%, #f6efe9 18%, #eef3f2 82%, var(--bg-body) 100%); }
+.cd-band .cd { margin-top: clamp(24px, 3vw, 40px); }
+.cd-band .sec-head h2 { max-width: 22em; }
+@media (prefers-reduced-motion: no-preference) and (min-width: 761px) {
+  .cd.in .cd-row { transition: opacity .5s ease, background-color .5s ease; }
+  .cd.focusing .cd-row { opacity: .45; }
+  .cd.focusing .cd-row.on { opacity: 1; background: #fff; }
+}

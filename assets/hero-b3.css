@@ -346,3 +346,11 @@
 }
 .cd-wave { left: 16px; right: 16px; width: auto; }
 .cd-wave { width: calc(100% - 32px); }
+
+/* Balance: the statistics read as evidence, not headlines; the panel's headings hold their own */
+#gap .stat .n { font-size: clamp(2rem, 2.8vw, 2.6rem); color: var(--ink-2); }
+#gap .stat { padding-top: 20px; gap: 6px; }
+#gap .stat p { font-size: 14.5px; }
+#gap .cd { margin-top: clamp(28px, 3vw, 44px); }
+.cd-ch b, .cd-dl b { font-size: clamp(1.1rem, 1.4vw, 1.3rem); }
+.cd-h { font-size: clamp(1.2rem, 1.6vw, 1.5rem); }

@@ -214,3 +214,11 @@
 .pill.hi { color: #9a3412; background: #fdecea; border-color: #f3c2b6; }
 .pill.md { color: #8a5a00; background: #fdf3dc; border-color: #f1d9a0; }
 .pill.lo { color: var(--ink-muted); }
+
+/* The platform layer names the services every module shares; the foundation names the standards */
+.hub-docs .hl-chips { display: flex; gap: 6px; margin-left: auto; }
+.hub-layer .svc { font: 500 11.5px/1 var(--sans); padding: 5px 9px; border-radius: 999px; background: var(--brand-50); border: 1px solid var(--brand-200); color: var(--brand-800, #6f3b29); white-space: nowrap; }
+.hub-std .hl-chips { flex-wrap: wrap; }
+@media (max-height: 820px) and (min-width: 901px) { .hub-std .std.x { display: none; } .hub-docs .hl-chips { margin-left: 8px; } }
+@media (max-width: 1199px) and (min-width: 901px) { .hub-std .std.x { display: none; } .hub-docs .hl-t { display: none; } }
+@media (max-width: 900px) { .hub-docs .hl-chips { margin-left: 0; flex-wrap: wrap; } }

@@ -238,3 +238,18 @@
 @media (prefers-reduced-motion: no-preference) {
   .hub:not(.drawn) .rings { opacity: 0; animation: fade-in 1s ease .6s forwards; }
 }
+
+/* ───── The arcs in motion: they draw in once, rest while the protocol is a document,
+   then light up in turn (standards, then the Document centre) once it is structured ───── */
+.hub-lines .rings { transition: filter .7s ease; }
+.hub.is-raw .hub-lines .rings { filter: opacity(.35) grayscale(.5); }
+.hub-lines .ring-glow { fill: none; stroke: rgba(255,255,255,.95); stroke-width: 24; stroke-linecap: round; stroke-dasharray: .16 1.4; stroke-dashoffset: .16; opacity: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .hub:not(.drawn) .ring-band { animation: ring-draw 1.3s var(--ease) .5s both; }
+  .hub:not(.drawn) .ring-txt { opacity: 0; animation: fade-in .9s ease 1.4s forwards; }
+  .hub.ring-std-on .ring-glow.std, .hub.ring-docs-on .ring-glow.docs { animation: ring-sweep 1.2s var(--ease) both; }
+  .hub.ring-std-on .ring-band.std, .hub.ring-docs-on .ring-band.docs { animation: ring-flush 1.2s ease both; }
+}
+@keyframes ring-draw { from { stroke-dasharray: 0 1; stroke-dashoffset: -.5; } to { stroke-dasharray: 1 0; stroke-dashoffset: 0; } }
+@keyframes ring-sweep { 0% { opacity: 0; stroke-dashoffset: .16; } 15% { opacity: .9; } 85% { opacity: .9; } 100% { opacity: 0; stroke-dashoffset: -1; } }
+@keyframes ring-flush { 0% { filter: none; } 40% { filter: saturate(1.6) brightness(.95); } 100% { filter: none; } }

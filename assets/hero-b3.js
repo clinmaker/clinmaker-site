@@ -74,9 +74,9 @@
     var top = 'M' + xl + ' ' + f(cy - ry * s30) + ' A' + f(rx) + ' ' + f(ry) + ' 0 0 1 ' + xr + ' ' + f(cy - ry * s30);
     var bot = 'M' + xl + ' ' + f(cy + ry * s30) + ' A' + f(rx) + ' ' + f(ry) + ' 0 0 0 ' + xr + ' ' + f(cy + ry * s30);
     var rings = '<g class="rings">' +
-      '<path class="ring-band std" d="' + top + '"/><path id="ring-top" class="ring-path" d="' + top + '"/>' +
+      '<path class="ring-band std" d="' + top + '" pathLength="1"/><path class="ring-glow std" d="' + top + '" pathLength="1"/><path id="ring-top" class="ring-path" d="' + top + '"/>' +
       '<text class="ring-txt std"><textPath href="#ring-top" startOffset="50%" text-anchor="middle">' + (hub.getAttribute('data-ring-top') || '') + '</textPath></text>' +
-      '<path class="ring-band docs" d="' + bot + '"/><path id="ring-bot" class="ring-path" d="' + bot + '"/>' +
+      '<path class="ring-band docs" d="' + bot + '" pathLength="1"/><path class="ring-glow docs" d="' + bot + '" pathLength="1"/><path id="ring-bot" class="ring-path" d="' + bot + '"/>' +
       '<text class="ring-txt docs"><textPath href="#ring-bot" startOffset="50%" text-anchor="middle">' + (hub.getAttribute('data-ring-bot') || '') + '</textPath></text></g>';
     svg.innerHTML = rings + '<g class="flow">' + out + '</g><g class="pulses">' + pulses + '</g>';
     /* If a label is longer than its arc, shrink it until it fits */
@@ -99,14 +99,16 @@
      It holds the structured view, then plays again; it rests while off screen, and is still with reduced motion. */
   var timers = [], visible = true, playing = false;
   var later = function (ms, fn) { timers.push(setTimeout(fn, ms)); };
-  var raw = function (on) { hub.classList.toggle('is-raw', on); doc.classList.toggle('is-raw', on); };
+  var raw = function (on) { hub.classList.toggle('is-raw', on); doc.classList.toggle('is-raw', on); if (on) hub.classList.remove('ring-std-on', 'ring-docs-on'); };
+  /* Once the protocol is structured: the standards light up, then the Document centre */
+  var light = function () { later(250, function () { hub.classList.add('ring-std-on'); }); later(1000, function () { hub.classList.add('ring-docs-on'); }); };
   var cycle = function () {
     timers.forEach(clearTimeout); timers = [];
     if (!visible) { playing = false; return; }
     playing = true;
     doc.classList.remove('is-marking'); raw(true);
     later(1500, function () { doc.classList.add('is-marking'); });
-    later(3900, function () { raw(false); });
+    later(3900, function () { raw(false); light(); });
     later(3900 + 900, function () { doc.classList.remove('is-marking'); });
     later(3900 + 8000, cycle);
   };

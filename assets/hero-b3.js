@@ -134,18 +134,17 @@
     if (still || !('IntersectionObserver' in window)) cd.classList.add('in');
     else new IntersectionObserver(function (en, o) { if (en[0].isIntersecting) { cd.classList.add('in'); o.disconnect(); } }, { threshold: 0.2 }).observe(cd);
   }
-  /* The row nearest the middle of the screen is in focus; the others rest */
+  /* A one-time reading cue: when the panel first arrives, each row lights in turn, then all rest at full strength */
   var cdRows = cd ? Array.prototype.slice.call(cd.querySelectorAll('.cd-row')) : [];
-  if (cdRows.length && !still) {
-    var focusRow = function () {
-      var mid = window.innerHeight * 0.5, best = null, bestD = 1e9, r = cd.getBoundingClientRect();
-      var inView = r.top < window.innerHeight * 0.75 && r.bottom > window.innerHeight * 0.25;
-      cd.classList.toggle('focusing', inView);
-      cdRows.forEach(function (row) { var q = row.getBoundingClientRect(), d = Math.abs(q.top + q.height / 2 - mid); if (d < bestD) { bestD = d; best = row; } });
-      cdRows.forEach(function (row) { row.classList.toggle('on', row === best); });
-    };
-    var cdTick = false;
-    window.addEventListener('scroll', function () { if (!cdTick) { cdTick = true; requestAnimationFrame(function () { cdTick = false; focusRow(); }); } }, { passive: true });
-    focusRow();
+  if (cdRows.length && !still && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (en, o) {
+      if (!en[0].isIntersecting) return;
+      o.disconnect();
+      cdRows.forEach(function (row, n) {
+        setTimeout(function () { cdRows.forEach(function (r) { r.classList.toggle('on', r === row); }); }, 900 + n * 1100);
+      });
+      setTimeout(function () { cdRows.forEach(function (r) { r.classList.remove('on'); }); }, 900 + cdRows.length * 1100);
+    }, { threshold: 0.5 }).observe(cd);
   }
+
 })();

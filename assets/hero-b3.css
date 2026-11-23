@@ -253,3 +253,29 @@
 @keyframes ring-draw { from { stroke-dasharray: 0 1; stroke-dashoffset: -.5; } to { stroke-dasharray: 1 0; stroke-dashoffset: 0; } }
 @keyframes ring-sweep { 0% { opacity: 0; stroke-dashoffset: .16; } 15% { opacity: .9; } 85% { opacity: .9; } 100% { opacity: 0; stroke-dashoffset: -1; } }
 @keyframes ring-flush { 0% { filter: none; } 40% { filter: saturate(1.6) brightness(.95); } 100% { filter: none; } }
+
+/* ───── Your challenge → ClinMaker delivers (under the statistics in "Where it starts") ───── */
+.cd { margin-top: clamp(36px, 4vw, 56px); display: grid; grid-template-columns: minmax(0, 1fr) 48px minmax(0, 1fr); gap: 14px 0; align-items: stretch; }
+.cd-h { margin: 0 0 4px; font: 600 clamp(1.15rem, 1.5vw, 1.4rem)/1.2 var(--display); letter-spacing: -0.015em; color: var(--ink); }
+.cd-h-r { color: var(--brand-700); }
+.cd-ch, .cd-dl { border-radius: 18px; padding: clamp(16px, 1.6vw, 22px) clamp(18px, 1.8vw, 26px); display: flex; align-items: center; }
+.cd-ch p, .cd-dl p { margin: 0; font-size: 15.5px; line-height: 1.55; }
+.cd-ch { background: rgba(255,255,255,.75); border: 1px solid var(--border-subtle); color: var(--ink-2); }
+.cd-ch b { color: var(--ink); }
+.cd-dl { background: linear-gradient(135deg, #fff 0%, var(--brand-50) 100%); border: 1px solid var(--brand-200); box-shadow: 0 24px 48px -36px rgba(177,94,65,.55); color: var(--ink); }
+.cd-dl b { color: var(--brand-700); }
+.cd-arrow { display: grid; place-items: center; color: var(--brand-600); }
+.cd-arrow svg { width: 30px; height: 30px; padding: 6px; border-radius: 50%; background: #fff; border: 1px solid var(--brand-200); box-shadow: 0 8px 18px -10px rgba(177,94,65,.5); }
+@media (prefers-reduced-motion: no-preference) {
+  .cd .cd-ch, .cd .cd-dl, .cd .cd-arrow { opacity: 0; transform: translateY(12px); transition: opacity .6s ease, transform .8s var(--ease); }
+  .cd .cd-dl { transform: translateX(-14px); }
+  .cd.in .cd-ch, .cd.in .cd-dl, .cd.in .cd-arrow { opacity: 1; transform: none; }
+  .cd.in .cd-ch { transition-delay: calc(var(--i) * 140ms); }
+  .cd.in .cd-dl { transition-delay: calc(var(--i) * 140ms + 260ms); }
+}
+@media (max-width: 760px) {
+  .cd { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .cd-h-r, .cd > span:not(.cd-arrow) { display: none; }
+  .cd-arrow { transform: rotate(90deg) !important; }
+  .cd-dl { margin-bottom: 14px; }
+}

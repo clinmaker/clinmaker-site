@@ -127,4 +127,11 @@
   if ('IntersectionObserver' in window && svg && svg.pauseAnimations) {
     new IntersectionObserver(function (en) { if (en[0].isIntersecting) svg.unpauseAnimations(); else svg.pauseAnimations(); }).observe(hub);
   }
+
+  /* Your challenge → ClinMaker delivers: the rows arrive when the block comes into view */
+  var cd = document.querySelector('.cd');
+  if (cd) {
+    if (still || !('IntersectionObserver' in window)) cd.classList.add('in');
+    else new IntersectionObserver(function (en, o) { if (en[0].isIntersecting) { cd.classList.add('in'); o.disconnect(); } }, { threshold: 0.2 }).observe(cd);
+  }
 })();

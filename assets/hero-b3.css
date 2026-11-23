@@ -298,3 +298,8 @@
   .cd-arrow { visibility: visible; color: var(--brand-600); }
   .cd { grid-template-columns: minmax(0, 1fr); gap: 8px; }
 }
+/* Lighter: soft teal and terracotta tints, dark text, coloured lead-ins */
+.cd-ch { color: var(--ink-2); background: linear-gradient(120deg, var(--cyan-100) 0%, var(--cyan-50) 100%); filter: drop-shadow(0 14px 22px rgba(11,93,115,.12)); }
+.cd-ch b { color: var(--cyan-700); }
+.cd-dl { color: var(--ink-2); background: linear-gradient(120deg, var(--brand-100) 0%, var(--brand-50) 100%); box-shadow: 0 22px 44px -32px rgba(147,78,54,.45); border: 1px solid var(--brand-200); }
+.cd-dl b { color: var(--brand-700); }

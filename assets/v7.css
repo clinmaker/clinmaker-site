@@ -134,6 +134,7 @@ ul, ol { margin: 0; padding: 0; }
 .dropdown { position: absolute; top: calc(100% + 14px); left: -8px; min-width: 310px; background: rgba(255,255,255,.96); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); border: 1px solid var(--border-subtle); border-radius: 20px; box-shadow: 0 24px 50px -24px rgba(74,39,28,.35); padding: 8px; display: grid; opacity: 0; visibility: hidden; transform: translateY(-6px) scale(.985); transform-origin: 24px 0; transition: opacity .18s ease, transform .24s var(--ease), visibility 0s linear .24s; }
 /* The Product menu carries a line of story under each item, so it is a little wider */
 #dd-product { min-width: 390px; }
+#dd-resources { min-width: 360px; }
 .nav-item.open .dropdown { opacity: 1; visibility: visible; transform: none; transition: opacity .2s ease, transform .26s var(--ease), visibility 0s; }
 @media (hover: hover) and (min-width: 1001px) { .nav-item:hover .dropdown { opacity: 1; visibility: visible; transform: none; transition: opacity .2s ease .04s, transform .26s var(--ease) .04s, visibility 0s .04s; } .nav-item:hover .nav-trigger svg { transform: rotate(180deg); } }
 .dropdown::before { content: ""; position: absolute; left: 0; right: 0; top: -16px; height: 16px; }

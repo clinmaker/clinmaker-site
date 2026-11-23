@@ -728,7 +728,7 @@ table.ctl.cmp thead th.us { color: var(--brand-700); background: var(--brand-100
 
 /* Footer (light) */
 .site-footer { background: var(--bg-secondary); color: var(--ink); padding-block: clamp(52px, 6vw, 80px) 36px; border-top: 1px solid var(--border-subtle); }
-.ft-top { display: grid; grid-template-columns: minmax(0, 1.3fr) repeat(3, minmax(0, .7fr)); gap: 32px; }
+.ft-top { display: grid; grid-template-columns: minmax(0, 1.2fr) repeat(4, minmax(0, .7fr)); gap: 32px; }
 .ft-brand .tag { margin-top: 14px; color: var(--ink-2); font-size: 15px; max-width: 22em; }
 .ft-brand .mono { display: block; margin-top: 16px; color: var(--ink-2); font-size: 14px; }
 .ft-col h4 { font: 500 11.5px/1 var(--sans); color: var(--ink-muted); margin-bottom: 14px; }
@@ -1186,7 +1186,7 @@ html:has(.sheet[open]) { overflow: hidden; }
   .rec-toast.t2 { margin: 12px auto 0; }
   .feat-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .team { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-  .ft-top { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .ft-top { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .ft-brand { grid-column: 1 / -1; }
   .config-summary { position: static; }
   .status-strip { grid-template-columns: minmax(0, 1fr); }

@@ -254,52 +254,49 @@
 @keyframes ring-sweep { 0% { opacity: 0; stroke-dashoffset: .16; } 15% { opacity: .9; } 85% { opacity: .9; } 100% { opacity: 0; stroke-dashoffset: -1; } }
 @keyframes ring-flush { 0% { filter: none; } 40% { filter: saturate(1.6) brightness(.95); } 100% { filter: none; } }
 
-/* ───── Your challenge → ClinMaker delivers (under the statistics in "Where it starts") ───── */
-.cd { margin-top: clamp(36px, 4vw, 56px); display: grid; grid-template-columns: minmax(0, 1fr) 48px minmax(0, 1fr); gap: 14px 0; align-items: stretch; }
-.cd-h { margin: 0 0 4px; font: 600 clamp(1.15rem, 1.5vw, 1.4rem)/1.2 var(--display); letter-spacing: -0.015em; color: var(--ink); }
-.cd-h-r { color: var(--brand-700); }
-.cd-ch, .cd-dl { border-radius: 18px; padding: clamp(16px, 1.6vw, 22px) clamp(18px, 1.8vw, 26px); display: flex; align-items: center; }
-.cd-ch p, .cd-dl p { margin: 0; font-size: 15.5px; line-height: 1.55; }
-.cd-ch { background: rgba(255,255,255,.75); border: 1px solid var(--border-subtle); color: var(--ink-2); }
-.cd-ch b { color: var(--ink); }
-.cd-dl { background: linear-gradient(135deg, #fff 0%, var(--brand-50) 100%); border: 1px solid var(--brand-200); box-shadow: 0 24px 48px -36px rgba(177,94,65,.55); color: var(--ink); }
-.cd-dl b { color: var(--brand-700); }
-.cd-arrow { display: grid; place-items: center; color: var(--brand-600); }
-.cd-arrow svg { width: 30px; height: 30px; padding: 6px; border-radius: 50%; background: #fff; border: 1px solid var(--brand-200); box-shadow: 0 8px 18px -10px rgba(177,94,65,.5); }
-@media (prefers-reduced-motion: no-preference) {
-  .cd .cd-ch, .cd .cd-dl, .cd .cd-arrow { opacity: 0; transform: translateY(12px); transition: opacity .6s ease, transform .8s var(--ease); }
-  .cd .cd-dl { transform: translateX(-14px); }
-  .cd.in .cd-ch, .cd.in .cd-dl, .cd.in .cd-arrow { opacity: 1; transform: none; }
-  .cd.in .cd-ch { transition-delay: calc(var(--i) * 140ms); }
-  .cd.in .cd-dl { transition-delay: calc(var(--i) * 140ms + 260ms); }
-}
-@media (max-width: 760px) {
-  .cd { grid-template-columns: minmax(0, 1fr); gap: 8px; }
-  .cd-h-r, .cd > span:not(.cd-arrow) { display: none; }
-  .cd-arrow { transform: rotate(90deg) !important; }
-  .cd-dl { margin-bottom: 14px; }
-}
-
-/* Your challenge → ClinMaker delivers, in the brand colours: teal arrows into terracotta answers */
-.cd { grid-template-columns: minmax(0, 1fr) 14px minmax(0, 1fr); gap: 16px 0; }
+/* ───── Your challenge → how ClinMaker addresses it (under the statistics in "Where it starts") ─────
+   Each row joins a challenge to its answer: a teal-to-terracotta line with the ClinMaker mark on it. */
+.cd { margin-top: clamp(36px, 4vw, 56px); display: grid; gap: 14px; }
+.cd-head, .cd-row { display: grid; grid-template-columns: minmax(0, 1fr) clamp(64px, 6vw, 96px) minmax(0, 1fr); align-items: stretch; }
+.cd-h { margin: 0 0 2px; font: 600 clamp(1.15rem, 1.5vw, 1.4rem)/1.2 var(--display); letter-spacing: -0.015em; }
 .cd-h-l { color: var(--cyan-700); }
 .cd-h-r { color: var(--brand-700); }
-.cd-ch { position: relative; border: 0; border-radius: 0; padding-right: clamp(40px, 3.4vw, 52px); color: rgba(255,255,255,.9);
-  background: linear-gradient(120deg, #0a4f62 0%, var(--cyan-700) 55%, var(--cyan) 100%);
-  clip-path: polygon(14px 0, calc(100% - 26px) 0, 100% 50%, calc(100% - 26px) 100%, 14px 100%, 0 calc(100% - 14px), 0 14px);
-  filter: drop-shadow(0 18px 26px rgba(11,93,115,.22)); }
-.cd-ch b { color: #fff; }
-.cd-dl { border: 0; color: rgba(255,255,255,.92); background: linear-gradient(120deg, var(--brand-700) 0%, var(--brand-600) 100%);
-  box-shadow: 0 26px 50px -30px rgba(147,78,54,.7); }
-.cd-dl b { color: #fff; }
-.cd-arrow { visibility: hidden; }
-@media (max-width: 760px) {
-  .cd-ch { clip-path: none; border-radius: 18px; padding-right: clamp(16px, 1.6vw, 22px); filter: none; }
-  .cd-arrow { visibility: visible; color: var(--brand-600); }
-  .cd { grid-template-columns: minmax(0, 1fr); gap: 8px; }
-}
-/* Lighter: soft teal and terracotta tints, dark text, coloured lead-ins */
-.cd-ch { color: var(--ink-2); background: linear-gradient(120deg, var(--cyan-100) 0%, var(--cyan-50) 100%); filter: drop-shadow(0 14px 22px rgba(11,93,115,.12)); }
+.cd-h-mid { align-self: center; height: 2px; margin-inline: 14px; border-radius: 2px; background: linear-gradient(90deg, var(--cyan), var(--brand-500)); position: relative; }
+.cd-h-mid::after { content: ""; position: absolute; right: -2px; top: 50%; width: 8px; height: 8px; border-top: 2px solid var(--brand-500); border-right: 2px solid var(--brand-500); transform: translateY(-50%) rotate(45deg); }
+.cd-ch, .cd-dl { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px; align-items: center; padding: clamp(16px, 1.6vw, 22px) clamp(18px, 1.8vw, 24px); border-radius: 18px; }
+.cd-ch p, .cd-dl p { margin: 0; font-size: 15.5px; line-height: 1.55; color: var(--ink-2); }
+.cd-ch { background: linear-gradient(120deg, var(--cyan-100) 0%, var(--cyan-50) 100%); border: 1px solid var(--cyan-200); }
 .cd-ch b { color: var(--cyan-700); }
-.cd-dl { color: var(--ink-2); background: linear-gradient(120deg, var(--brand-100) 0%, var(--brand-50) 100%); box-shadow: 0 22px 44px -32px rgba(147,78,54,.45); border: 1px solid var(--brand-200); }
+.cd-dl { background: linear-gradient(120deg, var(--brand-50) 0%, var(--brand-100) 100%); border: 1px solid var(--brand-200); box-shadow: 0 22px 44px -32px rgba(147,78,54,.45); }
 .cd-dl b { color: var(--brand-700); }
+.cd-ic { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; font: normal 600 12px var(--mono); }
+.cd-ic.num { color: var(--cyan-700); background: #fff; border: 1.5px solid var(--cyan-200); }
+.cd-ic.ok { color: #fff; background: var(--brand-600); }
+.cd-ic.ok svg { width: 16px; height: 16px; }
+/* The bridge: the line from challenge to answer, with ClinMaker on it */
+.cd-bridge { position: relative; display: grid; place-items: center; }
+.cd-bridge::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 2px; transform: translateY(-50%); background: linear-gradient(90deg, var(--cyan), var(--brand-500)); }
+.cd-bridge::after { content: ""; position: absolute; right: 2px; top: 50%; width: 8px; height: 8px; border-top: 2px solid var(--brand-500); border-right: 2px solid var(--brand-500); transform: translateY(-50%) rotate(45deg); }
+.cd-node { position: relative; z-index: 1; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: #fff; border: 1px solid var(--brand-200); box-shadow: 0 10px 22px -12px rgba(177,94,65,.6); }
+.cd-node .cd-mk { width: 26px; height: 26px; }
+@media (prefers-reduced-motion: no-preference) {
+  .cd .cd-ch, .cd .cd-dl, .cd .cd-node { opacity: 0; transition: opacity .6s ease, transform .8s var(--ease); }
+  .cd .cd-ch { transform: translateX(-14px); }
+  .cd .cd-dl { transform: translateX(14px); }
+  .cd .cd-node { transform: scale(.6); }
+  .cd .cd-bridge::before { transform: translateY(-50%) scaleX(0); transform-origin: left center; transition: transform .7s var(--ease); }
+  .cd.in .cd-ch, .cd.in .cd-dl, .cd.in .cd-node { opacity: 1; transform: none; }
+  .cd.in .cd-bridge::before { transform: translateY(-50%) scaleX(1); }
+  .cd.in .cd-row .cd-ch { transition-delay: calc(var(--i) * 180ms); }
+  .cd.in .cd-row .cd-bridge::before { transition-delay: calc(var(--i) * 180ms + 200ms); }
+  .cd.in .cd-row .cd-node { transition-delay: calc(var(--i) * 180ms + 380ms); }
+  .cd.in .cd-row .cd-dl { transition-delay: calc(var(--i) * 180ms + 520ms); }
+}
+@media (max-width: 760px) {
+  .cd-head { display: none; }
+  .cd-row { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 56px auto; margin-bottom: 18px; }
+  .cd-bridge::before { left: 50%; right: auto; top: 0; bottom: 0; width: 2px; height: auto; transform: translateX(-50%); background: linear-gradient(180deg, var(--cyan), var(--brand-500)); }
+  .cd-bridge::after { display: none; }
+  .cd .cd-bridge::before { transform: translateX(-50%); }
+}
+@media (max-width: 760px) { .cd-bridge::before { display: none; } }

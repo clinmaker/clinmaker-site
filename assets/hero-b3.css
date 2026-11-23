@@ -300,3 +300,27 @@
   .cd .cd-bridge::before { transform: translateX(-50%); }
 }
 @media (max-width: 760px) { .cd-bridge::before { display: none; } }
+
+/* Header without the arrow; the connector is a flexible curve that draws in, then light flows along it */
+.cd-h-mid { visibility: hidden; }
+.cd-bridge::before, .cd-bridge::after { display: none !important; }
+.cd-wave { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.cd-wave path { fill: none; vector-effect: non-scaling-stroke; stroke-linecap: round; }
+.cd-wave .w-base { stroke-width: 2; }
+.cd-wave .w-flow { stroke: #fff; stroke-width: 3; stroke-dasharray: .05 .28; opacity: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .cd .cd-wave .w-base { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1s var(--ease); }
+  .cd.in .cd-wave .w-base { stroke-dashoffset: 0; }
+  .cd.in .cd-row .cd-wave .w-base { transition-delay: calc(var(--i) * 180ms + 200ms); }
+  .cd.in .cd-wave .w-flow { opacity: .9; animation: cd-flow 2.4s linear infinite; animation-delay: calc(var(--i) * 300ms + 1.4s); transition: opacity .6s ease 1.2s; }
+}
+@keyframes cd-flow { to { stroke-dashoffset: -.66; } }
+@media (max-width: 760px) { .cd-wave { display: none; } }
+.cd-wave { inset: auto 0; top: 50%; height: 40px; transform: translateY(-50%); }
+.cd-wave path { vector-effect: none; }
+.cd-wave .w-base { stroke-width: 2.2; }
+.cd-wave .w-flow { stroke-width: 3.2; }
+.cd-head, .cd-row { grid-template-columns: minmax(0, 1fr) clamp(120px, 11vw, 170px) minmax(0, 1fr); }
+.cd-node { width: 38px; height: 38px; }
+.cd-node .cd-mk { width: 22px; height: 22px; }
+@media (max-width: 760px) { .cd-head, .cd-row { grid-template-columns: minmax(0, 1fr); } }

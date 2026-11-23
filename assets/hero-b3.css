@@ -222,3 +222,19 @@
 @media (max-height: 820px) and (min-width: 901px) { .hub-std .std.x { display: none; } .hub-docs .hl-chips { margin-left: 8px; } }
 @media (max-width: 1199px) and (min-width: 901px) { .hub-std .std.x { display: none; } .hub-docs .hl-t { display: none; } }
 @media (max-width: 900px) { .hub-docs .hl-chips { margin-left: 0; flex-wrap: wrap; } }
+
+/* ───── The two layers as curved bands around the protocol (drawn by hero-b3.js); rows only on small screens ───── */
+@media (min-width: 901px) {
+  .hub { grid-template-rows: minmax(0, 1fr); }
+  .hub-layer { display: none; }
+}
+.hub-lines .ring-band { fill: none; stroke-width: 24; stroke-linecap: round; }
+.hub-lines .ring-band.std { stroke: rgba(186, 223, 231, .55); }
+.hub-lines .ring-band.docs { stroke: rgba(248, 201, 181, .5); }
+.hub-lines .ring-path { fill: none; stroke: none; }
+.hub-lines .ring-txt { font: 600 10.5px var(--mono); letter-spacing: .08em; text-transform: uppercase; dominant-baseline: central; }
+.hub-lines .ring-txt.std { fill: var(--cyan-700); }
+.hub-lines .ring-txt.docs { fill: var(--brand-700); }
+@media (prefers-reduced-motion: no-preference) {
+  .hub:not(.drawn) .rings { opacity: 0; animation: fade-in 1s ease .6s forwards; }
+}

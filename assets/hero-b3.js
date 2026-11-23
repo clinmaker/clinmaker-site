@@ -57,7 +57,34 @@
       });
       if (!still) { pulses += pulse('r', rail, 4.2, '2.4'); pulses += pulse('r', rail, 4.2, '4.5'); }
     }
-    svg.innerHTML = '<g class="flow">' + out + '</g><g class="pulses">' + pulses + '</g>';
+    /* Two curved bands around the protocol: the standards it is built on (top) and the platform's
+       Document centre and shared services (bottom). They span 120 degrees, so they stay clear of the lines. */
+    var cx = d0.x + d0.w / 2, cy = d0.y + d0.h / 2;
+    var rx = d0.w / 2 + 96, ry = Math.min(d0.h / 2 + 44, cy - 14, H - cy - 14);
+    /* Where there is little height, the bands sweep less, so their ends stay clear of the lines */
+    var tight = ry < d0.h / 2 + 40, ang = (tight ? 40 : 30) * Math.PI / 180;
+    var c30 = Math.cos(ang), s30 = Math.sin(ang);
+    /* and never reach past the gap between the card and the side boxes */
+    var gapL = left.length ? cx - (box(left[0]).x + box(left[0]).w) : rx, gapR = right.length ? box(right[0]).x - cx : rx;
+    rx = Math.max(d0.w / 2 + 24, Math.min(rx, (Math.min(gapL, gapR) - 40) / c30));
+    /* tall enough that the ellipse clears the card's corners (plus the band's half-width) */
+    var cw = d0.w / 2 + 14, ch = d0.h / 2 + 14, k = Math.min(0.97, cw / rx);
+    ry = Math.min(Math.max(ry, ch / Math.sqrt(1 - k * k) + 14), cy - 14, H - cy - 14);
+    var xl = f(cx - rx * c30), xr = f(cx + rx * c30);
+    var top = 'M' + xl + ' ' + f(cy - ry * s30) + ' A' + f(rx) + ' ' + f(ry) + ' 0 0 1 ' + xr + ' ' + f(cy - ry * s30);
+    var bot = 'M' + xl + ' ' + f(cy + ry * s30) + ' A' + f(rx) + ' ' + f(ry) + ' 0 0 0 ' + xr + ' ' + f(cy + ry * s30);
+    var rings = '<g class="rings">' +
+      '<path class="ring-band std" d="' + top + '"/><path id="ring-top" class="ring-path" d="' + top + '"/>' +
+      '<text class="ring-txt std"><textPath href="#ring-top" startOffset="50%" text-anchor="middle">' + (hub.getAttribute('data-ring-top') || '') + '</textPath></text>' +
+      '<path class="ring-band docs" d="' + bot + '"/><path id="ring-bot" class="ring-path" d="' + bot + '"/>' +
+      '<text class="ring-txt docs"><textPath href="#ring-bot" startOffset="50%" text-anchor="middle">' + (hub.getAttribute('data-ring-bot') || '') + '</textPath></text></g>';
+    svg.innerHTML = rings + '<g class="flow">' + out + '</g><g class="pulses">' + pulses + '</g>';
+    /* If a label is longer than its arc, shrink it until it fits */
+    Array.prototype.forEach.call(svg.querySelectorAll('.ring-txt'), function (t) {
+      var path = svg.querySelector(t.classList.contains('std') ? '#ring-top' : '#ring-bot');
+      var room = path.getTotalLength() - 24, size = 10.5;
+      while (t.getComputedTextLength && t.getComputedTextLength() > room && size > 7.5) { size -= 0.5; t.style.fontSize = size + 'px'; }
+    });
   };
 
   var queued = false;

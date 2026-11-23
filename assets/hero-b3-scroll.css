@@ -1,0 +1,51 @@
+/* B3 · Apple-style scrolling. Effects are linked to scroll position (they play forward as you scroll down
+   and reverse as you scroll back up), using the browser's scroll-driven animations. Browsers without them
+   keep the site's usual fade-ins; reduced motion turns all of this off. Effects animate the individual
+   translate / scale / opacity properties so they never fight the page's own entrance animations. */
+
+@supports (animation-timeline: view()) {
+@media (prefers-reduced-motion: no-preference) {
+
+  /* ── 1. Hero lift-off: the words ease up and soften as you leave the top; the graphic leans in.
+        Tied to the page scroll (the hero band clips its overflow, so it cannot drive a view timeline) ── */
+  .hb3 .hero-head, .hb3 .hero-sub, .hb3 .hero-ctas, .hb3 .hero-award {
+    animation: s-lift linear both; animation-timeline: scroll(root); animation-range: 0 65vh;
+  }
+  .hb3 .hub.rise {
+    animation-name: rise, s-lean; animation-duration: .9s, auto; animation-timing-function: var(--ease), linear;
+    animation-delay: .34s, 0s; animation-fill-mode: forwards, both;
+    animation-timeline: auto, scroll(root); animation-range: normal, 0 90vh;
+  }
+
+  /* ── 2. Section openings rise in step with the scroll ── */
+  .hb3 ~ section .sec-head, #gap .gap-grid, .cd-lead, .cd-head {
+    opacity: 1; transform: none; transition: none;
+    animation: s-rise linear both; animation-timeline: view(); animation-range: entry 0% cover 30%;
+  }
+
+  /* ── 3. The statistics rise one after another (the numbers count up: hero-b3.js) ── */
+  #gap .stat { animation: s-rise linear both; animation-timeline: view(); }
+  #gap .stat:nth-child(1) { animation-range: entry 0% cover 28%; }
+  #gap .stat:nth-child(2) { animation-range: entry 10% cover 34%; }
+  #gap .stat:nth-child(3) { animation-range: entry 20% cover 40%; }
+
+  /* ── 4. Challenge rows slide up as they come into view ── */
+  .cd > .cd-row { animation: s-row linear both; animation-timeline: view(); animation-range: entry 0% cover 35%; }
+
+  /* ── 5. Module cards and stage cards scale in, like Apple's media reveals ── */
+  #today .xcard, #today .trail > li, #use-cases .uc {
+    animation: s-media linear both; animation-timeline: view(); animation-range: entry 0% cover 35%;
+  }
+  #today .xcards, #use-cases .rv { opacity: 1; transform: none; }
+
+  /* ── 6. The page's tone eases from warm to neutral to teal and back, as one continuous surface ── */
+  body { animation: s-tone linear both; animation-timeline: scroll(root); }
+}
+}
+
+@keyframes s-lift { to { translate: 0 -60px; opacity: .15; } }
+@keyframes s-lean { to { scale: 1.04; } }
+@keyframes s-rise { from { translate: 0 48px; opacity: 0; } to { translate: 0 0; opacity: 1; } }
+@keyframes s-row { from { translate: 0 36px; opacity: .2; } to { translate: 0 0; opacity: 1; } }
+@keyframes s-media { from { scale: .92; opacity: .35; } to { scale: 1; opacity: 1; } }
+@keyframes s-tone { 0% { background-color: #fbf8f6; } 30% { background-color: #f8f2ed; } 55% { background-color: #f3f4f2; } 80% { background-color: #eef4f4; } 100% { background-color: #fbf8f6; } }

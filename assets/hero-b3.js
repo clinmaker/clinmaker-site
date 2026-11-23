@@ -147,4 +147,25 @@
     }, { threshold: 0.5 }).observe(cd);
   }
 
+
+  /* The statistics count up once as they come into view ("68 days", "3.4", "Up to $1M") */
+  var stats = Array.prototype.slice.call(document.querySelectorAll('#gap .stat .n'));
+  if (stats.length && !still && 'IntersectionObserver' in window) {
+    stats.forEach(function (n) {
+      var node = n.firstChild; if (!node || node.nodeType !== 3) return;
+      var text = node.nodeValue, m = text.match(/\d+(\.\d+)?/); if (!m) return;
+      var target = parseFloat(m[0]), dec = m[1] ? m[1].length - 1 : 0, pre = text.slice(0, m.index), post = text.slice(m.index + m[0].length);
+      node.nodeValue = pre + (0).toFixed(dec) + post;
+      new IntersectionObserver(function (en, o) {
+        if (!en[0].isIntersecting) return; o.disconnect();
+        var t0 = performance.now(), dur = 1200;
+        var step = function (t) {
+          var k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+          node.nodeValue = pre + (target * e).toFixed(dec) + post;
+          if (k < 1) requestAnimationFrame(step); else node.nodeValue = text;
+        };
+        requestAnimationFrame(step);
+      }, { threshold: 0.6 }).observe(n);
+    });
+  }
 })();

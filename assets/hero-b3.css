@@ -279,3 +279,22 @@
   .cd-arrow { transform: rotate(90deg) !important; }
   .cd-dl { margin-bottom: 14px; }
 }
+
+/* Your challenge → ClinMaker delivers, in the brand colours: teal arrows into terracotta answers */
+.cd { grid-template-columns: minmax(0, 1fr) 14px minmax(0, 1fr); gap: 16px 0; }
+.cd-h-l { color: var(--cyan-700); }
+.cd-h-r { color: var(--brand-700); }
+.cd-ch { position: relative; border: 0; border-radius: 0; padding-right: clamp(40px, 3.4vw, 52px); color: rgba(255,255,255,.9);
+  background: linear-gradient(120deg, #0a4f62 0%, var(--cyan-700) 55%, var(--cyan) 100%);
+  clip-path: polygon(14px 0, calc(100% - 26px) 0, 100% 50%, calc(100% - 26px) 100%, 14px 100%, 0 calc(100% - 14px), 0 14px);
+  filter: drop-shadow(0 18px 26px rgba(11,93,115,.22)); }
+.cd-ch b { color: #fff; }
+.cd-dl { border: 0; color: rgba(255,255,255,.92); background: linear-gradient(120deg, var(--brand-700) 0%, var(--brand-600) 100%);
+  box-shadow: 0 26px 50px -30px rgba(147,78,54,.7); }
+.cd-dl b { color: #fff; }
+.cd-arrow { visibility: hidden; }
+@media (max-width: 760px) {
+  .cd-ch { clip-path: none; border-radius: 18px; padding-right: clamp(16px, 1.6vw, 22px); filter: none; }
+  .cd-arrow { visibility: visible; color: var(--brand-600); }
+  .cd { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+}

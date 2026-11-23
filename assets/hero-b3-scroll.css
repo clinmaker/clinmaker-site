@@ -33,10 +33,10 @@
   .cd > .cd-row { animation: s-row linear both; animation-timeline: view(); animation-range: entry 0% cover 35%; }
 
   /* ── 5. Module cards and stage cards scale in, like Apple's media reveals ── */
-  #today .xcard, #today .trail > li, #use-cases .uc {
+  #today .xcard, #today .trail > li {
     animation: s-media linear both; animation-timeline: view(); animation-range: entry 0% cover 35%;
   }
-  #today .xcards, #use-cases .rv { opacity: 1; transform: none; }
+  #today .xcards { opacity: 1; transform: none; }
 
   /* ── 6. The page's tone eases from warm to neutral to teal and back, as one continuous surface ── */
   body { animation: s-tone linear both; animation-timeline: scroll(root); }

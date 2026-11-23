@@ -340,6 +340,9 @@ a.eyebrow:hover { background: rgba(255,255,255,.85); }
 .xrail::-webkit-scrollbar { display: none; }
 .xrail > * { scroll-snap-align: start; }
 
+/* Use cases page: exactly three cards in view (no peek of a fourth); the rail sits inside the page width */
+.wrap > .xrail.xrail-3 { --peek: 0; --rail-pad: 0px; padding-inline: 0; scroll-padding-inline: 0; }
+
 /* Use-case card */
 .uc { background: var(--bg-elevated); border-radius: 24px; border: 1px solid rgba(255,255,255,.9); box-shadow: 0 24px 50px -36px rgba(74,39,28,.45); overflow: hidden; display: flex; flex-direction: column; min-height: 100%; transition: box-shadow var(--t-settle) var(--ease); }
 .uc:hover { box-shadow: 0 30px 60px -36px rgba(74,39,28,.55); }

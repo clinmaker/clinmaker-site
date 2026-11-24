@@ -385,3 +385,18 @@
   .cd > .cd-row > .cd-ch, .cd > .cd-row > .cd-dl { border: 1px solid var(--bx-line); border-radius: 18px; }
   .cd > .cd-row:last-of-type > .cd-ch { box-shadow: none; }
 }
+
+/* ───── Every challenge and every answer is its own box, with space between the rows; larger text ───── */
+.cd { gap: clamp(14px, 1.4vw, 20px); }
+.cd-head { margin-bottom: calc(-1 * clamp(4px, .6vw, 8px)); }
+.cd > .cd-row > .cd-ch, .cd > .cd-row > .cd-dl,
+.cd > .cd-head + .cd-row > .cd-ch, .cd > .cd-head + .cd-row > .cd-dl,
+.cd > .cd-row:last-of-type > .cd-ch, .cd > .cd-row:last-of-type > .cd-dl { border: 1px solid var(--bx-line); border-radius: 20px; }
+.cd > .cd-row > .cd-ch { box-shadow: 0 26px 50px -40px rgba(14,116,144,.45); }
+.cd > .cd-row > .cd-dl { box-shadow: 0 26px 50px -40px rgba(147,78,54,.5); }
+.cd > .cd-row.on > .cd-ch { box-shadow: inset 3px 0 0 var(--cyan), 0 26px 50px -36px rgba(14,116,144,.5); }
+.cd > .cd-row.on > .cd-dl { box-shadow: inset 3px 0 0 var(--brand-500), 0 26px 50px -36px rgba(147,78,54,.55); }
+.cd-ch b, .cd-dl b { font-size: clamp(1.2rem, 1.55vw, 1.45rem); margin-bottom: 8px; }
+.cd-ch p, .cd-dl p { font-size: clamp(16px, 1.15vw, 17.5px); line-height: 1.6; }
+.cd-ch b::before { font-size: 12.5px; }
+@media (max-width: 760px) { .cd { gap: 0; } .cd-head { margin-bottom: 0; } }

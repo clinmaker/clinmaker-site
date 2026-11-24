@@ -436,3 +436,6 @@
 .cd-h-ic { width: 18px; height: 18px; padding: 5px; margin-block: -5px; }
 .cd-h-mk { width: 20px; height: 20px; padding: 4px; margin-block: -5px; background: var(--brand-600); }
 .cd-head { margin-bottom: clamp(2px, .4vw, 6px); }
+
+/* More air between the "Where it starts" text and the challenge boxes */
+#gap .gap-grid + .cd { margin-top: clamp(64px, 7vw, 112px); }

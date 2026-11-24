@@ -360,3 +360,28 @@
 #gap .cd { margin-top: clamp(18px, 2vw, 26px); }
 .cd > .cd-row { transition: background-color .5s ease, box-shadow .5s ease; }
 .cd > .cd-row.on { background: #fff; box-shadow: inset 3px 0 0 var(--brand-500); }
+
+/* ───── Two separate boxes: "Your challenge" on the left, "ClinMaker delivers" on the right.
+   Each row's two cells join their column's box; the flowing curve and the mark sit in the open gap between. ───── */
+.cd > .cd-row { padding: 0; background: none; border: 0; border-radius: 0; box-shadow: none; }
+.cd > .cd-row:first-of-type, .cd > .cd-row:last-of-type { border: 0; border-radius: 0; box-shadow: none; }
+.cd-head { padding: 0 0 12px; }
+.cd-head .cd-h { padding-inline: clamp(20px, 2.2vw, 30px); }
+.cd > .cd-row > .cd-ch, .cd > .cd-row > .cd-dl { padding: clamp(20px, 2.2vw, 30px) clamp(20px, 2.2vw, 30px);
+  border-left: 1px solid var(--bx-line); border-right: 1px solid var(--bx-line); border-top: 1px solid var(--bx-div); transition: background-color .5s ease, box-shadow .5s ease; }
+.cd > .cd-row > .cd-ch { --bx-line: var(--cyan-200); --bx-div: rgba(14,116,144,.12); background: rgba(255,255,255,.82); }
+.cd > .cd-row > .cd-dl { --bx-line: var(--brand-200); --bx-div: rgba(177,94,65,.14); background: linear-gradient(120deg, rgba(255,255,255,.9), var(--brand-50)); }
+.cd > .cd-head + .cd-row > .cd-ch, .cd > .cd-head + .cd-row > .cd-dl { border-top-color: var(--bx-line); border-radius: 22px 22px 0 0; }
+.cd > .cd-row:last-of-type > .cd-ch, .cd > .cd-row:last-of-type > .cd-dl { border-bottom: 1px solid var(--bx-line); border-radius: 0 0 22px 22px; }
+.cd > .cd-row:last-of-type > .cd-ch { box-shadow: 0 40px 70px -56px rgba(14,116,144,.45); }
+.cd > .cd-row:last-of-type > .cd-dl { box-shadow: 0 40px 70px -56px rgba(147,78,54,.5); }
+/* Reading cue: the row in focus lights in both boxes */
+.cd > .cd-row.on { background: none; box-shadow: none; }
+.cd > .cd-row.on > .cd-ch { background: #fff; box-shadow: inset 3px 0 0 var(--cyan); }
+.cd > .cd-row.on > .cd-dl { background: #fff; box-shadow: inset 3px 0 0 var(--brand-500); }
+@media (max-width: 760px) {
+  /* Phones: one column, so each challenge and its answer are their own small cards */
+  .cd > .cd-row { margin-bottom: 18px; }
+  .cd > .cd-row > .cd-ch, .cd > .cd-row > .cd-dl { border: 1px solid var(--bx-line); border-radius: 18px; }
+  .cd > .cd-row:last-of-type > .cd-ch { box-shadow: none; }
+}

@@ -439,3 +439,18 @@
 
 /* More air between the "Where it starts" text and the challenge boxes */
 #gap .gap-grid + .cd { margin-top: clamp(64px, 7vw, 112px); }
+
+/* ───── Current state: a bigger tag and numbers that pop ───── */
+.stats-tag { padding: 11px 22px; font-size: clamp(14px, 1.1vw, 16px); letter-spacing: .08em; }
+.stats-box { padding-top: clamp(40px, 3.8vw, 52px); }
+#gap .stats-box .stat .n { font-size: clamp(2.8rem, 4.4vw, 4rem); font-weight: 600; letter-spacing: -0.03em;
+  background: linear-gradient(120deg, var(--brand-700), var(--brand-500)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+#gap .stats-box .stat .n sup { -webkit-text-fill-color: var(--brand-600); }
+#gap .stats-box .stat p { font-size: clamp(15px, 1.1vw, 16.5px); color: var(--ink-2); }
+
+/* ───── The challenge and delivers set is read as one piece: a single panel holds headers and all six boxes ───── */
+#gap .cd { padding: clamp(26px, 3vw, 44px) clamp(20px, 2.6vw, 40px) clamp(28px, 3vw, 44px); border: 1px solid var(--border);
+  border-radius: 28px; background: linear-gradient(160deg, rgba(236,246,248,.75), rgba(255,255,255,.55) 45%, rgba(253,241,235,.8));
+  box-shadow: 0 40px 80px -60px rgba(74,39,28,.4); }
+@media (max-width: 760px) { #gap .cd { padding: 22px 14px; border-radius: 22px; } }
+#gap .gap-grid + .cd { margin-top: clamp(48px, 5vw, 80px); }

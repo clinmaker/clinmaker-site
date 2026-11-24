@@ -427,3 +427,12 @@
 #gap .stats-box .stat { padding-top: 0; }
 #gap .stats-box + .gap-grid { margin-top: clamp(44px, 5vw, 72px); }
 @media (max-width: 720px) { #gap .stats-box .stat { padding: 16px 0; } #gap .stats-box .stat:first-child { padding-top: 0; } #gap .stats-box .stat:last-child { border-bottom: 0; padding-bottom: 0; } }
+
+/* Headers step back: no filled box, just the label and a coloured rule across the column, so the boxes below lead */
+.cd-head .cd-h { padding: 0 0 12px 4px; border: 0; border-radius: 0; background: none; box-shadow: none;
+  font-size: clamp(1.15rem, 1.45vw, 1.35rem); gap: 10px; }
+.cd-head .cd-h-l { color: var(--cyan-700); border-bottom: 2px solid var(--cyan-200); }
+.cd-head .cd-h-r { color: var(--brand-700); border-bottom: 2px solid var(--brand-300, #eab29c); }
+.cd-h-ic { width: 18px; height: 18px; padding: 5px; margin-block: -5px; }
+.cd-h-mk { width: 20px; height: 20px; padding: 4px; margin-block: -5px; background: var(--brand-600); }
+.cd-head { margin-bottom: clamp(2px, .4vw, 6px); }

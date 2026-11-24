@@ -400,3 +400,14 @@
 .cd-ch p, .cd-dl p { font-size: clamp(16px, 1.15vw, 17.5px); line-height: 1.6; }
 .cd-ch b::before { font-size: 12.5px; }
 @media (max-width: 760px) { .cd { gap: 0; } .cd-head { margin-bottom: 0; } }
+
+/* ───── Column headers as labelled tabs: a teal "Your challenge" and a filled brand "ClinMaker delivers" with the mark ───── */
+.cd-head { align-items: end; margin-bottom: 0; }
+.cd-head .cd-h { justify-self: start; display: inline-flex; align-items: center; gap: 10px; margin: 0; padding: 10px 20px 10px 14px;
+  border-radius: 999px; font: 600 clamp(1.05rem, 1.3vw, 1.2rem)/1 var(--display); letter-spacing: -0.005em; }
+.cd-head .cd-h-l { color: var(--cyan-700); background: #fff; border: 1px solid var(--cyan-200); box-shadow: 0 14px 30px -22px rgba(14,116,144,.55); }
+.cd-head .cd-h-r { color: #fff; background: linear-gradient(120deg, var(--brand-600), var(--brand-500)); border: 1px solid var(--brand-600); box-shadow: 0 16px 32px -20px rgba(177,94,65,.7); }
+.cd-h-ic { width: 22px; height: 22px; padding: 4px; box-sizing: content-box; border-radius: 50%; background: var(--cyan-50); color: var(--cyan-700); margin-block: -4px; }
+.cd-h-mk { width: 26px; height: 26px; padding: 2px; box-sizing: content-box; border-radius: 50%; background: rgba(255,255,255,.18); margin-block: -4px; }
+.cd-head { padding-bottom: 0; }
+#gap .cd { margin-top: clamp(28px, 3vw, 40px); }

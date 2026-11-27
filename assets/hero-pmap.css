@@ -1,0 +1,61 @@
+/* B3 Platform page: the platform map as the opening visual */
+.pmx { margin: clamp(26px, 3vw, 40px) 0 0; padding: clamp(22px, 3vw, 40px); border-radius: 32px; position: relative;
+  background: rgba(255,255,255,.62); border: 1px solid rgba(255,255,255,.95);
+  box-shadow: 0 1px 0 rgba(255,255,255,.9) inset, 0 50px 100px -60px rgba(74,39,28,.45); backdrop-filter: blur(6px); }
+.pmx-main { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.55fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 96px); align-items: center; }
+.pmx-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 0; }
+.pmx-lines path { fill: none; stroke-width: 1.6; stroke-linecap: round; }
+.pmx-lines .ln-in { stroke: url(#pmx-gin); } .pmx-lines .ln-out { stroke: url(#pmx-gout); }
+.pmx-lines .ln-dev { stroke-dasharray: 3 5; opacity: .6; }
+.pmx-lines circle { fill: #fff; stroke-width: 2; }
+.pmx-col { position: relative; z-index: 1; display: grid; gap: 12px; }
+.pmx-h { margin: 0 0 2px 4px; font: 600 11.5px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-muted); }
+.pm-card { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 16px;
+  background: #fff; border: 1px solid rgba(28,26,22,.07); box-shadow: 0 14px 30px -24px rgba(74,39,28,.45); }
+.pm-ic { width: 36px; height: 36px; border-radius: 11px; display: grid; place-items: center; background: var(--brand-50); color: var(--brand-600); }
+.pm-ic svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.pm-tx { display: grid; gap: 2px; min-width: 0; }
+.pm-tx b { font: 600 14.5px/1.25 var(--display); letter-spacing: -0.01em; color: var(--ink); }
+.pm-tx span { font-size: 12.5px; line-height: 1.3; color: var(--ink-muted); }
+.pm-st { font: 600 10.5px/1 var(--sans); letter-spacing: .04em; padding: 5px 8px; border-radius: 999px; color: var(--brand-700); background: var(--brand-50); }
+.pm-card.dev { background: rgba(255,255,255,.7); box-shadow: none; border-style: dashed; border-color: rgba(28,26,22,.14); }
+.pm-card.dev .pm-ic { background: rgba(28,26,22,.05); color: var(--ink-muted); }
+.pm-card.dev .pm-st { color: var(--ink-muted); background: transparent; border: 1px dashed rgba(28,26,22,.2); }
+.pmx-core { position: relative; z-index: 1; padding: clamp(18px, 2vw, 26px); border-radius: 26px; background: #fff;
+  box-shadow: 0 0 0 1px rgba(216,118,84,.18), 0 40px 80px -48px rgba(147,78,54,.55); display: grid; gap: clamp(18px, 2vw, 24px); }
+.pmx-core::before { content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; pointer-events: none;
+  background: linear-gradient(120deg, #d87654, #7850dc 55%, #0e7490); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: .55; }
+.pmx-hubc { display: grid; justify-items: center; gap: 8px; text-align: center; padding: clamp(18px, 2vw, 26px) 16px; border-radius: 18px;
+  background: radial-gradient(120% 140% at 50% 0%, rgba(120,80,220,.08), transparent 60%), linear-gradient(120deg, var(--brand-50), #fff 50%, var(--cyan-50)); }
+.pmx-mark { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; background: #fff; box-shadow: 0 10px 24px -14px rgba(147,78,54,.6); }
+.pmx-mark svg { width: 30px; height: 30px; }
+.pmx-hubc b { font: 600 clamp(1.25rem, 1.75vw, 1.6rem)/1.15 var(--display); letter-spacing: -0.02em; color: var(--ink); }
+.pmx-std { font: 500 12px/1 var(--mono); color: var(--ink-muted); letter-spacing: .02em; }
+.pmx-stages { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); position: relative; }
+.pmx-stages::before { content: ""; position: absolute; left: 10%; right: 10%; top: 7px; height: 2px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--brand-500) 0 35%, rgba(28,26,22,.12) 35%); }
+.pmx-stages li { position: relative; display: grid; justify-items: center; gap: 3px; text-align: center; padding-top: 24px; }
+.pmx-stages i { position: absolute; top: 0; width: 16px; height: 16px; border-radius: 50%; background: #fff; border: 2px solid rgba(28,26,22,.22); }
+.pmx-stages li.rdy i { border: 0; background: var(--brand-600); box-shadow: 0 0 0 4px var(--brand-100); }
+.pmx-stages b { font: 600 13.5px/1.2 var(--display); color: var(--ink); }
+.pmx-stages span { font-size: 12px; line-height: 1.3; color: var(--ink-muted); }
+.pmx-stages li.rdy span { color: var(--brand-700); }
+.pmx-base { margin-top: clamp(20px, 2.4vw, 30px); display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.pmx-band { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 14px 16px; border-radius: 18px; }
+.pmx-band b { width: 100%; margin-bottom: 2px; font: 600 11.5px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; }
+.pmx-band span { font: 500 12.5px/1 var(--sans); padding: 7px 11px; border-radius: 999px; background: #fff; color: var(--ink-2); box-shadow: 0 0 0 1px rgba(28,26,22,.06); }
+.pmx-band.std { background: linear-gradient(120deg, rgba(14,116,144,.09), rgba(14,116,144,.03)); } .pmx-band.std b { color: var(--cyan-700); }
+.pmx-band.trust { background: linear-gradient(120deg, rgba(120,80,220,.09), rgba(120,80,220,.03)); } .pmx-band.trust b { color: #5b37c4; }
+.pmx-cap { margin-top: 16px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; font-size: 13px; color: var(--ink-muted); }
+.pmx-key { display: inline-flex; align-items: center; gap: 8px; }
+.pmx-key i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.pmx-key i.r { background: var(--brand-600); } .pmx-key i.n { margin-left: 10px; border: 1.5px dashed var(--ink-muted); }
+@media (max-width: 980px) {
+  .pmx-main { grid-template-columns: minmax(0, 1fr); gap: 22px; } .pmx-lines { display: none; }
+  .pmx-core::after { content: none; } .pmx-base { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 560px) { .pmx-stages { grid-template-columns: repeat(5, minmax(0, 1fr)); } .pmx-stages span { display: none; } .pmx-stages b { font-size: 12px; } }
+@media (max-width: 1520px) and (min-width: 981px) {
+  .pmx-main { grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) minmax(0, 1fr); gap: clamp(36px, 4vw, 56px); }
+  .pm-st { display: none; } .pm-card { grid-template-columns: auto minmax(0, 1fr); }
+}

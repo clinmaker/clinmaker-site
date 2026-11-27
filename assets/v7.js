@@ -403,7 +403,7 @@
     var params = new URLSearchParams(location.search);
     var type = params.get('type');
     if (type) {
-      var map = { demo: 'req-demo', pilot: 'req-pilot', teardown: 'req-demo', quote: 'req-quote' };
+      var map = { demo: 'req-demo', early: 'req-pilot', pilot: 'req-pilot', teardown: 'req-demo', quote: 'req-quote' };
       var box = doc.getElementById(map[type]); if (box) box.checked = true;
     }
 
@@ -411,7 +411,7 @@
       e.preventDefault();
       var status = doc.getElementById('form-status');
       var picked = form.querySelectorAll('input[name="request"]:checked').length;
-      if (!picked) { status.hidden = false; status.className = 'form-status warn'; status.textContent = 'Choose at least one: a demo, a pilot or a quote.'; return; }
+      if (!picked) { status.hidden = false; status.className = 'form-status warn'; status.textContent = 'Choose at least one: a demo, the early adopter program or a quote.'; return; }
       if (!form.checkValidity()) { form.reportValidity(); return; }
       var endpoint = form.getAttribute('action') || '';
       if (endpoint.indexOf('__FORMSPREE_ENDPOINT__') !== -1 || !endpoint) {

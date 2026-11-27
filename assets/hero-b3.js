@@ -70,9 +70,20 @@
     /* tall enough that the ellipse clears the card's corners (plus the band's half-width) */
     var cw = d0.w / 2 + 14, ch = d0.h / 2 + 14, k = Math.min(0.97, cw / rx);
     ry = Math.min(Math.max(ry, ch / Math.sqrt(1 - k * k) + 14), cy - 14, H - cy - 14);
-    var xl = f(cx - rx * c30), xr = f(cx + rx * c30);
-    var top = 'M' + xl + ' ' + f(cy - ry * s30) + ' A' + f(rx) + ' ' + f(ry) + ' 0 0 1 ' + xr + ' ' + f(cy - ry * s30);
-    var bot = 'M' + xl + ' ' + f(cy + ry * s30) + ' A' + f(rx) + ' ' + f(ry) + ' 0 0 0 ' + xr + ' ' + f(cy + ry * s30);
+    /* Keep the bands clear of the card. A true ellipse needs height the hero may not have, so where it
+       would touch the card the curve squares off a little (a superellipse, exponent n > 2): it still
+       reads as an arch, and it hugs the card without touching it. Ends stay clear of the side lines. */
+    var a = (d0.w / 2 + 26) / rx, b = (d0.h / 2 + 26) / ry, n = 2;
+    while (a < 1 && b < 1 && Math.pow(a, n) + Math.pow(b, n) > 1 && n < 12) n += 0.25;
+    var gapMin = Math.min(gapL, gapR) - 40;
+    if (n > 2 && gapMin < rx) ang = Math.max(ang, Math.acos(Math.min(1, Math.pow(gapMin / rx, n / 2))));
+    var sp = function (t) { var ct = Math.cos(t), st = Math.sin(t);
+      return [cx + rx * (ct < 0 ? -1 : 1) * Math.pow(Math.abs(ct), 2 / n), ry * Math.pow(Math.abs(st), 2 / n)]; };
+    var arc = function (sgn) { var d = '', N = 64;
+      for (var i = 0; i <= N; i++) { var t = Math.PI - ang - (Math.PI - 2 * ang) * i / N, p = sp(t);
+        d += (i ? ' L' : 'M') + f(p[0]) + ' ' + f(cy + sgn * p[1]); }
+      return d; };
+    var top = arc(-1), bot = arc(1);
     var rings = '<g class="rings">' +
       '<path class="ring-band std" d="' + top + '" pathLength="1"/><path class="ring-glow std" d="' + top + '" pathLength="1"/><path id="ring-top" class="ring-path" d="' + top + '"/>' +
       '<text class="ring-txt std"><textPath href="#ring-top" startOffset="50%" text-anchor="middle">' + (hub.getAttribute('data-ring-top') || '') + '</textPath></text>' +

@@ -566,3 +566,6 @@ html { scroll-behavior: smooth; }
 .cd-head .cd-h .cm-wm { font-size: 1.04em; letter-spacing: -0.04em; margin-right: 0; }
 /* Gradient numbers: room for descenders (the y in "days"), which the text clip was cutting off */
 .tl-n b, #gap .stats-box .stat .n { line-height: 1.12; padding-bottom: .1em; margin-bottom: -.06em; }
+
+/* Enough height for the card plus both arcs, so the arcs never touch the card (short screens scroll a little) */
+@media (min-width: 901px) { .hub { min-height: 384px; } }

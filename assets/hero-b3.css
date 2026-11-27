@@ -506,3 +506,12 @@ html { scroll-behavior: smooth; }
 #recognition { scroll-margin-top: 90px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .award-link img { transition: none; } }
 @media (max-width: 760px) { .rec-award { grid-template-columns: 1fr; } .rec-badge { max-width: 180px; } }
+
+/* ───── The "why" statement sits inside the Current state box, below the numbers, after a soft divider ───── */
+#gap .stats-box .gap-grid { margin-top: clamp(28px, 3vw, 40px); padding-top: clamp(28px, 3vw, 40px); position: relative; }
+#gap .stats-box .gap-grid::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--brand-200) 15%, var(--cyan-200) 85%, transparent); }
+#gap .stats-box .gap-grid h2 { margin-top: 0; font-size: clamp(1.6rem, 2.4vw, 2.2rem); }
+#gap .stats-box .gap-grid .gap-copy p { font-size: clamp(15.5px, 1.1vw, 17px); }
+#gap .stats-box + .cd { margin-top: clamp(40px, 4vw, 64px); }
+#gap .stats-box .gap-grid::before { height: 2px; border-radius: 2px; background: linear-gradient(90deg, transparent, var(--brand-300, #eab29c) 12%, var(--cyan-200) 88%, transparent); }

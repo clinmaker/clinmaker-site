@@ -519,3 +519,10 @@ html { scroll-behavior: smooth; }
 #gap .stats-box .gap-grid { grid-template-columns: minmax(0, 1fr); gap: 14px; }
 #gap .stats-box .gap-grid h2 { max-width: none; }
 #gap .stats-box .gap-grid .gap-copy p { max-width: 62em; }
+
+/* ───── The turn: ClinMaker's answer, between the Current state box and the challenge set, in a violet gradient ───── */
+#gap .gap-turn { margin: clamp(40px, 4.5vw, 68px) auto 0; max-width: 24em; text-align: center;
+  font: 600 clamp(1.7rem, 3vw, 2.6rem)/1.18 var(--display); letter-spacing: -0.025em;
+  background: linear-gradient(100deg, #5b37c4 0%, var(--ai-violet, #7850dc) 45%, #a77ff0 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+#gap .gap-turn + .cd { margin-top: clamp(36px, 4vw, 60px); }
+#gap .gap-turn { text-wrap: balance; }

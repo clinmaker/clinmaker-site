@@ -537,3 +537,7 @@ html { scroll-behavior: smooth; }
 .cd-ch b::before { font-size: 13px; padding: 6px 8px; }
 .cd-dl b::before { width: 10px; height: 10px; }
 .cd-ch b, .cd-dl b { font-size: clamp(1.15rem, 1.5vw, 1.4rem); }
+/* The violet answer now opens the challenge → delivers panel, sized to the panel's own headings */
+#gap .cd > .gap-turn { margin: 0 0 clamp(18px, 2vw, 28px); padding-bottom: clamp(18px, 2vw, 26px); font-size: clamp(1.2rem, 1.75vw, 1.65rem);
+  border-bottom: 1px solid rgba(120,80,220,.16); }
+#gap .stats-box + .cd { margin-top: clamp(40px, 4vw, 64px); }

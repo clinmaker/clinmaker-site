@@ -541,3 +541,10 @@ html { scroll-behavior: smooth; }
 #gap .cd > .gap-turn { margin: 0 0 clamp(18px, 2vw, 28px); padding-bottom: clamp(18px, 2vw, 26px); font-size: clamp(1.2rem, 1.75vw, 1.65rem);
   border-bottom: 1px solid rgba(120,80,220,.16); }
 #gap .stats-box + .cd { margin-top: clamp(40px, 4vw, 64px); }
+
+/* ───── Type scale for the panel: column headers become labels, so the purple line, titles and text step down cleanly ───── */
+.cd-head .cd-h { font: 600 clamp(12.5px, .95vw, 14px)/1 var(--sans); letter-spacing: .09em; text-transform: uppercase; gap: 10px; padding-bottom: 14px; }
+.cd-h-ic { width: 14px; height: 14px; padding: 5px; margin-block: -5px; }
+.cd-h-mk { width: 16px; height: 16px; padding: 4px; margin-block: -5px; }
+#gap .cd > .gap-turn { font-size: clamp(1.3rem, 1.95vw, 1.75rem); }
+.cd-ch b, .cd-dl b { font-size: clamp(1.1rem, 1.46vw, 1.35rem); }

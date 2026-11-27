@@ -548,3 +548,7 @@ html { scroll-behavior: smooth; }
 .cd-h-mk { width: 16px; height: 16px; padding: 4px; margin-block: -5px; }
 #gap .cd > .gap-turn { font-size: clamp(1.3rem, 1.95vw, 1.75rem); }
 .cd-ch b, .cd-dl b { font-size: clamp(1.1rem, 1.46vw, 1.35rem); }
+
+/* Column labels: 2pt larger, text in the ClinMaker mark's gradient (coral → violet → teal) */
+.cd-head .cd-h { font-size: clamp(15px, 1.1vw, 16.5px); }
+.cd-head .cd-h > span { background: linear-gradient(90deg, #d87654 0%, #7850dc 55%, #0e7490 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }

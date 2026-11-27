@@ -526,3 +526,6 @@ html { scroll-behavior: smooth; }
   background: linear-gradient(100deg, #5b37c4 0%, var(--ai-violet, #7850dc) 45%, #a77ff0 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
 #gap .gap-turn + .cd { margin-top: clamp(36px, 4vw, 60px); }
 #gap .gap-turn { text-wrap: balance; }
+/* One line on desktop and tablet; wraps (balanced) on phones */
+#gap .gap-turn { max-width: none; font-size: clamp(1.3rem, 2.1vw, 2rem); }
+@media (min-width: 761px) { #gap .gap-turn { white-space: nowrap; } }

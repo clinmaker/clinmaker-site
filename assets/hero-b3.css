@@ -552,3 +552,15 @@ html { scroll-behavior: smooth; }
 /* Column labels: 2pt larger, text in the ClinMaker mark's gradient (coral → violet → teal) */
 .cd-head .cd-h { font-size: clamp(15px, 1.1vw, 16.5px); }
 .cd-head .cd-h > span { background: linear-gradient(90deg, #d87654 0%, #7850dc 55%, #0e7490 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+/* The panel's opening line: left-aligned, in the same ClinMaker gradient as the column labels */
+#gap .cd > .gap-turn { text-align: left; margin-left: 0; background: linear-gradient(90deg, #d87654 0%, #7850dc 55%, #0e7490 100%); -webkit-background-clip: text; background-clip: text; color: transparent; width: fit-content; max-width: 100%; }
+#gap .cd > .gap-turn { border-bottom: 0; padding-bottom: 0; margin-bottom: clamp(26px, 2.6vw, 38px); }
+
+/* ───── "ClinMaker" set as the wordmark wherever it appears in content: Inter 900, tight, Clin in ink, Maker in brand coral ───── */
+.cm-wm { font-family: var(--brandfont); font-weight: 900; letter-spacing: -0.04em; text-transform: none; background: none;
+  color: var(--ink); -webkit-text-fill-color: var(--ink); }
+.cm-wm > span { color: var(--brand-500); -webkit-text-fill-color: var(--brand-500); }
+.cd-head .cd-h .cm-wm { font-size: 1.15em; letter-spacing: -0.03em; margin-right: .1em; }
+/* Column labels in sentence case (not capitals) */
+.cd-head .cd-h { text-transform: none; letter-spacing: -0.005em; font: 600 clamp(16px, 1.25vw, 18px)/1 var(--display); }
+.cd-head .cd-h .cm-wm { font-size: 1.04em; letter-spacing: -0.04em; margin-right: 0; }

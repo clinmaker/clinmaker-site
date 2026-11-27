@@ -564,3 +564,5 @@ html { scroll-behavior: smooth; }
 /* Column labels in sentence case (not capitals) */
 .cd-head .cd-h { text-transform: none; letter-spacing: -0.005em; font: 600 clamp(16px, 1.25vw, 18px)/1 var(--display); }
 .cd-head .cd-h .cm-wm { font-size: 1.04em; letter-spacing: -0.04em; margin-right: 0; }
+/* Gradient numbers: room for descenders (the y in "days"), which the text clip was cutting off */
+.tl-n b, #gap .stats-box .stat .n { line-height: 1.12; padding-bottom: .1em; margin-bottom: -.06em; }

@@ -18,7 +18,7 @@ if [ -n "$FOUND" ]; then
 fi
 
 # Draft review pages must not reach the live site: keep the chosen hero in index.html (and fold platform-b3.html into platform.html if B3 wins), delete the rest.
-DRAFTS=$(ls index-*.html platform-b3.html heroes.html assets/hero-*.css assets/hero-*.js 2>/dev/null | tr '\n' ' ')
+DRAFTS=$(ls index-*.html *-b3.html heroes.html assets/hero-*.css assets/hero-*.js 2>/dev/null | tr '\n' ' ')
 if [ -n "$DRAFTS" ]; then
   echo "Draft check failed: hero option drafts are still in the site: $DRAFTS"
   STATUS=1

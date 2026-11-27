@@ -26,7 +26,7 @@
     .page-hero .eyebrow { margin-bottom: 22px; }
     .page-hero-grid.mid { align-items: center; }
   </style>
-  <link rel="stylesheet" href="assets/hero-pmap.css?v=6">
+  <link rel="stylesheet" href="assets/hero-pmap.css?v=9">
   <script src="assets/hero-pmap.js?v=3" defer></script>
 </head>
 <body>
@@ -59,7 +59,7 @@
             <a class="dd-link" href="platform-b3.html#standards"><b>Standards</b><span>CDISC and sponsor standards the platform is built on</span></a>
             <div class="dd-sep"></div>
             <a class="dd-link" href="platform-b3.html#walkthrough"><b>Product walkthrough</b><span>The product, screen by screen</span></a>
-            <a class="dd-link" href="platform-b3.html#faq"><b>FAQ</b><span>How ClinMaker fits with your EDC and teams</span></a>
+            <a class="dd-link" href="faq-b3.html#faq"><b>FAQ</b><span>How ClinMaker fits with your EDC and teams</span></a>
           </div>
         </li>
         <li class="nav-item" data-dd>
@@ -82,7 +82,7 @@
         <a href="platform-b3.html">Platform overview</a><a href="use-cases-b3.html">Use cases</a><a href="protocol-digitization-b3.html">Protocol Digitization</a><a href="study-build-b3.html">Study Build</a>
       </div>
       <div class="m-group"><span class="label">Resources</span>
-        <a href="roadmap.html">Where ClinMaker is today</a><a href="security.html">Trust &amp; compliance</a><a href="platform-b3.html#standards">Standards</a><a href="platform-b3.html#walkthrough">Product walkthrough</a><a href="platform-b3.html#faq">FAQ</a>
+        <a href="roadmap.html">Where ClinMaker is today</a><a href="security.html">Trust &amp; compliance</a><a href="platform-b3.html#standards">Standards</a><a href="platform-b3.html#walkthrough">Product walkthrough</a><a href="faq-b3.html#faq">FAQ</a>
       </div>
       <div class="m-group"><span class="label">Company</span>
         <a href="about.html">About</a><a href="team.html">Team</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a>
@@ -109,12 +109,7 @@
       </div>
     </div>
 
-    <figure class="hero-shot">
-      <div class="glass-frame">
-        <div class="shot-meta" aria-hidden="true"><span class="dot">Protocol workspace · ICH M11</span><span>Real product screen · demo study</span></div>
-        <img src="assets/screens/protocol-workspace.webp?v=hd1" width="2237" height="1036" fetchpriority="high" alt="The ClinMaker Protocol workspace. The left panel lists the protocol's sections in ICH M11 order, the editor shows section 9, Adverse Events, generated from the structured study design, and the right panel shows the review workflow from draft to reviewed, with comments, checks, reviewers, audit and signatures.">
-      </div>
-    </figure>
+    <figure class="hero-tile"><img src="assets/screens/b3/t-hero-pd.webp?v=1" width="1200" height="979" fetchpriority="high" alt="Section 9.1 Definitions of a protocol in the ClinMaker Protocol workspace, written in ICH M11 order and generated from the structured study design."></figure>
   </div>
 </section>
 
@@ -130,102 +125,29 @@
     </div>
     <ol class="pf-steps">
       <li class="pf-step">
-        <div class="pf-copy"><span class="pf-n">01</span><h3>Start from what you have</h3><p>Write a new protocol, or import one you already have as a PDF, Word file or USDM JSON. You review what was extracted, section by section, before anything is applied.</p></div>
-        <figure class="pf-shot" data-shot="pw-1"><div class="pf-frame"><div class="pf-bar"><i></i><i></i><i></i><span>Protocol workspace · Import</span></div><video class="pf-clip" src="assets/screens/b3/pw-1-import.mp4?v=1" poster="assets/screens/b3/pw-1b-import.webp?v=1" width="1552" height="756" muted loop playsinline preload="metadata" aria-label="Opening Import from PDF/DOCX in the Protocol workspace, then the Import from protocol dialog: upload a PDF, Word, text or USDM 4.0 file, with AI-assisted extraction."></video></div></figure>
+        <div class="pf-copy"><span class="pf-n">01</span><h3>Start from what you have</h3><p>Write a new protocol, or import the one you have and review what was extracted before it is applied.</p></div>
+        <figure class="pf-shot" data-shot="pw-1"><div class="pf-frame"><video class="pf-clip" src="assets/screens/b3/t-pw-1.mp4?v=2" poster="assets/screens/b3/t-pw-1b.webp?v=2" width="1200" height="820" muted loop playsinline preload="metadata" aria-label="Opening Import from PDF/DOCX in the Protocol workspace, then the Import from protocol dialog: upload a PDF, Word, text or USDM 4.0 file, with AI-assisted extraction."></video></div></figure>
       </li>
       <li class="pf-step flip">
-        <div class="pf-copy"><span class="pf-n">02</span><h3>Author in ICH M11 order</h3><p>A guided outline takes the team from study identification to regulatory. Sections tied to the study design update themselves when the design changes.</p></div>
-        <figure class="pf-shot" data-shot="pw-2"><div class="pf-frame"><div class="pf-bar"><i></i><i></i><i></i><span>Protocol workspace · Author</span></div><img src="assets/screens/b3/pw-2-author.webp?v=1" width="1552" height="757" loading="lazy" alt="Author mode in the Protocol workspace: section 9.1 Definitions in ICH M11 order, with the guided steps from study identification onward."></div></figure>
+        <div class="pf-copy"><span class="pf-n">02</span><h3>Author in ICH M11 order</h3><p>A guided outline in ICH M11 order, with sections that follow the study design.</p></div>
+        <figure class="pf-shot" data-shot="pw-2"><div class="pf-frame"><img src="assets/screens/b3/t-pw-2.webp?v=2" width="1200" height="859" loading="lazy" alt="Author mode in the Protocol workspace: section 9.1 Definitions in ICH M11 order, with the guided steps from study identification onward."></div></figure>
       </li>
       <li class="pf-step">
-        <div class="pf-copy"><span class="pf-n">03</span><h3>Let AI draft, keep people in charge</h3><p>AI suggests objectives, endpoints, eligibility criteria and edits to the prose. Every suggestion is marked Advisory, and a person accepts or rejects it.</p></div>
-        <figure class="pf-shot" data-shot="pw-3"><div class="pf-frame"><div class="pf-bar"><i></i><i></i><i></i><span>Protocol workspace · AI suggestions</span></div><video class="pf-clip" src="assets/screens/b3/pw-3-ai.mp4?v=1" poster="assets/screens/b3/pw-3-ai.webp?v=1" width="1552" height="756" muted loop playsinline preload="metadata" aria-label="An AI suggestion for section 9.1, labelled Advisory, accuracy not measured, with Apply and Merge buttons for a person to decide."></video></div></figure>
+        <div class="pf-copy"><span class="pf-n">03</span><h3>Let AI draft, keep people in charge</h3><p>AI suggests; every suggestion is marked Advisory until a person accepts it.</p></div>
+        <figure class="pf-shot" data-shot="pw-3"><div class="pf-frame"><video class="pf-clip" src="assets/screens/b3/t-pw-3.mp4?v=2" poster="assets/screens/b3/t-pw-3b.webp?v=2" width="1200" height="820" muted loop playsinline preload="metadata" aria-label="An AI suggestion for section 9.1, labelled Advisory, accuracy not measured, with Apply and Merge buttons for a person to decide."></video></div></figure>
       </li>
       <li class="pf-step flip">
-        <div class="pf-copy"><span class="pf-n">04</span><h3>Review, then approve once</h3><p>Each section moves from draft to in review to reviewed. When every comment is resolved and the completeness check passes, the protocol is approved with an e-signature.</p></div>
-        <figure class="pf-shot" data-shot="pw-4"><div class="pf-frame"><div class="pf-bar"><i></i><i></i><i></i><span>Protocol workspace · Review</span></div><img src="assets/screens/b3/pw-4-review.webp?v=1" width="1552" height="757" loading="lazy" alt="The Review and submit page: the section review board, with each section moving from draft to in review to reviewed."></div></figure>
+        <div class="pf-copy"><span class="pf-n">04</span><h3>Review, then approve once</h3><p>Sections are reviewed one by one, then the protocol is approved once, with an e-signature.</p></div>
+        <figure class="pf-shot" data-shot="pw-4"><div class="pf-frame"><img src="assets/screens/b3/t-pw-4.webp?v=2" width="1200" height="620" loading="lazy" alt="The Review and submit page: the section review board, with each section moving from draft to in review to reviewed."></div></figure>
       </li>
       <li class="pf-step">
-        <div class="pf-copy"><span class="pf-n">05</span><h3>Export and amend</h3><p>Export the study as USDM 4.0 JSON, checked against CDISC rules, plus ClinicalTrials.gov and EU CTIS drafts and a PDF. When it changes, an amendment is assessed once, finding by finding.</p></div>
-        <figure class="pf-shot" data-shot="pw-5"><div class="pf-frame"><div class="pf-bar"><i></i><i></i><i></i><span>Protocol workspace · Export</span></div><img src="assets/screens/b3/pw-5-export.webp?v=1" width="1552" height="757" loading="lazy" alt="The export list: USDM 4.0 snapshot and full protocol, ClinicalTrials.gov XML, EU CTIS JSON and the schedule of activities workbook, each showing its compliance findings."></div></figure>
+        <div class="pf-copy"><span class="pf-n">05</span><h3>Export and amend</h3><p>USDM 4.0, registry drafts and a PDF from the same study; amendments are assessed once.</p></div>
+        <figure class="pf-shot" data-shot="pw-5"><div class="pf-frame"><img src="assets/screens/b3/t-pw-5.webp?v=2" width="1200" height="620" loading="lazy" alt="The export list: USDM 4.0 snapshot and full protocol, ClinicalTrials.gov XML, EU CTIS JSON and the schedule of activities workbook, each showing its compliance findings."></div></figure>
       </li>
     </ol>
   </div>
 </section>
 
-
-<!-- ═══════════ THREE WAYS IN ═══════════ -->
-<section class="section tight" id="ways-in" aria-labelledby="ways-h">
-  <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <p class="label">Three ways in</p>
-        <h2 id="ways-h">Start from wherever the protocol is today.</h2>
-      </div>
-      <p>Each route ends in the same place: one structured study, with every section in ICH M11 order.</p>
-    </div>
-    <div class="feat-grid">
-      <article class="feat">
-        <span class="label">01 · New</span>
-        <h3>Write a new protocol</h3>
-        <p>Start in the ICH M11 structure, with guided steps from study identification to design.</p>
-      </article>
-      <article class="feat">
-        <span class="label">02 · Existing</span>
-        <h3>Digitize a PDF or Word file</h3>
-        <p>Upload the protocol you have. AI extracts the sections and the study design for a person to review. Each imported section keeps its original text.</p>
-      </article>
-      <article class="feat">
-        <span class="label">03 · Structured</span>
-        <h3>Import USDM JSON</h3>
-        <p>Load a USDM study definition from another system. Sections that depend on the study design are generated from it.</p>
-      </article>
-    </div>
-    <div class="std-line">
-      <span class="label">Standards</span>
-      <span class="s">USDM 4.0 (CDISC's study design model)</span><span class="s">ICH M11 (harmonized protocol template)</span><span class="s">Digital Data Flow (DDF)</span><span class="s">CDISC Controlled Terminology</span>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ WHAT YOU CAN DO (horizontal rail) ═══════════ -->
-<section class="section mesh-band grain" id="capabilities" aria-labelledby="cap-h">
-  <div data-rail>
-    <div class="wrap rail-head">
-      <div>
-        <p class="label">What you can do</p>
-        <h2 id="cap-h">From first draft to signed amendment.</h2>
-        <p>ClinMaker keeps the protocol and its structured study together, so medical writing, regulatory and data teams work from the same source.</p>
-      </div>
-    </div>
-    <div class="xrail" tabindex="0" role="region" aria-label="Protocol Digitization capabilities, scroll sideways for more">
-      <article class="uc">
-        <div class="uc-media m-pe"><img src="assets/screens/pd-guide.webp?v=hd1" width="1725" height="839" loading="lazy" alt="The Guide tab in the Protocol workspace: guided steps with progress 7 of 15, the next step to add a primary endpoint, and section 9.1.1, Definitions of Adverse Events, with its ICH M11 guidance above it."></div>
-        <div class="uc-body"><span class="label">Authoring</span><h3>Write in ICH M11, step by step</h3><p>Guided steps with progress, ICH M11 guidance in each section, Author and Review modes and change proposals.</p><div class="who"><span>Medical writing</span><span>Clinical science</span></div></div>
-      </article>
-      <article class="uc">
-        <div class="uc-media m-cy"><img src="assets/screens/protocol-section-9-2.webp?v=hd1" width="1220" height="762" loading="lazy" alt="Section 9.2 of a protocol, Timing and Procedures for Collection and Reporting, generated from the structured design as a draft, with a link to the study definition."></div>
-        <div class="uc-body"><span class="label">Generated sections</span><h3>Sections written from the study design</h3><p>Sections that depend on the study design, such as adverse event reporting, are generated from the structured study and update when it changes.</p><div class="who"><span>Medical writing</span><span>Data management</span></div></div>
-      </article>
-      <article class="uc">
-        <div class="uc-media m-vi"><img src="assets/screens/uc-review.webp?v=hd1" width="500" height="365" loading="lazy" alt="The review workflow card for a protocol section: in progress at step 1 of draft, in review and reviewed, open for editing, with a button to claim it."></div>
-        <div class="uc-body"><span class="label">Review and approval</span><h3>Review each section, sign the whole protocol</h3><p>Draft, In review, Reviewed, with claim-to-edit, comments and checks. The finished protocol is approved with an e-signature.</p><div class="who"><span>Medical writing</span><span>Quality</span></div></div>
-      </article>
-      <article class="uc" id="amendments">
-        <div class="uc-media m-sa"><img src="assets/screens/amendment-rules.webp?v=hd1" width="1251" height="748" loading="lazy" alt="Amendment impact rules for consent. Each rule has a severity such as blocker or warning, the protocol sections it watches, the amendment tiers it applies to and the regulation it cites, 21 CFR 50.27."></div>
-        <div class="uc-body"><span class="label">Amendments</span><h3>Assess each amendment once, before the build</h3><p>Classify the change and see every step it triggers, from re-consent to the casebook build. Each step cites its regulation. Then sign the impact assessment.</p><div class="who"><span>Regulatory affairs</span><span>Clinical operations</span></div></div>
-      </article>
-      <article class="uc">
-        <div class="uc-media m-pe glyph"><div class="uc-glyph" aria-hidden="true"><div><i></i>USDM JSON</div><div><i></i>ClinicalTrials.gov · EU CTIS drafts</div><div><i class="c"></i>SoA spreadsheet · Word draft</div><div><i class="c"></i>DDF API</div></div></div>
-        <div class="uc-body"><span class="label">Outputs</span><h3>Export the study in open formats</h3><p>USDM JSON, ClinicalTrials.gov and EU CTIS drafts, a schedule of activities (SoA) spreadsheet and a Word draft. The USDM and registry exports first pass CDISC CORE conformance checks, and overriding an error takes an e-signature.</p><div class="who"><span>Regulatory affairs</span><span>IT</span></div></div>
-      </article>
-      <article class="uc">
-        <div class="uc-media m-cy glyph"><div class="uc-glyph" aria-hidden="true"><div><i class="c"></i>Protocol library · search and reuse</div><div><i></i>Compare two protocols</div><div><i class="v"></i>Knowledge graph · area, intervention</div></div></div>
-        <div class="uc-body"><span class="label">Reuse</span><h3>Start from what you've already written</h3><p>Search the protocol library, compare protocols and link studies by therapeutic area and intervention.</p><div class="who"><span>Clinical science</span><span>Biostatistics</span></div></div>
-      </article>
-    </div>
-  </div>
-</section>
 
 <!-- ═══════════ ONE AMENDMENT, FOLLOWED THROUGH (pins on wide screens; story.js) ═══════════ -->
 <section class="story" id="amendment" aria-labelledby="story-h">
@@ -324,31 +246,6 @@
   <div class="wrap"><p class="next-hook"><a href="#ai">See how AI is used here<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 3v10M3.5 8.5L8 13l4.5-4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p></div>
 </section>
 
-<!-- ═══════════ HOW AI IS USED ═══════════ -->
-<section class="section" id="ai" aria-labelledby="ai-h">
-  <div class="wrap">
-    <div class="why-grid">
-      <div>
-        <p class="label">How AI is used here</p>
-        <h2 id="ai-h">AI writes first drafts, and a person reviews each one.</h2>
-        <p class="intro">AI drafts sections, objectives, endpoints, eligibility and the schedule, and extracts structure from a PDF or Word file. Not every feature uses it.</p>
-        <div class="more"><a class="link-arrow" href="security.html">How AI is governed →</a></div>
-      </div>
-      <div class="why-list">
-        <div><span class="k">01</span><h3>Imports keep their source</h3><p>Each section imported from a PDF or Word file keeps the text it came from.</p></div>
-        <div><span class="k">02</span><h3>Marked Advisory</h3><p>AI output is labeled Advisory. Its accuracy is not yet measured, so a person checks every draft.</p></div>
-        <div><span class="k">03</span><h3>Never applied on its own</h3><p>A person accepts, edits or rejects each draft. Sections accepted from AI are stamped as AI-accepted.</p></div>
-        <div><span class="k">04</span><h3>Prompts checked, decisions recorded</h3><p>A patient-identifier filter checks every prompt before it reaches a model. The audit trail records AI drafts, extractions and decisions.</p></div>
-      </div>
-    </div>
-    <div class="included gap-top">
-      <span class="label">Next step</span>
-      <p><b>Study Build</b> turns the approved protocol into a casebook aligned to CDASH, the CDISC standard for how case report form data is collected. It uses no AI, and with the same protocol and form library you get the same build.</p>
-      <a class="link-arrow" href="study-build-b3.html">Explore Study Build →</a>
-    </div>
-  </div>
-</section>
-
 <!-- ═══════════ GET STARTED ═══════════ -->
 <section class="section flush-top" aria-labelledby="start-h">
   <div class="wrap">
@@ -396,7 +293,7 @@
         <li><a href="security.html">Trust &amp; compliance</a></li>
         <li><a href="platform-b3.html#standards">Standards</a></li>
         <li><a href="platform-b3.html#walkthrough">Product walkthrough</a></li>
-        <li><a href="platform-b3.html#faq">FAQ</a></li>
+        <li><a href="faq-b3.html#faq">FAQ</a></li>
       </ul></div>
       <div class="ft-col"><h4>Company</h4><ul>
         <li><a href="about.html">About</a></li>

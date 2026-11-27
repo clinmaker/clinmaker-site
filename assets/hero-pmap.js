@@ -31,3 +31,12 @@
   if ('ResizeObserver' in window) new ResizeObserver(sched).observe(main); else window.addEventListener('resize', sched);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(sched);
 })();
+/* Product clips: play only while on screen, and never for people who ask for reduced motion */
+(function () {
+  'use strict';
+  var clips = document.querySelectorAll('video.pf-clip'); if (!clips.length) return;
+  var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (still || !('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { var p = e.target.play(); if (p && p.catch) p.catch(function () {}); } else e.target.pause(); }); }, { threshold: 0.4 });
+  clips.forEach(function (v) { io.observe(v); });
+})();

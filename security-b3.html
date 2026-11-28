@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Trust and Compliance · ClinMaker</title>
+  <meta name="description" content="The controls in ClinMaker, how AI is governed, and where validation stands.">
+  <meta name="theme-color" content="#fbf3ee">
+  <meta property="og:title" content="Trust and Compliance · ClinMaker">
+  <meta property="og:description" content="The controls in ClinMaker, how AI is governed, and where validation stands.">
+  <meta property="og:image" content="https://clinmaker.com/assets/logo-lockup-tagline.png">
+  <meta property="og:url" content="https://clinmaker.com/security-b3.html">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27 viewBox=%270 0 64 64%27 fill=%27none%27%3E%3Cpath d=%27M50 14 a22 22 0 1 0 0 36%27 stroke=%27%23d87654%27 stroke-width=%276%27 stroke-linecap=%27round%27 fill=%27none%27%2F%3E%3Cpath d=%27M20 26 Q 26 32 32 26 T 44 26%27 stroke=%27%23d87654%27 stroke-width=%272.4%27 stroke-linecap=%27round%27 fill=%27none%27%2F%3E%3Cpath d=%27M20 38 Q 26 32 32 38 T 44 38%27 stroke=%27%230e7490%27 stroke-width=%272.4%27 stroke-linecap=%27round%27 fill=%27none%27%2F%3E%3Cline x1=%2726%27 y1=%2729%27 x2=%2726%27 y2=%2735%27 stroke=%27%237850dc%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%2F%3E%3Cline x1=%2732%27 y1=%2727%27 x2=%2732%27 y2=%2737%27 stroke=%27%237850dc%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%2F%3E%3Cline x1=%2738%27 y1=%2729%27 x2=%2738%27 y2=%2735%27 stroke=%27%237850dc%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%2F%3E%3C%2Fsvg%3E">
+  <link rel="alternate icon" type="image/png" href="assets/favicon-256.png?v=4">
+  <link rel="apple-touch-icon" href="assets/favicon-256.png?v=4">
+  <link rel="preload" href="assets/fonts/host-grotesk-300-800-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-400-900-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <style>/* Hidden until assets/v7.css applies, so an unstyled first paint never flashes (a giant logo); shown after 3s regardless */html{background:#fbf8f6}body{opacity:0;animation:cm-reveal 0s 3s forwards}@keyframes cm-reveal{to{opacity:1}}</style>
+  <link rel="stylesheet" href="assets/v7.css?v=20261127b">
+  <script src="assets/v7.js?v=20261127b" defer></script>
+  <link rel="stylesheet" href="assets/hero-pmap.css?v=10">
+  <link rel="stylesheet" href="assets/hero-mkt.css?v=2">
+  <script src="assets/hero-pmap.js?v=2" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ═══════════ HEADER (shared: copy verbatim to every page) ═══════════ -->
+<header class="site-header">
+  <div class="wrap">
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="index-b3.html" aria-label="ClinMaker home">
+        <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/><line x1="26" y1="29" x2="26" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span class="wordmark"><span>Clin</span><span class="m">Maker</span></span>
+      </a>
+      <ul class="nav-menu">
+        <li class="nav-item" data-dd>
+          <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="dd-product">Platform <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="dropdown" id="dd-product">
+            <a class="dd-link" href="platform-b3.html"><b>Overview</b><span>The whole platform, from protocol to submission</span></a>
+            <a class="dd-link" href="use-cases-b3.html"><b>Use Cases</b><span>What each team does with ClinMaker</span></a>
+            <div class="dd-sep"></div>
+            <a class="dd-link" href="protocol-digitization-b3.html"><b>Protocol Digitization</b><span class="tag">Ready to demo</span><span>Write the protocol once, as a structured study</span></a>
+            <a class="dd-link" href="study-build-b3.html"><b>Study Build</b><span class="tag">Ready to demo</span><span>The casebook, built from the approved protocol</span></a>
+            <div class="dd-sep"></div>
+            <a class="dd-link" href="security-b3.html"><b>Trust and Compliance</b><span>Controls, AI governance and where validation stands</span></a>
+          </div>
+        </li>
+        <li class="nav-item" data-dd>
+          <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="dd-resources">Resources <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="dropdown" id="dd-resources">
+            <a class="dd-link" href="request-b3.html?type=demo#request-form"><b>Request a demo</b><span>A 30-minute live walkthrough</span></a>
+            <a class="dd-link" href="early-adopter-b3.html"><b>Early Adopter Program</b><span>Run ClinMaker on one of your own studies</span></a>
+            <a class="dd-link" href="faq-b3.html"><b>FAQ</b><span>How ClinMaker fits with your EDC and teams</span></a>
+          </div>
+        </li>
+        <li class="nav-item" data-dd>
+          <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="dd-company">Company <svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="dropdown" id="dd-company">
+            <a class="dd-link" href="about-b3.html"><b>About</b><span>Why we started ClinMaker</span></a>
+            <a class="dd-link" href="vision-b3.html"><b>Vision &amp; Mission</b><span>What we are here to do, and our values</span></a>
+            <a class="dd-link" href="team-b3.html"><b>Leadership Team</b><span>The founders building it</span></a>
+            <a class="dd-link" href="customers-b3.html"><b>Customers we Support</b><span>Sponsors, CROs and the teams inside them</span></a>
+            <a class="dd-link" href="blog-b3.html"><b>Blog</b><span>Notes on structured protocols and study builds</span></a>
+            <a class="dd-link" href="contact-b3.html"><b>Contact</b><span>Talk to the founders</span></a>
+          </div>
+        </li>
+      </ul>
+      <div class="nav-actions">
+        <a class="btn btn-primary btn-sm" href="request-b3.html?type=demo#request-form">Request a demo</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Menu</button>
+      </div>
+    </nav>
+    <div class="mobile-nav" id="mobile-nav">
+      <div class="m-group"><span class="label">Platform</span>
+        <a href="platform-b3.html">Overview</a><a href="use-cases-b3.html">Use Cases</a><a href="protocol-digitization-b3.html">Protocol Digitization</a><a href="study-build-b3.html">Study Build</a><a href="security-b3.html">Trust and Compliance</a>
+      </div>
+      <div class="m-group"><span class="label">Resources</span>
+        <a href="request-b3.html?type=demo#request-form">Request a demo</a><a href="early-adopter-b3.html">Early Adopter Program</a><a href="faq-b3.html">FAQ</a>
+      </div>
+      <div class="m-group"><span class="label">Company</span>
+        <a href="about-b3.html">About</a><a href="vision-b3.html">Vision &amp; Mission</a><a href="team-b3.html">Leadership Team</a><a href="customers-b3.html">Customers we Support</a><a href="blog-b3.html">Blog</a><a href="contact-b3.html">Contact</a>
+      </div>
+      <div class="m-actions">
+        <a class="btn btn-primary" href="request-b3.html?type=demo#request-form">Request a demo</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<section class="band-top fade grain" aria-labelledby="pg-h">
+  <div class="wrap page-hero mk-hero">
+    <p class="crumbs"><a href="index-b3.html">Home</a><span>/</span><a href="platform-b3.html">Platform</a><span>/</span><span>Trust and Compliance</span></p>
+    <p class="eyebrow"><b>Designed for</b>21 CFR Part 11 · EU Annex 11 · ICH E6(R3)</p>
+    <h1 id="pg-h">Every action recorded. Every decision signed by a person.</h1>
+    <p class="mk-sub">Your QA team can check every control in ClinMaker for themselves: who did what, when and why, and who approved it. We also tell you plainly what is not done yet.</p>
+    <div class="mk-ctas">
+      <a class="btn btn-primary" href="request-b3.html?type=demo#request-form">Request a demo</a>
+      <a class="link-arrow" href="contact-b3.html">Bring us your checklist →</a>
+    </div>
+    <div class="mk-show">
+      <figure class="mk-shot">
+        <img src="assets/screens/mk/audit-full.webp?v=1" width="2400" height="1022" fetchpriority="high" alt="The ClinMaker audit trail: every recorded action with its timestamp, event, record, actor and role, module, changed fields and reason, filterable and exportable.">
+        <span class="mk-pin" style="left:38%;top:28%"><i></i>Who, what, when and why</span>
+        <span class="mk-pin cy" style="right:4%;top:46%"><i></i>Append-only and hash-chained</span>
+        <span class="mk-pin vi" style="right:6%;bottom:8%"><i></i>Every changed field, recorded</span>
+      </figure>
+    </div>
+    <div class="mk-proof">
+      <div><b>Designed for Part 11</b><span>And EU Annex 11 and ICH E6(R3). Designed for is not a certification.</span></div>
+      <div><b>Not yet validated</b><span>Validation documentation is in preparation. No IQ/OQ/PQ yet.</span></div>
+      <div><b>No real patient data</b><span>ClinMaker is ready to demo. It is not yet in production use.</span></div>
+      <div><b>Your data leaves in open formats</b><span>USDM JSON and CDISC ODM 1.3.2.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CONTROLS ═══════════ -->
+<section class="section" id="controls" aria-labelledby="ct-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="label">Controls</p>
+        <h2 id="ct-h">The controls, as they work today.</h2>
+      </div>
+      <p>Each one is part of the platform that Protocol Digitization and Study Build run on, mapped to the clauses your SOPs already cite.</p>
+    </div>
+    <div class="mk-grid">
+      <div class="mk-card"><span class="mk-ic"><svg viewBox="0 0 24 24"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span><h3>Audit trail</h3><p>Append-only and hash-chained. Each record names the user and the time, and a chain verifier reports any break. Database rules block edits and deletes.</p><p class="mk-meta">21 CFR 11.10(e) · Annex 11 §9</p></div>
+      <div class="mk-card"><span class="mk-ic cy"><svg viewBox="0 0 24 24"><path d="M4 18c3-1 4-6 6-6s1 5 3 5 3-3 4-3 2 2 3 2"/><path d="M4 21h16"/></svg></span><h3>Electronic signatures</h3><p>The signer re-enters their password and gives a reason, and the signature is linked to the record it signs: a protocol approval, an impact assessment or an export override.</p><p class="mk-meta">21 CFR 11.50 · 11.70 · 11.200 · Annex 11 §14</p></div>
+      <div class="mk-card"><span class="mk-ic vi"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 11l2 2 4-4"/></svg></span><h3>Roles and blinding</h3><p>Fine-grained sponsor roles with separation of duties, and blinding rules that limit who can see unblinded information.</p><p class="mk-meta">21 CFR 11.10(d) · 11.10(g) · Annex 11 §12</p></div>
+      <div class="mk-card"><span class="mk-ic"><svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></span><h3>Single sign-on</h3><p>Sign in through your identity provider with OIDC or SAML, with SCIM user provisioning, on the Enterprise plan.</p><p class="mk-meta">21 CFR 11.10(d) · 11.300 · Annex 11 §12</p></div>
+      <div class="mk-card"><span class="mk-ic cy"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="8" height="16" rx="2"/><rect x="13" y="4" width="8" height="16" rx="2"/></svg></span><h3>Tenant isolation</h3><p>Each sponsor's data is kept apart at the database level, using row-level security.</p><p class="mk-meta">21 CFR 11.10(d) · Annex 11 §7</p></div>
+      <div class="mk-card"><span class="mk-ic vi"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 4.4-3.4 8.2-8 9-4.6-.8-8-4.6-8-9V7z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><h3>Checks before export</h3><p>Before a protocol is exported as USDM JSON, a gate runs schema, completeness and CDISC CORE conformance checks. Overriding an error takes an e-signature and a reason.</p><p class="mk-meta">21 CFR 11.10(f) · Annex 11 §5</p></div>
+    </div>
+    <p class="mk-cmp-note">“Designed for” means the control is part of how ClinMaker is built. It is not a certification, and it does not replace the validation you carry out for your own intended use.</p>
+  </div>
+</section>
+
+<!-- ═══════════ AI + WHERE THINGS STAND ═══════════ -->
+<section class="section alt" id="ai" aria-label="How AI is governed, and where things stand">
+  <div class="wrap co-grid">
+    <div class="co-card">
+      <p class="label">AI, governed</p>
+      <h2>A person decides on every AI suggestion.</h2>
+      <ul class="mk-ticks">
+        <li>AI output is marked Advisory, and its accuracy is not yet measured.</li>
+        <li>A person accepts, edits or rejects each suggestion. No build is approved without a person.</li>
+        <li>Sections imported from a PDF or Word file keep the text they came from.</li>
+        <li>Every prompt is checked for patient identifiers, such as subject IDs, before it reaches a model.</li>
+        <li>AI drafts, extractions and decisions are written to the audit trail.</li>
+      </ul>
+      <p class="mk-cmp-note">Not every feature uses AI. Building the casebook from the protocol uses none.</p>
+    </div>
+    <div class="co-card">
+      <p class="label">Where things stand</p>
+      <h2>What isn't done yet.</h2>
+      <ul class="mk-ticks">
+        <li><b>Validation.</b> Not yet validated. Documentation is in preparation, and no IQ/OQ/PQ has been executed.<span class="ph" hidden data-todo> [to confirm: target dates]</span></li>
+        <li><b>Penetration test.</b> Not done yet.<span class="ph" hidden data-todo> [to confirm: date]</span></li>
+        <li><b>SOC 2.</b> No SOC 2 report, and no ISO certification.<span class="ph" hidden data-todo> [to confirm: dates]</span></li>
+        <li><b>Protocols you share.</b> We sign a mutual NDA first, then send a secure upload link. Please never email a protocol. We delete it on request.</li>
+      </ul>
+      <div class="more"><a class="link-arrow" href="faq-b3.html#quality">Questions QA and IT ask us →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ GET STARTED ═══════════ -->
+<section class="section" aria-labelledby="start-h">
+  <div class="wrap">
+    <div class="td grain">
+      <div>
+        <p class="label">For your QA and IT review</p>
+        <h2 id="start-h">Bring us your checklist.</h2>
+        <p class="lead">If you're assessing ClinMaker, we'll work through your questions with you, in the product: the audit trail and chain verifier, e-signatures, roles and where validation stands.</p>
+        <div class="td-ctas">
+          <a class="btn btn-primary" href="request-b3.html?type=demo#request-form">Request a demo</a>
+          <a class="link-arrow" href="contact-b3.html">Ask a QA or IT question →</a>
+        </div>
+      </div>
+      <div class="deliv">
+        <div><span class="d">Live</span><a href="request-b3.html?type=demo#request-form"><b>A walkthrough of the controls</b><span class="s">Audit trail, e-signatures, roles and the review queues.</span></a></div>
+        <div><span class="d">Status</span><a href="contact-b3.html"><b>Where validation stands</b><span class="s">The documentation in preparation, and what is still to do.</span></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+
+<!-- ═══════════ FOOTER (shared: copy verbatim to every page; footnotes optional) ═══════════ -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="ft-top ft-3">
+      <div class="ft-brand">
+        <a class="brand" href="index-b3.html" aria-label="ClinMaker home">
+          <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M50 14 a22 22 0 1 0 0 36" stroke="#d87654" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M20 26 Q 26 32 32 26 T 44 26" stroke="#d87654" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M20 38 Q 26 32 32 38 T 44 38" stroke="#0e7490" stroke-width="2.4" stroke-linecap="round" fill="none"/><line x1="26" y1="29" x2="26" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="32" y1="27" x2="32" y2="37" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/><line x1="38" y1="29" x2="38" y2="35" stroke="#7850dc" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <span class="wordmark"><span>Clin</span><span class="m">Maker</span></span>
+        </a>
+        <p class="tag">Standards at the core. Submission at the finish.</p>
+        <span class="mono">contact@clinmaker.com</span>
+      </div>
+      <div class="ft-col"><h4>Platform</h4><ul>
+        <li><a href="platform-b3.html">Overview</a></li>
+        <li><a href="use-cases-b3.html">Use Cases</a></li>
+        <li><a href="protocol-digitization-b3.html">Protocol Digitization</a></li>
+        <li><a href="study-build-b3.html">Study Build</a></li>
+        <li><a href="security-b3.html">Trust and Compliance</a></li>
+      </ul></div>
+      <div class="ft-col"><h4>Resources</h4><ul>
+        <li><a href="request-b3.html?type=demo#request-form">Request a demo</a></li>
+        <li><a href="early-adopter-b3.html">Early Adopter Program</a></li>
+        <li><a href="faq-b3.html">FAQ</a></li>
+        <li><a href="roadmap.html">Where ClinMaker is today</a></li>
+      </ul></div>
+      <div class="ft-col"><h4>Company</h4><ul>
+        <li><a href="about-b3.html">About</a></li>
+        <li><a href="vision-b3.html">Vision &amp; Mission</a></li>
+        <li><a href="team-b3.html">Leadership Team</a></li>
+        <li><a href="customers-b3.html">Customers we Support</a></li>
+        <li><a href="blog-b3.html">Blog</a></li>
+        <li><a href="contact-b3.html">Contact</a></li>
+        <li><a href="careers.html">Careers</a></li>
+      </ul></div>
+    </div>
+    <div class="ft-legal">
+      <span>© 2026 ClinMaker, LLC</span>
+      <nav aria-label="Legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav>
+    </div>
+    <div class="ft-notes">
+      <p>Protocol Digitization and Study Build, and the platform they run on, are ready to demo and open to early adopters. They are not yet in production use. Modules marked "In development" are not available. Not every feature uses AI.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

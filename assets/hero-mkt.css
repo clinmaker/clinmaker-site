@@ -203,3 +203,7 @@ a.mk-post:hover { border-color: rgba(216,118,84,.35); }
   .mk-state { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 560px) { .mk-steps { grid-template-columns: minmax(0, 1fr); } }
+
+/* B3 menus: titles only */
+.site-header .dropdown { min-width: 250px; }
+.site-header .dd-link { padding: 10px 14px; }

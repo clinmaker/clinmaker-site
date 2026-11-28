@@ -207,3 +207,24 @@ a.mk-post:hover { border-color: rgba(216,118,84,.35); }
 /* B3 menus: titles only */
 .site-header .dropdown { min-width: 250px; }
 .site-header .dd-link { padding: 10px 14px; }
+
+/* ───── B3 menus, Claude-style motion: a quick fade with an 8px drop, a slow caret flip, colour-only triggers ───── */
+.site-header #dd-product, .site-header #dd-resources, .site-header #dd-company { min-width: 240px; }
+.site-header #dd-product { min-width: 300px; }
+.site-header .nav-trigger { border-radius: 8px; transition: color .5s cubic-bezier(.19,1,.22,1); }
+.site-header .nav-trigger:hover, .site-header .nav-item:focus-within > .nav-trigger, .site-header .nav-trigger.current { background: none; color: var(--ink); }
+.site-header .nav-trigger svg { transition: transform .75s cubic-bezier(.19,1,.22,1); }
+.site-header .nav-item.open .nav-trigger svg { transform: rotate(-180deg); }
+.site-header .dropdown { top: calc(100% + 8px); border-radius: 12px; padding: 6px; background: #fff; -webkit-backdrop-filter: none; backdrop-filter: none;
+  border: 1px solid rgba(28,26,22,.08); box-shadow: 0 4px 16px rgba(28,26,22,.1);
+  transform: translateY(-8px); transition: opacity .2s ease, transform .2s ease, visibility .2s; }
+.site-header .dropdown::before { top: -12px; height: 12px; }
+.site-header .nav-item.open .dropdown { opacity: 1; visibility: visible; transform: translateY(0); transition: opacity .2s ease, transform .2s ease, visibility 0s; }
+.site-header .dd-link { border-radius: 6px; transition: background-color .2s ease; }
+.site-header .dd-sep { margin: 4px 8px; }
+@media (hover: hover) and (min-width: 1001px) {
+  .site-header .nav-item:hover .dropdown { opacity: 1; visibility: visible; transform: translateY(0); transition: opacity .2s ease, transform .2s ease, visibility 0s; }
+  .site-header .nav-item:hover .nav-trigger { color: var(--ink); }
+  .site-header .nav-item:hover .nav-trigger svg { transform: rotate(-180deg); }
+}
+@media (prefers-reduced-motion: reduce) { .site-header .dropdown, .site-header .nav-trigger svg { transition: none; } }
